@@ -1,0 +1,185 @@
+@import url("/auxusa/wf-base.css");
+@import url("/auxusa/wf-components.css");
+@import url("/auxusa/wf-design-foundation.css");
+@import url("/auxusa/wf-layout-system.css");
+@import url("/auxusa/wf-color-system.css");
+@import url("/auxusa/wf-section-surface-system.css");
+@import url("/auxusa/wf-warm-white.css");
+@import url("/auxusa/wf-surface-final.css");
+
+:root{
+  --app:#e8e7e2;
+  --paper:#fffdf9;
+  --base:#fffdf9;
+  --surface:#fffdf9;
+  --soft:#f4f2ec;
+  --ink:#171714;
+  --text:#171714;
+  --text-muted:#56554f;
+  --line:#d8d5cd;
+  --accent:#7a3f45;
+  --dark:#191918;
+  --display:Georgia,"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+}
+html,body{background:var(--app);color:var(--ink)}
+body{font-family:var(--sans)}
+.toolbar{height:54px}
+.workspace{padding:22px}
+.browser{background:var(--paper)}
+.site-header{height:76px;background:var(--paper)!important;gap:30px}
+.logo{font-family:Georgia,"Times New Roman",serif;font-size:28px;letter-spacing:.09em}
+.header-right{gap:22px}
+.globalnav{gap:20px}
+.globalnav button{font-size:9px;letter-spacing:.08em}
+.globalnav .pro-link{color:var(--accent)!important;font-weight:700}
+.page{background:var(--paper)}
+.jp-display{font-family:"Yu Mincho","Hiragino Mincho ProN",Georgia,serif;font-weight:400;letter-spacing:-.035em}
+.h1.jp-display{font-size:54px;line-height:1.16}
+.h2.jp-display{font-size:38px;line-height:1.25}
+.h3.jp-display{font-size:24px;line-height:1.35}
+.eyebrow{font-size:9px;letter-spacing:.16em}
+.lead{font-size:12px;line-height:1.9;max-width:640px}
+.section{padding:84px 6.4%;border-bottom:1px solid #e7e3da}
+.section.soft{background:var(--soft)!important}
+.section.dark{background:var(--dark)!important}
+.section-tight{padding-top:56px;padding-bottom:56px}
+.accent-text{color:var(--accent)}
+.v2-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 18px;border:1px solid #1d1d1b;background:transparent;font-size:10px;text-decoration:none;cursor:pointer}
+.v2-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff!important}
+.v2-btn.dark{background:#1d1d1b;color:#fff!important}
+.v2-btn.light{border-color:#fff;color:#fff!important}
+.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}
+.v2-photo{position:relative;overflow:hidden;background:#e8e5dd;min-height:320px}
+.v2-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.v2-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.15));pointer-events:none}
+.photo-note{position:absolute;left:14px;bottom:13px;z-index:3;background:rgba(255,253,249,.92);border:1px solid rgba(0,0,0,.08);padding:6px 8px;font-size:8px;line-height:1.45;color:#54524d}
+.photo-note.darknote{background:rgba(20,20,19,.75);color:#fff;border-color:rgba(255,255,255,.15)}
+.v2-hero{display:grid;grid-template-columns:43% 57%;min-height:620px;padding:0!important}
+.v2-hero-copy{padding:86px 10% 74px 14%;display:flex;flex-direction:column;justify-content:center}
+.v2-hero .v2-photo{min-height:620px}
+.v2-hero-copy .brand-line{font-family:Georgia,"Times New Roman",serif;font-size:72px;line-height:.98;margin:0 0 22px;font-weight:400;letter-spacing:-.04em}
+.hero-jp{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:21px;line-height:1.7;margin:0 0 16px}
+.v2-split{display:grid;grid-template-columns:1fr 1fr;gap:6%;align-items:center}
+.v2-split.reverse .v2-photo{order:2}
+.v2-split .v2-photo{min-height:470px}
+.intro-center{max-width:850px;margin:auto;text-align:center}
+.intro-center .lead{margin:18px auto 0}
+.v2-grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:34px}
+.v2-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.v2-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.editorial-card{position:relative;border:1px solid var(--line);background:var(--paper);min-height:200px;padding:24px}
+.editorial-card .num{font-family:Georgia,"Times New Roman",serif;font-size:36px;color:#aaa;margin-bottom:24px}
+.editorial-card h3{margin:0 0 9px;font-size:16px;font-weight:600}
+.editorial-card p{margin:0;color:var(--text-muted);font-size:10px;line-height:1.75}
+.editorial-card .en{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:400;line-height:1.2;margin-bottom:10px}
+.family-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-top:34px}
+.family-card{min-height:500px;position:relative;overflow:hidden;background:#ddd;cursor:pointer}
+.family-card.small{min-height:500px}
+.family-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.family-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03) 35%,rgba(0,0,0,.65))}
+.family-card-copy{position:absolute;z-index:2;left:28px;right:28px;bottom:28px;color:#fff}
+.family-card-copy .eyebrow{color:#ddd}
+.family-card-copy h3{font-family:Georgia,"Times New Roman",serif;font-size:34px;font-weight:400;margin:0}
+.family-card-copy p{font-size:10px;line-height:1.65;max-width:420px;color:#eee}
+.use-grid{display:grid;grid-template-columns:1.35fr .825fr .825fr;grid-template-rows:260px 260px;gap:14px;margin-top:34px}
+.use-card-v2{position:relative;overflow:hidden;cursor:pointer}
+.use-card-v2.big{grid-row:1/3}
+.use-card-v2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.use-card-v2:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 45%,rgba(0,0,0,.55))}
+.use-card-copy{position:absolute;z-index:2;left:22px;right:22px;bottom:20px;color:#fff}
+.use-card-copy strong{font-family:Georgia,"Times New Roman",serif;font-size:29px;font-weight:400}
+.use-card-copy small{display:block;font-size:9px;margin-top:3px}
+.product-family-hero{display:grid;grid-template-columns:40% 60%;min-height:500px}
+.product-family-copy{padding:72px 14%;display:flex;flex-direction:column;justify-content:center}
+.product-family-hero .v2-photo{min-height:500px}
+.filterline{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;margin-top:30px;font-size:9px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip2{border:1px solid #aaa;padding:6px 9px;font-size:8px;background:transparent}
+.chip2.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.product-grid-v2{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 14px;margin-top:32px}
+.product-card-v2{cursor:pointer}
+.product-card-v2 .v2-photo{min-height:285px;background:#efede7}
+.product-card-v2 h4{font-family:Georgia,"Times New Roman",serif;font-size:17px;font-weight:400;margin:12px 0 2px}
+.product-card-v2 .jpname{font-size:9px;color:#777;margin-top:2px}
+.product-card-v2 .meta{font-size:8px;color:#777;margin-top:5px}
+.product-card-v2 .rating{font-size:9px;color:var(--accent);margin-top:5px}
+.category-intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:34px;padding-top:30px;border-top:1px solid var(--line)}
+.category-intro h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-weight:400;font-size:28px;margin:0}
+.category-intro p{font-size:10px;line-height:1.9;color:#5c5a54;margin:0}
+.scene-worlds{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}
+.scene-world{min-height:430px;position:relative;overflow:hidden}
+.scene-world img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scene-world:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 45%,rgba(0,0,0,.62))}
+.scene-world-copy{position:absolute;z-index:2;left:26px;right:26px;bottom:24px;color:#fff}
+.scene-world-copy .en{font-family:Georgia,"Times New Roman",serif;font-size:29px}
+.scene-world-copy p{font-size:9px;line-height:1.65;max-width:440px;color:#eee;margin:7px 0 0}
+.statement-band{padding:110px 8%;text-align:center;background:#1b1b19;color:#fff}
+.statement-band .en{font-family:Georgia,"Times New Roman",serif;font-size:56px;line-height:1.05;max-width:940px;margin:auto}
+.statement-band p{max-width:650px;margin:22px auto 0;font-size:11px;line-height:1.9;color:#c9c6be}
+.brand-principles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}
+.brand-principle{background:var(--paper);padding:26px;min-height:220px}
+.brand-principle .en{font-family:Georgia,"Times New Roman",serif;font-size:23px;line-height:1.2;margin-bottom:10px}
+.brand-principle p{font-size:9px;line-height:1.75;color:#666}
+.triple-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.triple{position:relative}
+.triple .v2-photo{min-height:330px}
+.triple-copy{padding-top:15px}
+.triple-copy .en{font-family:Georgia,"Times New Roman",serif;font-size:22px}
+.triple-copy p{font-size:9px;line-height:1.7;color:#64625d}
+.prof-hero{display:grid;grid-template-columns:50% 50%;min-height:600px}
+.prof-copy{padding:84px 12%;display:flex;flex-direction:column;justify-content:center;background:#1c1c1b;color:#fff}
+.prof-copy .lead{color:#ccc}
+.prof-hero .v2-photo{min-height:600px}
+.prof-value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.prof-value{border-top:1px solid #999;padding:20px 0}
+.prof-value h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:400;margin:0 0 8px}
+.prof-value p{font-size:9px;line-height:1.75;color:#666}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}
+.flow-step{background:var(--paper);padding:25px}
+.flow-step .n{font-family:Georgia,"Times New Roman",serif;font-size:32px;color:var(--accent)}
+.flow-step b{display:block;font-size:10px;margin:10px 0 7px}
+.flow-step p{font-size:9px;line-height:1.65;color:#666;margin:0}
+.pdp-v2-top{display:grid;grid-template-columns:58% 42%;min-height:720px}
+.pdp-v2-gallery{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#fff}
+.pdp-v2-gallery .v2-photo{min-height:360px}
+.pdp-v2-gallery .v2-photo:first-child{grid-row:span 2;min-height:720px}
+.pdp-v2-buy{padding:64px 11%;background:var(--paper)}
+.pdp-v2-buy h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:42px;line-height:1.05;margin:0}
+.pdp-v2-buy .ja-product{font-size:10px;color:#777;margin-top:8px}
+.pdp-v2-buy .rating{color:var(--accent);font-size:10px;margin-top:15px}
+.pdp-v2-buy .price{font-size:17px;margin:14px 0}
+.pdp-v2-buy .divider{border-top:1px solid var(--line);margin:22px 0}
+.pdp-add{width:100%;border:0;background:#1a1a18;color:#fff;padding:15px;font-size:10px}
+.pdp-business{width:100%;border:1px solid var(--accent);color:var(--accent);background:transparent;padding:13px;font-size:9px;margin-top:9px}
+.detail-list{display:grid;gap:0;margin-top:20px;border-top:1px solid var(--line)}
+.detail-row{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding:13px 0;font-size:9px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.feature-block .v2-photo{min-height:300px}
+.feature-block h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;font-weight:400;margin:14px 0 6px}
+.feature-block p{font-size:9px;line-height:1.75;color:#666;margin:0}
+.support-wrap{max-width:900px;margin:auto}
+.route-map{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.route-column{border:1px solid var(--line);padding:24px;background:var(--paper)}
+.route-column h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:400;margin:0}
+.route-row{padding:12px 0;border-top:1px solid var(--line);font-size:9px}
+.route-row:first-of-type{margin-top:18px}
+.badge-v2{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:2px 5px;font-size:7px;margin-left:5px}
+.working-note{display:none;background:#fff6e9;border:1px dashed #aa7958;padding:10px 12px;font-size:9px;line-height:1.65;color:#6d4d39;margin-top:14px}
+.show-meta .working-note{display:block}
+.show-meta .photo-note{outline:1px dashed var(--accent)}
+.accent-off{--accent:#1c1c1b}
+.accent-off .globalnav .pro-link{color:#1c1c1b!important}
+.accent-off .product-card-v2 .rating{color:#1c1c1b}
+.preview-label{font-size:8px;color:#999}
+.side-v2 .nav-section{margin-bottom:14px}
+.side-v2 .nav-section-title{font-size:8px;letter-spacing:.15em;color:#8a8881;padding:8px 9px 5px}
+.side-v2 .page-link{line-height:1.25}
+.side-v2 .page-link small{margin-top:3px}
+.site-footer{background:#171716!important}
+.footer-grid{grid-template-columns:1.5fr repeat(4,1fr)}
+@media(max-width:1100px){
+  .product-grid-v2{grid-template-columns:repeat(3,1fr)}
+  .v2-grid4,.brand-principles{grid-template-columns:repeat(2,1fr)}
+  .browser{min-width:980px}
+}
