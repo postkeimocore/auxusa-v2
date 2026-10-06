@@ -1,4 +1,5 @@
 (function(){
+  var EN=document.documentElement.lang==='en';
   var IMG='/auxusa/assets/wireframe/';
   var products=[
     {name:'AUX Mini Tongs',jp:'ミニゆびさきトング',family:'tongs',uses:['table'],tag:'Small enough for the details.',feature:'7cm / tip / spring',img:'product-pair-minimal.webp'},
@@ -18,8 +19,8 @@
 
   function productCard(p){
     return '<article class="product-card-v2" data-go="pdp">'+
-      '<div class="v2-photo"><img src="'+IMG+p.img+'" alt=""><span class="photo-note">V1仮写真 / 本番物撮りへ差替</span></div>'+
-      '<h4>'+p.name+'</h4><div class="jpname">'+p.jp+'</div>'+
+      '<div class="v2-photo"><img src="'+IMG+p.img+'" alt=""><span class="photo-note">'+(EN?'V1 placeholder / Replace with final product photography':'V1仮写真 / 本番物撮りへ差替')+'</span></div>'+
+      '<h4>'+p.name+'</h4><div class="jpname">'+(EN?'JP: ':'')+p.jp+'</div>'+
       '<div class="meta">'+p.tag+'</div><div class="rating">★★★★★ <span style="color:#777">— reviews</span></div>'+
     '</article>';
   }
@@ -49,7 +50,7 @@
   }
   function footer(){
     return '<footer class="site-footer"><div class="footer-grid">'+
-      '<div><div class="footer-logo" data-go="home">AUX</div><p style="font-size:9px;color:#aaa;max-width:260px">必要なときには、きちんと応える。でも、食卓では出しゃばらない。</p></div>'+
+      '<div><div class="footer-logo" data-go="home">AUX</div><p style="font-size:9px;color:#aaa;max-width:260px">'+(EN?'Ready when you need it. Never in the way.':'必要なときには、きちんと応える。でも、食卓では出しゃばらない。')+'</p></div>'+
       '<div class="footer-col"><b>Shop</b><span data-go="shop">Shop All</span><span data-go="tongs">AUX TONGS</span><span data-go="tools">AUX Tools</span></div>'+
       '<div class="footer-col"><b>Use</b><span data-go="cook">COOK</span><span data-go="serve">SERVE</span><span data-go="table">TABLE</span><span data-go="inuse">In Use</span></div>'+
       '<div class="footer-col"><b>Brand</b><span data-go="why">Why AUX</span><span data-go="third">The Third Utensil</span><span data-go="engineering">Design & Engineering</span><span data-go="tsubame">Tsubame-Sanjo</span></div>'+
@@ -93,12 +94,12 @@
   document.getElementById('metaToggle').addEventListener('click',function(){
     app.classList.toggle('show-meta');
     this.classList.toggle('active');
-    this.textContent=app.classList.contains('show-meta')?'構成メモを隠す':'構成メモを表示';
+    this.textContent=app.classList.contains('show-meta')?(EN?'Hide working notes':'構成メモを隠す'):(EN?'Show working notes':'構成メモを表示');
   });
   function toggleSide(){
     layout.classList.toggle('side-collapsed');
     var closed=layout.classList.contains('side-collapsed');
-    document.getElementById('sideToggle').textContent=closed?'左メニューを開く':'左メニューを閉じる';
+    document.getElementById('sideToggle').textContent=closed?(EN?'Show navigation':'左メニューを開く'):(EN?'Hide navigation':'左メニューを閉じる');
     document.getElementById('sideIcon').textContent=closed?'›':'‹';
   }
   document.getElementById('sideToggle').addEventListener('click',toggleSide);
