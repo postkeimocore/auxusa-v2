@@ -1,123 +1,249 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AUX Global Commerce / Visual Wireframe v2</title>
-<style>
-:root{
-  --app:#e9e8e3;--paper:#fffdf9;--soft:#f4f2ec;--ink:#171714;--muted:#5f5d57;--line:#d8d5cd;
-  --accent:#7a3f45;--dark:#1b1b19;--display:Georgia,"Times New Roman",serif;
-  --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--app);color:var(--ink);font-family:var(--sans)}
-button,a{font:inherit;color:inherit}.toolbar{height:52px;background:#181817;color:#fff;display:flex;align-items:center;gap:9px;padding:0 14px;position:sticky;top:0;z-index:50}
-.toolbar strong{font-size:11px;letter-spacing:.1em}.toolbar .grow{flex:1}.tool{border:1px solid #51514e;background:#252523;color:#fff;padding:7px 10px;border-radius:4px;font-size:10px;cursor:pointer}.tool.active{background:#fff;color:#111;border-color:#fff}
-.layout{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:calc(100vh - 52px)}aside{padding:18px 12px;background:#f6f5f1;border-right:1px solid #cfccc4;position:sticky;top:52px;height:calc(100vh - 52px);overflow:auto}
-.side-title{font-size:9px;letter-spacing:.15em;color:#777;margin:3px 8px 10px}.nav{display:grid;gap:3px}.nav button{border:0;background:transparent;text-align:left;padding:10px 11px;border-radius:4px;font-size:11px;cursor:pointer}.nav button:hover{background:#eceae4}.nav button.active{background:#1a1a18;color:#fff}.nav small{display:block;font-size:8px;opacity:.6;margin-top:2px}
-.scope{margin-top:18px;border-top:1px solid #d8d5cd;padding:15px 8px 0}.scope b{font-size:9px;letter-spacing:.08em}.scope p{font-size:9px;line-height:1.55;color:#666;margin:7px 0}.key{font-size:8px;display:flex;gap:5px;flex-wrap:wrap}.key span{border:1px solid #c9c5bb;padding:3px 5px;background:#fff}.key .new{border-color:var(--accent);color:var(--accent)}
-main{padding:22px;overflow:auto}.browser{width:min(1440px,100%);min-width:1020px;margin:auto;background:var(--paper);border:1px solid #bcb9b1;box-shadow:0 12px 30px rgba(0,0,0,.08)}
-.chrome{height:36px;background:#eceae4;border-bottom:1px solid #cecbc3;display:flex;gap:6px;align-items:center;padding:0 11px}.dot{width:8px;height:8px;border-radius:50%;background:#b8b5ad}.url{height:22px;background:#fff;border:1px solid #d4d0c7;border-radius:3px;margin-left:5px;flex:1;font-size:8px;color:#777;display:flex;align-items:center;padding:0 9px}
-.site-header{height:76px;display:flex;align-items:center;padding:0 4.5%;border-bottom:1px solid #e3dfd6;gap:32px;background:var(--paper)}.logo{font-family:var(--display);font-weight:700;font-size:27px;letter-spacing:.08em}
-.gnav{display:flex;gap:24px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;flex:1}.gnav span.prof{color:var(--accent);font-weight:700}.actions{display:flex;gap:14px;font-size:9px}
-.page{display:none}.page.active{display:block}.section{padding:78px 6.2%;border-bottom:1px solid #e6e2da;position:relative;background:var(--paper)}.section.soft{background:var(--soft)}.section.dark{background:var(--dark);color:#fff}
-.eyebrow{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#777;margin-bottom:11px}.display{font-family:var(--display);font-weight:400;letter-spacing:-.025em}.h1{font-size:62px;line-height:1.01;margin:0;max-width:780px}.h2{font-size:40px;line-height:1.08;margin:0}.h3{font-family:var(--display);font-size:25px;font-weight:400;margin:0;line-height:1.15}.lead{font-size:12px;line-height:1.7;color:var(--muted);max-width:610px;margin:16px 0 0}.dark .lead,.dark .eyebrow{color:#c8c5bd}
-.btns{display:flex;gap:10px;margin-top:24px}.btn{display:inline-flex;min-height:40px;align-items:center;justify-content:center;padding:10px 17px;border:1px solid #1b1b19;background:transparent;font-size:9px;letter-spacing:.04em}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.darkbtn{background:#1b1b19;color:#fff}.dark .btn{border-color:#fff;color:#fff}.dark .btn.primary{background:#fff;color:#171714}
-.hero{padding:0;display:grid;grid-template-columns:43% 57%;min-height:620px}.hero-copy{padding:82px 10% 70px 14%;display:flex;flex-direction:column;justify-content:center}.visual{position:relative;background:linear-gradient(145deg,#e4dfd4,#cfd5d1);min-height:390px;overflow:hidden}.visual.stock{background:linear-gradient(145deg,#d8d5cc,#eae5d9)}.visual.product{background:linear-gradient(145deg,#f1efe9,#d6d7d1)}.photo{position:absolute;left:15px;bottom:13px;font-size:8px;background:rgba(255,253,249,.9);border:1px solid rgba(0,0,0,.08);padding:6px 8px;color:#555}.hero .visual{min-height:620px}
-.note{display:none;position:absolute;right:14px;top:14px;max-width:260px;background:#fff7ed;border:1px dashed #a26c50;color:#684c3d;padding:8px 10px;font-size:8px;line-height:1.45;z-index:3}.show-notes .note{display:block}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}.split{display:grid;grid-template-columns:1fr 1fr;gap:6%;align-items:center}.card{border:1px solid var(--line);padding:22px;min-height:170px}.card .index{font-family:var(--display);font-size:32px;color:#aaa}.card p{font-size:9px;line-height:1.6;color:#666}
-.entry{min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;background:linear-gradient(145deg,#ece8df,#d9ddd7);position:relative}.entry:nth-child(2){background:linear-gradient(145deg,#e7ebe7,#f1eee7)}.entry:nth-child(3){background:linear-gradient(145deg,#eeeae4,#d7d9d5)}.entry .h3{font-size:30px}.entry p{font-size:9px;color:#5f5d57;max-width:320px}.textlink{font-size:9px;margin-top:12px;font-weight:700}
-.family{display:grid;grid-template-columns:58% 42%;min-height:510px}.family-copy{padding:70px 13%;display:flex;flex-direction:column;justify-content:center}.family .visual{min-height:510px}
-.scene-grid{display:grid;grid-template-columns:1.25fr .75fr .75fr;grid-template-rows:250px 250px;gap:12px;margin-top:30px}.scene{position:relative;padding:22px;display:flex;align-items:flex-end;background:#eae5dc}.scene.big{grid-row:1/3}.scene:nth-child(3){background:#e5e9e5}.scene:nth-child(4){background:#eeeae4}
-.scene strong{font-family:var(--display);font-size:23px;font-weight:400}.scene small{display:block;font-size:8px;color:#666;margin-top:3px}
-.prof-band{display:grid;grid-template-columns:52% 48%;min-height:440px;padding:0;background:#1d1d1b;color:#fff}.prof-copy{padding:68px 12%;display:flex;flex-direction:column;justify-content:center}.prof-band .visual{min-height:440px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#d9d5cd;border:1px solid #d9d5cd;margin-top:30px}.step{background:var(--paper);padding:24px}.step b{font-size:10px}.step p{font-size:9px;color:#666;line-height:1.55}.step .num{font-family:var(--display);font-size:30px;color:var(--accent)}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}.product-card .visual{min-height:270px}.product-card h4{font-family:var(--display);font-size:18px;font-weight:400;margin:11px 0 2px}.product-card p{font-size:8px;color:#666;margin:0}.stars{color:var(--accent);font-size:10px;letter-spacing:.08em;margin-top:5px}
-.pdp-top{display:grid;grid-template-columns:58% 42%;min-height:690px}.gallery{display:grid;grid-template-columns:1fr 1fr;gap:1px}.gallery .visual{min-height:345px}.gallery .visual:first-child{grid-row:span 2;min-height:690px}.buy{padding:60px 11%}.price{font-size:17px;margin:12px 0}.rule{border-top:1px solid #ddd8cf;margin:22px 0}.add{width:100%;border:0;background:#171714;color:#fff;padding:14px;font-size:10px}.business-cta{margin-top:11px;border:1px solid var(--accent);color:var(--accent);padding:13px;text-align:center;font-size:9px;font-weight:700}.micro{font-size:8px;color:#68665f;line-height:1.6;margin-top:13px}
-.sitemap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.mapcol{border:1px solid var(--line);padding:24px}.maprow{border-top:1px solid var(--line);padding:12px 0;font-size:10px}.maprow:first-of-type{margin-top:18px}.badge{display:inline-block;border:1px solid var(--accent);color:var(--accent);font-size:7px;padding:2px 4px;margin-left:6px;vertical-align:middle}
-footer{padding:45px 5%;background:#181817;color:#ccc;display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:28px}.flogo{font-family:var(--display);font-size:26px;color:#fff}.fcol b{font-size:8px;letter-spacing:.12em;color:#fff}.fcol span{display:block;font-size:8px;margin:6px 0}
-@media(max-width:1100px){.layout{grid-template-columns:210px 1fr}.browser{min-width:940px}.h1{font-size:52px}}
-</style>
+<title>AUX Global EC / Visual Wireframe v2</title>
+<link rel="stylesheet" href="v2.css">
 </head>
 <body>
-<div class="toolbar">
-  <strong>AUX GLOBAL COMMERCE / VISUAL WIREFRAME V2</strong>
-  <button class="tool" id="notes">Working notes</button>
-  <button class="tool" id="accent">Accent preview</button>
-  <span class="grow"></span>
-  <span style="font-size:8px;color:#aaa">2026-10-06 / Shopify B2C + B2B entry / not final UI</span>
+<div class="app" id="app">
+  <div class="toolbar">
+    <strong>AUX GLOBAL EC / VISUAL WIREFRAME V2 / JP</strong>
+    <button class="toolbtn" id="sideToggle">左メニューを閉じる</button>
+    <button class="toolbtn" id="metaToggle">構成メモを表示</button>
+    <button class="toolbtn" id="accentToggle">Accent ON</button>
+    <span class="grow"></span>
+    <span class="preview-label">日本語説明用 / 写真はV1仮置き / 本番撮影後差替</span>
+  </div>
+  <div class="layout" id="layout">
+    <aside class="sidebar side-v2">
+      <div class="side-head"><div class="side-title">PAGES</div><button class="collapse-side" id="sideIcon">‹</button></div>
+      <div id="pageNav">
+        <div class="nav-section"><div class="nav-section-title">CORE</div>
+          <button class="page-link active" data-page="home"><span class="dotnav"></span><span class="nav-text">Home<small>/</small></span></button>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">SHOP / PRODUCTS</div>
+          <button class="page-link" data-page="shop"><span class="dotnav"></span><span class="nav-text">Shop All<small>/collections/all</small></span></button>
+          <button class="page-link level2" data-page="tongs"><span class="dotnav"></span><span class="nav-text">AUX TONGS<small>/collections/aux-tongs</small></span></button>
+          <button class="page-link level2" data-page="tools"><span class="dotnav"></span><span class="nav-text">AUX Tools<small>/collections/aux-tools</small></span></button>
+          <button class="page-link level2" data-page="cook"><span class="dotnav"></span><span class="nav-text">COOK<small>/collections/cook</small></span></button>
+          <button class="page-link level2" data-page="serve"><span class="dotnav"></span><span class="nav-text">SERVE<small>/collections/serve</small></span></button>
+          <button class="page-link level2" data-page="table"><span class="dotnav"></span><span class="nav-text">TABLE<small>/collections/table</small></span></button>
+          <button class="page-link level2" data-page="pdp"><span class="dotnav"></span><span class="nav-text">代表PDP<small>/products/fingertip-tongs</small></span></button>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">DISCOVER</div>
+          <button class="page-link" data-page="inuse"><span class="dotnav"></span><span class="nav-text">In Use<small>/pages/in-use</small></span></button>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">BRAND</div>
+          <button class="page-link" data-page="why"><span class="dotnav"></span><span class="nav-text">Why AUX<small>/pages/why-aux</small></span></button>
+          <button class="page-link level2" data-page="third"><span class="dotnav"></span><span class="nav-text">The Third Utensil<small>/pages/the-third-utensil</small></span></button>
+          <button class="page-link level2" data-page="engineering"><span class="dotnav"></span><span class="nav-text">Design & Engineering<small>/pages/engineering</small></span></button>
+          <button class="page-link level2" data-page="tsubame"><span class="dotnav"></span><span class="nav-text">Tsubame-Sanjo<small>/pages/tsubame-sanjo</small></span></button>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">PROFESSIONAL</div>
+          <button class="page-link" data-page="professionals"><span class="dotnav"></span><span class="nav-text">For Professionals<small>/pages/professionals</small></span></button>
+          <button class="page-link level2" data-page="hospitality"><span class="dotnav"></span><span class="nav-text">Hospitality<small>/pages/hospitality</small></span></button>
+          <button class="page-link level2" data-page="businessflow"><span class="dotnav"></span><span class="nav-text">B2B導線設計<small>working / system boundary</small></span></button>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">SUPPORT</div>
+          <button class="page-link" data-page="faq"><span class="dotnav"></span><span class="nav-text">FAQ<small>/pages/faq</small></span></button>
+          <button class="page-link" data-page="shipping"><span class="dotnav"></span><span class="nav-text">Shipping<small>/pages/shipping</small></span></button>
+          <button class="page-link" data-page="returns"><span class="dotnav"></span><span class="nav-text">Returns<small>/pages/returns</small></span></button>
+          <button class="page-link" data-page="contact"><span class="dotnav"></span><span class="nav-text">Contact<small>/pages/contact</small></span></button>
+        </div>
+      </div>
+    </aside>
+    <main class="workspace">
+      <div class="browser" id="browser">
+        <div class="browser-chrome"><span class="traffic"></span><span class="traffic"></span><span class="traffic"></span><div class="address" id="address">aux-global.com/</div></div>
+        <div class="js-header"></div>
+
+        <div class="v2-page" id="home">
+          <section class="v2-hero">
+            <div class="v2-hero-copy">
+              <div class="eyebrow">AUX / GLOBAL</div>
+              <h1 class="brand-line">We got you.</h1>
+              <p class="hero-jp">必要なときには、きちんと応える。<br>でも、食卓では出しゃばらない。</p>
+              <p class="lead">AUXが目指すのは、道具を意識し続ける食卓ではなく、料理や会話、相手との時間に集中できる状態。使う人に頑張らせない、静かに有能な道具を届けます。</p>
+              <div class="btn-row"><button class="v2-btn primary" data-go="shop">商品を見る</button><button class="v2-btn" data-go="why">AUXについて</button></div>
+              <div class="working-note">撮影指示書 HOME / Hero：Scene 01。「食卓の時間」が主役。横16:9、コピー側40%の余白を想定。</div>
+            </div>
+            <div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""><span class="photo-note">V1仮写真 / 本番：Scene 01 食卓全景＋余白</span></div>
+          </section>
+
+          <section class="section">
+            <div class="intro-center"><div class="eyebrow">SHOP / PRODUCT FAMILY</div><h2 class="jp-display h2">まず、道具から探す。</h2><p class="lead">商品体系は「AUX TONGS」と「AUX Tools」。COOK / SERVE / TABLEは、シリーズ名ではなく使う場面から商品を見つけるための入口として扱います。</p></div>
+            <div class="family-grid">
+              <article class="family-card" data-go="tongs"><img src="/auxusa/assets/wireframe/product-lineup-warm.webp" alt=""><div class="family-card-copy"><div class="eyebrow">11 TONGS</div><h3>AUX TONGS</h3><p>小さな一粒から、鍋の中の一皿まで。動作に合わせて選べる11種類のトング。</p></div></article>
+              <article class="family-card small" data-go="tools"><img src="/auxusa/assets/wireframe/product-pair-warm.webp" alt=""><div class="family-card-copy"><div class="eyebrow">2 TOOLS</div><h3>AUX Tools</h3><p>Mini Whisk / Grating Spoon。日々の小さな仕事を軽くする道具。</p></div></article>
+            </div>
+          </section>
+
+          <section class="section soft">
+            <div class="v2-split">
+              <div class="v2-photo"><img src="/auxusa/assets/wireframe/small-food-transfer.webp" alt=""><span class="photo-note">V1仮写真 / 本番：Scene 02 / Product P05</span></div>
+              <div><div class="eyebrow">THE THIRD UTENSIL / FLAGSHIP</div><h2 class="display h2">Knife. Fork. AUX.</h2><p class="lead">AUX Fingertip Tongsを「サラダに便利なトング」ではなく、ナイフやフォークと同じように食卓に置かれる新しいテーブルウェアとして見せます。</p><div class="btn-row"><button class="v2-btn dark" data-go="pdp">Fingertip Tongsを見る</button><button class="v2-btn" data-go="third">The Third Utensil</button></div><div class="working-note">撮影指示書の「AUX Fingertip Tongsのカテゴリー再定義」をそのままWeb構造に展開。</div></div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="eyebrow">WE GOT YOU. / THREE MEANINGS</div><h2 class="jp-display h2">「We got you.」を、3つの所作で伝える。</h2>
+            <div class="triple-grid">
+              <div class="triple"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-minimal.webp" alt=""><span class="photo-note">本番：Scene 03</span></div><div class="triple-copy"><div class="en">We understand you.</div><p>軽い力、自然な握り、手の延長。使う人の身体や感覚を理解していること。</p></div></div>
+              <div class="triple"><div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""><span class="photo-note">本番：Scene 10</span></div><div class="triple-copy"><div class="en">We've got you.</div><p>誰かへ自然に取り分ける。動作や食卓の流れを邪魔せず支えること。</p></div></div>
+              <div class="triple"><div class="v2-photo"><img src="/auxusa/assets/wireframe/small-food-olives-wide.webp" alt=""><span class="photo-note">本番：Scene 33</span></div><div class="triple-copy"><div class="en">We got it.</div><p>狙った食材を、狙った通りに。必要な瞬間にはきちんと仕事をすること。</p></div></div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="eyebrow">SHOP BY MOMENT</div><h2 class="jp-display h2">使う場面から探す。</h2>
+            <div class="use-grid">
+              <article class="use-card-v2 big" data-go="cook"><img src="/auxusa/assets/wireframe/cook-pasta.webp" alt=""><div class="use-card-copy"><strong>COOK</strong><small>つかむ、返す、すくう、油を切る。</small></div></article>
+              <article class="use-card-v2" data-go="serve"><img src="/auxusa/assets/wireframe/serve-salad.webp" alt=""><div class="use-card-copy"><strong>SERVE</strong><small>盛り付ける、取り分ける、届かせる。</small></div></article>
+              <article class="use-card-v2" data-go="table"><img src="/auxusa/assets/wireframe/table-tea-bag.webp" alt=""><div class="use-card-copy"><strong>TABLE</strong><small>食卓の小さな動作を、自然に。</small></div></article>
+            </div>
+          </section>
+
+          <section class="section soft">
+            <div class="v2-split reverse">
+              <div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-minimal.webp" alt=""><span class="photo-note">本番：Scene 13 / 34 Clean Rest</span></div>
+              <div><div class="eyebrow">CONSIDERATE DETAILS</div><h2 class="jp-display h2">置いたときまで、食卓のことを考える。</h2><p class="lead">「Put them down. Not the mess.」必要な機能は、使っている瞬間だけではありません。置いたときに先端が触れにくい形など、周囲への配慮まで道具の所作として見せます。</p><div class="btn-row"><button class="v2-btn" data-go="engineering">Design & Engineering</button></div></div>
+            </div>
+          </section>
+
+          <section class="prof-hero">
+            <div class="prof-copy"><div class="eyebrow">FOR PROFESSIONALS</div><h2 class="jp-display h2">人が集まる場所にも、静かに馴染む。</h2><p class="lead">レストラン、ホテル、ケータリングなど、ゲスト体験そのものを大切にする現場へ。ブランドや商品を理解したあと、そのままサンプル依頼・見積へ進める導線を用意します。</p><div class="btn-row"><button class="v2-btn primary" data-go="professionals">法人のお客様へ</button><button class="v2-btn light" data-go="businessflow">B2B導線を見る</button></div></div>
+            <div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""><span class="photo-note darknote">V1仮写真 / 本番：HospitalityはStock Photography</span></div>
+          </section>
+
+          <section class="section">
+            <div class="v2-split">
+              <div><div class="eyebrow">REASON TO BELIEVE</div><h2 class="jp-display h2">使いやすさを、精度で支える。</h2><p class="lead">ブランドの主役は産地そのものではなく、使う人の自然な動作。その約束を支える根拠として、形状や先端、ばね感、そして燕三条のものづくりを伝えます。</p><div class="btn-row"><button class="v2-btn" data-go="engineering">設計を見る</button><button class="v2-btn" data-go="tsubame">燕三条について</button></div></div>
+              <div class="v2-photo"><img src="/auxusa/assets/wireframe/manufacturing-caliper-over-shoulder.webp" alt=""><span class="photo-note">V1仮写真 / Manufacturing</span></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="v2-page" id="shop">
+          <section class="product-family-hero"><div class="product-family-copy"><div class="eyebrow">SHOP ALL</div><h1 class="jp-display h1">13の道具を、動作から選ぶ。</h1><p class="lead">商品ファミリー、使用場面、具体的な仕事。3つの入口からAUXを探せる商品一覧です。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-lineup-marble.webp" alt=""><span class="photo-note">V1仮写真 / Family lineup</span></div></section>
+          <section class="section section-tight"><div class="v2-grid3"><div class="editorial-card" data-go="tongs"><div class="eyebrow">FAMILY</div><div class="en">AUX TONGS</div><p>11種類のトングをまとめて見る。</p></div><div class="editorial-card" data-go="tools"><div class="eyebrow">FAMILY</div><div class="en">AUX Tools</div><p>Mini Whisk / Grating Spoon。</p></div><div class="editorial-card" data-go="inuse"><div class="eyebrow">SCENE</div><div class="en">In Use</div><p>料理や食卓のシーンから見つける。</p></div></div><div class="filterline"><div class="chips"><span class="chip2 active">ALL</span><span class="chip2">COOK</span><span class="chip2">SERVE</span><span class="chip2">TABLE</span></div><div>SORT / Featured ▾</div></div><div class="product-grid-v2" data-grid="all"></div></section>
+        </div>
+
+        <div class="v2-page" id="tongs">
+          <section class="product-family-hero"><div class="product-family-copy"><div class="eyebrow">AUX TONGS / 11 ITEMS</div><h1 class="display h1">One family.<br>A tool for every little move.</h1><p class="lead">11種類をひとつのファミリーとして見せつつ、形の違いが「違う動作のため」であることを直感的に理解させます。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-lineup-warm.webp" alt=""><span class="photo-note">本番：Product F01 / 11本 Family Hero</span></div></section>
+          <section class="section"><div class="category-intro"><h3>トングを「サイズ違い」ではなく、<br>動作の違いで選べるようにする。</h3><p>小さな一粒をつまむ、中央の大皿から取り分ける、油を切る、麺の最後の一本までつかむ。AUX TONGSは、具体的な動作に合わせて先端や長さ、形状が変わります。</p></div><div class="product-grid-v2" data-grid="tongs"></div></section>
+        </div>
+
+        <div class="v2-page" id="tools">
+          <section class="product-family-hero"><div class="product-family-copy"><div class="eyebrow">AUX TOOLS / 2 ITEMS</div><h1 class="jp-display h1">毎日の、小さな仕事に。</h1><p class="lead">Mini WhiskとGrating Spoonは、AUX TONGSとは分けて「AUX Tools」として見せます。トングのファミリー構造を濁らせず、同じ思想を持つ道具として並べます。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-warm.webp" alt=""><span class="photo-note">本番：Scene 29 / AUX Tools family</span></div></section>
+          <section class="section"><div class="product-grid-v2" data-grid="tools"></div><div class="v2-grid2"><div class="editorial-card"><div class="en">Small whisk. Everyday jobs.</div><p>ドレッシング、卵1個、味噌の計量。小さな量にちょうどいい仕事を見せる。</p></div><div class="editorial-card"><div class="en">Grate. Stir. Finish.</div><p>レモンやにんにくを、おろすところから混ぜる・仕上げるところまで。</p></div></div></section>
+        </div>
+
+        <div class="v2-page" id="cook">
+          <section class="product-family-hero"><div class="product-family-copy"><div class="eyebrow">SHOP BY USE / COOK</div><h1 class="display h1">COOK</h1><p class="lead">熱のそばで、つかむ。返す。持ち上げる。すくう。料理中の動作を止めずに仕事をする道具。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/cook-steak-pan.webp" alt=""><span class="photo-note">V1仮写真 / 本番：STEAK & FRY Scene 30–37</span></div></section>
+          <section class="section"><div class="category-intro"><h3>料理中の動きを、<br>道具に合わせさせない。</h3><p>Basting / Fry / Fine Tip / Noodleなど、それぞれの動作に必要な形を見せます。カテゴリーHeroと使用価値は分けすぎず、同じ導入の中で理解できる構造にします。</p></div><div class="product-grid-v2" data-grid="cook"></div></section>
+          <section class="section soft"><div class="v2-split"><div class="v2-photo"><img src="/auxusa/assets/wireframe/cook-pasta.webp" alt=""></div><div><div class="eyebrow">SCENE</div><h2 class="jp-display h2">最後の一本まで、動作を途切れさせない。</h2><p class="lead">商品ごとの固有価値は、一覧で全部説明せず、料理の中の一瞬を切り取ってPDPへつなぎます。</p></div></div></section>
+        </div>
+
+        <div class="v2-page" id="serve">
+          <section class="product-family-hero"><div class="product-family-copy"><div class="eyebrow">SHOP BY USE / SERVE</div><h1 class="display h1">SERVE</h1><p class="lead">盛り付ける、取り分ける、相手へ渡す。食卓の流れを止めずに、必要な場所へ届く道具。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/serve-salad-greens.webp" alt=""><span class="photo-note">V1仮写真 / 本番：DINING / SALAD Scene 09–13</span></div></section>
+          <section class="section"><div class="category-intro"><h3>手元だけでなく、<br>食卓全体の動きを考える。</h3><p>Serving / Longなどは、座った姿勢や大皿との距離まで含めて価値が伝わる構成にします。誰かへ自然に取り分けることも「We’ve got you.」の一部です。</p></div><div class="product-grid-v2" data-grid="serve"></div></section>
+          <section class="section soft"><div class="v2-split reverse"><div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""></div><div><div class="eyebrow">SHARING</div><h2 class="jp-display h2">道具ではなく、取り分ける時間を見せる。</h2><p class="lead">商品を中央に大きく置くのではなく、人と料理と手の関係からAUXの存在を理解させます。</p></div></div></section>
+        </div>
+
+        <div class="v2-page" id="table">
+          <section class="product-family-hero"><div class="product-family-copy"><div class="eyebrow">SHOP BY USE / TABLE</div><h1 class="display h1">TABLE</h1><p class="lead">一枚だけ取る。小さなものをつまむ。パンをつぶさず持つ。食卓での細かな動きに自然に馴染む道具。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/table-tea-bag.webp" alt=""><span class="photo-note">V1仮写真 / 本番：TABLE / BREAKFAST & TEA</span></div></section>
+          <section class="section"><div class="category-intro"><h3>「便利なトング」から、<br>テーブルウェアへ。</h3><p>FlagshipのFingertip Tongsを中心に、Mini / Garnish / Bread / Scoopなどを食卓の所作で編集します。ここが「Knife. Fork. AUX.」を最も強く支えるカテゴリーです。</p></div><div class="product-grid-v2" data-grid="table"></div></section>
+          <section class="section soft"><div class="v2-split"><div class="v2-photo"><img src="/auxusa/assets/wireframe/small-food-transfer.webp" alt=""></div><div><div class="eyebrow">SIGNATURE</div><h2 class="display h2">One slice. Just the one.</h2><p class="lead">生ハムを一枚だけつかむ。その小さな動作を、AUX Fingertip Tongsのカテゴリー定義そのものとして使います。</p><div class="btn-row"><button class="v2-btn dark" data-go="pdp">代表PDPへ</button></div></div></div></section>
+        </div>
+
+        <div class="v2-page" id="inuse">
+          <section class="section"><div class="intro-center"><div class="eyebrow">IN USE</div><h1 class="jp-display h1">商品ではなく、使う時間から見る。</h1><p class="lead">撮影計画の6つのシーンワールドを、そのまま商品発見の入口として編集します。</p></div>
+            <div class="scene-worlds">
+              <article class="scene-world"><img src="/auxusa/assets/wireframe/small-food-transfer.webp" alt=""><div class="scene-world-copy"><div class="en">Table / Charcuterie</div><p>Knife. Fork. AUX. / Prosciutto one slice / share / light grip。</p></div></article>
+              <article class="scene-world"><img src="/auxusa/assets/wireframe/serve-salad.webp" alt=""><div class="scene-world-copy"><div class="en">Dining / Salad</div><p>Serving / Long / share / clean rest。</p></div></article>
+              <article class="scene-world"><img src="/auxusa/assets/wireframe/table-tea-bag.webp" alt=""><div class="scene-world-copy"><div class="en">Breakfast & Tea</div><p>Tea bag / Bread / Scoop / narrow glass。</p></div></article>
+              <article class="scene-world"><img src="/auxusa/assets/wireframe/cook-pasta.webp" alt=""><div class="scene-world-copy"><div class="en">Pasta</div><p>Lemon grate / Noodle full portion / final strand / plate。</p></div></article>
+              <article class="scene-world"><img src="/auxusa/assets/wireframe/plating-scallops.webp" alt=""><div class="scene-world-copy"><div class="en">Dressing / Egg / Miso</div><p>Garlic grate / Mini Whisk / one egg / miso measure。</p></div></article>
+              <article class="scene-world"><img src="/auxusa/assets/wireframe/cook-steak-pan.webp" alt=""><div class="scene-world-copy"><div class="en">Steak & Fry</div><p>Basting / Fine Tip / Fry / drain / clean rest。</p></div></article>
+            </div>
+          </section>
+        </div>
+
+        <div class="v2-page" id="pdp">
+          <section class="pdp-v2-top">
+            <div class="pdp-v2-gallery">
+              <div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-minimal.webp" alt=""><span class="photo-note">仮 / 本番：P05 Clean Hero</span></div>
+              <div class="v2-photo"><img src="/auxusa/assets/wireframe/small-food-transfer.webp" alt=""><span class="photo-note">本番：Scene 04 / one slice</span></div>
+              <div class="v2-photo"><img src="/auxusa/assets/wireframe/product-tip-tomato-macro.webp" alt=""><span class="photo-note">仮 / 本番：P06 Key Feature</span></div>
+            </div>
+            <div class="pdp-v2-buy"><div class="eyebrow">AUX TONGS / SIGNATURE</div><h1>AUX Fingertip Tongs</h1><div class="ja-product">ゆびさきトング® / Global working name</div><div class="rating">★★★★★ <span style="color:#666">レビュー</span></div><p class="lead">指先のように自然に。軽い力で、小さな食材や繊細な一枚を狙った位置で扱うためのAUXのシグネチャートング。</p><div class="price">$—</div><div class="divider"></div><button class="pdp-add">カートに追加</button><button class="pdp-business" data-go="professionals">法人・業務用での購入はこちら →</button><div class="detail-list"><div class="detail-row"><span>商品仕様</span><span>＋</span></div><div class="detail-row"><span>お手入れ</span><span>＋</span></div><div class="detail-row"><span>配送・返品</span><span>＋</span></div></div><div class="working-note">商品名・価格・仕様値はWorking。商標・SEO・販売地域確認後に確定。</div></div>
+          </section>
+          <section class="section soft"><div class="v2-split"><div class="v2-photo"><img src="/auxusa/assets/wireframe/small-food-transfer.webp" alt=""></div><div><div class="eyebrow">PRIMARY USE</div><h2 class="display h2">One slice. Just the one.</h2><p class="lead">一枚だけを取りたいときに、一枚だけ。Flagshipは機能を列挙するより「狙ったものを自然に扱える」という一つの体験で理解させます。</p></div></div></section>
+          <section class="section"><div class="eyebrow">KEY FEATURES</div><h2 class="jp-display h2">なぜ、この形なのか。</h2><div class="feature-grid"><div class="feature-block"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-tip-macro-dark.webp" alt=""></div><h3>指先のような先端</h3><p>Fingertip-like tip。食材との接点を、商品固有の物理特徴として見せる。</p></div><div class="feature-block"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-shadow.webp" alt=""></div><h3>軽いばね感</h3><p>Soft spring。力ませず自然な握りになることを手の所作と合わせて伝える。</p></div><div class="feature-block"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-minimal.webp" alt=""></div><h3>食卓に馴染む形</h3><p>使う瞬間だけ働き、それ以外は風景へ溶け込むというブランド人格につなぐ。</p></div></div></section>
+          <section class="section soft"><div class="v2-split reverse"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-minimal.webp" alt=""><span class="photo-note">本番：Clean Rest系</span></div><div><div class="eyebrow">SECONDARY DISCOVERY</div><h2 class="jp-display h2">使うほど、細かな配慮に気づく。</h2><p class="lead">主用途のあとに、clean restや意外な使用シーンを発見させます。商品名には機能を詰め込まず、写真とFeature copyで理解させる方針です。</p></div></div></section>
+          <section class="prof-hero"><div class="prof-copy"><div class="eyebrow">BUSINESS PURCHASING</div><h2 class="jp-display h2">数量・見積・業務用購入が必要ですか？</h2><p class="lead">商品を見ている文脈を保ったまま、法人向けの見積・サンプル依頼へ進めます。</p><div class="btn-row"><button class="v2-btn primary" data-go="businessflow">見積導線を見る</button><button class="v2-btn light" data-go="professionals">For Professionals</button></div></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""></div></section>
+        </div>
+
+        <div class="v2-page" id="why">
+          <section class="v2-hero"><div class="v2-hero-copy"><div class="eyebrow">WHY AUX</div><h1 class="display h1">Made for the moment,<br>not the spotlight.</h1><p class="hero-jp">主役は、トングではなく食卓の時間。</p><p class="lead">料理や会話、相手との時間に集中できるように。AUXは、必要なときにだけ静かに仕事をする道具でありたいと考えます。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""><span class="photo-note">本番：Scene 01 / 05 / 37</span></div></section>
+          <section class="section"><div class="eyebrow">PERSONALITY</div><h2 class="jp-display h2">「紳士的」を、見た目ではなく振る舞いで定義する。</h2><div class="brand-principles"><div class="brand-principle"><div class="en">Quietly capable.</div><p>静かに有能。強く主張しなくても、必要な仕事をきちんとする。</p></div><div class="brand-principle"><div class="en">Effortless.</div><p>使う人に頑張らせない。自然な手の動きに寄り添う。</p></div><div class="brand-principle"><div class="en">Considerate.</div><p>使う人だけでなく、相手や食卓、周囲への配慮がある。</p></div><div class="brand-principle"><div class="en">Present, but never intrusive.</div><p>必要なときにはいる。でも、食卓では出しゃばらない。</p></div></div></section>
+          <section class="statement-band"><div class="eyebrow">BRAND IDEA</div><div class="en">Presence without self-consciousness.</div><p>自分の手つきや道具そのものを意識し続けることなく、その食卓にいられること。</p></section>
+          <section class="section"><div class="eyebrow">WE GOT YOU.</div><h2 class="jp-display h2">ひとつの言葉に、3つの意味を持たせる。</h2><div class="triple-grid"><div class="triple"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-minimal.webp" alt=""></div><div class="triple-copy"><div class="en">We understand you.</div><p>手や感覚を理解する。</p></div></div><div class="triple"><div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""></div><div class="triple-copy"><div class="en">We've got you.</div><p>動作や時間を支える。</p></div></div><div class="triple"><div class="v2-photo"><img src="/auxusa/assets/wireframe/small-food-olives-wide.webp" alt=""></div><div class="triple-copy"><div class="en">We got it.</div><p>狙った食材を確実につかむ。</p></div></div></div></section>
+          <section class="section soft"><div class="v2-split"><div><div class="eyebrow">FROM PHILOSOPHY TO PRODUCT</div><h2 class="jp-display h2">思想を、形と所作に落とす。</h2><p class="lead">ブランドストーリーだけで終わらせず、The Third Utensil、Design & Engineering、Tsubame-Sanjoへ分解して、商品を買う理由まで接続します。</p><div class="btn-row"><button class="v2-btn" data-go="third">The Third Utensil</button><button class="v2-btn" data-go="engineering">Design & Engineering</button></div></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/manufacturing-caliper-close.webp" alt=""></div></div></section>
+        </div>
+
+        <div class="v2-page" id="third">
+          <section class="v2-hero"><div class="v2-hero-copy"><div class="eyebrow">THE THIRD UTENSIL</div><h1 class="display h1">Knife.<br>Fork.<br>AUX.</h1><p class="lead">Fingertip Tongsを、キッチンの補助道具ではなく、ナイフやフォークと同じ食卓の道具として再定義するブランドコンテンツ。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/small-food-transfer.webp" alt=""><span class="photo-note">本番：Scene 02 / P05</span></div></section>
+          <section class="section"><div class="v2-grid3"><div class="editorial-card"><div class="num">01</div><h3>Pick</h3><p>小さな一枚・一粒を、指先のように扱う。</p></div><div class="editorial-card"><div class="num">02</div><h3>Share</h3><p>自分のためだけでなく、誰かへ自然に取り分ける。</p></div><div class="editorial-card"><div class="num">03</div><h3>Rest</h3><p>置いた瞬間まで、食卓を邪魔しない。</p></div></div></section>
+          <section class="section soft"><div class="v2-split reverse"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-lineup-warm.webp" alt=""></div><div><div class="eyebrow">CATEGORY IDEA</div><h2 class="jp-display h2">「トング」という既存カテゴリだけで理解させない。</h2><p class="lead">The Third Utensilは、Flagshipを起点にAUX全体の見え方を変えるための編集テーマ。商品の用途と食卓での居場所を同時に伝えます。</p></div></div></section>
+        </div>
+
+        <div class="v2-page" id="engineering">
+          <section class="v2-hero"><div class="v2-hero-copy"><div class="eyebrow">DESIGN & ENGINEERING</div><h1 class="jp-display h1">なぜ、この形なのか。</h1><p class="lead">AUXの商品価値を「使いやすい」という形容詞で終わらせず、先端、長さ、ばね、穴、歯、レストなど、商品固有の物理特徴から説明します。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-tip-macro-dark.webp" alt=""></div></section>
+          <section class="section"><div class="feature-grid"><div class="feature-block"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-tip-tomato-macro.webp" alt=""></div><h3>接点を設計する</h3><p>Fingertip / Fine Tip / Garnishなど、食材と触れる先端の違いを見せる。</p></div><div class="feature-block"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-tomato-scale.webp" alt=""></div><h3>動作に合わせる</h3><p>Servingの形、Longのリーチ、Miniの7cmなど、身体と作業の距離から考える。</p></div><div class="feature-block"><div class="v2-photo"><img src="/auxusa/assets/wireframe/product-pair-shadow.webp" alt=""></div><h3>仕事をひとつ減らす</h3><p>Fryの穴、Bastingの深いスプーン形状、Clean Restなど、一つの形で動作を助ける。</p></div></div></section>
+          <section class="section soft"><div class="v2-split"><div><div class="eyebrow">PRODUCT-SPECIFIC FEATURES</div><h2 class="jp-display h2">13商品それぞれに、見せるべき「一つの物理特徴」がある。</h2><p class="lead">商品撮影はClean HeroとKey Feature Detailの2枚を基本に設計。Web側も1画像＝1機能で読み解ける構造にします。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/manufacturing-caliper-close.webp" alt=""></div></div></section>
+        </div>
+
+        <div class="v2-page" id="tsubame">
+          <section class="v2-hero"><div class="v2-hero-copy"><div class="eyebrow">TSUBAME-SANJO / REASON TO BELIEVE</div><h1 class="jp-display h1">精度が、自然な使い心地を支える。</h1><p class="lead">燕三条のものづくりは、ブランドの主張そのものではなく、AUXが約束する使い心地を支える根拠として扱います。</p><div class="working-note">製造工程・歴史・具体的な工場情報は、確認できた事実だけで最終コピー化する前提。</div></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/manufacturing-inspection-lineup.webp" alt=""></div></section>
+          <section class="section"><div class="v2-split"><div class="v2-photo"><img src="/auxusa/assets/wireframe/manufacturing-caliper-over-shoulder.webp" alt=""></div><div><div class="eyebrow">PRECISION AS SUPPORT</div><h2 class="jp-display h2">産地を語るためではなく、形の理由を証明するために。</h2><p class="lead">商品固有のディテール、仕上げ、形状の精度へつなぎ、最終的には商品ページへ戻すブランドコンテンツにします。</p><div class="btn-row"><button class="v2-btn" data-go="engineering">設計を見る</button><button class="v2-btn dark" data-go="shop">商品を見る</button></div></div></div></section>
+        </div>
+
+        <div class="v2-page" id="professionals">
+          <section class="prof-hero"><div class="prof-copy"><div class="eyebrow">AUX FOR PROFESSIONALS</div><h1 class="jp-display h1">ゲスト体験を邪魔しない道具を、プロの現場へ。</h1><p class="lead">Hospitality / Restaurants / Catering / Retail。公開側ではAUXの価値と業態別の使い方を理解してもらい、その先でサンプル依頼・見積・法人アカウントへ接続します。</p><div class="btn-row"><button class="v2-btn primary">サンプルを依頼</button><button class="v2-btn light" data-go="businessflow">見積を依頼</button></div></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""><span class="photo-note darknote">仮写真 / 本番はRestaurant・Hotel等のStock</span></div></section>
+          <section class="section"><div class="eyebrow">WHY AUX FOR PROFESSIONALS</div><h2 class="jp-display h2">使う人と、サービスを受ける人の両方へ。</h2><div class="prof-value-grid"><div class="prof-value"><h3>自然に扱える</h3><p>軽い力や動作に合わせた形を、現場での扱いやすさとして見せる。</p></div><div class="prof-value"><h3>置いた姿まで考える</h3><p>Clean Restなど、食卓や作業面への配慮を業務シーンへ翻訳する。</p></div><div class="prof-value"><h3>空間の主役にならない</h3><p>ステンレスの静かな存在感を、料理やサービスを邪魔しない価値として伝える。</p></div></div></section>
+          <section class="section soft"><div class="eyebrow">USE CASES</div><h2 class="jp-display h2">業態と購入者を、混ぜない。</h2><div class="v2-grid4"><div class="editorial-card" data-go="hospitality"><div class="en">Restaurant</div><p>テーブルサービス、取り分け、厨房・パス。</p></div><div class="editorial-card" data-go="hospitality"><div class="en">Hotel</div><p>ダイニング、朝食、ビュッフェ等の使用文脈。</p></div><div class="editorial-card" data-go="hospitality"><div class="en">Catering</div><p>提供・盛り付け・サービスの動作。</p></div><div class="editorial-card"><div class="en">Retail / Distributor</div><p>購入者属性として別軸で扱い、商品理解から商談へ接続。</p></div></div></section>
+          <section class="section"><div class="eyebrow">BUSINESS CTA</div><h2 class="jp-display h2">触って違いが伝わる商品だから、見積だけで終わらせない。</h2><p class="lead">Professional向けの主要CTAとして「Request Samples」と「Get a Quote」を並列で設計します。</p><div class="flow"><div class="flow-step"><div class="n">01</div><b>Understand</b><p>ブランドと用途を理解する。</p></div><div class="flow-step"><div class="n">02</div><b>Sample / Quote</b><p>サンプルまたは見積を依頼。</p></div><div class="flow-step"><div class="n">03</div><b>Approve</b><p>社内確認・見積PDFなど。</p></div><div class="flow-step"><div class="n">04</div><b>Order</b><p>独自B2Bフローで発注。</p></div></div></section>
+        </div>
+
+        <div class="v2-page" id="hospitality">
+          <section class="v2-hero"><div class="v2-hero-copy"><div class="eyebrow">PROFESSIONAL / HOSPITALITY</div><h1 class="jp-display h1">サービスの流れに、自然に馴染む。</h1><p class="lead">Restaurant / Hotel / Cateringの使用文脈を一つのページで見せる初期案。コンテンツ量が増えれば、業態別ページへ分割できます。</p></div><div class="v2-photo"><img src="/auxusa/assets/wireframe/serving-salmon.webp" alt=""></div></section>
+          <section class="section"><div class="v2-grid3"><div class="editorial-card"><div class="en">At the table</div><p>取り分け・共有・食卓での静かな存在感。</p></div><div class="editorial-card"><div class="en">Buffet & service</div><p>手に取る・戻す・提供する流れの中での使いやすさ。</p></div><div class="editorial-card"><div class="en">Kitchen & pass</div><p>調理・盛り付け・仕上げに適した商品群へ誘導。</p></div></div></section>
+          <section class="section soft"><div class="eyebrow">RECOMMENDED</div><h2 class="jp-display h2">現場の動作から商品を選ぶ。</h2><div class="product-grid-v2" data-grid="hospitality"></div></section>
+        </div>
+
+        <div class="v2-page" id="businessflow">
+          <section class="section"><div class="eyebrow">WORKING / SYSTEM BOUNDARY</div><h1 class="jp-display h1">ひとつのブランド体験から、二つの購入方法へ。</h1><p class="lead">公開フロントのShopifyでブランド・商品・Professional情報を共有し、見積や法人アカウント固有の処理が必要になった地点から独自B2Bシステムへ渡します。</p>
+            <div class="route-map"><div class="route-column"><div class="eyebrow">SHOPIFY / SHARED FRONT</div><h3>ブランド・商品・BtoC購入</h3><div class="route-row">Home</div><div class="route-row">Shop / Collections</div><div class="route-row">PDP → Cart / Checkout</div><div class="route-row">Why AUX / Brand</div><div class="route-row">For Professionals <span class="badge-v2">NEW</span></div><div class="route-row">Request Samples入口</div></div><div class="route-column"><div class="eyebrow">DEDICATED B2B SYSTEM</div><h3>見積・アカウント・営業管理</h3><div class="route-row">Business Account / Login</div><div class="route-row">商品・数量・価格条件</div><div class="route-row">見積PDF</div><div class="route-row">承認後に見積を再開</div><div class="route-row">法人発注</div><div class="route-row">営業・実績・コミッション管理</div></div></div>
+          </section>
+          <section class="section soft"><div class="eyebrow">VISIBLE ENTRY POINTS</div><h2 class="jp-display h2">BtoBは見える。でも、BtoC体験を支配しない。</h2><div class="v2-grid3"><div class="editorial-card"><div class="en">Header</div><p>For Professionalsを常設。</p></div><div class="editorial-card"><div class="en">PDP</div><p>「法人・業務用での購入はこちら」を購入導線の近くに。</p></div><div class="editorial-card"><div class="en">Home</div><p>商品とブランドを理解した後半にProfessionalセクション。</p></div></div></section>
+        </div>
+
+        <div class="v2-page" id="faq"><section class="section"><div class="support-wrap"><div class="eyebrow">SUPPORT</div><h1 class="jp-display h1">よくある質問</h1><p class="lead">配送、返品、お手入れ、製造地、法人購入など、購入前後の疑問をまとめます。</p><div class="info-table"><div class="info-row"><b>配送について</b><span>＋</span></div><div class="info-row"><b>関税・税について</b><span>＋</span></div><div class="info-row"><b>お手入れについて</b><span>＋</span></div><div class="info-row"><b>返品・交換について</b><span>＋</span></div><div class="info-row"><b>法人・業務用購入について</b><span>＋</span></div></div><div class="working-note">具体的な配送・関税・返品条件は運用確定後のコピーに差替。</div></div></section></div>
+
+        <div class="v2-page" id="shipping"><section class="section"><div class="support-wrap"><div class="eyebrow">SHIPPING & DELIVERY</div><h1 class="jp-display h1">配送について</h1><p class="lead">配送対象地域、送料、配送日数、関税・税の扱いを購入前に確認できるページ。</p><div class="info-table"><div class="info-row"><b>配送対象地域</b><span>最終条件を反映</span></div><div class="info-row"><b>送料</b><span>最終条件を反映</span></div><div class="info-row"><b>配送日数</b><span>最終条件を反映</span></div><div class="info-row"><b>Duties / Taxes</b><span>DDP / DAP最終方針に合わせて反映</span></div></div></div></section></div>
+
+        <div class="v2-page" id="returns"><section class="section"><div class="support-wrap"><div class="eyebrow">RETURNS / REFUNDS</div><h1 class="jp-display h1">返品・返金について</h1><p class="lead">返品期限、商品の状態、送料負担、返金方法を明確に整理するページ。</p><div class="info-table"><div class="info-row"><b>返品受付期間</b><span>最終ポリシー</span></div><div class="info-row"><b>返品可能な状態</b><span>最終ポリシー</span></div><div class="info-row"><b>返送料</b><span>最終ポリシー</span></div><div class="info-row"><b>返金</b><span>最終ポリシー</span></div></div></div></section></div>
+
+        <div class="v2-page" id="contact"><section class="section"><div class="support-wrap"><div class="eyebrow">CONTACT</div><h1 class="jp-display h1">お問い合わせ</h1><p class="lead">商品・注文・配送についてのお問い合わせ。法人の場合はFor Professionalsへ誘導します。</p><div class="form"><div class="field"><label>お名前</label><div class="input"></div></div><div class="field"><label>メールアドレス</label><div class="input"></div></div><div class="field full"><label>お問い合わせ種別</label><div class="input"></div></div><div class="field full"><label>内容</label><div class="input textarea"></div></div><div class="field full"><button class="v2-btn dark">送信</button></div></div></div></section></div>
+
+        <div class="js-footer"></div>
+      </div>
+    </main>
+  </div>
 </div>
-<div class="layout">
-<aside>
-  <div class="side-title">PAGES / STATES</div>
-  <div class="nav">
-    <button class="active" data-page="home">01 / Home<small>Brand + shop + professional entry</small></button>
-    <button data-page="shop">02 / Shop & Collections<small>AUX TONGS / AUX Tools / use</small></button>
-    <button data-page="pdp">03 / PDP — Fingertip<small>Representative product detail</small></button>
-    <button data-page="pro">04 / For Professionals <span class="badge">NEW</span><small>Hospitality + B2B entry</small></button>
-    <button data-page="brand">05 / Brand Story<small>We got you. / design rationale</small></button>
-    <button data-page="map">06 / Sitemap & Boundary <span class="badge">NEW</span><small>Shopify ↔ B2B system</small></button>
-  </div>
-  <div class="scope">
-    <b>V2 CHANGE</b>
-    <p>B2C-only ECから、同じブランド体験の中にB2C購入とB2B商談入口を持つGlobal Commerceへ。</p>
-    <div class="key"><span>KEEP</span><span class="new">NEW</span><span>PHOTO MAP</span></div>
-  </div>
-</aside>
-<main><div class="browser" id="browser">
-  <div class="chrome"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url" id="url">aux-global.com/</div></div>
-  <header class="site-header"><div class="logo">AUX</div><nav class="gnav"><span>Shop</span><span>AUX Tongs</span><span>AUX Tools</span><span>Why AUX</span><span class="prof">For Professionals</span></nav><div class="actions"><span>Search</span><span>Account</span><span>Cart (0)</span></div></header>
-
-  <div class="page active" id="home">
-    <section class="hero"><div class="hero-copy"><div class="eyebrow">AUX / GLOBAL</div><h1 class="display h1">We got you.</h1><p class="lead">Tools that do their job, then get out of the way. Precise when you need them. Quiet when you don't.</p><div class="btns"><span class="btn primary">Shop AUX</span><span class="btn">Why AUX</span></div></div><div class="visual"><span class="photo">SCENE 01 / Brand Hero / table + copy-safe area</span></div><div class="note">Heroは商品巨大表示ではなく「食卓の時間」が主役。AccentはCTA 1点のみ。</div></section>
-    <section class="section"><div class="eyebrow">SHOP / PRODUCT FAMILY</div><h2 class="display h2">Find the tool for the move.</h2><p class="lead">商品体系は「AUX TONGS / AUX Tools」、COOK・SERVE・TABLEは用途探索として扱う。</p><div class="grid3"><div class="entry"><span class="photo">PRODUCT F01 / 11 Tongs Family</span><h3 class="h3">AUX TONGS</h3><p>Purpose-built shapes, one quiet way of working.</p><span class="textlink">Explore all tongs →</span></div><div class="entry"><span class="photo">SCENE 29 / Tools family</span><h3 class="h3">AUX Tools</h3><p>Small tools for everyday prep, built around the same considerate thinking.</p><span class="textlink">Explore tools →</span></div><div class="entry"><h3 class="h3">Shop All</h3><p>Browse all 13 products in one place.</p><span class="textlink">View all products →</span></div></div></section>
-    <section class="section soft"><div class="split"><div class="visual product"><span class="photo">SCENE 02 / Product P05 / Knife. Fork. AUX.</span></div><div><div class="eyebrow">THE SIGNATURE</div><h2 class="display h2">Knife. Fork. AUX.</h2><p class="lead">Our signature tongs belong at the table, right alongside the cutlery. Fingertip-like control makes delicate food feel easy to pick up.</p><div class="btns"><span class="btn darkbtn">Meet Fingertip Tongs</span></div></div></div><div class="note">Flagshipを「便利なサラダトング」ではなく新しいtablewareとして再定義。</div></section>
-    <section class="section"><div class="eyebrow">WE GOT YOU. / THREE LAYERS</div><h2 class="display h2">Made around the way people actually move.</h2><div class="grid3"><div class="card"><div class="index">01</div><h3 class="h3">We understand you.</h3><p>Light spring. Natural grip. Less effort in the hand.</p><div class="micro">PHOTO: Scene 03</div></div><div class="card"><div class="index">02</div><h3 class="h3">We've got the moment.</h3><p>Reach, serve and share without breaking the flow of the table.</p><div class="micro">PHOTO: Scene 10</div></div><div class="card"><div class="index">03</div><h3 class="h3">We got it.</h3><p>Fine tips meet the food where you intend them to.</p><div class="micro">PHOTO: Scene 33</div></div></div></section>
-    <section class="family"><div class="visual product"><span class="photo">PRODUCT F01 / 11 Tongs / 16:9</span></div><div class="family-copy"><div class="eyebrow">ONE FAMILY</div><h2 class="display h2">A tool for every little move.</h2><p class="lead">Eleven tong shapes, each built around a specific motion—from the smallest garnish to a pan-side baste.</p><div class="btns"><span class="btn">Explore AUX TONGS</span></div></div></section>
-    <section class="section"><div class="eyebrow">SHOP BY MOMENT</div><h2 class="display h2">From kitchen to table.</h2><div class="scene-grid"><div class="scene big"><span class="photo">SCENE 30–36 / COOK</span><div><strong>Cook</strong><small>Turn, lift, drain, baste.</small></div></div><div class="scene"><span class="photo">SCENE 09–13 / SERVE</span><div><strong>Serve</strong><small>Reach and share naturally.</small></div></div><div class="scene"><span class="photo">SCENE 01–08 / TABLE</span><div><strong>Table</strong><small>Present, but never intrusive.</small></div></div></div></section>
-    <section class="prof-band"><div class="prof-copy"><div class="eyebrow">FOR PROFESSIONALS</div><h2 class="display h2">Made to belong wherever people gather.</h2><p class="lead">For restaurants, hotels, hospitality teams and business buyers who care about the guest experience as much as the tool itself.</p><div class="btns"><span class="btn primary">For Professionals</span><span class="btn">Get a Quote</span></div></div><div class="visual stock"><span class="photo">STOCK / restaurant・hotel・buffet / AUX product not required</span></div><div class="note">United Athle型の「明示的なBtoB入口」は参考にするが、ブランド体験は分断しない。</div></section>
-    <section class="section soft"><div class="split"><div><div class="eyebrow">WHY IT WORKS</div><h2 class="display h2">Precision, in service of ease.</h2><p class="lead">Soft spring, precise alignment and purpose-shaped tips come first. Tsubame-Sanjo is the reason to believe—not the opening claim.</p><div class="btns"><span class="btn">Why AUX</span></div></div><div class="visual product"><span class="photo">Manufacturing / existing or future material</span></div></div></section>
-  </div>
-
-  <div class="page" id="shop">
-    <section class="hero"><div class="hero-copy"><div class="eyebrow">SHOP AUX</div><h1 class="display h1">Purpose-built, not overbuilt.</h1><p class="lead">Start with the product family, then narrow by the motion or moment.</p></div><div class="visual product"><span class="photo">PRODUCT F01 / Family Hero</span></div></section>
-    <section class="section"><div class="grid3"><div class="entry"><h3 class="h3">AUX TONGS</h3><p>11 purpose-built tong shapes.</p></div><div class="entry"><h3 class="h3">AUX Tools</h3><p>Mini Whisk + Grating Spoon.</p></div><div class="entry"><h3 class="h3">Shop by Moment</h3><p>Cook / Serve / Table.</p></div></div></section>
-    <section class="section soft"><div class="eyebrow">AUX TONGS / 11 ITEMS</div><h2 class="display h2">One family. Different moves.</h2><div class="products"><div class="product-card"><div class="visual product"><span class="photo">PRODUCT P05</span></div><h4>Fingertip Tongs</h4><p>Working name / detail copy after shoot.</p></div><div class="product-card"><div class="visual product"><span class="photo">PRODUCT P07</span></div><h4>Mini Tongs</h4><p>Working name / detail copy after shoot.</p></div><div class="product-card"><div class="visual product"><span class="photo">PRODUCT P09</span></div><h4>Serving Tongs</h4><p>Working name / detail copy after shoot.</p></div><div class="product-card"><div class="visual product"><span class="photo">PRODUCT P011</span></div><h4>Basting Tongs</h4><p>Working name / detail copy after shoot.</p></div></div></section>
-  </div>
-
-  <div class="page" id="pdp">
-    <section class="pdp-top"><div class="gallery"><div class="visual product"><span class="photo">PRODUCT P05 / Clean Hero</span></div><div class="visual"><span class="photo">SCENE 04 / one slice</span></div><div class="visual"><span class="photo">PRODUCT P06 / Key Detail</span></div></div><div class="buy"><div class="eyebrow">AUX TONGS / SIGNATURE</div><h1 class="display" style="font-size:42px;margin:0">AUX Fingertip Tongs</h1><div class="stars">★★★★★ <span style="color:#666">Reviews</span></div><p class="lead">Our signature tongs bring a soft spring and fingertip-like control to the table—made to pick, share and serve without getting in the way.</p><div class="price">$—</div><div class="rule"></div><button class="add">ADD TO CART</button><div class="business-cta">BUYING FOR A BUSINESS? →</div><div class="micro">Shipping / Duties / Returns / Care</div></div></section>
-    <section class="section soft"><div class="split"><div class="visual"><span class="photo">SCENE 03–05 / light grip + one slice + share</span></div><div><div class="eyebrow">PRIMARY USE</div><h2 class="display h2">One slice. Just the one.</h2><p class="lead">Fingertip-like control makes delicate food feel easy to pick up.</p></div></div></section>
-    <section class="section"><div class="eyebrow">DESIGN DETAILS</div><h2 class="display h2">What makes it feel effortless.</h2><div class="grid3"><div class="card"><h3 class="h3">Soft spring</h3><p>Less force in the hand.</p></div><div class="card"><h3 class="h3">Fingertip-like tips</h3><p>Precise contact with delicate food.</p></div><div class="card"><h3 class="h3">Clean rest</h3><p>Working ends stay off the table.</p></div></div></section>
-    <section class="prof-band"><div class="prof-copy"><div class="eyebrow">BUSINESS PURCHASING</div><h2 class="display h2">Need quantities, a quote, or business pricing?</h2><p class="lead">Continue to the professional flow without leaving the product context.</p><div class="btns"><span class="btn primary">Get a Quote</span><span class="btn">For Professionals</span></div></div><div class="visual stock"><span class="photo">STOCK / hospitality context</span></div></section>
-  </div>
-
-  <div class="page" id="pro">
-    <section class="hero"><div class="hero-copy"><div class="eyebrow">FOR PROFESSIONALS</div><h1 class="display h1">Tools that support the guest experience.</h1><p class="lead">For hospitality and business buyers: consistent handling, considered details, and a quieter presence at the table.</p><div class="btns"><span class="btn primary">Get a Quote</span><span class="btn">Business Account</span></div></div><div class="visual stock"><span class="photo">STOCK / restaurant + people gathering</span></div><div class="note">B2BページはShopify内。Quote / Account以降で独自システムへ渡す。</div></section>
-    <section class="section"><div class="eyebrow">WHY AUX / PROFESSIONAL VALUE</div><h2 class="display h2">Considered for the person using it—and the person being served.</h2><div class="grid3"><div class="card"><h3 class="h3">Easy to handle</h3><p>Light spring and purpose-shaped forms reduce awkward movements.</p></div><div class="card"><h3 class="h3">Clean at rest</h3><p>Working ends stay off the surface where designed.</p></div><div class="card"><h3 class="h3">Quiet on the table</h3><p>Stainless forms fit the setting without becoming the setting.</p></div></div></section>
-    <section class="section soft"><div class="eyebrow">USE CASES</div><h2 class="display h2">Where AUX belongs.</h2><div class="grid3"><div class="entry"><span class="photo">STOCK</span><h3 class="h3">Restaurant</h3></div><div class="entry"><span class="photo">STOCK</span><h3 class="h3">Hotel</h3></div><div class="entry"><span class="photo">STOCK</span><h3 class="h3">Buffet & Service</h3></div></div></section>
-    <section class="section"><div class="eyebrow">BUSINESS FLOW</div><h2 class="display h2">From product to approved order.</h2><div class="steps"><div class="step"><div class="num">01</div><b>Browse</b><p>See the same product and brand information as every customer.</p></div><div class="step"><div class="num">02</div><b>Get a Quote</b><p>Choose products / quantity and generate or request a business quote.</p></div><div class="step"><div class="num">03</div><b>Approve</b><p>Download/share internally and return to the quote when approved.</p></div><div class="step"><div class="num">04</div><b>Order</b><p>Continue through the dedicated B2B purchasing flow.</p></div></div></section>
-    <section class="section dark"><div class="eyebrow">BUSINESS BUYERS</div><h2 class="display h2">Restaurant / Hotel / Distributor / Retailer</h2><p class="lead">Use Case and Buyer Type remain separate. The site can recommend context without confusing who is purchasing.</p><div class="btns"><span class="btn primary">Start a Quote</span></div></section>
-  </div>
-
-  <div class="page" id="brand">
-    <section class="hero"><div class="hero-copy"><div class="eyebrow">WHY AUX</div><h1 class="display h1">Made for the moment, not the spotlight.</h1><p class="lead">AUX starts with the person, then shapes the tool around the motion.</p></div><div class="visual"><span class="photo">SCENE 01 / 05 / 37 / presence</span></div></section>
-    <section class="section"><div class="eyebrow">WE GOT YOU.</div><h2 class="display h2">A quiet kind of capability.</h2><div class="grid3"><div class="card"><h3 class="h3">Effortless</h3><p>Don't make the user work harder than the task requires.</p></div><div class="card"><h3 class="h3">Considerate</h3><p>Design for the people and surfaces around the tool.</p></div><div class="card"><h3 class="h3">Present, never intrusive</h3><p>Do the job, then fall back into the scene.</p></div></div></section>
-    <section class="section soft"><div class="split"><div><div class="eyebrow">REASON TO BELIEVE</div><h2 class="display h2">Precision from Tsubame-Sanjo.</h2><p class="lead">Origin and manufacturing support the promise. They do not replace the promise.</p></div><div class="visual product"><span class="photo">Manufacturing / metal detail</span></div></div></section>
-  </div>
-
-  <div class="page" id="map">
-    <section class="section"><div class="eyebrow">SYSTEM BOUNDARY</div><h1 class="display h1" style="font-size:54px">One brand. Two purchasing paths.</h1><p class="lead">Shopify owns the public brand and B2C commerce experience. The B2B system begins only when a professional buyer needs quote/account-specific functions.</p><div class="sitemap" style="margin-top:34px"><div class="mapcol"><div class="eyebrow">SHOPIFY / SHARED FRONT</div><h3 class="h3">Brand + Product + B2C</h3><div class="maprow">Home</div><div class="maprow">Shop All</div><div class="maprow">AUX TONGS / AUX Tools</div><div class="maprow">PDP</div><div class="maprow">Why AUX</div><div class="maprow">For Professionals <span class="badge">NEW</span></div></div><div class="mapcol"><div class="eyebrow">DEDICATED B2B SYSTEM</div><h3 class="h3">Quote + Account + Sales Ops</h3><div class="maprow">Business Account / Login</div><div class="maprow">Quote simulation</div><div class="maprow">PDF quote / internal approval</div><div class="maprow">Resume quote → order</div><div class="maprow">Pricing tier / rep attribution</div><div class="maprow">Sales / commission management</div></div></div></section>
-    <section class="section soft"><div class="eyebrow">ENTRY POINTS</div><h2 class="display h2">B2B is visible, not dominant.</h2><div class="grid3"><div class="card"><h3 class="h3">Header</h3><p>For Professionals as a stable navigation item.</p></div><div class="card"><h3 class="h3">PDP</h3><p>“Buying for a business?” near the purchase box.</p></div><div class="card"><h3 class="h3">Home</h3><p>One editorial professional band after core product/brand understanding.</p></div></div></section>
-  </div>
-
-  <footer><div><div class="flogo">AUX</div><div style="font-size:8px;margin-top:8px">Quietly capable tools for kitchen and table.</div></div><div class="fcol"><b>SHOP</b><span>AUX TONGS</span><span>AUX Tools</span><span>Shop All</span></div><div class="fcol"><b>ABOUT</b><span>Why AUX</span><span>Tsubame-Sanjo</span><span>Care</span></div><div class="fcol"><b>BUSINESS</b><span>For Professionals</span><span>Get a Quote</span><span>Business Account</span></div></footer>
-</div></main></div>
-<script>
-const pages={home:"/",shop:"/collections/all",pdp:"/products/fingertip-tongs",pro:"/pages/professionals",brand:"/pages/why-aux",map:"/working/system-boundary"};
-document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.page;document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x===b));document.getElementById("url").textContent="aux-global.com"+pages[id];document.querySelector("main").scrollTo({top:0});}));
-document.getElementById("notes").onclick=e=>{document.body.classList.toggle("show-notes");e.currentTarget.classList.toggle("active")};
-document.getElementById("accent").onclick=e=>{document.body.classList.toggle("accent-off");const off=document.body.classList.contains("accent-off");document.documentElement.style.setProperty("--accent",off?"#1b1b19":"#7a3f45");e.currentTarget.classList.toggle("active",!off)};
-</script>
+<script src="v2.js"></script>
 </body>
 </html>
