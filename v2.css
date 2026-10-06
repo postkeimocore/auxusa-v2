@@ -183,3 +183,11 @@ body{font-family:var(--sans)}
   .v2-grid4,.brand-principles{grid-template-columns:repeat(2,1fr)}
   .browser{min-width:980px}
 }
+
+/* Language switch */
+.locale-switch{display:inline-flex;align-items:center;border:1px solid #4e4e4e;border-radius:5px;overflow:hidden;margin-left:2px}
+.locale-switch a,.locale-switch span{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:29px;padding:0 9px;font-size:9px;letter-spacing:.08em;text-decoration:none}
+.locale-switch .locale-current{background:#fff;color:#111;font-weight:700}
+.locale-switch .locale-link{background:#242424;color:#ddd}
+.locale-switch .locale-link:hover{background:#333;color:#fff}
+html[lang="en"] .jp-display{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.025em}
