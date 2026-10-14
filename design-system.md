@@ -58,3 +58,39 @@ V1 has six tracking tokens, defined in v2.css:
 - Index: 0.08em
 
 Letter spacing uses em values rather than the 8px spatial grid. The CSS checker accepts only these tokens.
+
+## Visual direction — Quiet Precision / desktop HOME (2026-10-14)
+
+**Reference hierarchy.** KINTO USA is a reference for restraint, negative space, image-to-type balance and quiet interaction. It is not a source of ready-made layouts or additional site sections. AUX's unique signal is usefulness grounded in precise tool shapes and everyday dining, not luxury decoration. Retain the established V1 information architecture.
+
+### Visual roles and invariants
+
+| Role | Rule | Example |
+|---|---|---|
+| Primary type | Existing Helvetica Neue / Arial sans | Navigation, hero product title, section heads, shopping and PDP |
+| Editorial exception | Cardo **400**, strictly one storytelling headline on HOME | MOMENTS introduction only; not product names, navigation, hero or footer |
+| Display spacing | `--tracking-display` / `--tracking-heading`; never per-section custom letter spacing | Heading typography |
+| Primary text | `--ink` / `--text` on white/paper | Purchase CTAs and descriptions |
+| Backgrounds | White, original mist `#f5f5f3`, original hero panel `#f3f3f1`; no additional color theme | Section grouping |
+| Photography | Use large image frames **within** the existing content hierarchy | Hero split, AUX DIFFERENCE collage, MOMENTS asymmetry |
+| Section spacing | Use established `site-section`, `compact` and `--page-gutter`; no one-off discretionary blocks | Home and lower-page sections |
+| Actions | `btn-fill` primary, `btn-line` secondary; identical component rules across backgrounds | Product and story routes |
+| Carousel | Preserve **3** featured tools and the page counter; each 8px visual dot has a 40px touch target | HOME hero |
+| Footer | Original calm five-column footer; no giant image + duplicate wordmark | Site-wide |
+
+### HOME hierarchy (no supplementary invented chapters)
+
+1. Product-first hero with three featured tools and a quiet 57% / 43% split
+2. THE AUX DIFFERENCE — text and asymmetric precision-image collage
+3. Featured products — four product cards
+4. COOK / SERVE / TABLE — equal category entry cards
+5. Knife. Fork. AUX. — single identifiable typographic brand statement
+6. MOMENTS — four established themes; one restrained editorial serif headline
+7. FOR BUSINESS — understated pale split (never a black advertisement band)
+8. WHY AUX teaser — craftsmanship proof / footer
+
+**Not in scope:** extra “Made for sharing” or “At home, at the table” photo chapters, Journal, Newsletter, modal PDP, oversized footer AUX overlay, competing serif/sans headings inside commerce components. Any new content section requires a content role, not merely visual variety.
+
+### Design acceptance gate
+
+Before publishing style work: (1) check each existing section against this role table; (2) run `node scripts/check-design-grid.js`; (3) visually inspect the desktop homepage at the same viewport and compare with the previous screenshot; (4) confirm carousel page indicator and navigation; (5) verify one product page still renders. The grid test alone is necessary but never sufficient for visual quality.
