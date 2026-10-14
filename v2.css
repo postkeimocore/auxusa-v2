@@ -412,7 +412,6 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .moment-editorial-copy{padding-top:24px}
 .moment-products{margin-top:48px}
 .moment-related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.moment-related-grid article:nth-child(3){display:none}
 .moment-end .photo{min-height:270px}
 .pdp-primary-photo .photo{min-height:310px}
 .pdp-comparison{grid-template-columns:repeat(2,minmax(0,1fr))}
