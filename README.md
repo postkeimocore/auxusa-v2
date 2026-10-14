@@ -29,7 +29,7 @@ No bright or burgundy accent. White / light gray / charcoal. The supplied black 
 
 `COOK | SERVE | TABLE | MOMENTS | FOR BUSINESS | WHY AUX`
 
-WHY AUX and the existing brand/support destinations remain available in the page index and footer.
+WHY AUX is the **single brand page**. The Third Utensil, Design & Engineering and Tsubame-Sanjo are sections within it, not separate routes. Only WHY AUX appears in the footer ABOUT navigation.
 
 The site is **English-first**. Japanese is a mirror intended to help explain structure to the client. Copy is working text—not finalized brand copy or legal/operational policy.
 
@@ -65,16 +65,18 @@ The site is **English-first**. Japanese is a mirror intended to help explain str
 RETAIL & DISTRIBUTION differs from the other four in that it addresses potential resellers and distributors rather than places where the product is used.
 
 ### Brand
-11. WHY AUX
-12. THE THIRD UTENSIL
-13. DESIGN & ENGINEERING
-14. TSUBAME-SANJO
+11. WHY AUX — **one page** with these sections:
+   - Design & Engineering — tool shapes, contact and precision
+   - The Third Utensil — Fingertip Tongs as tableware
+   - Tsubame-Sanjo — manufacturing/metalworking context (origin claims require verification)
 
 ### Support
-15. FAQ
-16. SHIPPING
-17. RETURNS
-18. CONTACT
+12. FAQ
+13. SHIPPING
+14. RETURNS
+15. CONTACT
+
+Previously separate brand routes (`?page=third`, `?page=engineering`, `?page=tsubame`) resolve to the corresponding WHY AUX section for existing preview links. This structure is a correction to the design team's unapproved page split; the client's instruction to retain WHY AUX onward **did not specify four standalone pages**.
 
 ## Functional boundary
 

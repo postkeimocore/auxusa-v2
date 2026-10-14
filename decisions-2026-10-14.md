@@ -39,3 +39,7 @@ Basis: October 6 meeting transcript and Tanaka-san's follow-up instructions. The
 - The global header adds WHY AUX after the requested five navigational entries to preserve the planned brand path.
 - English is the primary version, with Japanese as a synchronized client-review toggle.
 - Copy is illustrative; final marketing writing, product names, prices, shipment terms, DDP/DAP handling, sample fulfillment and product origin claims still need confirmation.
+
+## 2026-10-14 correction — ABOUT page split was not a client instruction
+
+V1 contains one WHY AUX brand page with form, engineering and manufacturing content. The V2 wireframe had independently split The Third Utensil, Design & Engineering and Tsubame-Sanjo into three additional page routes; the client did **not** explicitly require those separate pages. Tanaka-san asked only that the originally planned WHY AUX onward content/navigation be kept. Therefore the approved working wireframe again uses **one WHY AUX page**, with these subjects as internal sections and only WHY AUX in the footer. MOMENTS and FOR BUSINESS remain separate pages as previously instructed. Legacy brand query routes redirect within the prototype to in-page sections.

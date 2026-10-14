@@ -7,8 +7,10 @@
 var D=window.AUX_DATA;
 if(!D){document.getElementById("site-app").textContent="Content not loaded.";return;}
 var q=new URLSearchParams(location.search);
+var ABOUT_SECTIONS={third:"third",engineering:"engineering",tsubame:"tsubame"};
 var state={
-  page:q.get("page")||"home",
+  page:ABOUT_SECTIONS[q.get("page")]?"why":(q.get("page")||"home"),
+  whyAnchor:ABOUT_SECTIONS[q.get("page")] || (q.get("page")==="why"&&ABOUT_SECTIONS[q.get("section")]?q.get("section"):null),
   product:q.get("product")||"fingertip",
   lang:q.get("lang")==="ja"?"ja":"en",
   notes:false,
@@ -21,10 +23,10 @@ var PAGES=[
   {group:"PRODUCT DISCOVERY",pages:[["shop","SHOP ALL"],["cook","COOK"],["serve","SERVE"],["table","TABLE"],["tongs","AUX TONGS"],["tools","AUX TOOLS"],["pdp","PRODUCT DETAIL"]]},
   {group:"MOMENTS",pages:[["moments","MOMENTS"]]},
   {group:"FOR BUSINESS",pages:[["business","FOR BUSINESS"]]},
-  {group:"BRAND",pages:[["why","WHY AUX"],["third","THE THIRD UTENSIL"],["engineering","DESIGN & ENGINEERING"],["tsubame","TSUBAME-SANJO"]]},
+  {group:"BRAND",pages:[["why","WHY AUX"]]},
   {group:"SUPPORT",pages:[["faq","FAQ"],["shipping","SHIPPING"],["returns","RETURNS"],["contact","CONTACT"]]}
 ];
-var ROUTES={home:"/",shop:"/collections/all",tongs:"/collections/aux-tongs",tools:"/collections/aux-tools",cook:"/collections/cook",serve:"/collections/serve",table:"/collections/table",pdp:"/products/{handle}",moments:"/pages/moments",business:"/pages/for-business",why:"/pages/why-aux",third:"/pages/the-third-utensil",engineering:"/pages/design-engineering",tsubame:"/pages/tsubame-sanjo",faq:"/pages/faq",shipping:"/pages/shipping",returns:"/pages/returns",contact:"/pages/contact"};
+var ROUTES={home:"/",shop:"/collections/all",tongs:"/collections/aux-tongs",tools:"/collections/aux-tools",cook:"/collections/cook",serve:"/collections/serve",table:"/collections/table",pdp:"/products/{handle}",moments:"/pages/moments",business:"/pages/for-business",why:"/pages/why-aux",faq:"/pages/faq",shipping:"/pages/shipping",returns:"/pages/returns",contact:"/pages/contact"};
 function L(en,ja){return state.lang==="ja"?ja:en;}
 function img(file){return D.assetBase+file;}
 function photo(file,label,cls){return '<div class="photo '+(cls||"")+'"><img src="'+img(file)+'" loading="lazy" alt=""></div>';}
@@ -65,7 +67,7 @@ function footer(){
  '<div><img class="footer-logo-image" src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="175" height="20"><p class="footer-intro">'+L("Tools that quietly support the meal, the people and the moments around the table.","食事と人、食卓を囲む時間を静かに支える道具。")+'</p></div>'+
  grp("SHOP",[["shop","Shop All"],["tongs","AUX TONGS"],["tools","AUX Tools"],["cook","COOK"],["serve","SERVE"],["table","TABLE"]])+
  grp("DISCOVER",[["moments","MOMENTS"],["business","FOR BUSINESS"]])+
- grp("ABOUT",[["why","WHY AUX"],["third","The Third Utensil"],["engineering","Design & Engineering"],["tsubame","Tsubame-Sanjo"]])+
+ grp("ABOUT",[["why","WHY AUX"]])+
  grp("SUPPORT",[["faq","FAQ"],["shipping","Shipping"],["returns","Returns"],["contact","Contact"]])+
  '</div><div class="footer-bottom"><span>© 2026 AUX Co., Ltd.</span><span>All rights reserved.</span></div></footer>';
 }
@@ -108,7 +110,7 @@ function home(){
  '<div class="split-copy">'+eyebrow("TABLE / THE THIRD UTENSIL")+
  '<h2 class="display-medium">Knife.<br>Fork.<br>AUX.</h2>'+
  '<p class="body-lg">'+L("A small tong considered as part of the table setting—not only a tool kept in the kitchen.","トングを調理器具だけでなく、ナイフやフォークと並ぶ食卓の道具として紹介。")+'</p>'+
- '<div class="btn-row">'+bline(L("Explore the idea","TABLEの考え方を見る"),"third")+
+ '<div class="btn-row">'+bline(L("Explore the idea","TABLEの考え方を見る"),"why",'data-anchor="third"')+
  bline(L("View Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div></div></div></section>'+
  '<section class="site-section home-moments-section">'+sectionHead("MOMENTS",L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","何気ない日も、特別な日も。食卓の時間に合う道具を見つけてください。"))+
  '<div class="home-moments"><div class="home-moment-main" tabindex="0" data-go="moments" data-anchor="everyday">'+photo(D.moments[0].photo,"MOMENTS / everyday")+
@@ -343,44 +345,26 @@ function why(){
  L("Look at the distinctive shapes first, then see where they make a difference.","食材が変われば、必要な形も変わる。"))+
  '<div class="aux-form-gallery">'+factors.map(function(f,i){return '<article>'+photo(f[0],"AUX distinct form / illustrative")+
  '<span class="value-number">0'+(i+1)+'</span><h3>'+L(f[1],f[2])+'</h3><p>'+L(f[3],f[4])+'</p></article>';}).join("")+'</div></section>'+
- '<section class="site-section mist">'+sectionHead("DESIGNED FOR USE",L("Shape, feel and proportion.","先端、角度、握り心地。"),
+ '<section class="site-section mist" id="anchor-engineering">'+sectionHead("DESIGN & ENGINEERING",L("Shape, feel and proportion.","先端、角度、握り心地。"),
  L("Physical features provide evidence behind the experience; avoid an abstract list of virtues.","先端、角度、長さ、握り心地。一つひとつの形に理由があります。"))+
  '<div class="feature-trio">'+uses.map(function(u,i){return '<article>'+photo(u[0],"Design & Engineering / illustrative")+
  '<span class="value-number">0'+(i+1)+'</span><h3>'+L(u[1],u[2])+'</h3><p>'+L(u[3],u[4])+'</p></article>';}).join("")+'</div>'+
- '<div class="btn-row">'+bline(L("Design & Engineering","設計を詳しく見る"),"engineering")+'</div></section>'+
- '<section class="site-section compact"><div class="split">'+photo("small-food-transfer.webp","TABLE / Signature Fingertip Tongs")+
- '<div>'+eyebrow("KNIFE. FORK. AUX.")+'<h2 class="display-medium">'+L("The third utensil.","食卓に、もうひとつの道具。")+'</h2>'+
- '<p class="body-md">'+L("One possible new place for Fingertip Tongs: alongside familiar cutlery at the table.","ゆびさきトングをナイフやフォークと並べ、食卓に置く新しい使い方を示します。")+'</p>'+
- bline(L("Explore the idea","この考え方を見る"),"third")+'</div></div></section>'+
- '<section class="site-section compact"><div class="about-image-band">'+photo("manufacturing-caliper-close.webp","Archive / source, rights and manufacturing claims to be confirmed")+
- '<div>'+eyebrow("MANUFACTURING / TSUBAME-SANJO")+
+ '</section>'+
+ '<section class="site-section compact" id="anchor-third"><div class="split">'+photo("small-food-transfer.webp","TABLE / Signature Fingertip Tongs")+
+ '<div>'+eyebrow("THE THIRD UTENSIL / KNIFE. FORK. AUX.")+'<h2 class="display-medium">'+L("The third utensil.","食卓に、もうひとつの道具。")+'</h2>'+
+ '<p class="body-md">'+L("Fingertip Tongs can sit beside the knife and fork, not only in the kitchen. Pick a small bite, share a dish, and let the tool rest quietly on the table.","ゆびさきトングをキッチンだけでなく、ナイフやフォークと並ぶ食卓の道具に。小さな一口をつまむ、料理を取り分ける、食卓にさりげなく置く。")+'</p>'+
+ bline(L("Discover Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div></div></section>'+
+ '<section class="site-section compact" id="anchor-tsubame"><div class="about-image-band">'+photo("manufacturing-caliper-close.webp","Archive / source, rights and manufacturing claims to be confirmed")+
+ '<div>'+eyebrow("TSUBAME-SANJO / MANUFACTURING")+
  '<h2 class="display-medium">'+L("The expertise behind the form.","形を支える、金属加工の技術。")+'</h2>'+
  '<p class="body-md">'+L("Once the physical details are clear, connect them with verified manufacturing processes and Tsubame-Sanjo expertise.","形の理由を伝えた後に、燕三条の技術や工程を根拠として紹介。事実確認できた情報のみ掲載します。")+'</p>'+
- bline(L("About Tsubame-Sanjo","燕三条について"),"tsubame")+'</div></div></section>'+
+ '</div></div></section>'+
  '<section class="site-section compact mist">'+sectionHead("EXPLORE AUX",L("Find the right tool.","商品から確かめる。"),
  L("Continue from the story to the collection and the products.","WHY AUXで得た理解を、商品選びにつなげる。"))+
  '<div class="product-collections">'+[["cook","cook-greens-pan.webp"],["serve","serve-salad.webp"],["table","small-food-transfer.webp"]].map(function(x){return '<article tabindex="0" class="category-card" data-go="'+x[0]+'">'+photo(x[1],x[0]+" collection entry")+
  '<div class="card-meta"><h3>'+x[0].toUpperCase()+'</h3><span class="arrow">→</span></div></article>';}).join("")+'</div>'+
  '<div class="btn-row">'+bline(L("Shop all products","すべての商品を見る"),"shop")+'</div>'+
  note("V1 Why AUX hierarchy restored: form comparison → product design details → manufacturing evidence → Shop AUX. Additional Third Utensil section reflects the later brand concept.","V1 Why AUXの骨格：形状差→設計・機能→製造背景→商品。Third Utensilは今回の追加ブランド方針。")+'</section>';
-}
-function third(){
- return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("THE THIRD UTENSIL")+'<h1 class="page-display">Knife.<br>Fork.<br>AUX.</h1><p class="body-lg">'+L("Reimagine where a precise tong belongs: not only in the kitchen, but at each place around the table.","キッチンで使うだけでなく、ナイフやフォークと並んで食卓に置く。トングの新しい役割を提案します。")+'</p>'+bline(L("Discover Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div>'+
- photo("small-food-transfer.webp","Third utensil / Scene 02")+'</div>'+
- '<section class="site-section">'+sectionHead("AT THE TABLE",L("A small movement, a different possibility.","小さな動きから、食卓の新しい選択肢へ。"))+
- '<div class="feature-trio">'+[["small-food-olives-wide.webp","Pick precisely.","小さな食材をつまむ。"],["serving-salmon.webp","Share naturally.","自然に取り分ける。"],["product-pair-minimal.webp","Rest quietly.","さりげなく食卓に置く。"]].map(function(x){return '<div>'+photo(x[0],"Signature use")+ '<h3>'+L(x[1],x[2])+'</h3></div>';}).join("")+'</div></section>';
-}
-function engineering(){
- return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("DESIGN & ENGINEERING")+'<h1 class="page-display">'+L("Why this shape?","なぜ、この形なのか。")+'</h1><p class="body-lg">'+L("A tool is shaped around the food, the hand and the movement. Let each product detail explain the difference it makes.","食材や手の動きが違えば、必要な形も変わる。使い心地を支える設計の細部をご覧ください。")+'</p></div>'+photo("product-tip-macro-dark.webp","Macro / replace with product-specific close-up","contain")+'</div>'+
- '<section class="site-section">'+sectionHead("THOUGHTFUL DETAIL",L("One image. One purpose.","ひとつひとつの動作に、意味のある形。"))+
- '<div class="feature-trio">'+[["product-tip-tomato-macro.webp","At the point of contact.","食材に触れる先端。","Tip geometry"],["product-pair-shadow.webp","In the movement of a hand.","手の力とばね感。","Grip & spring"],["product-tomato-scale.webp","In the right proportion.","長さとサイズ感。","Size & reach"]].map(function(x){return '<article>'+photo(x[0],x[3])+'<h3>'+L(x[1],x[2])+'</h3><p>'+x[3]+'</p></article>';}).join("")+'</div></section>'+
- '<section class="site-section mist"><div class="split">'+photo("manufacturing-caliper-over-shoulder.webp","Manufacturing reference")+ '<div>'+eyebrow("MADE POSSIBLE BY CRAFT")+'<h2 class="display-medium">'+L("Precision supports the experience.","自然な使い心地を、精度が支える。")+'</h2><p class="body-md">'+L("Continue the story with verified manufacturing details and the expertise of Tsubame-Sanjo.","細かな金属加工の技術が、道具の精度と使い心地を支えています。")+'</p>'+bline("Tsubame-Sanjo","tsubame")+'</div></div></section>';
-}
-function tsubame(){
- return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("TSUBAME-SANJO")+'<h1 class="page-display">'+L("A tradition of<br>working with metal.","金属加工の技術を、<br>日々の道具へ。")+'</h1><p class="body-lg">'+L("Metalworking skills, careful finishing, and an eye for detail bring considered shapes to everyday life.","長年培われてきた金属加工の技術。精度を重ね、日々の食卓で使う道具をつくり続けています。")+'</p></div>'+photo("manufacturing-inspection-lineup.webp","Manufacturing archive / rights and origin to be confirmed")+'</div>'+
- '<section class="site-section"><div class="split">'+photo("manufacturing-caliper-close.webp","Tooling / inspection visual")+
- '<div>'+eyebrow("REASON TO BELIEVE")+'<h2 class="display-medium">'+L("Craft in service of the everyday.","日常の使い心地を支える、ものづくり。")+'</h2><p class="body-md">'+L("Careful work with metal supports the details you feel every time you pick up an AUX tool.","形状へのこだわりから細かな仕上げまで。金属加工の技術が、毎日の使い心地を支えます。")+'</p>'+bline(L("Explore the products","商品を見る"),"shop")+'</div></div>'+
- note("Verify which products and processes are actually manufactured in Tsubame-Sanjo. Do not assign origin statements to all products without verification.","全商品の製造地・工程が燕三条と断定できるわけではありません。商品・工程別に確認してコピー化。")+'</section>';
 }
 function faq(){
  var rows=[
@@ -433,9 +417,6 @@ function content(){
   case "business":return business();
   case "pdp":return pdp();
   case "why":return why();
-  case "third":return third();
-  case "engineering":return engineering();
-  case "tsubame":return tsubame();
   case "faq":return faq();
   case "shipping":case "returns":return policy(state.page);
   case "contact":return contact();
@@ -451,6 +432,7 @@ function renderRail(){
 function updateURL(){
  var u=new URL(location.href);u.searchParams.set("page",state.page);u.searchParams.set("lang",state.lang);
  if(state.page==="pdp")u.searchParams.set("product",state.product);else u.searchParams.delete("product");
+ if(state.page==="why"&&state.whyAnchor)u.searchParams.set("section",state.whyAnchor);else u.searchParams.delete("section");
  history.replaceState(null,"",u);
 }
 function render(){
@@ -464,8 +446,9 @@ function render(){
   updateURL();
 }
 function navigate(page,product,anchor){
+ if(ABOUT_SECTIONS[page]){anchor=ABOUT_SECTIONS[page];page="why";}
  if(!ROUTES[page])return;
- state.page=page;if(product)state.product=product;
+ state.page=page;state.whyAnchor=page==="why"&&ABOUT_SECTIONS[anchor]?anchor:null;if(product)state.product=product;
  state.qty=1;state.galleryIndex=0;render();
  window.scrollTo(0,0);
  if(anchor)requestAnimationFrame(function(){var node=document.getElementById("anchor-"+anchor);if(node)node.scrollIntoView({behavior:"smooth",block:"start"});});
@@ -495,6 +478,7 @@ document.addEventListener("click",function(ev){
 });
 document.addEventListener("submit",function(ev){if(ev.target.id==="demo-contact"){ev.preventDefault();toast(L("Preview only. No message has been sent.","説明用フォームです。送信されていません。"));}});
 document.addEventListener("keydown",function(ev){if((ev.key==="Enter"||ev.key===" ")&&ev.target.matches("[role=link][data-product],article[data-go]")){ev.preventDefault();ev.target.click();}});
-window.addEventListener("popstate",function(){var qp=new URLSearchParams(location.search);state.page=qp.get("page")||"home";state.lang=qp.get("lang")==="ja"?"ja":"en";state.product=qp.get("product")||"fingertip";render();});
+window.addEventListener("popstate",function(){var qp=new URLSearchParams(location.search);state.page=ABOUT_SECTIONS[qp.get("page")]?"why":(qp.get("page")||"home");state.whyAnchor=ABOUT_SECTIONS[qp.get("page")]||(state.page==="why"&&ABOUT_SECTIONS[qp.get("section")]?qp.get("section"):null);state.lang=qp.get("lang")==="ja"?"ja":"en";state.product=qp.get("product")||"fingertip";render();});
 render();
+if(state.whyAnchor)requestAnimationFrame(function(){var el=document.getElementById("anchor-"+state.whyAnchor);if(el)el.scrollIntoView({block:"start"});});
 })();
