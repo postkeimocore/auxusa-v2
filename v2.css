@@ -421,3 +421,58 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .reviews-empty{grid-template-columns:1fr;padding:24px 23px;text-align:center;gap:6px}
 .review-score-placeholder{font-size:42px}
 }
+
+/* The product-gallery system: vertical thumbnails and one dominant image. */
+.site-wordmark{min-width:150px;line-height:1}
+.site-wordmark img{display:block;width:152px;height:auto}
+.footer-logo-image{display:block;width:175px;height:auto;max-width:100%}
+.pdp-layout{grid-template-columns:minmax(0,1.24fr) minmax(0,.76fr);align-items:start}
+.kinto-gallery{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:22px;min-height:610px;padding:30px 22px 35px 24px;align-items:start;background:#fff}
+.kinto-thumbs{display:flex;flex-direction:column;gap:13px;align-items:stretch;justify-content:flex-start}
+.kinto-thumb{width:72px;height:72px;border:1px solid transparent;background:#f6f6f5;padding:0;overflow:hidden;display:block;flex:none}
+.kinto-thumb.active{border-color:#474747}
+.kinto-thumb img{width:100%;height:100%;object-fit:cover}
+.kinto-stage{position:relative;min-width:0;height:600px;display:flex;align-items:center;justify-content:center}
+.kinto-main{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#fff}
+.kinto-main img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;display:block;width:100%;height:100%}
+.kinto-arrow{position:absolute;top:50%;transform:translateY(-50%);background:transparent;border:0;width:32px;height:44px;display:flex;align-items:center;justify-content:center;color:#8f8f8f;font-size:33px;font-weight:200;z-index:2;padding:0;line-height:1}
+.kinto-arrow:hover{color:#292929}
+.kinto-arrow.prev{left:1%}
+.kinto-arrow.next{right:1%}
+.kinto-dots{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;align-items:center;gap:13px}
+.kinto-dots button{width:8px;height:8px;border:0;border-radius:50%;background:#dddddf;padding:0;transition:background .12s}
+.kinto-dots button.active{background:#979797}
+.pdp-buy{padding:67px 10% 66px 7.5%}
+.pdp-buy .pdp-price{margin-top:24px}
+.pdp-comparison .compare-copy>span{display:none}
+.pdp-comparison .compare-facts{margin:18px 0 0;display:grid;grid-template-columns:1fr;gap:0}
+.pdp-comparison .compare-facts dt{font-size:9px;color:#777;margin-top:13px;font-weight:500;letter-spacing:.03em}
+.pdp-comparison .compare-facts dd{margin:5px 0 0;color:#282828;font-size:11px;line-height:1.55}
+.pdp-comparison .compare-cta{margin-top:25px}
+.preview-sub,.stage-note,.rail-foot,.working-note,.photo-label{display:none!important}
+@media(max-width:1170px){
+ .kinto-gallery{grid-template-columns:58px minmax(0,1fr);gap:12px;padding:24px 14px}
+ .kinto-thumb{width:58px;height:58px}
+ .kinto-stage{height:480px}
+ .kinto-gallery{min-height:525px}
+ .pdp-buy{padding:45px 7%}
+}
+@media(max-width:880px){
+ .site-wordmark{min-width:140px}
+ .site-wordmark img{width:140px}
+ .kinto-gallery{grid-template-columns:54px minmax(0,1fr);gap:11px;min-height:455px}
+ .kinto-thumb{width:54px;height:54px}
+ .kinto-stage{height:410px}
+}
+@media(max-width:550px){
+ .pdp-layout{grid-template-columns:1fr}
+ .kinto-gallery{grid-template-columns:1fr;display:flex;flex-direction:column-reverse;gap:12px;padding:12px 15px 22px;min-height:0}
+ .kinto-stage{height:420px;width:100%}
+ .kinto-main img{max-height:calc(100% - 56px)}
+ .kinto-thumbs{flex-direction:row;width:100%;gap:9px;overflow-x:auto;padding:3px 0}
+ .kinto-thumb{width:56px;height:56px;flex:0 0 56px}
+ .kinto-arrow.prev{left:0}.kinto-arrow.next{right:0}
+ .pdp-buy{padding:34px 6% 45px}
+ .site-wordmark{min-width:125px}.site-wordmark img{width:125px}
+ .pdp-comparison .compare-facts dt{margin-top:11px}
+}
