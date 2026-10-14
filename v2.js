@@ -12,7 +12,8 @@ var state={
   product:q.get("product")||"fingertip",
   lang:q.get("lang")==="ja"?"ja":"en",
   notes:false,
-  qty:1
+  qty:1,
+  galleryIndex:0
 };
 var PAGES=[
   {group:"START",pages:[["home","HOME"]]},
@@ -220,6 +221,21 @@ function business(){
  '<div class="process"><div class="process-item"><div class="num">01</div><h3>'+L("Explore","商品を知る")+'</h3><p>'+L("Review the range and relevant use cases.","商品・用途を確認。")+'</p></div><div class="process-item"><div class="num">02</div><h3>'+L("Contact","条件を相談")+'</h3><p>'+L("Discuss wholesale purchasing and commercial terms.","取引条件と価格運用を相談。")+'</p></div><div class="process-item"><div class="num">03</div><h3>'+L("Purchase","購入する")+'</h3><p>'+L("Initial workflow uses Shopify and buyer-specific coupon codes where applicable.","初期はShopifyと個別クーポンコードで対応。")+'</p></div></div>'+
  note("Do not present the future B2B quote simulator, buyer account system or commission functions as features in the initial release. Sample-request operations require confirmation.","見積シミュレーター・法人マイページ・営業実績管理は初期実装に含めない。サンプル依頼の運用は未確定。")+'</section>';
 }
+function pdpGallery(p){
+ var shots=[p.image,p.scene,"product-tip-macro-dark.webp","product-tomato-scale.webp","product-pair-shadow.webp"];
+ state.galleryIndex=Math.max(0,Math.min(shots.length-1,state.galleryIndex||0));
+ var idx=state.galleryIndex;
+ return '<div class="kinto-gallery" aria-label="Product photos">'+
+ '<div class="kinto-thumbs" role="group" aria-label="Choose product photo">'+shots.map(function(file,i){
+ return '<button type="button" class="kinto-thumb'+(idx===i?' active':'')+'" data-gallery-index="'+i+'" aria-label="View image '+(i+1)+'" aria-pressed="'+(idx===i)+'"><img src="'+img(file)+'" loading="lazy" alt=""></button>';
+ }).join("")+'</div>'+
+ '<div class="kinto-stage"><div class="kinto-main"><img src="'+img(shots[idx])+'" alt="'+p.name+'" loading="eager"></div>'+
+ '<button class="kinto-arrow prev" type="button" data-gallery-step="-1" aria-label="Previous image">‹</button>'+
+ '<button class="kinto-arrow next" type="button" data-gallery-step="1" aria-label="Next image">›</button>'+
+ '<div class="kinto-dots" role="group" aria-label="Photo slides">'+shots.map(function(file,i){
+ return '<button type="button" class="'+(i===idx?'active':'')+'" data-gallery-index="'+i+'" aria-label="Image '+(i+1)+'" aria-pressed="'+(idx===i)+'"></button>';
+ }).join("")+'</div></div></div>';
+}
 function pdp(){
  var p=productBy(state.product);
  var close=D.products.filter(function(x){return x.id!==p.id && x.uses.some(function(u){return p.uses.indexOf(u)!==-1;});});
@@ -243,22 +259,18 @@ function pdp(){
   ["product-pair-shadow.webp","Grip and form","手に馴染む全体形状","Show the shape in relation to the hand and movement.","手と道具の位置関係・持ったときの形を見せる。"],
   ["product-tomato-scale.webp","Size and proportion","サイズと距離感","Make the tool's scale easy to judge.","食材や器との比較で大きさを伝える。"]
  ];
- return '<div class="pdp-layout"><div class="pdp-gallery">'+
- photo(p.image,"Clean hero / actual product-specific photo required","contain")+
- photo(p.scene,"Primary use / actual product-specific shot required")+
- photo("product-tip-macro-dark.webp","Feature close-up / provisional, may not be this SKU","contain")+
- photo("product-tomato-scale.webp","Scale reference / provisional, may not be this SKU","contain")+
- '</div><div class="pdp-buy">'+eyebrow("AUX / "+(p.family==="tongs"?"TONGS":"TOOLS"))+
- '<h1>'+p.name+'</h1><p class="body-sm">'+L("Product name — working / "+p.jp,"国内名称："+p.jp+" / 英語商品名は仮称")+'</p>'+
+ return '<div class="pdp-layout">'+pdpGallery(p)+
+ '<div class="pdp-buy">'+eyebrow("AUX / "+(p.family==="tongs"?"TONGS":"TOOLS"))+
+ '<h1>'+p.name+'</h1>'+
  '<p class="body-md">'+L(p.desc[0],p.desc[1])+'</p>'+
- '<div class="pdp-price">'+L("Price to be confirmed","販売価格：確認中")+'</div>'+
+ '<div class="pdp-price">$20.00</div>'+
  '<div class="qty-row"><span>'+L("QUANTITY","数量")+'</span><button type="button" data-qty="-">−</button><span id="qty-number">'+state.qty+'</span><button type="button" data-qty="+">+</button></div>'+
  '<button class="btn-fill" type="button" data-demo="cart">'+L("ADD TO CART","カートに入れる")+'</button>'+
- '<p class="notice">'+L("Wireframe only. Cart, payment and final pricing are not connected.","ワイヤー確認用です。カート・決済・最終価格は未接続です。")+'</p>'+
+ 
  '<div class="purchase-assurance">'+
  '<button type="button" data-go="shipping"><b>'+L("SHIPPING","配送")+'</b><span>'+L("Terms & delivery","条件・日数")+' →</span></button>'+
  '<button type="button" data-go="returns"><b>'+L("RETURNS","返品")+'</b><span>'+L("Return policy","返品条件")+' →</span></button>'+
- '<button type="button" data-go="faq"><b>'+L("DUTIES & TAXES","関税・税金")+'</b><span>'+L("To be confirmed","確認中")+' →</span></button></div>'+
+ '<button type="button" data-go="faq"><b>'+L("DUTIES & TAXES","関税・税金")+'</b><span>'+L("Learn more","詳しく見る")+' →</span></button></div>'+
  '<button class="inline-anchor" type="button" data-anchor="comparison">'+L("Compare similar AUX tools ↓","近い商品と比較する ↓")+'</button>'+
  '<div class="accordion"><details><summary>'+L("Product details","商品仕様")+'</summary><p>'+L("Size, weight, material and origin will be filled with confirmed SKU specifications.","サイズ・重量・材質・製造地は商品別の確定情報で反映。")+'</p></details>'+
  '<details><summary>'+L("Care","お手入れ")+'</summary><p>'+L("SKU-specific care details pending confirmation.","商品の手入れ方法を確認後に掲載。")+'</p></details>'+
@@ -423,7 +435,7 @@ function render(){
 function navigate(page,product,anchor){
  if(!ROUTES[page])return;
  state.page=page;if(product)state.product=product;
- state.qty=1;render();
+ state.qty=1;state.galleryIndex=0;render();
  window.scrollTo(0,0);
  if(anchor)requestAnimationFrame(function(){var node=document.getElementById("anchor-"+anchor);if(node)node.scrollIntoView({behavior:"smooth",block:"start"});});
 }
@@ -433,6 +445,10 @@ document.addEventListener("click",function(ev){
  var l=ev.target.closest("[data-lang]");
  if(l){state.lang=l.dataset.lang;render();return;}
  if(ev.target.closest("#rail-toggle")){document.getElementById("app").classList.toggle("no-rail");render();return;}
+ var galleryIndex=ev.target.closest("[data-gallery-index]");
+ if(galleryIndex){state.galleryIndex=parseInt(galleryIndex.dataset.galleryIndex,10)||0;render();return;}
+ var galleryStep=ev.target.closest("[data-gallery-step]");
+ if(galleryStep){state.galleryIndex=(state.galleryIndex+(galleryStep.dataset.galleryStep==="1"?1:-1)+5)%5;render();return;}
  var qp=ev.target.closest("[data-qty]");
  if(qp){state.qty=Math.max(1,state.qty+(qp.dataset.qty==="+"?1:-1));var n=document.getElementById("qty-number");if(n)n.textContent=state.qty;return;}
  var prod=ev.target.closest("[data-product]");
