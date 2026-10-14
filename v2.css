@@ -222,6 +222,9 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:4px}
 .b2b-banner .photo{min-height:392px}
 .b2b-banner .body-md{color:#d6d6d6}
 .b2b-banner h2{color:white}
+.b2b-banner .section-label{color:#d6d6d6}
+.b2b-banner .btn-line{color:#fff;border-bottom-color:#fff}
+.b2b-banner .btn-line:hover{color:#fff;opacity:.8}
 .b2b-banner .btn-outline{color:white;border-color:white}
 .process{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .process-item{border-top:1px solid #999;padding:24px 8px 0 0;min-height:152px}
@@ -287,14 +290,10 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:4px}
 .product-first-visual{min-height:560px;position:relative;cursor:pointer}
 .product-first-visual>.photo{height:100%;position:absolute;inset:0}
 .product-first-visual .photo img{filter:saturate(.65) contrast(.97)}
-.hero-index{position:absolute;left:6%;bottom:24px;z-index:3;color:#555;background:rgba(255,255,255,.78);padding:8px 16px;font-size:12px;letter-spacing:var(--tracking-index)}
 .product-first-content{padding:72px var(--space-10);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-width:0}
 .product-first-content .page-display{font-size:clamp(40px,4.1vw,72px)}
 .product-first-content .body-lg{font-size:16px;max-width:448px;margin:24px 0 0}
 .product-first-content .btn-row{gap:24px;margin-top:32px}
-.hero-pager{display:flex;gap:8px;margin-top:64px}
-.hero-pager i{width:8px;height:8px;border:1px solid #999;border-radius:50%;display:block}
-.hero-pager i.active{background:#333;border-color:#333}
 .feature-showcase{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--space-7);align-items:center}
 .feature-showcase-copy .body-lg{margin:24px 0 32px}
 .feature-collage{display:grid;grid-template-columns:1.25fr .8fr;grid-template-rows:1fr 1fr;gap:8px;height:472px}
@@ -394,7 +393,6 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:4px}
 .product-first-visual{min-height:408px}
 .product-first-content{padding:32px var(--space-6)}
 .product-first-content .page-display{font-size:36px}
-.hero-pager{margin-top:32px}
 .feature-showcase{gap:var(--space-4)}.feature-collage{height:352px}
 .home-moments{grid-template-columns:1fr;min-height:auto}
 .home-moment-main{min-height:400px}
