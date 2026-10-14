@@ -1,132 +1,115 @@
-# AUX Global EC — Visual Wireframe v2
+# AUX Global EC — Visual Wireframe / Current Working Version
 
-2026-10-06 時点の、日本語説明用ビジュアルワイヤーフレームです。
+**Primary language:** English (`index.html`)  
+**Client-review language:** Japanese (`ja.html`)  
+**Legacy English link:** `en.html` redirects to the new English version  
+**Hosting:** GitHub Pages / `main` / repository root
 
-## 今回のV2の目的
+## Scope of this refresh
 
-V1で作成したBtoC Shopify ECのデザイン基盤を残しながら、現在の要件である以下を統合しています。
+This revision completely replaces the former `auxusa-v2` screen designs and copy. V1 (`postkeimocore/auxusa`) is reused only where its underlying structure, content understanding or provisional imagery is helpful.
 
-- AUXの新しいブランド人格
-- AUX TONGS / AUX Toolsの商品ファミリー
-- COOK / SERVE / TABLEの用途探索
-- 撮影指示書の写真 × コピー掲載マップ
-- For Professionals / Hospitality
-- Request Samples / Get a Quote
-- Shopifyから独自B2Bシステムへの接続
+The KINTO USA site, https://kinto-usa.com, is a **visual reference only**, not an instruction to copy its sitemap or IA. Use its quiet layout, large images, ample whitespace, typographic restraint, and monochrome UI.
 
-画面上の本文は、打ち合わせで説明しやすいよう日本語を基本にしています。
-英語のブランドコピーはWorking headlineとして残しています。
+No bright or burgundy accent. White / light gray / charcoal. For the header, use a black AUX wordmark treatment; the exact approved production asset still needs to replace the text-only working rendering. Do not use the existing red emblem.
 
-## ページ構成
+## Navigation
 
-### Core
-- Home
+`COOK | SERVE | TABLE | MOMENTS | FOR BUSINESS | WHY AUX`
 
-### Shop / Products
-- Shop All
-- AUX TONGS
-- AUX Tools
-- COOK
-- SERVE
-- TABLE
-- Representative PDP / AUX Fingertip Tongs
+WHY AUX and the existing brand/support destinations remain available in the page index and footer.
 
-### Discover
-- In Use
+The site is **English-first**. Japanese is a mirror intended to help explain structure to the client. Copy is working text—not finalized brand copy or legal/operational policy.
+
+## Pages
+
+### Start
+1. HOME
+
+### Products
+2. SHOP ALL
+3. COOK
+4. SERVE
+5. TABLE
+6. AUX TONGS
+7. AUX Tools
+8. PRODUCT DETAIL (shared product template for all 13 items)
+
+### Discovery
+9. MOMENTS — **the existing In Use page renamed and re-edited**. It is **one page**, with four sections:
+   - EVERYDAY TABLE — For everyday meals, made a little better.
+   - TOGETHER AT THE TABLE — For meals shared with the people who matter.
+   - HOSTING AT HOME — For welcoming people into your home.
+   - SPECIAL OCCASIONS — For moments worth celebrating.
+
+### Business
+10. FOR BUSINESS — five sections, initially on one page:
+   - RESTAURANTS
+   - HOTELS & HOSPITALITY
+   - CAFÉS & BAKERIES
+   - CATERING & EVENTS
+   - RETAIL & DISTRIBUTION
+
+RETAIL & DISTRIBUTION differs from the other four in that it addresses potential resellers and distributors rather than places where the product is used.
 
 ### Brand
-- Why AUX
-- The Third Utensil
-- Design & Engineering
-- Tsubame-Sanjo
-
-### Professional
-- For Professionals
-- Hospitality
-- B2B導線設計 / System Boundary
+11. WHY AUX
+12. THE THIRD UTENSIL
+13. DESIGN & ENGINEERING
+14. TSUBAME-SANJO
 
 ### Support
-- FAQ
-- Shipping
-- Returns
-- Contact
+15. FAQ
+16. SHIPPING
+17. RETURNS
+18. CONTACT
 
-## 写真について
+## Functional boundary
 
-現時点では `postkeimocore/auxusa` のV1ワイヤーフレーム用写真を仮置きで参照しています。
+The initial release is an ordinary Shopify EC build plus business-oriented editorial information and a contact path. For known trade buyers, the October 6 discussion assumes buyer-specific coupon code operations to address differing B2B pricing.
 
-例：
+An advanced B2B system—quotation simulator, account-specific pricing, stored quotes, sales management and commissions—will be a **separate proposal/project**, subject to later decision and approval. The wireframe does not imply those functions are ready, included, or enabled.
 
-- `/auxusa/assets/wireframe/small-food-transfer.webp`
-- `/auxusa/assets/wireframe/product-lineup-warm.webp`
-- `/auxusa/assets/wireframe/serving-salmon.webp`
-- `/auxusa/assets/wireframe/cook-pasta.webp`
-- `/auxusa/assets/wireframe/manufacturing-caliper-close.webp`
+Sample-request operations are not yet confirmed; do not promise live sample fulfillment in UI copy.
 
-本番撮影後は、撮影指示書のScene / Product番号に沿って差し替えます。
+## Photography
 
-この依存はあくまでワイヤーフレーム期間中の仮運用です。
+Placeholder photos refer to **V1 repository images** under:
+`https://raw.githubusercontent.com/postkeimocore/auxusa/main/assets/wireframe/`
 
-## ブランドコンテンツの軸
+The UI does not contain the final photographed product assets. Source imagery is provisional, may repeat, and must be replaced once 10/12 photographs and approved stock/archive assets have been selected.
 
-撮影・ブランド資料で定義されている以下をWebへ展開しています。
+- Scene imagery: everyday food, the table, people and natural gestures.
+- Product imagery: warm-neutral forms, clean hero and physical feature detail.
+- Hospitality imagery: approved stock as appropriate.
+- Manufacturing imagery: existing archive supplied/rights checked before publishing.
+- Photography and copy roles matter more than exact one-to-one shot IDs.
 
-- Presence without self-consciousness.
-- We got you.
-- Quietly capable.
-- Effortless.
-- Considerate.
-- Present, but never intrusive.
-- Knife. Fork. AUX.
-- Made for the moment, not the spotlight.
+## Product information
 
-「紳士的」は男性的・重厚・ラグジュアリーな見た目ではなく、使う人に頑張らせず、必要な時だけ応え、食卓で出しゃばらない振る舞いとして扱います。
+13 working names:
+11 AUX TONGS and 2 AUX Tools. COOK/SERVE/TABLE overlap by use, and are not exclusive product families.
 
-## Product Family
+Product name, price, specifications, inventory, shipping, import duties, legal terms and product-photo accuracy are subject to client confirmation. No fake reviews or arbitrary prices are shown.
 
-### AUX TONGS
-11 products
+## Technical files
 
-### AUX Tools
-- AUX Mini Whisk
-- AUX Grating Spoon
+- `index.html` — preview chrome + stage
+- `v2.css` — independent monochrome responsive design system
+- `v2-data.js` — product dataset and MOMENTS/BUSINESS content
+- `v2.js` — English/Japanese screen templates, navigation, preview behaviors
+- `en.html` — legacy route redirect
+- `ja.html` — Japanese direct preview route
 
-COOK / SERVE / TABLEはProduct Familyではなく、Use / Sceneによる探索軸です。
+### Preview interaction notes
 
-## B2B Boundary
+This is a visual wireframe: navigation and product selection function; cart, checkout, contact submission and commerce search do not. "SHOW NOTES" reveals placeholders and editing decisions. English is the default; switching to Japanese preserves the selected page.
 
-### Shopify / Shared Front
-- Brand
-- Collections
-- PDP
-- BtoC Cart / Checkout
-- For Professionals
-- Request Samples entry
-- Get a Quote entry
+## Review priorities
 
-### Dedicated B2B System
-- Business Account / Login
-- Quote
-- Pricing conditions
-- PDF quote
-- Resume after approval
-- Business order
-- Sales / performance / commission management
-
-## Color Direction
-
-Working palette:
-
-- Warm Ivory: `#fffdf9`
-- Soft Neutral: `#f4f2ec`
-- Ink: `#171714`
-- Muted Burgundy: `#7a3f45`
-
-AccentはPrimary CTA、Review、Professional識別など小さい面積に限定します。
-
-## Files
-
-- `index.html` — page content / application shell
-- `v2.css` — V1 design foundation + V2 components
-- `v2.js` — product data / navigation / interactions
-- `meeting-2026-10-06.md` — meeting checklist
+1. Overall visual tone / hierarchy relative to KINTO (visual reference only)
+2. Main navigation / COOK, SERVE, TABLE, MOMENTS, FOR BUSINESS
+3. Home flow, representative category + PDP
+4. The four MOMENTS in one page
+5. The five business sectors and simple initial buyer flow
+6. Final logo asset, post-shoot photography, product naming, operational policies, copy signoff
