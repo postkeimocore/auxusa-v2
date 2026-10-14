@@ -1,0 +1,24 @@
+name: AUX design grid
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'v2.css'
+      - 'scripts/check-design-grid.js'
+      - '.github/workflows/design-grid.yml'
+  pull_request:
+    paths:
+      - 'v2.css'
+      - 'scripts/check-design-grid.js'
+      - '.github/workflows/design-grid.yml'
+
+jobs:
+  verify-grid:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-design-grid.js
