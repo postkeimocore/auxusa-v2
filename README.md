@@ -7,7 +7,9 @@
 
 ## Scope of this refresh
 
-This revision completely replaces the former `auxusa-v2` screen designs and copy. V1 (`postkeimocore/auxusa`) is reused only where its underlying structure, content understanding or provisional imagery is helpful.
+This revision replaces the former `auxusa-v2` appearance and working copy while **restoring V1's content and product-discovery structure**. V1 (`postkeimocore/auxusa`) remains the foundation for Home, Shop All, Collection, In Use (now MOMENTS), PDP and Why AUX.
+
+See [`v1-v2-content-crosswalk.md`](./v1-v2-content-crosswalk.md) for the source files, page-by-page comparison and remaining checks.
 
 The KINTO USA site, https://kinto-usa.com, is a **visual reference only**, not an instruction to copy its sitemap or IA. Use its quiet layout, large images, ample whitespace, typographic restraint, and monochrome UI.
 
