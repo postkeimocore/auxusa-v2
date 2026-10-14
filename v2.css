@@ -2,10 +2,10 @@
    New, independent UI system. KINTO USA is a visual reference only. */
 :root{
   /* V1 typography tracking: no arbitrary one-off values. */
-  --tracking-display:-.025em;
-  --tracking-heading:-.018em;
-  --tracking-body:0;
-  --tracking-ui:.02em;
+  --tracking-display:.035em;
+  --tracking-heading:.05em;
+  --tracking-body:.03em;
+  --tracking-ui:.06em;
   --tracking-eyebrow:.12em;
   --tracking-index:.08em;
   /* V1 FOUNDATION:8px spatial rhythm, 4px typography sub-grid, 8px line-height rhythm. */
@@ -37,12 +37,28 @@
   --rule:#e2e2df;
   --frame:#e6e6e4;
   --tool:#171717;
-  --font:"Helvetica Neue","Arial","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  --font-editorial:"Cardo","Baskerville","Times New Roman",serif;
+  --font:"Inter","Helvetica Neue","Arial","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --font-editorial:"Cardo","Baskerville","Georgia","Hiragino Mincho ProN","Yu Mincho",serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--frame);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+/* TYPE ROLES — one system throughout HOME, collections, PDP and brand pages.
+   Cardo (Figma Make source) / Baskerville fallback for meaningful headings;
+   Inter and Japanese Gothic fallback for prose, shopping labels and controls. */
+#site-app h1,#site-app h2,#site-app h3{
+ font-family:var(--font-editorial);font-weight:400;
+}
+#site-app h1{letter-spacing:var(--tracking-display)}
+#site-app h2,#site-app h3{letter-spacing:var(--tracking-heading)}
+#site-app .product-card h3,#site-app .category-card h3,
+#site-app .business-grid h3,#site-app .feature-trio h3,#site-app .process-item h3{
+ font-family:var(--font);font-weight:500;
+}
+#site-app .section-label,#site-app .eyeline,#site-app .site-menu,
+#site-app .site-util,#site-app .footer-group{
+ font-family:var(--font);
+}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 a{color:inherit}

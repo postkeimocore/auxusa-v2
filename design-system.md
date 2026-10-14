@@ -50,10 +50,10 @@ The lint script rejects CSS spatial lengths that are not 8px multiples (except p
 
 V1 has six tracking tokens, defined in v2.css:
 
-- Display: -0.025em
-- Heading: -0.018em
-- Body: 0
-- UI controls: 0.02em
+- Display: 0.035em
+- Heading: 0.05em
+- Body: 0.03em
+- UI controls: 0.06em
 - Eyebrow: 0.12em
 - Index: 0.08em
 
@@ -67,9 +67,9 @@ Letter spacing uses em values rather than the 8px spatial grid. The CSS checker 
 
 | Role | Rule | Example |
 |---|---|---|
-| Primary type | Existing Helvetica Neue / Arial sans | Navigation, hero product title, section heads, shopping and PDP |
-| Editorial exception | Cardo **400**, strictly one storytelling headline on HOME | MOMENTS introduction only; not product names, navigation, hero or footer |
-| Display spacing | `--tracking-display` / `--tracking-heading`; never per-section custom letter spacing | Heading typography |
+| Heading type | Cardo **400**, Baskerville / Georgia fallback; Japanese serif fallback | H1/H2 and editorial H3 across HOME, collections, PDP, brand pages |
+| Body/UI type | Inter **400/500/600**, Helvetica Neue / Arial / Japanese Gothic fallback | Paragraphs, menus, buttons, product-card names, category labels, support links |
+| Letter spacing | `--tracking-display:.035em`, `--tracking-heading:.05em`, `--tracking-body:.03em`, `--tracking-ui:.06em` | Slightly wider than V1; apply via shared typography roles, not one-off selectors |
 | Primary text | `--ink` / `--text` on white/paper | Purchase CTAs and descriptions |
 | Backgrounds | White, original mist `#f5f5f3`, original hero panel `#f3f3f1`; no additional color theme | Section grouping |
 | Photography | Use large image frames **within** the existing content hierarchy | Hero split, AUX DIFFERENCE collage, MOMENTS asymmetry |
@@ -85,12 +85,18 @@ Letter spacing uses em values rather than the 8px spatial grid. The CSS checker 
 3. Featured products — four product cards
 4. COOK / SERVE / TABLE — equal category entry cards
 5. Knife. Fork. AUX. — single identifiable typographic brand statement
-6. MOMENTS — four established themes; one restrained editorial serif headline
+6. MOMENTS — four established themes; headings follow shared Cardo serif role
 7. FOR BUSINESS — understated pale split (never a black advertisement band)
 8. WHY AUX teaser — craftsmanship proof / footer
 
-**Not in scope:** extra “Made for sharing” or “At home, at the table” photo chapters, Journal, Newsletter, modal PDP, oversized footer AUX overlay, competing serif/sans headings inside commerce components. Any new content section requires a content role, not merely visual variety.
+**Not in scope:** extra “Made for sharing” or “At home, at the table” photo chapters, Journal, Newsletter, modal PDP, oversized footer AUX overlay, one-off serif/sans font declarations that bypass shared typography roles. Any new content section requires a content role, not merely visual variety.
 
 ### Design acceptance gate
 
 Before publishing style work: (1) check each existing section against this role table; (2) run `node scripts/check-design-grid.js`; (3) visually inspect the desktop homepage at the same viewport and compare with the previous screenshot; (4) confirm carousel page indicator and navigation; (5) verify one product page still renders. The grid test alone is necessary but never sufficient for visual quality.
+
+## Typography revision — Figma Make × KINTO reference (2026-10-14)
+
+The user-provided Figma Make CSS uses **Cardo / Inter**. Its serif headlines are set with airy letter spacing (often `.08em`), and body uses Inter with `.06em`. AUX adopts the **role split**, not the source's tiny 9–12px body sizing. To retain AUX's minimum 16px / 24px body contract and avoid overly open long paragraphs, AUX deliberately uses more moderate body tracking (`.03em`) and headline tracking (`.035em` / `.05em`).
+
+Use shared font role selectors in `v2.css`: H1/H2/story H3 = serif, product/category/interface labels and prose = sans. Do not switch fonts by individual page or append section-specific font overrides. Keep the established 4px type scale, 8px line-height grid and 8px spacing grid unchanged.
