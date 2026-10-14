@@ -36,17 +36,17 @@ window.AUX_DATA = {
   ]
 };
 window.AUX_DATA.compare = {
- mini:{best:"Small bites and condiments",size:"Compact",moment:"Everyday Table"},
- garnish:{best:"Garnishes and small jars",size:"Compact",moment:"Everyday Table"},
- fingertip:{best:"Delicate bites at the table",size:"Compact",moment:"Together at the Table"},
- scoop:{best:"Ice and small servings",size:"Medium",moment:"Hosting at Home"},
- serving:{best:"Shared dishes and salads",size:"Serving",moment:"Hosting at Home"},
- fry:{best:"Lifting and draining fried food",size:"Cooking",moment:"Everyday Table"},
- finetip:{best:"Turning thin cuts and small foods",size:"Precision",moment:"Everyday Table"},
- long:{best:"Plating with extra reach",size:"Long reach",moment:"Special Occasions"},
- noodle:{best:"Lifting noodles",size:"Cooking",moment:"Everyday Table"},
- bread:{best:"Bread and pastries",size:"Serving",moment:"Hosting at Home"},
- basting:{best:"Gripping food and sauce",size:"Cooking",moment:"Special Occasions"},
- whisk:{best:"Miso and quick dressings",size:"Compact",moment:"Everyday Table"},
- grating:{best:"Grating citrus and garlic",size:"Compact",moment:"Everyday Table"}
+ mini:{best:"Small bites and condiments",size:"Compact",moment:"Everyday Table",jpBest:"小さな食材・薬味",jpSize:"コンパクト",jpMoment:"なんでもない日の食卓"},
+ garnish:{best:"Garnishes and small jars",size:"Compact",moment:"Everyday Table",jpBest:"薬味・小瓶の食材",jpSize:"コンパクト",jpMoment:"なんでもない日の食卓"},
+ fingertip:{best:"Delicate bites at the table",size:"Compact",moment:"Together at the Table",jpBest:"繊細な一口をつまむ",jpSize:"コンパクト",jpMoment:"大切な人との食事"},
+ scoop:{best:"Ice and small servings",size:"Medium",moment:"Hosting at Home",jpBest:"氷・小さな食材をすくう",jpSize:"ミディアム",jpMoment:"人を招く日の食卓"},
+ serving:{best:"Shared dishes and salads",size:"Serving",moment:"Hosting at Home",jpBest:"サラダ・大皿料理",jpSize:"取り分け向け",jpMoment:"人を招く日の食卓"},
+ fry:{best:"Lifting and draining fried food",size:"Cooking",moment:"Everyday Table",jpBest:"揚げ物をつかむ・油を切る",jpSize:"調理向け",jpMoment:"なんでもない日の食卓"},
+ finetip:{best:"Turning thin cuts and small foods",size:"Precision",moment:"Everyday Table",jpBest:"薄い肉・細かな食材",jpSize:"先端が細い",jpMoment:"なんでもない日の食卓"},
+ long:{best:"Plating with extra reach",size:"Long reach",moment:"Special Occasions",jpBest:"距離のある盛り付け",jpSize:"ロングタイプ",jpMoment:"少し特別な日"},
+ noodle:{best:"Lifting noodles",size:"Cooking",moment:"Everyday Table",jpBest:"麺をつかみ持ち上げる",jpSize:"調理向け",jpMoment:"なんでもない日の食卓"},
+ bread:{best:"Bread and pastries",size:"Serving",moment:"Hosting at Home",jpBest:"パン・ペストリー",jpSize:"取り分け向け",jpMoment:"人を招く日の食卓"},
+ basting:{best:"Gripping food and sauce",size:"Cooking",moment:"Special Occasions",jpBest:"食材とソースを一緒に扱う",jpSize:"調理向け",jpMoment:"少し特別な日"},
+ whisk:{best:"Miso and quick dressings",size:"Compact",moment:"Everyday Table",jpBest:"味噌・ドレッシング",jpSize:"コンパクト",jpMoment:"なんでもない日の食卓"},
+ grating:{best:"Grating citrus and garlic",size:"Compact",moment:"Everyday Table",jpBest:"柑橘・にんにくをおろす",jpSize:"コンパクト",jpMoment:"なんでもない日の食卓"}
 };
