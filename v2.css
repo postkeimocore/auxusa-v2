@@ -85,7 +85,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .section-head.center .body-md,.section-head.center .body-lg{margin-left:auto;margin-right:auto}
 .photo{position:relative;overflow:hidden;background:#eeedeb}
 .photo img{width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;filter:saturate(.72) contrast(.96)}
-.photo.contain img{object-fit:contain;background:#f0f0ee;padding:6%}
+/* Product listings and feature collages: fill the assigned photo frame, with no interior letterboxing. */
+.photo.contain img{object-fit:cover;object-position:center;background:transparent;padding:0}
 .photo.gray img{filter:saturate(.1) contrast(.96)}
 .photo.aspect-wide{aspect-ratio:16/9}
 .photo.aspect-land{aspect-ratio:4/3}
