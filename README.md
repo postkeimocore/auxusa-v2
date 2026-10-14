@@ -5,6 +5,16 @@
 **Legacy English link:** `en.html` redirects to the new English version  
 **Hosting:** GitHub Pages / `main` / repository root
 
+## View modes (October 14)
+
+- **Normal storefront (default):** https://postkeimocore.github.io/auxusa-v2/ — full-width website; no sidebar, language preview switcher, toolbar or stage frame.
+- **Client review:** https://postkeimocore.github.io/auxusa-v2/review.html — redirects to `index.html?review=1` and keeps the existing sidebar, page index and language switcher.
+- **Direct review page:** `index.html?page=pdp&product=fingertip&review=1` for a specific page in meeting mode.
+- Review mode uses the **same** page templates, content and CSS as the storefront, so design changes apply to both.
+- The page index / toolbar HTML is intentionally kept in `index.html`; toggling the `site-only` root class hides it in normal mode. Do not delete or redesign the preview sidebar until that is separately scoped.
+- The previous V1 sidebar may be used as a later visual reference; no sidebar redesign is included in this change.
+- To switch default behavior back, adjust the small inline `review=1` check in `index.html` and the `html.site-only` rules in `v2.css`.
+
 ## Scope of this refresh
 
 This revision replaces the former `auxusa-v2` appearance and working copy while **restoring V1's content and product-discovery structure**. V1 (`postkeimocore/auxusa`) remains the foundation for Home, Shop All, Collection, In Use (now MOMENTS), PDP and Why AUX.
