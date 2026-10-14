@@ -123,3 +123,7 @@ The interface is a content/visual preview: navigation, product selection, thumbn
 - Use **→** for internal navigation, not external-link diagonals.
 - Remove photographer instructions, internal scope/planning language and unverified review placeholders from the rendered storefront. Developer explanations belong in repository documents, not page UI.
 - `assets/aux-logo-original.svg` is the supplied logo illustration, not a CSS reconstruction.
+
+## Design system / grid enforcement
+
+The V1 8px spatial grid, 4px typography scale and 8px line-height rhythm are formalized in [`design-system.md`](./design-system.md). Before merging a layout change, run `node scripts/check-design-grid.js` and review whole-page alignment rather than only the edited element.
