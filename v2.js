@@ -66,7 +66,7 @@ function footer(){
  grp("DISCOVER",[["moments","MOMENTS"],["business","FOR BUSINESS"]])+
  grp("ABOUT",[["why","WHY AUX"],["third","The Third Utensil"],["engineering","Design & Engineering"],["tsubame","Tsubame-Sanjo"]])+
  grp("SUPPORT",[["faq","FAQ"],["shipping","Shipping"],["returns","Returns"],["contact","Contact"]])+
- '</div><div class="footer-bottom"><span>AUX GLOBAL / VISUAL WIREFRAME</span><span>WORKING CONTENT — NOT THE LIVE STORE</span></div></footer>';
+ '</div><div class="footer-bottom"><span>© 2026 AUX Co., Ltd.</span><span>All rights reserved.</span></div></footer>';
 }
 function home(){
  var featured=["fingertip","noodle","serving","whisk"];
@@ -91,7 +91,7 @@ function home(){
  '<p class="body-lg">'+L("A tip for noodles, an opening for draining, a size that fits small food. Each detail begins with a different task.","麺をつかむ先端、油を切る穴、小さな食材に合うサイズ。道具の形には、それぞれ理由があります。")+'</p>'+
  bline(L("Why AUX","AUXの特徴を見る"),"why")+'</div>'+
  '<div class="feature-collage">'+photo("product-tip-macro-dark.webp","Fine tip / detail","contain")+photo("cook-frying.webp","Drain opening / cooking detail")+photo("product-pair-minimal.webp","Compact form / scale","contain")+'</div></div></section>'+
- '<section class="site-section compact mist">'+sectionHead("FEATURED PRODUCTS",L("Tools worth reaching for.","代表商品を見る。"),L("A closer look at the tools and the jobs they are made for.","商品ごとの形と使い方がわかる4商品の紹介。"))+
+ '<section class="site-section compact mist">'+sectionHead("FEATURED PRODUCTS",L("Tools worth reaching for.","代表商品を見る。"),L("A closer look at the tools and the jobs they are made for.","日常のさまざまな動作に寄り添う、代表的な4つの道具。"))+
  productStrip(featured)+'<div class="btn-row">'+bline(L("Shop all products","商品一覧を見る"),"shop")+'</div></section>'+
  '<section class="site-section">'+sectionHead("SHOP BY CATEGORY",L("Cook. Serve. Table.","COOK / SERVE / TABLE"),L("Start with what you want to do, then discover the tools.","やりたいことから道具を探せる3つの入口。"))+
  '<div class="product-collections">'+categories.map(function(c){return '<article class="category-card" tabindex="0" data-go="'+c[0]+'">'+photo(c[1],"Category / "+c[0])+'<div class="card-meta"><h3>'+c[0].toUpperCase()+'</h3><span class="arrow">→</span></div><p>'+L(c[2],c[3])+'</p></article>';}).join("")+'</div></section>'+
@@ -101,7 +101,7 @@ function home(){
  '<p class="body-lg">'+L("A small tong considered as part of the table setting—not only a tool kept in the kitchen.","トングを調理器具だけでなく、ナイフやフォークと並ぶ食卓の道具として紹介。")+'</p>'+
  '<div class="btn-row">'+bline(L("Explore the idea","TABLEの考え方を見る"),"third")+
  bline(L("View Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div></div></div></section>'+
- '<section class="site-section">'+sectionHead("MOMENTS",L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","「何に使うか」ではなく「どんな時間を過ごすか」からAUXを探す。"))+
+ '<section class="site-section">'+sectionHead("MOMENTS",L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","何気ない日も、特別な日も。食卓の時間に合う道具を見つけてください。"))+
  '<div class="home-moments"><div class="home-moment-main" tabindex="0" data-go="moments" data-anchor="everyday">'+photo(D.moments[0].photo,"MOMENTS / everyday")+
  '<div class="moment-home-copy"><span>01 / MOMENTS</span><h3>'+D.moments[0].title+'</h3><p>'+D.moments[0].strap+'</p></div></div>'+
  '<div class="home-moment-list">'+D.moments.slice(1).map(function(m,i){return '<article tabindex="0" data-go="moments" data-anchor="'+m.id+'">'+photo(m.photo,"MOMENTS / "+m.title)+
@@ -116,7 +116,7 @@ function home(){
  photo("manufacturing-inspection-lineup.webp","About AUX / metalworking archive")+
  '<div class="split-copy">'+eyebrow("ABOUT AUX")+
  '<h2 class="display-medium">'+L("Precision behind the everyday.","自然な使い心地を支える、精度。")+'</h2>'+
- '<p class="body-md">'+L("Thoughtful proportions, contact points and careful manufacturing help the tool fit the movement. Explore the evidence behind each detail.","先端・形状・仕上げの理由と、それを可能にするものづくりを商品価値に結びつけて紹介します。")+'</p>'+
+ '<p class="body-md">'+L("Thoughtful proportions, contact points and careful manufacturing help the tool fit the movement. Explore the evidence behind each detail.","繊細な先端、考え抜かれた形、丁寧な仕上げ。そのすべてが、自然な使い心地につながっています。")+'</p>'+
  bline(L("Discover Why AUX","AUXについて"),"why")+'</div></div>'+
  note("V1 priority restored: featured-product hero → AUX difference → featured products → category discovery → use-scene discovery → About AUX. New direction adds Third Utensil and Business within this sequence.","V1の基本順序：代表商品のHero→AUXの特徴→代表商品→カテゴリ→MOMENTS→About AUX。今回の方針でTABLEコンテンツ・法人導線を追加。")+'</section>';
 }
@@ -135,7 +135,7 @@ function shop(){
  productGrid(D.products)+'</section>'+
  '<section class="site-section compact"><div class="split">'+photo("serve-meatballs.webp","Exit image / use scene")+
  '<div>'+eyebrow("DISCOVER BY MOMENT")+'<h2 class="display-medium">'+L("See AUX in everyday life.","食卓の時間から選ぶ。")+'</h2>'+
- '<p class="body-md">'+L("The same tool can belong to different moments. Explore the use, then return to the product.","ひとつの道具がいろいろな食卓の場面で使われる様子を紹介。")+'</p>'+
+ '<p class="body-md">'+L("The same tool can make itself at home in more than one moment.","同じ道具でも、使う時間が変われば新しい楽しみが生まれます。")+'</p>'+
  bline("MOMENTS","moments")+'</div></div>'+
  note("V1 Shop All modules retained: category discovery → full grid → exit to contextual discovery.","V1のShop All：カテゴリ導線→商品一覧→MOMENTSへの誘導。")+'</section>';
 }
@@ -145,12 +145,12 @@ function collection(id){
  var values={
  cook:[
  ["cook-steak-pan.webp","Turn & lift","返す・持ち上げる","Find a form that works beside the pan.","フライパンで食材を返し、持ち上げる。"],
- ["cook-frying.webp","Drain while lifting","つかみながら油を切る","Openings in the Fry Tongs support draining.","あげものトングの穴のある形状を示す。"],
- ["cook-pasta-close.webp","Grip the last strand","麺を最後までつかむ","Explore the noodle-focused tip.","麺をつかむ先端形状を見せる。"]],
+ ["cook-frying.webp","Drain while lifting","つかみながら油を切る","Openings in the Fry Tongs support draining.","食材をつかんだまま、余分な油を切りやすい形。"],
+ ["cook-pasta-close.webp","Grip the last strand","麺を最後までつかむ","Explore the noodle-focused tip.","麺をしっかりつかめるよう考えられた先端。"]],
  serve:[
  ["serving-salmon.webp","Share from one plate","大皿から取り分ける","Make serving from a shared dish feel natural.","みんなで囲む大皿から自然に取り分ける。"],
- ["plating-scallops.webp","Place with control","狙った位置に盛り付ける","Show small adjustments in presentation.","盛り付けの位置を調整する繊細な動き。"],
- ["serve-meatballs.webp","Serve together with sauce","食材とソースを扱う","Show the form that helps scoop and grip.","すくう形を使って料理を取り分ける。"]],
+ ["plating-scallops.webp","Place with control","狙った位置に盛り付ける","Make small, careful adjustments to every plate.","盛り付けの位置を調整する繊細な動き。"],
+ ["serve-meatballs.webp","Serve together with sauce","食材とソースを扱う","Grip the food and serve it with its sauce.","すくう形を使って料理を取り分ける。"]],
  table:[
  ["small-food-transfer.webp","Fingertip control","指先のようにつまむ","Pick up one small or delicate piece.","小さな食材や薄い一枚をつまむ。"],
  ["small-food-olives-wide.webp","The smaller things","小さな器・小さな食材","Find the scale for compact tabletop use.","小鉢や瓶などで使う場面を示す。"],
@@ -162,16 +162,16 @@ function collection(id){
  '<section class="site-section">'+sectionHead("DESIGNED FOR THE MOMENT",L("Different tools for different movements.","動作に応える、それぞれの形。"),L(c.body[0],c.body[1]))+
  '<div class="collection-value-grid">'+values.map(function(v,i){return '<article>'+photo(v[0],"Physical use / working example")+
  '<span class="value-number">0'+(i+1)+'</span><h3>'+L(v[1],v[2])+'</h3><p>'+L(v[3],v[4])+'</p></article>';}).join("")+'</div></section>'+
- '<section class="site-section compact mist">'+sectionHead("FEATURED TOOLS",L("Start with these tools.","代表商品から選ぶ。"),L("Two products help illustrate the range, without replacing the full collection.","用途の違いを伝える代表2商品から、関連する商品へ広げます。"))+
+ '<section class="site-section compact mist">'+sectionHead("FEATURED TOOLS",L("Start with these tools.","代表商品から選ぶ。"),L("Two products help illustrate the range, without replacing the full collection.","まずは使い方の異なる2つの道具から。"))+
  '<div class="featured-pair">'+featuredIds.map(function(x){return card(productBy(x));}).join("")+'</div></section>'+
  '<section class="site-section compact">'+sectionHead("SHOP "+id.toUpperCase(),L("Explore the collection.","商品を一覧で見る。"))+
  '<div class="filterline"><span>'+matches.length+' PRODUCTS</span><span>'+L("FEATURED","おすすめ順")+'</span></div>'+productGrid(matches)+'</section>'+
  (id==="table"?'<section class="site-section mist"><div class="split">'+photo("small-food-transfer.webp","Fingertip at table / THE THIRD UTENSIL")+
- '<div>'+eyebrow("KNIFE. FORK. AUX.")+'<h2 class="display-medium">'+L("A new place at the table.","食卓に、新しい道具を。")+'</h2><p class="body-md">'+L("Show Fingertip Tongs beside the knife and fork as a considered part of the place setting.","ナイフ・フォークと並べて、ゆびさきトングをテーブルウェアとして見せる。")+'</p>'+
+ '<div>'+eyebrow("KNIFE. FORK. AUX.")+'<h2 class="display-medium">'+L("A new place at the table.","食卓に、新しい道具を。")+'</h2><p class="body-md">'+L("Fingertip Tongs feel at home beside the knife and fork.","ナイフやフォークの隣に、ゆびさきトングという新しい選択肢を。")+'</p>'+
  bline(L("View Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div></div></section>':"")+
  '<section class="site-section compact"><div class="about-image-band">'+photo("manufacturing-caliper-over-shoulder.webp","AUX engineering / manufacturing image")+
  '<div>'+eyebrow("ABOUT AUX")+'<h2 class="display-medium">'+L("Precision made visible.","使いやすさの理由を、形から。")+'</h2>'+
- '<p class="body-md">'+L("Explore the design details and metalworking behind each movement.","各商品の先端・形状と日本の金属加工技術を結びつけて紹介。")+'</p>'+bline(L("Why AUX","AUXについて"),"why")+'</div></div>'+
+ '<p class="body-md">'+L("The shape you feel in your hand begins with thoughtful design and precise metalworking.","道具の形と使い心地を支える、日本の金属加工技術。")+'</p>'+bline(L("Why AUX","AUXについて"),"why")+'</div></div>'+
  note("V1 Collection hierarchy restored: hero → use-value trio → featured products → complete listing → About AUX. COOK/SERVE/TABLE can overlap.","V1のCollection構成：Hero→3つの使用価値→代表商品→一覧→About AUX。COOK/SERVE/TABLEは重複掲載可。")+'</section>';
 }
 function family(kind){
@@ -256,15 +256,15 @@ function pdp(){
         ["serving-salmon.webp","Share","取り分ける","From the central dish to someone's plate.","大皿から相手の皿へ自然に取り分ける。"],
         ["plating-scallops.webp","Refine","整える","Small corrections, just where they are needed.","仕上げの細かな調整を見せる。"]],
   table:[["small-food-transfer.webp","One precise movement","一つをつまむ","Pick up a small or delicate piece.","小さな食材や一枚をつまむ。"],
-        ["small-food-olives-wide.webp","Small foods","小さな食材","A scale suited to the tabletop.","小皿や食卓でのサイズ感を見せる。"],
-        ["table-tea-bag.webp","Everyday rituals","いつもの時間","A tool that naturally becomes part of the table.","日々の食卓に自然に馴染む様子を見せる。"]]
+        ["small-food-olives-wide.webp","Small foods","小さな食材","A scale suited to the tabletop.","小皿の料理にも自然に手が伸びる、小回りのきくサイズ感。"],
+        ["table-tea-bag.webp","Everyday rituals","いつもの時間","A tool that naturally becomes part of the table.","日々の食卓に、自然に馴染む道具。"]]
  };
  var primary=p.uses.includes("table")?"table":p.uses.includes("cook")?"cook":"serve";
  var scenes=useContext[primary];
  var mechanics=[
-  ["product-tip-macro-dark.webp","The contact point","食材に触れる先端","A closer view of the tip that meets the food.","食材と接する先端の形状を見せる。"],
-  ["product-pair-shadow.webp","Grip and form","手に馴染む全体形状","Show the shape in relation to the hand and movement.","手と道具の位置関係・持ったときの形を見せる。"],
-  ["product-tomato-scale.webp","Size and proportion","サイズと距離感","Make the tool's scale easy to judge.","食材や器との比較で大きさを伝える。"]
+  ["product-tip-macro-dark.webp","The contact point","食材に触れる先端","A closer view of the tip that meets the food.","食材に触れる部分こそ、使い心地を左右する。"],
+  ["product-pair-shadow.webp","Grip and form","手に馴染む全体形状","A comfortable form that responds to the hand.","手の動きに沿うように考えられた形。"],
+  ["product-tomato-scale.webp","Size and proportion","サイズと距離感","Sized to suit the food and the dish.","扱う食材と器に合わせた、ちょうどよいサイズ。"]
  ];
  return '<div class="pdp-layout">'+pdpGallery(p)+
  '<div class="pdp-buy">'+eyebrow("AUX / "+(p.family==="tongs"?"TONGS":"TOOLS"))+
@@ -317,25 +317,25 @@ function pdp(){
 }
 function why(){
  var factors=[
- ["product-tip-tomato-macro.webp","The point of contact","食材に触れる先端","Different tips for different foods and movements.","食材やつかむ動作によって先端の形が変わる。"],
+ ["product-tip-tomato-macro.webp","The point of contact","食材に触れる先端","Different tips for different foods and movements.","食材やつかむ動作に合わせた先端形状。"],
  ["cook-frying.webp","One form, one job","目的のある形","Draining openings and task-specific silhouettes.","油を切る穴など、必要な作業につながる形。"],
  ["product-pair-minimal.webp","The right scale","適切な大きさ","Size and reach in relation to hand and dish.","手や器、食卓での距離感に合うサイズ。"]
  ];
  var uses=[
- ["product-tip-macro-dark.webp","Contact & precision","先端の精度","Show how the food meets the tool.","食材との接点での工夫を見せる。"],
- ["product-pair-shadow.webp","Grip and response","握り心地と操作性","Introduce the form and spring feeling as design considerations.","形・ばね感を設計の観点から説明。"],
- ["product-tomato-scale.webp","Scale & proportion","サイズとバランス","See size in relation to the food and the user.","手や食材と並べ、サイズを直感的に伝える。"]
+ ["product-tip-macro-dark.webp","Contact & precision","先端の精度","A considered contact point for precise handling.","食材を繊細につかむための先端形状。"],
+ ["product-pair-shadow.webp","Grip and response","握り心地と操作性","A spring and grip designed for natural control.","手に馴染む形と、自然に開閉するばねの感覚。"],
+ ["product-tomato-scale.webp","Scale & proportion","サイズとバランス","See size in relation to the food and the user.","手にも食材にも合う、考えられたバランス。"]
  ];
  return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("WHY AUX")+
  '<h1 class="page-display">'+L("A better movement<br>starts with a better tool.","使う人の動きから、<br>道具を考える。")+'</h1>'+
- '<p class="body-lg">'+L("It is not about getting better at using a tong. The tool itself can be considered more closely, so the meal remains the focus.","使う人に頑張らせず、道具の方が人の自然な動きに応える。その違いを商品と使用場面から伝えます。")+'</p></div>'+
+ '<p class="body-lg">'+L("It is not about getting better at using a tong. The tool itself can be considered more closely, so the meal remains the focus.","道具を使うことに意識を向けず、食事そのものを楽しめるように。AUXは、手と食材の自然な動きから形を考えています。")+'</p></div>'+
  photo("plating-scallops.webp","Why AUX / use-oriented editorial hero")+'</div>'+
  '<section class="site-section">'+sectionHead("AUX FEATURES",L("Different forms for different tasks.","食材や使い方に合わせて形を変える。"),
- L("Look at the distinctive shapes first, then see where they make a difference.","形状の違いを先に見せ、どの動作につながるのか説明。"))+
+ L("Look at the distinctive shapes first, then see where they make a difference.","食材が変われば、必要な形も変わる。"))+
  '<div class="aux-form-gallery">'+factors.map(function(f,i){return '<article>'+photo(f[0],"AUX distinct form / illustrative")+
  '<span class="value-number">0'+(i+1)+'</span><h3>'+L(f[1],f[2])+'</h3><p>'+L(f[3],f[4])+'</p></article>';}).join("")+'</div></section>'+
  '<section class="site-section mist">'+sectionHead("DESIGNED FOR USE",L("Shape, feel and proportion.","先端、角度、握り心地。"),
- L("Physical features provide evidence behind the experience; avoid an abstract list of virtues.","抽象的なブランド理念だけでなく、具体的な設計・特徴を商品価値につなげます。"))+
+ L("Physical features provide evidence behind the experience; avoid an abstract list of virtues.","先端、角度、長さ、握り心地。一つひとつの形に理由があります。"))+
  '<div class="feature-trio">'+uses.map(function(u,i){return '<article>'+photo(u[0],"Design & Engineering / illustrative")+
  '<span class="value-number">0'+(i+1)+'</span><h3>'+L(u[1],u[2])+'</h3><p>'+L(u[3],u[4])+'</p></article>';}).join("")+'</div>'+
  '<div class="btn-row">'+bline(L("Design & Engineering","設計を詳しく見る"),"engineering")+'</div></section>'+
@@ -356,21 +356,21 @@ function why(){
  note("V1 Why AUX hierarchy restored: form comparison → product design details → manufacturing evidence → Shop AUX. Additional Third Utensil section reflects the later brand concept.","V1 Why AUXの骨格：形状差→設計・機能→製造背景→商品。Third Utensilは今回の追加ブランド方針。")+'</section>';
 }
 function third(){
- return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("THE THIRD UTENSIL")+'<h1 class="page-display">Knife.<br>Fork.<br>AUX.</h1><p class="body-lg">'+L("Reimagine where a precise tong belongs: not only in the kitchen, but at each place around the table.","トングをキッチンから食卓へ。ナイフ・フォークと並ぶ道具として、ゆびさきトングを見せます。")+'</p>'+bline(L("Discover Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div>'+
+ return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("THE THIRD UTENSIL")+'<h1 class="page-display">Knife.<br>Fork.<br>AUX.</h1><p class="body-lg">'+L("Reimagine where a precise tong belongs: not only in the kitchen, but at each place around the table.","キッチンで使うだけでなく、ナイフやフォークと並んで食卓に置く。トングの新しい役割を提案します。")+'</p>'+bline(L("Discover Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div>'+
  photo("small-food-transfer.webp","Third utensil / Scene 02")+'</div>'+
  '<section class="site-section">'+sectionHead("AT THE TABLE",L("A small movement, a different possibility.","小さな動きから、食卓の新しい選択肢へ。"))+
  '<div class="feature-trio">'+[["small-food-olives-wide.webp","Pick precisely.","小さな食材をつまむ。"],["serving-salmon.webp","Share naturally.","自然に取り分ける。"],["product-pair-minimal.webp","Rest quietly.","さりげなく食卓に置く。"]].map(function(x){return '<div>'+photo(x[0],"Signature use")+ '<h3>'+L(x[1],x[2])+'</h3></div>';}).join("")+'</div></section>';
 }
 function engineering(){
- return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("DESIGN & ENGINEERING")+'<h1 class="page-display">'+L("Why this shape?","なぜ、この形なのか。")+'</h1><p class="body-lg">'+L("A tool is shaped around the food, the hand and the movement. Let each product detail explain the difference it makes.","食材、手、動作との関係から形を考える。抽象的な「使いやすさ」ではなく、商品固有の構造を見せる。")+'</p></div>'+photo("product-tip-macro-dark.webp","Macro / replace with product-specific close-up","contain")+'</div>'+
- '<section class="site-section">'+sectionHead("THOUGHTFUL DETAIL",L("One image. One purpose.","一枚の写真で、ひとつの機能を伝える。"))+
+ return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("DESIGN & ENGINEERING")+'<h1 class="page-display">'+L("Why this shape?","なぜ、この形なのか。")+'</h1><p class="body-lg">'+L("A tool is shaped around the food, the hand and the movement. Let each product detail explain the difference it makes.","食材や手の動きが違えば、必要な形も変わる。使い心地を支える設計の細部をご覧ください。")+'</p></div>'+photo("product-tip-macro-dark.webp","Macro / replace with product-specific close-up","contain")+'</div>'+
+ '<section class="site-section">'+sectionHead("THOUGHTFUL DETAIL",L("One image. One purpose.","ひとつひとつの動作に、意味のある形。"))+
  '<div class="feature-trio">'+[["product-tip-tomato-macro.webp","At the point of contact.","食材に触れる先端。","Tip geometry"],["product-pair-shadow.webp","In the movement of a hand.","手の力とばね感。","Grip & spring"],["product-tomato-scale.webp","In the right proportion.","長さとサイズ感。","Size & reach"]].map(function(x){return '<article>'+photo(x[0],x[3])+'<h3>'+L(x[1],x[2])+'</h3><p>'+x[3]+'</p></article>';}).join("")+'</div></section>'+
- '<section class="site-section mist"><div class="split">'+photo("manufacturing-caliper-over-shoulder.webp","Manufacturing reference")+ '<div>'+eyebrow("MADE POSSIBLE BY CRAFT")+'<h2 class="display-medium">'+L("Precision supports the experience.","自然な使い心地を、精度が支える。")+'</h2><p class="body-md">'+L("Continue the story with verified manufacturing details and the expertise of Tsubame-Sanjo.","製造地や工程は確認できた事実だけを掲載。品質の根拠として燕三条を紹介します。")+'</p>'+bline("Tsubame-Sanjo","tsubame")+'</div></div></section>';
+ '<section class="site-section mist"><div class="split">'+photo("manufacturing-caliper-over-shoulder.webp","Manufacturing reference")+ '<div>'+eyebrow("MADE POSSIBLE BY CRAFT")+'<h2 class="display-medium">'+L("Precision supports the experience.","自然な使い心地を、精度が支える。")+'</h2><p class="body-md">'+L("Continue the story with verified manufacturing details and the expertise of Tsubame-Sanjo.","細かな金属加工の技術が、道具の精度と使い心地を支えています。")+'</p>'+bline("Tsubame-Sanjo","tsubame")+'</div></div></section>';
 }
 function tsubame(){
- return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("TSUBAME-SANJO")+'<h1 class="page-display">'+L("A tradition of<br>working with metal.","金属加工の技術を、<br>日々の道具へ。")+'</h1><p class="body-lg">'+L("The design story leads to the people and processes that make precision possible. Product-specific manufacturing claims will be verified before publication.","まず商品で感じる違いを伝え、その理由として燕三条の金属加工技術や製造工程を紹介します。")+'</p></div>'+photo("manufacturing-inspection-lineup.webp","Manufacturing archive / rights and origin to be confirmed")+'</div>'+
+ return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("TSUBAME-SANJO")+'<h1 class="page-display">'+L("A tradition of<br>working with metal.","金属加工の技術を、<br>日々の道具へ。")+'</h1><p class="body-lg">'+L("Metalworking skills, careful finishing, and an eye for detail bring considered shapes to everyday life.","長年培われてきた金属加工の技術。精度を重ね、日々の食卓で使う道具をつくり続けています。")+'</p></div>'+photo("manufacturing-inspection-lineup.webp","Manufacturing archive / rights and origin to be confirmed")+'</div>'+
  '<section class="site-section"><div class="split">'+photo("manufacturing-caliper-close.webp","Tooling / inspection visual")+
- '<div>'+eyebrow("REASON TO BELIEVE")+'<h2 class="display-medium">'+L("Craft in service of the everyday.","日常の使い心地を支える、ものづくり。")+'</h2><p class="body-md">'+L("Show confirmed processes, finishing work and quality control as the explanation behind a better movement—not as decoration.","工程、仕上げ、検品などの確認済み素材を、製品の形状・操作性を裏づける根拠として掲載。")+'</p>'+bline(L("Explore the products","商品を見る"),"shop")+'</div></div>'+
+ '<div>'+eyebrow("REASON TO BELIEVE")+'<h2 class="display-medium">'+L("Craft in service of the everyday.","日常の使い心地を支える、ものづくり。")+'</h2><p class="body-md">'+L("Careful work with metal supports the details you feel every time you pick up an AUX tool.","形状へのこだわりから細かな仕上げまで。金属加工の技術が、毎日の使い心地を支えます。")+'</p>'+bline(L("Explore the products","商品を見る"),"shop")+'</div></div>'+
  note("Verify which products and processes are actually manufactured in Tsubame-Sanjo. Do not assign origin statements to all products without verification.","全商品の製造地・工程が燕三条と断定できるわけではありません。商品・工程別に確認してコピー化。")+'</section>';
 }
 function faq(){
