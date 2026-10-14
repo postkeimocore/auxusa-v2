@@ -13,7 +13,8 @@ var state={
   lang:q.get("lang")==="ja"?"ja":"en",
   notes:false,
   qty:1,
-  galleryIndex:0
+  galleryIndex:0,
+  heroIndex:0
 };
 var PAGES=[
   {group:"START",pages:[["home","HOME"]]},
@@ -75,16 +76,27 @@ function home(){
   ["serve","serve-salad.webp","Made for plating and sharing.","盛り付け・取り分けに。"],
   ["table","small-food-transfer.webp","Made for the table.","食卓の細かな動きに。"]
  ];
- return '<div class="home-page"><div class="product-first-hero"><div class="product-first-visual" data-product="fingertip" role="link" tabindex="0">'+photo("small-food-transfer.webp","V1 product-led hero / final lifestyle photography")+
-   '<div class="hero-index">01 / 03 · TABLE</div></div>'+
-  '<div class="product-first-content">'+eyebrow("AUX TONGS / SIGNATURE")+
-   '<h1 class="page-display">'+L("AUX<br>Fingertip Tongs","AUX<br>ゆびさきトング")+'</h1>'+
-   '<p class="body-lg">'+L("A thoughtful grip for small foods and small movements. Designed to feel natural in your hand and at the table.","小さな食材や食卓での繊細な動きに。手にも食卓にも、自然に馴染む道具。")+'</p>'+
-   '<div class="btn-row">'+bfill(L("VIEW PRODUCT","商品を見る"),"pdp",'data-set-product="fingertip"')+
+ var heroSlides=[
+  {id:"fingertip",image:"small-food-transfer.webp",category:"TABLE",title:"AUX<br>Fingertip Tongs",jpTitle:"AUX<br>ゆびさきトング",copy:"A thoughtful grip for small foods and small movements. Designed to feel natural in your hand and at the table.",jpCopy:"小さな食材や食卓での繊細な動きに。手にも食卓にも、自然に馴染む道具。"},
+  {id:"noodle",image:"cook-pasta.webp",category:"COOK",title:"AUX<br>Noodle Tongs",jpTitle:"AUX<br>しっかりめんトング",copy:"Lift a full portion, down to the last strand. A considered shape for the familiar act of cooking.",jpCopy:"ひと束から最後の一本まで。麺をつかむ動作に合わせた形。"},
+  {id:"serving",image:"serve-salad.webp",category:"SERVE",title:"AUX<br>Serving Tongs",jpTitle:"AUX<br>ゆびさきサーバートング",copy:"From a shared dish to the plate. Made for an easy, natural gesture at the table.",jpCopy:"大皿から取り皿へ。食卓での自然な取り分けを支えるトング。"}
+ ];
+ var hi=Math.max(0,Math.min(2,state.heroIndex||0)),hero=heroSlides[hi];
+ return '<div class="home-page"><section class="product-first-hero" aria-label="Featured AUX tools">'+
+  '<div class="product-first-visual" data-product="'+hero.id+'" role="link" tabindex="0">'+photo(hero.image,"Featured "+hero.id)+
+   '<div class="hero-index">0'+(hi+1)+' / 03 · '+hero.category+'</div></div>'+
+  '<div class="product-first-content">'+eyebrow("AUX TONGS / "+hero.category)+
+   '<h1 class="page-display">'+L(hero.title,hero.jpTitle)+'</h1>'+
+   '<p class="body-lg">'+L(hero.copy,hero.jpCopy)+'</p>'+
+   '<div class="btn-row">'+bfill(L("VIEW PRODUCT","商品を見る"),"pdp",'data-set-product="'+hero.id+'"')+
    bline(L("Explore MOMENTS","食卓での使い方を見る"),"moments",'data-anchor="everyday"')+'</div>'+
-   '<div class="hero-pager" aria-hidden="true"><i class="active"></i><i></i><i></i></div>'+
-   note("V1 structure: a featured product and its immediate benefit, not a generic lifestyle slogan. The three dots are a visual concept, not a working carousel.","V1に合わせて代表商品・使用価値を優先。ページャーはカルーセル機能ではなく構成イメージ。")+
-  '</div></div>'+
+   '<div class="hero-carousel-controls" aria-label="Featured products carousel">'+
+    '<div class="hero-pager" role="group" aria-label="Choose featured product">'+heroSlides.map(function(s,i){
+     return '<button type="button" class="hero-dot'+(i===hi?' active':'')+'" data-hero-index="'+i+'" aria-label="Show featured product '+(i+1)+' of 3" aria-pressed="'+(i===hi)+'"><span></span></button>';
+    }).join("")+'</div>'+
+    '<div class="hero-arrows"><button type="button" data-hero-step="-1" aria-label="Previous featured product">←</button><button type="button" data-hero-step="1" aria-label="Next featured product">→</button></div>'+
+   '</div>'+
+  '</div></section>'+
  '<section class="site-section home-manifesto">'+
  '<div class="feature-showcase"><div class="feature-showcase-copy">'+eyebrow("THE AUX DIFFERENCE")+
  '<h2 class="display-medium">'+L("Different forms for different movements.","使い方に合わせて、形を変える。")+'</h2>'+
@@ -467,6 +479,10 @@ document.addEventListener("click",function(ev){
  var l=ev.target.closest("[data-lang]");
  if(l){state.lang=l.dataset.lang;render();return;}
  if(ev.target.closest("#rail-toggle")){document.getElementById("app").classList.toggle("no-rail");render();return;}
+ var chosenHero=ev.target.closest("[data-hero-index]");
+ if(chosenHero){state.heroIndex=Number(chosenHero.dataset.heroIndex)||0;render();return;}
+ var nextHero=ev.target.closest("[data-hero-step]");
+ if(nextHero){state.heroIndex=(state.heroIndex+(Number(nextHero.dataset.heroStep)||0)+3)%3;render();return;}
  var galleryIndex=ev.target.closest("[data-gallery-index]");
  if(galleryIndex){state.galleryIndex=parseInt(galleryIndex.dataset.galleryIndex,10)||0;render();return;}
  var galleryStep=ev.target.closest("[data-gallery-step]");

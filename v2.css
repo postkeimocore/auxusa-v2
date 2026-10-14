@@ -709,3 +709,143 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .home-page .hero-pager i{display:block;width:8px;height:8px;border:1px solid #999;border-radius:50%}
 .home-page .hero-pager i.active{background:#333;border-color:#333}
 @media(max-width:880px){.home-page .hero-pager{margin-top:32px}}
+
+
+/* AUX HOME — editorial redesign. KINTO mood reference; AUX-owned hierarchy and UI. */
+.home-page .product-first-hero{position:relative;display:block;height:calc(100svh - 80px);min-height:720px;max-height:896px;isolation:isolate;background:#e9e7e2;overflow:hidden}
+.home-page .product-first-visual{position:absolute;inset:0;min-height:0;height:100%;width:100%;z-index:0}
+.home-page .product-first-visual>.photo{position:absolute;inset:0;width:100%;height:100%}
+.home-page .product-first-visual .photo img{filter:none;object-fit:cover;object-position:center}
+.home-page .product-first-content{position:absolute;right:var(--page-gutter);bottom:var(--space-8);width:512px;max-width:calc(100% - 160px);min-width:0;display:flex;flex-direction:column;align-items:stretch;justify-content:center;background:rgba(250,250,248,.97);padding:64px;z-index:2}
+.home-page .product-first-content .section-label{margin-bottom:32px}
+.home-page .product-first-content .page-display{font-size:56px;line-height:56px;letter-spacing:var(--tracking-display);max-width:448px}
+.home-page .product-first-content .body-lg{font-size:var(--fs-body);line-height:var(--lh-body);max-width:392px;margin:24px 0 0;color:#4b4b4b}
+.home-page .product-first-content .btn-row{margin-top:32px;gap:24px}
+.home-page .product-first-visual .hero-index{left:var(--page-gutter);bottom:var(--space-8);padding:8px 16px;color:#2d2d2d;background:rgba(250,250,248,.94)}
+.home-page .hero-carousel-controls{display:flex;justify-content:space-between;align-items:center;margin-top:40px;gap:24px}
+.home-page .hero-pager{display:flex;gap:8px;margin:0;padding:0;align-items:center}
+.home-page .hero-pager .hero-dot{display:flex;align-items:center;justify-content:center;width:48px;height:32px;padding:0;border:0;background:transparent;cursor:pointer}
+.home-page .hero-pager .hero-dot span{display:block;width:100%;height:4px;background:#cacac8;transition:background .2s}
+.home-page .hero-pager .hero-dot.active span{background:#242424}
+.home-page .hero-arrows{display:flex;align-items:center;gap:8px}
+.home-page .hero-arrows button{width:40px;height:40px;padding:0;border:1px solid #c5c5c2;background:transparent;color:#252525;font-size:24px;line-height:32px;cursor:pointer}
+.home-page .hero-arrows button:hover{background:#262626;color:#fff;border-color:#262626}
+/* Full editorial statement, rather than equal-sized image/text boxes. */
+.home-page .home-manifesto{padding:160px var(--page-gutter) 128px;background:#fff}
+.home-page .home-manifesto .feature-showcase{gap:80px}
+.home-page .home-manifesto .feature-showcase-copy{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);column-gap:96px;row-gap:32px}
+.home-page .home-manifesto .feature-showcase-copy .display-medium{font-size:80px;line-height:80px;max-width:816px}
+.home-page .home-manifesto .feature-showcase-copy .body-lg{max-width:392px;margin:0 0 8px;align-self:end}
+.home-page .home-manifesto .feature-collage{height:640px;grid-template-columns:1.5fr .5fr;gap:16px}
+.home-page .home-manifesto .feature-collage .photo img{filter:none}
+/* Commerce remains restrained and scannable. */
+.home-page .home-products{padding:128px var(--page-gutter);background:#fafaf8}
+.home-page .home-products .section-head{margin-bottom:64px}
+.home-page .home-products .product-strip{gap:24px}
+.home-page .home-products .product-card h3{margin-top:24px}
+.home-page .home-products .product-card .price{margin-top:16px}
+.home-page .home-products .btn-row{margin-top:56px}
+/* One dominant category tile, two secondary tiles with image-led navigation. */
+.home-page .home-categories{padding:136px var(--page-gutter) 152px;background:#f0efeb}
+.home-page .home-categories .section-head{margin-bottom:64px}
+.home-page .home-categories .product-collections{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);grid-template-rows:312px 312px;gap:24px}
+.home-page .home-categories .category-card{position:relative;display:block;min-width:0;min-height:0;overflow:hidden;background:#b3b1ab;color:#fff}
+.home-page .home-categories .category-card:first-child{grid-row:1 / 3;grid-column:1}
+.home-page .home-categories .category-card:nth-child(2){grid-column:2;grid-row:1}
+.home-page .home-categories .category-card:nth-child(3){grid-column:2;grid-row:2}
+.home-page .home-categories .category-card .photo{position:absolute;inset:0;height:100%;width:100%;z-index:0}
+.home-page .home-categories .category-card .photo img{filter:none;transition:transform .5s ease}
+.home-page .home-categories .category-card:hover .photo img{transform:scale(1.035)}
+.home-page .home-categories .category-card:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(0,0,0,.60),rgba(0,0,0,.08) 48%,transparent 68%);pointer-events:none}
+.home-page .home-categories .category-card .card-meta{position:absolute;left:32px;right:32px;bottom:64px;z-index:2;padding:0;align-items:center;gap:16px;border:0}
+.home-page .home-categories .category-card h3{font-size:40px;line-height:48px;font-weight:400;color:#fff}
+.home-page .home-categories .category-card .arrow{font-size:32px;color:#fff}
+.home-page .home-categories .category-card p{position:absolute;left:32px;right:32px;bottom:24px;margin:0;z-index:2;font-size:var(--fs-body);line-height:var(--lh-body);color:#f6f6f6;max-width:368px}
+/* Knife / Fork / AUX — typography becomes the key brand visual. */
+.home-page .home-third{padding:0;background:#eae9e5}
+.home-page .home-third .split{display:grid;grid-template-columns:48% 52%;gap:0;min-height:752px;align-items:stretch}
+.home-page .home-third .split>.photo{grid-column:2;grid-row:1;order:2;width:100%;height:752px;min-height:752px}
+.home-page .home-third .split-copy{grid-column:1;grid-row:1;order:1;padding:96px var(--page-gutter) 80px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.home-page .home-third .split-copy .section-label{margin-bottom:40px}
+.home-page .home-third .split-copy .display-medium{font-size:96px;line-height:104px;font-weight:350;letter-spacing:var(--tracking-display);max-width:560px}
+.home-page .home-third .split-copy .body-lg{max-width:440px;margin:40px 0 0}
+.home-page .home-third .split-copy .btn-row{margin-top:40px}
+/* Moments: protect IA while giving the photograph a stronger editorial role. */
+.home-page .home-moments-section{padding:160px var(--page-gutter);background:#fff}
+.home-page .home-moments-section .section-head{margin-bottom:72px}
+.home-page .home-moments-section .home-moments{grid-template-columns:minmax(0,1.24fr) minmax(0,.76fr);gap:40px;min-height:648px}
+.home-page .home-moments-section .home-moment-main{min-height:648px}
+.home-page .home-moments-section .home-moment-list{min-height:648px;gap:32px}
+.home-page .home-moments-section .home-moment-list article{grid-template-columns:136px minmax(0,1fr) 16px;gap:24px}
+.home-page .home-moments-section .home-moment-list article .photo{min-height:176px}
+.home-page .home-moments-section .home-moment-main .moment-home-copy{padding:40px}
+.home-page .home-moments-section .home-moment-main .moment-home-copy h3{font-size:32px;line-height:40px}
+/* Business becomes an editorial introduction and panoramic scene, not a banner. */
+.home-page .home-business{display:flex;flex-direction:column;gap:0;min-height:0;background:#f3f2ef;color:#262626;border:0}
+.home-page .home-business>div:first-child{width:100%;display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr);column-gap:96px;row-gap:32px;align-items:end;padding:112px var(--page-gutter) 64px}
+.home-page .home-business .section-label{grid-column:1 / -1;grid-row:1;margin:0;color:#666}
+.home-page .home-business h2{grid-column:1;grid-row:2;font-size:56px;line-height:64px;max-width:688px;color:#222}
+.home-page .home-business .body-md{grid-column:2;grid-row:2;margin:0;max-width:392px;color:#595959}
+.home-page .home-business .btn-row{grid-column:2;grid-row:3;margin-top:0;justify-self:start}
+.home-page .home-business .btn-line{color:#202020;border-bottom-color:#202020}
+.home-page .home-business .photo{width:100%;height:456px;min-height:456px}
+.home-page .home-business .photo img{filter:none}
+/* Closing brand chapter. */
+.home-page .home-about{background:white;padding:160px var(--page-gutter) 168px}
+.home-page .home-about .split.reverse{grid-template-columns:minmax(0,.76fr) minmax(0,1.24fr);gap:96px;align-items:center}
+.home-page .home-about .split .photo{height:656px}
+.home-page .home-about .split-copy .display-medium{font-size:64px;line-height:72px;letter-spacing:var(--tracking-display)}
+.home-page .home-about .split-copy .body-md{margin:32px 0 0}
+.home-page .home-about .split-copy .btn-line{margin-top:40px}
+@media(max-width:1200px){
+ .home-page .product-first-hero{min-height:632px}
+ .home-page .product-first-content{padding:48px}
+ .home-page .home-manifesto .feature-showcase-copy{column-gap:48px}
+ .home-page .home-manifesto .feature-showcase-copy .display-medium{font-size:64px;line-height:72px}
+ .home-page .home-third .split-copy .display-medium{font-size:72px;line-height:80px}
+ .home-page .home-third .split>.photo{height:640px;min-height:640px}
+ .home-page .home-third .split{min-height:640px}
+ .home-page .home-moments-section .home-moment-list article{grid-template-columns:120px minmax(0,1fr) 16px;gap:16px}
+ .home-page .home-business>div:first-child{column-gap:48px}
+}
+@media(max-width:880px){
+ .home-page .product-first-hero{min-height:624px}
+ .home-page .product-first-content{right:var(--page-gutter);bottom:32px;width:440px;max-width:calc(100% - 64px);padding:40px}
+ .home-page .home-categories .product-collections{grid-template-rows:256px 256px;gap:16px}
+ .home-page .home-categories .category-card .card-meta{bottom:56px;left:24px;right:24px}
+ .home-page .home-categories .category-card p{left:24px;right:24px;bottom:16px}
+ .home-page .home-categories .category-card h3{font-size:32px;line-height:40px}
+ .home-page .home-manifesto{padding-top:96px;padding-bottom:96px}
+ .home-page .home-manifesto .feature-showcase-copy{grid-template-columns:1fr;gap:24px}
+ .home-page .home-manifesto .feature-showcase-copy .section-label,
+ .home-page .home-manifesto .feature-showcase-copy .display-medium,
+ .home-page .home-manifesto .feature-showcase-copy .body-lg,
+ .home-page .home-manifesto .feature-showcase-copy .btn-line{grid-column:1;grid-row:auto}
+ .home-page .home-manifesto .feature-collage{height:440px}
+ .home-page .home-third .split{grid-template-columns:1fr;min-height:0}
+ .home-page .home-third .split>.photo{grid-column:1;grid-row:2;min-height:456px;height:456px}
+ .home-page .home-third .split-copy{grid-column:1;grid-row:1;padding:80px var(--page-gutter)}
+ .home-page .home-moments-section .home-moments{grid-template-columns:1fr;min-height:0}
+ .home-page .home-moments-section .home-moment-main{min-height:480px}
+ .home-page .home-moments-section .home-moment-list{min-height:0}
+ .home-page .home-business>div:first-child{grid-template-columns:1fr;row-gap:24px;padding-top:80px}
+ .home-page .home-business .section-label,.home-page .home-business h2,.home-page .home-business .body-md,.home-page .home-business .btn-row{grid-column:1;grid-row:auto}
+ .home-page .home-about .split.reverse{grid-template-columns:1fr;gap:40px}
+ .home-page .home-about .split .photo{height:480px;order:2}
+ .home-page .home-about .split-copy{order:1}
+}
+@media(max-width:600px){
+ .home-page .product-first-hero{height:760px;min-height:0;max-height:none}
+ .home-page .product-first-content{bottom:0;right:0;left:0;max-width:none;width:100%;padding:32px var(--page-gutter)}
+ .home-page .product-first-content .page-display{font-size:40px;line-height:48px}
+ .home-page .product-first-visual .hero-index{left:var(--page-gutter);top:24px;bottom:auto}
+ .home-page .home-manifesto .feature-showcase-copy .display-medium{font-size:40px;line-height:48px}
+ .home-page .home-manifesto .feature-collage{height:304px}
+ .home-page .home-products,.home-page .home-categories,.home-page .home-moments-section,.home-page .home-about{padding-top:80px;padding-bottom:80px}
+ .home-page .home-categories .product-collections{grid-template-columns:1fr;grid-template-rows:repeat(3,320px)}
+ .home-page .home-categories .category-card:first-child,.home-page .home-categories .category-card:nth-child(2),.home-page .home-categories .category-card:nth-child(3){grid-row:auto;grid-column:1}
+ .home-page .home-third .split-copy .display-medium{font-size:64px;line-height:72px}
+ .home-page .home-moments-section .home-moment-main{min-height:392px}
+ .home-page .home-business .photo{height:320px;min-height:320px}
+ .home-page .home-about .split .photo{height:352px}
+}
