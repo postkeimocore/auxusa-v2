@@ -45,3 +45,16 @@ node scripts/check-design-grid.js
 ```
 
 The lint script rejects CSS spatial lengths that are not 8px multiples (except permitted 4px micro-spacing), font sizes not on the 4px scale, line-heights not on the 8px scale, and spacing expressed as arbitrary percentages. This prevents ad hoc dimensional patches from silently changing the design system.
+
+## Letter spacing
+
+V1 has six tracking tokens, defined in v2.css:
+
+- Display: -0.025em
+- Heading: -0.018em
+- Body: 0
+- UI controls: 0.02em
+- Eyebrow: 0.12em
+- Index: 0.08em
+
+Letter spacing uses em values rather than the 8px spatial grid. The CSS checker accepts only these tokens.
