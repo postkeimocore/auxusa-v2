@@ -52,7 +52,6 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .stage-note{font-size:9px;letter-spacing:.05em;color:#aaa}
 .site-frame{width:min(100%,1440px);min-height:80vh;margin:0 auto;background:var(--white);box-shadow:0 5px 28px rgba(0,0,0,.08);overflow:hidden}
 #site-app{min-height:70vh;background:white}
-.site-announcement{height:28px;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.08em;background:#f0f0ee;color:#555}
 .site-header{height:82px;display:flex;align-items:center;gap:32px;padding:0 4.8%;border-bottom:1px solid #f1f1ef;background:white}
 .site-wordmark{border:0;background:none;padding:0;min-width:98px;display:flex;flex-direction:column;align-items:flex-start;color:#101010}
 .site-wordmark .logo-big{font-family:Arial,Helvetica,sans-serif;font-size:27px;font-weight:700;letter-spacing:-.07em;line-height:.85}
