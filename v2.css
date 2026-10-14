@@ -427,8 +427,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .site-wordmark{min-width:150px;line-height:1}
 .site-wordmark img{display:block;width:152px;height:auto}
 .footer-logo-image{display:block;width:175px;height:auto;max-width:100%}
-.pdp-layout{grid-template-columns:minmax(0,1.24fr) minmax(0,.76fr);align-items:start}
-.kinto-gallery{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:22px;min-height:610px;padding:30px 22px 35px 24px;align-items:start;background:#fff}
+.pdp-layout{--pdp-top-gutter:30px;grid-template-columns:minmax(0,1.24fr) minmax(0,.76fr);align-items:start}
+.kinto-gallery{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:22px;min-height:610px;padding:var(--pdp-top-gutter) 22px 35px 24px;align-items:start;background:#fff}
 .kinto-thumbs{display:flex;flex-direction:column;gap:13px;align-items:stretch;justify-content:flex-start}
 .kinto-thumb{width:72px;height:72px;border:1px solid transparent;background:#f6f6f5;padding:0;overflow:hidden;display:block;flex:none}
 .kinto-thumb.active{border-color:#474747}
@@ -443,7 +443,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .kinto-dots{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;align-items:center;gap:13px}
 .kinto-dots button{width:8px;height:8px;border:0;border-radius:50%;background:#dddddf;padding:0;transition:background .12s}
 .kinto-dots button.active{background:#979797}
-.pdp-buy{padding:30px 10% 66px 7.5%;align-self:start}
+.pdp-buy{padding:var(--pdp-top-gutter) 10% 66px 7.5%;align-self:start}
 .pdp-buy .pdp-price{margin-top:24px}
 .pdp-comparison .compare-copy>span{display:none}
 .pdp-comparison .compare-facts{margin:18px 0 0;display:grid;grid-template-columns:1fr;gap:0}
@@ -452,11 +452,12 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .pdp-comparison .compare-cta{margin-top:25px}
 .preview-sub,.stage-note,.rail-foot,.working-note,.photo-label{display:none!important}
 @media(max-width:1170px){
- .kinto-gallery{grid-template-columns:58px minmax(0,1fr);gap:12px;padding:24px 14px}
+ .pdp-layout{--pdp-top-gutter:24px}
+ .kinto-gallery{grid-template-columns:58px minmax(0,1fr);gap:12px;padding:var(--pdp-top-gutter) 14px}
  .kinto-thumb{width:58px;height:58px}
  .kinto-stage{height:480px}
  .kinto-gallery{min-height:525px}
- .pdp-buy{padding:24px 7%}
+ .pdp-buy{padding:var(--pdp-top-gutter) 7%}
 }
 @media(max-width:880px){
  .site-wordmark{min-width:140px}
