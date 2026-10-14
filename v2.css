@@ -849,3 +849,98 @@ html.site-only #site-app{width:100%;min-height:100vh}
  .home-page .home-business .photo{height:320px;min-height:320px}
  .home-page .home-about .split .photo{height:352px}
 }
+
+
+/* AUX × Figma Make: hybrid editorial treatment, not a site-template transplant.
+   Editorial type is Cardo; commerce/body text is Inter. Preserve 8px/4px/8px contract. */
+:root{--font-editorial:"Cardo","Baskerville","Times New Roman",serif;--font:"Inter","Helvetica Neue","Arial","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+body{font-family:var(--font)}
+.home-page .home-editorial-serif{font-family:var(--font-editorial);font-weight:400;letter-spacing:var(--tracking-display)}
+
+/* Brand statement: Figma Make's typographic pause, in existing AUX chapter. */
+.home-page .home-manifesto{padding-top:128px}
+.home-page .home-brand-intro{max-width:896px;margin:0 auto 136px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.home-page .home-brand-intro .section-label{margin-bottom:48px}
+.home-page .home-brand-intro .home-editorial-serif{margin:0;font-size:64px;line-height:80px;color:#292a28}
+.home-page .home-brand-intro .body-md{margin:40px 0 0;max-width:544px;color:#63635f}
+.home-page .home-manifesto .feature-showcase{padding-top:88px;border-top:1px solid #d9d8d3}
+.home-page .home-manifesto .feature-showcase-copy .display-medium{font-size:64px;line-height:72px}
+.home-page .home-manifesto .feature-collage{height:560px}
+
+/* Full-bleed lifestyle chapter. Source inspiration: Figma Make 'Made for sharing.' */
+.home-page .home-sharing-story{position:relative;min-height:640px;height:72svh;max-height:832px;background:#555;display:flex;align-items:center;justify-content:center;isolation:isolate;overflow:hidden;color:white;text-align:center}
+.home-page .home-sharing-story>.photo{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.home-page .home-sharing-story>.photo img{filter:none;object-fit:cover}
+.home-page .home-sharing-shade{position:absolute;inset:0;z-index:-1;background:rgba(21,23,22,.43)}
+.home-page .home-sharing-copy{max-width:752px;padding:80px var(--space-8);display:flex;flex-direction:column;align-items:center}
+.home-page .home-sharing-copy .section-label{color:#fafaf8;margin-bottom:40px}
+.home-page .home-sharing-copy .home-editorial-serif{margin:0;font-size:80px;line-height:88px;color:#fff}
+.home-page .home-sharing-copy .body-lg{max-width:520px;color:#f7f7f5;margin:40px 0 32px}
+.home-page .home-sharing-copy .btn-line{color:#fff;border-bottom-color:#fff}
+.home-page .home-sharing-copy .btn-line:hover{opacity:.8}
+
+/* Figma Make styling-gallery idea; asymmetric rather than repetitive equal squares. */
+.home-page .home-styling-gallery{padding:128px var(--page-gutter) 144px;background:#f8f8f6}
+.home-page .home-gallery-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;row-gap:24px;align-items:end;margin-bottom:56px}
+.home-page .home-gallery-heading .section-label{grid-column:1 / -1;margin:0}
+.home-page .home-gallery-heading .home-editorial-serif{font-size:56px;line-height:64px;margin:0;color:#292a28}
+.home-page .home-gallery-heading .btn-line{justify-self:end}
+.home-page .home-gallery-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(2,232px);gap:16px}
+.home-page .home-gallery-item{position:relative;min-width:0;min-height:0;overflow:hidden}
+.home-page .home-gallery-item-1{grid-column:span 6;grid-row:span 2}
+.home-page .home-gallery-item:not(.home-gallery-item-1){grid-column:span 3}
+.home-page .home-gallery-item .photo{height:100%;width:100%}
+.home-page .home-gallery-item .photo img{filter:none;object-fit:cover}
+.home-page .home-gallery-item:nth-child(3) .photo img,
+.home-page .home-gallery-item:nth-child(5) .photo img{object-position:center top}
+
+/* Figma Make photo-led footer: intentional brand conclusion, original AUX nav intact. */
+.site-footer{background:#f4f4f1;padding-top:64px}
+.site-footer .footer-visual{position:relative;display:flex;align-items:center;justify-content:center;height:408px;overflow:hidden;background:#393c38;margin-bottom:96px;isolation:isolate}
+.site-footer .footer-visual:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28);z-index:-1}
+.site-footer .footer-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.8);z-index:-2}
+.site-footer .footer-visual-wordmark{font-family:var(--font);font-weight:500;letter-spacing:var(--tracking-display);font-size:128px;line-height:128px;color:#fff}
+.site-footer .footer-columns{padding-top:0}
+.site-footer .footer-bottom{margin-top:80px}
+
+/* Responsive safeguards; mobile art direction will be reviewed separately. */
+@media(max-width:1168px){
+ .home-page .home-brand-intro{margin-bottom:96px}
+ .home-page .home-brand-intro .home-editorial-serif{font-size:56px;line-height:72px}
+ .home-page .home-sharing-story{height:640px}
+ .home-page .home-gallery-grid{grid-template-rows:repeat(2,192px);gap:8px}
+ .site-footer .footer-visual{height:344px;margin-bottom:72px}
+}
+@media(max-width:880px){
+ .home-page .home-manifesto{padding-top:96px}
+ .home-page .home-brand-intro{margin-bottom:80px}
+ .home-page .home-brand-intro .home-editorial-serif{font-size:48px;line-height:64px}
+ .home-page .home-manifesto .feature-showcase{padding-top:64px}
+ .home-page .home-manifesto .feature-showcase-copy .display-medium{font-size:48px;line-height:56px}
+ .home-page .home-styling-gallery{padding-top:96px;padding-bottom:112px}
+ .home-page .home-gallery-grid{grid-template-rows:repeat(2,160px)}
+ .home-page .home-gallery-heading .home-editorial-serif{font-size:48px;line-height:56px}
+ .home-page .home-sharing-copy .home-editorial-serif{font-size:64px;line-height:72px}
+ .site-footer .footer-visual-wordmark{font-size:96px;line-height:104px}
+}
+@media(max-width:600px){
+ .home-page .home-brand-intro{margin-bottom:64px}
+ .home-page .home-brand-intro .home-editorial-serif{font-size:40px;line-height:48px}
+ .home-page .home-brand-intro .section-label{margin-bottom:32px}
+ .home-page .home-brand-intro .body-md{margin-top:32px}
+ .home-page .home-manifesto .feature-showcase{padding-top:48px}
+ .home-page .home-sharing-story{min-height:480px;height:560px}
+ .home-page .home-sharing-copy{padding:64px var(--page-gutter)}
+ .home-page .home-sharing-copy .home-editorial-serif{font-size:48px;line-height:56px}
+ .home-page .home-styling-gallery{padding-top:80px;padding-bottom:80px}
+ .home-page .home-gallery-heading{grid-template-columns:1fr;row-gap:16px;margin-bottom:32px}
+ .home-page .home-gallery-heading .section-label,.home-page .home-gallery-heading .home-editorial-serif,.home-page .home-gallery-heading .btn-line{grid-column:1}
+ .home-page .home-gallery-heading .btn-line{justify-self:start}
+ .home-page .home-gallery-heading .home-editorial-serif{font-size:40px;line-height:48px}
+ .home-page .home-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:320px repeat(2,168px);gap:8px}
+ .home-page .home-gallery-item-1{grid-column:span 2;grid-row:1}
+ .home-page .home-gallery-item:not(.home-gallery-item-1){grid-column:span 1}
+ .site-footer{padding-top:32px}
+ .site-footer .footer-visual{height:232px;margin-bottom:64px}
+ .site-footer .footer-visual-wordmark{font-size:80px;line-height:88px}
+}
