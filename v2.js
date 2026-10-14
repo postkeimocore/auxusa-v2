@@ -260,7 +260,7 @@ function render(){
  document.querySelectorAll("[data-lang]").forEach(function(x){x.classList.toggle("active",x.dataset.lang===state.lang);});
  document.getElementById("notes-toggle").textContent=state.notes?L("HIDE NOTES","メモを隠す"):L("SHOW NOTES","構成メモ");
  document.getElementById("rail-toggle").textContent=document.getElementById("app").classList.contains("no-rail")?L("SHOW PAGES","ページ一覧を表示"):L("HIDE PAGES","ページ一覧を隠す");
- var route=state.page==="pdp"?"/products/"+state.product+"-tongs":ROUTES[state.page];
+ var route=state.page==="pdp"?"/products/aux-"+state.product:ROUTES[state.page];
  document.getElementById("stage-breadcrumb").textContent="aux-global.com"+route+" / "+state.lang.toUpperCase();
  document.getElementById("app").classList.toggle("show-notes",state.notes);
  updateURL();
@@ -288,7 +288,7 @@ document.addEventListener("click",function(ev){
  var anchor=ev.target.closest("[data-anchor]");
  if(anchor){var el=document.getElementById("anchor-"+anchor.dataset.anchor);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});return;}
  var demo=ev.target.closest("[data-demo]");
- if(demo){toast(L("Layout preview only. This interaction is not connected to a live store.","レイアウト確認用です。実際のEC機能には接続していません。"));}
+ if(demo){if(demo.dataset.demo==="nav"){document.getElementById("site-app").classList.toggle("mobile-open");return;}toast(L("Layout preview only. This interaction is not connected to a live store.","レイアウト確認用です。実際のEC機能には接続していません。"));}
 });
 document.addEventListener("submit",function(ev){if(ev.target.id==="demo-contact"){ev.preventDefault();toast(L("Preview only. No message has been sent.","説明用フォームです。送信されていません。"));}});
 document.addEventListener("keydown",function(ev){if((ev.key==="Enter"||ev.key===" ")&&ev.target.matches("[role=link][data-product],article[data-go]")){ev.preventDefault();ev.target.click();}});
