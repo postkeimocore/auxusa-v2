@@ -30,7 +30,7 @@ function photo(file,note,cls){
 }
 function note(en,ja){return '<div class="working-note">'+L(en,ja)+'</div>';}
 function bline(text,page,attrs){return '<button type="button" class="btn-line" data-go="'+page+'" '+(attrs||"")+'>'+text+'</button>';}
-function bfill(text,page){return '<button type="button" class="btn-fill" data-go="'+page+'">'+text+'</button>';}
+function bfill(text,page,attrs){return '<button type="button" class="btn-fill" data-go="'+page+'" '+(attrs||"")+'>'+text+'</button>';}
 function eyebrow(text){return '<div class="section-label">'+text+'</div>';}
 function sectionHead(label,title,description,center){
  return '<div class="section-head'+(center?" center":"")+'">'+eyebrow(label)+'<h2 class="display-medium">'+title+'</h2>'+(description?'<p class="body-md">'+description+'</p>':'')+'</div>';
@@ -81,7 +81,7 @@ function home(){
   '<div class="product-first-content">'+eyebrow("AUX TONGS / SIGNATURE")+
    '<h1 class="page-display">'+L("AUX<br>Fingertip Tongs","AUX<br>ゆびさきトング")+'</h1>'+
    '<p class="body-lg">'+L("A thoughtful grip for small foods and small movements. Designed to feel natural in your hand and at the table.","小さな食材や食卓での繊細な動きに。手にも食卓にも、自然に馴染む道具。")+'</p>'+
-   '<div class="btn-row">'+bfill(L("VIEW PRODUCT","商品を見る"),"pdp")+
+   '<div class="btn-row">'+bfill(L("VIEW PRODUCT","商品を見る"),"pdp",'data-set-product="fingertip"')+
    bline(L("Explore MOMENTS","食卓での使い方を見る"),"moments",'data-anchor="everyday"')+'</div>'+
    '<div class="hero-pager" aria-hidden="true"><i class="active"></i><i></i><i></i></div>'+
    note("V1 structure: a featured product and its immediate benefit, not a generic lifestyle slogan. The three dots are a visual concept, not a working carousel.","V1に合わせて代表商品・使用価値を優先。ページャーはカルーセル機能ではなく構成イメージ。")+
