@@ -13,7 +13,7 @@ See [`v1-v2-content-crosswalk.md`](./v1-v2-content-crosswalk.md) for the source 
 
 The KINTO USA site, https://kinto-usa.com, is a **visual reference only**, not an instruction to copy its sitemap or IA. Use its quiet layout, large images, ample whitespace, typographic restraint, and monochrome UI.
 
-No bright or burgundy accent. White / light gray / charcoal. For the header, use a black AUX wordmark treatment; the exact approved production asset still needs to replace the text-only working rendering. Do not use the existing red emblem.
+No bright or burgundy accent. White / light gray / charcoal. The supplied black AUX Co., Ltd. SVG is committed at `assets/aux-logo-original.svg` and rendered in the header and footer. Do not use the existing red emblem.
 
 ## Navigation
 
@@ -92,7 +92,7 @@ The UI does not contain the final photographed product assets. Source imagery is
 13 working names:
 11 AUX TONGS and 2 AUX Tools. COOK/SERVE/TABLE overlap by use, and are not exclusive product families.
 
-Product name, price, specifications, inventory, shipping, import duties, legal terms and product-photo accuracy are subject to client confirmation. No fake reviews or arbitrary prices are shown.
+Product names and product-specific specifications, inventory, shipping, import duties, legal terms and photo accuracy remain subject to client confirmation. All product cards and PDPs temporarily use **$20.00** as a layout price, at the client’s request. Review placeholders are not displayed without genuine review data.
 
 ## Technical files
 
@@ -105,7 +105,7 @@ Product name, price, specifications, inventory, shipping, import duties, legal t
 
 ### Preview interaction notes
 
-This is a visual wireframe: navigation and product selection function; cart, checkout, contact submission and commerce search do not. "SHOW NOTES" reveals placeholders and editing decisions. English is the default; switching to Japanese preserves the selected page.
+The interface is a content/visual preview: navigation, product selection, thumbnail selection, gallery arrows and dot controls function. Cart, checkout, contact submission and search remain unconnected. There are **no site-visible developer annotations, photography notes, confirmation labels, or wireframe disclaimer copy**. English is the default; switching to Japanese preserves the selected page.
 
 ## Review priorities
 
@@ -115,3 +115,11 @@ This is a visual wireframe: navigation and product selection function; cart, che
 4. The four MOMENTS in one page
 5. The five business sectors and simple initial buyer flow
 6. Final logo asset, post-shoot photography, product naming, operational policies, copy signoff
+
+## October 14 gallery, comparison and copy refinements
+
+- The PDP image presentation follows the **visual gallery pattern** in the user-provided KINTO product screenshot: left vertical image thumbnails, one large central photo, previous/next arrows and dot indicators, with mobile-responsive thumbnail placement. Only the gallery presentation pattern is borrowed; AUX information architecture is preserved.
+- Comparison cards show **Best for / Scale / Moment**, with a Japanese client-review translation. Arbitrary “alternative product” flags were removed.
+- Use **→** for internal navigation, not external-link diagonals.
+- Remove photographer instructions, internal scope/planning language and unverified review placeholders from the rendered storefront. Developer explanations belong in repository documents, not page UI.
+- `assets/aux-logo-original.svg` is the supplied logo illustration, not a CSS reconstruction.
