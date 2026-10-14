@@ -52,7 +52,7 @@ function productStrip(ids){
 function appHeader(){
  var nav=[["cook","COOK"],["serve","SERVE"],["table","TABLE"],["moments","MOMENTS"],["business","FOR BUSINESS"],["why","WHY AUX"]];
  var navh=nav.map(function(p){return '<button type="button" data-go="'+p[0]+'"'+(state.page===p[0]?' class="active"':'')+'>'+p[1]+'</button>';}).join("");
- return '<div class="site-announcement">'+L("AUX / Thoughtfully designed tools for everyday moments.","AUX / 日々の食卓に寄り添う道具。")+'</div>'+
+ return 
  '<header class="site-header"><button class="site-wordmark" data-go="home" aria-label="AUX Home">'+
  '<span class="logo-big">AUX</span><span class="logo-small">CO., LTD.</span></button>'+
  '<nav class="site-menu" aria-label="Main navigation">'+navh+'</nav>'+
