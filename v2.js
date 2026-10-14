@@ -302,9 +302,9 @@ function pdp(){
  return '<article data-product="'+x.id+'" role="link" tabindex="0">'+
  photo(x.image,"","contain")+
  '<div class="compare-copy"><h3>'+x.name+'</h3>'+
- '<dl class="compare-facts"><dt>Best for</dt><dd>'+m.best+'</dd>'+
- '<dt>'+L("Scale","サイズ・特徴")+'</dt><dd>'+m.size+'</dd>'+
- '<dt>Moment</dt><dd>'+m.moment+'</dd></dl>'+
+ '<dl class="compare-facts"><dt>'+L("Best for","適した用途")+'</dt><dd>'+L(m.best,m.jpBest)+'</dd>'+
+ '<dt>'+L("Scale","サイズ・特徴")+'</dt><dd>'+L(m.size,m.jpSize)+'</dd>'+
+ '<dt>'+L("Moment","食事のシーン")+'</dt><dd>'+L(m.moment,m.jpMoment)+'</dd></dl>'+
  '<div class="compare-cta">'+L("View product →","商品を見る →")+'</div></div></article>';
  }).join("")+'</div></section>'+
  '<section class="site-section compact"><div class="about-image-band">'+photo("manufacturing-caliper-over-shoulder.webp","About AUX / verified manufacturing image to come")+
