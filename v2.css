@@ -434,8 +434,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #555;outline-offset:3px}
 .kinto-thumb.active{border-color:#474747}
 .kinto-thumb img{width:100%;height:100%;object-fit:cover}
 .kinto-stage{position:relative;min-width:0;height:600px;display:flex;align-items:center;justify-content:center}
-.kinto-main{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#fff}
-.kinto-main img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;display:block;width:100%;height:100%}
+.kinto-main{width:100%;height:100%;display:flex;align-items:flex-start;justify-content:center;background:#fff}
+.kinto-main img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;object-position:center top;display:block;width:100%;height:100%}
 .kinto-arrow{position:absolute;top:50%;transform:translateY(-50%);background:transparent;border:0;width:32px;height:44px;display:flex;align-items:center;justify-content:center;color:#8f8f8f;font-size:33px;font-weight:200;z-index:2;padding:0;line-height:1}
 .kinto-arrow:hover{color:#292929}
 .kinto-arrow.prev{left:1%}
