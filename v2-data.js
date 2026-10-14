@@ -1,5 +1,4 @@
-/* AUX Global EC — working product map / scene assignments
-   Copy is illustrative, not approved sales copy. */
+/* AUX product family, collection and editorial content data. */
 window.AUX_DATA = {
   assetBase:"https://raw.githubusercontent.com/postkeimocore/auxusa/main/assets/wireframe/",
   products:[
@@ -35,4 +34,19 @@ window.AUX_DATA = {
     {id:"catering",title:"CATERING & EVENTS",jp:"ケータリング・イベント",photo:"serve-salad-greens.webp",body:["Parties, events and buffet service. Present possible service uses without claiming proven operational performance.","大量提供やセルフサービスの使用シーンを提案として見せる。"],products:["serving","long","fry"]},
     {id:"retail",title:"RETAIL & DISTRIBUTION",jp:"小売店・卸・販売代理店",photo:"product-lineup-warm.webp",body:["For select shops, kitchenware retailers, department stores and distributors interested in carrying AUX. Lead with the product range and business inquiry route.","セレクトショップ、キッチンウェアショップ、百貨店、卸・ディストリビューターなど、AUXを販売したい事業者向け。"],products:["fingertip","mini","whisk"]}
   ]
+};
+window.AUX_DATA.compare = {
+ mini:{best:"Small bites and condiments",size:"Compact",moment:"Everyday Table"},
+ garnish:{best:"Garnishes and small jars",size:"Compact",moment:"Everyday Table"},
+ fingertip:{best:"Delicate bites at the table",size:"Compact",moment:"Together at the Table"},
+ scoop:{best:"Ice and small servings",size:"Medium",moment:"Hosting at Home"},
+ serving:{best:"Shared dishes and salads",size:"Serving",moment:"Hosting at Home"},
+ fry:{best:"Lifting and draining fried food",size:"Cooking",moment:"Everyday Table"},
+ finetip:{best:"Turning thin cuts and small foods",size:"Precision",moment:"Everyday Table"},
+ long:{best:"Plating with extra reach",size:"Long reach",moment:"Special Occasions"},
+ noodle:{best:"Lifting noodles",size:"Cooking",moment:"Everyday Table"},
+ bread:{best:"Bread and pastries",size:"Serving",moment:"Hosting at Home"},
+ basting:{best:"Gripping food and sauce",size:"Cooking",moment:"Special Occasions"},
+ whisk:{best:"Miso and quick dressings",size:"Compact",moment:"Everyday Table"},
+ grating:{best:"Grating citrus and garlic",size:"Compact",moment:"Everyday Table"}
 };
