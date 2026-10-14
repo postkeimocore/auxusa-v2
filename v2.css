@@ -560,3 +560,14 @@ body{font-size:var(--fs-body);line-height:var(--lh-body)}
 
 /* Unified letter-spacing inheritance from V1. */
 body,#site-app{letter-spacing:var(--tracking-body)}
+
+/* Presentation mode: regular storefront is the default. The reviewer chrome
+   remains fully intact and can be restored at any time with ?review=1. */
+html.site-only,html.site-only body{background:var(--white)}
+html.site-only .preview-bar,
+html.site-only .page-rail,
+html.site-only .stage-meta{display:none!important}
+html.site-only .preview-layout{display:block;min-height:100vh;grid-template-columns:none}
+html.site-only .stage{width:100%;min-width:0;margin:0;padding:0}
+html.site-only .site-frame{width:100%;max-width:none;min-height:100vh;margin:0;box-shadow:none;overflow:visible}
+html.site-only #site-app{width:100%;min-height:100vh}
