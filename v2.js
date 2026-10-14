@@ -76,13 +76,13 @@ function home(){
   ["table","small-food-transfer.webp","Made for the table.","食卓の細かな動きに。"]
  ];
  return '<div class="home-page"><div class="product-first-hero"><div class="product-first-visual" data-product="fingertip" role="link" tabindex="0">'+photo("small-food-transfer.webp","V1 product-led hero / final lifestyle photography")+
-   '</div>'+
+   '<div class="hero-index">01 / 03 · TABLE</div></div>'+
   '<div class="product-first-content">'+eyebrow("AUX TONGS / SIGNATURE")+
    '<h1 class="page-display">'+L("AUX<br>Fingertip Tongs","AUX<br>ゆびさきトング")+'</h1>'+
    '<p class="body-lg">'+L("A thoughtful grip for small foods and small movements. Designed to feel natural in your hand and at the table.","小さな食材や食卓での繊細な動きに。手にも食卓にも、自然に馴染む道具。")+'</p>'+
    '<div class="btn-row">'+bfill(L("VIEW PRODUCT","商品を見る"),"pdp",'data-set-product="fingertip"')+
    bline(L("Explore MOMENTS","食卓での使い方を見る"),"moments",'data-anchor="everyday"')+'</div>'+
-   
+   '<div class="hero-pager" aria-hidden="true"><i class="active"></i><i></i><i></i></div>'+
    note("V1 structure: a featured product and its immediate benefit, not a generic lifestyle slogan. The three dots are a visual concept, not a working carousel.","V1に合わせて代表商品・使用価値を優先。ページャーはカルーセル機能ではなく構成イメージ。")+
   '</div></div>'+
  '<section class="site-section home-manifesto">'+
