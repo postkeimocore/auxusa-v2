@@ -211,15 +211,22 @@ function moments(){
  bline(L("Shop all products","すべての商品を見る"),"shop")+'</div></div></section>';
 }
 function business(){
- return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("AUX / FOR BUSINESS")+'<h1 class="page-display">'+L("For spaces where<br>people gather.","人が集まる場所に、<br>AUXを。")+'</h1><p class="body-lg">'+L("Explore potential uses for AUX in hospitality, food service, events and retail. Business enquiries are welcome.","レストラン、ホテル、カフェ、イベント、販売店など。業態ごとの利用イメージと取引相談への入口。")+'</p><div class="btn-row">'+bline(L("Contact us","法人向け問い合わせ"),"contact")+'</div></div>'+photo("serving-salmon.webp","Hospitality scene / stock selection needed")+'</div>'+
- '<section class="site-section compact">'+sectionHead("BUSINESS APPLICATIONS",L("Five ways to work with AUX.","5つの業態・販路。"),L("Use these categories to explore the role AUX could play, or get in touch about business purchasing.","利用する事業者と販売する事業者を区別し、それぞれに適切な導線を用意します。"))+
- '<div class="business-tiles">'+D.businesses.map(function(b){return '<button class="business-tile" type="button" data-anchor="'+b.id+'"><strong>'+b.title+'</strong><span>EXPLORE →</span></button>';}).join("")+'</div></section>'+
- D.businesses.map(function(b,i){return '<section class="site-section '+(i%2===1?"mist":"")+'" id="anchor-'+b.id+'"><div class="business-detail '+(i%2===1?"reverse":"")+'">'+photo(b.photo,b.title+" / illustrative photography")+
- '<div><div class="story-index">0'+(i+1)+' / FOR BUSINESS</div><h2 class="display-medium">'+b.title+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
- '<p class="body-sm">'+L("Products to explore:","関連商品例：")+' '+b.products.map(function(id){return productBy(id).name;}).join(" / ")+'</p><div class="btn-row">'+bline(L("Business enquiry","取引について問い合わせ"),"contact")+'</div></div></div></section>';}).join("")+
- '<section class="site-section cloud">'+sectionHead("WORKING PURCHASE FLOW",L("Start simple. Build further when needed.","まず販売できる仕組みから。"),L("The launch version keeps business purchasing simple. Advanced quotation, account pricing and sales management are a separate future project.","初期はShopifyでの販売と事業者別クーポン運用を想定。個社別マイページや見積シミュレーターは別案件として検討。"))+
- '<div class="process"><div class="process-item"><div class="num">01</div><h3>'+L("Explore","商品を知る")+'</h3><p>'+L("Review the range and relevant use cases.","商品・用途を確認。")+'</p></div><div class="process-item"><div class="num">02</div><h3>'+L("Contact","条件を相談")+'</h3><p>'+L("Discuss wholesale purchasing and commercial terms.","取引条件と価格運用を相談。")+'</p></div><div class="process-item"><div class="num">03</div><h3>'+L("Purchase","購入する")+'</h3><p>'+L("Initial workflow uses Shopify and buyer-specific coupon codes where applicable.","初期はShopifyと個別クーポンコードで対応。")+'</p></div></div>'+
- note("Do not present the future B2B quote simulator, buyer account system or commission functions as features in the initial release. Sample-request operations require confirmation.","見積シミュレーター・法人マイページ・営業実績管理は初期実装に含めない。サンプル依頼の運用は未確定。")+'</section>';
+ return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("FOR BUSINESS")+
+ '<h1 class="page-display">'+L("For spaces where<br>people gather.","人が集まる場所に、<br>AUXを。")+'</h1>'+
+ '<p class="body-lg">'+L("From restaurant kitchens to the dining table, AUX brings thoughtful design to the places where food brings people together.","レストランの厨房から食卓まで。料理を通じて人が集まる場所に、AUXの使い心地を。")+'</p>'+
+ '<div class="btn-row">'+bline(L("Business enquiries","法人・業務用のお問い合わせ"),"contact")+'</div></div>'+
+ photo("serving-salmon.webp","")+'</div>'+
+ '<section class="site-section compact">'+sectionHead("DISCOVER BY BUSINESS",L("Made for your place.","それぞれの現場に。"),
+ L("Explore kitchen tools and tableware for hospitality, events and retail.","レストラン、ホテル、カフェ、イベント、小売など幅広い現場に。"))+
+ '<div class="business-tiles">'+D.businesses.map(function(b){return '<button class="business-tile" type="button" data-anchor="'+b.id+'"><strong>'+b.title+'</strong><span>'+L("View","見る")+' →</span></button>';}).join("")+'</div></section>'+
+ D.businesses.map(function(b,i){return '<section class="site-section '+(i%2?"mist":"")+'" id="anchor-'+b.id+'"><div class="business-detail '+(i%2?"reverse":"")+'">'+photo(b.photo,"")+
+ '<div><h2 class="display-medium">'+b.title+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
+ '<div class="business-related">'+b.products.map(function(id){var p=productBy(id);return '<button type="button" data-product="'+id+'">'+p.name+' →</button>';}).join("")+'</div>'+
+ '<div class="btn-row">'+bline(L("Enquire about business orders","法人・卸取引について問い合わせる"),"contact")+'</div></div></div></section>';}).join("")+
+ '<section class="site-section cloud"><div class="split">'+photo("product-lineup-warm.webp","")+
+ '<div>'+eyebrow("WORK WITH AUX")+'<h2 class="display-medium">'+L("Bring AUX to your business.","AUXをビジネスに。")+'</h2>'+
+ '<p class="body-md">'+L("For professional use, retail and distribution, our team can help you explore the product range and discuss ordering options.","飲食店での利用から小売・卸の取扱いまで。商品や取引について、お気軽にお問い合わせください。")+'</p>'+
+ '<div class="btn-row">'+bline(L("Contact our team","お問い合わせ"),"contact")+'</div></div></div></section>';
 }
 function pdpGallery(p){
  var shots=[p.image,p.scene,"product-tip-macro-dark.webp","product-tomato-scale.webp","product-pair-shadow.webp"];
@@ -368,20 +375,35 @@ function tsubame(){
 }
 function faq(){
  var rows=[
-  ["Where does AUX ship?","配送できる地域は？"],
-  ["How are shipping and import duties handled?","送料や輸入関税は？"],
-  ["How should AUX products be cared for?","お手入れの方法は？"],
-  ["Can I purchase AUX for my business?","法人・業務用で購入できますか？"],
-  ["How can I request support?","問い合わせ方法は？"]
+  ["Where does AUX ship?","配送できる地域は？","Shipping options and costs depend on your destination. You can review available services during checkout.","配送方法や送料はお届け先によって異なります。ご注文時に配送先を指定してご確認ください。"],
+  ["How are import duties and taxes handled?","輸入関税や税金はどうなりますか？","Import duties and taxes depend on your delivery destination and applicable terms. Please check the delivery details for your order.","関税・税金はお届け先や配送条件によって異なります。ご注文に適用される配送条件をご確認ください。"],
+  ["How should I care for AUX tools?","お手入れ方法を教えてください。","Wash after use with a soft sponge and dry thoroughly. Please refer to the care information for each product.","使用後は柔らかいスポンジなどで洗浄し、十分に乾かしてください。商品ごとのお手入れ情報もご確認ください。"],
+  ["Can I order for a restaurant or retail business?","レストランや小売店向けの注文はできますか？","For professional orders, retail and distribution enquiries, please get in touch with our team.","業務用のご注文や小売・卸取引については、お問い合わせフォームよりご相談ください。"],
+  ["How can I contact AUX?","AUXへの問い合わせ方法は？","Send us a message through the contact form. For order enquiries, please include your order number.","お問い合わせフォームからご連絡ください。ご注文については注文番号をお知らせください。"]
  ];
- return '<section class="site-section"><div class="support-wrap">'+eyebrow("SUPPORT")+'<h1 class="page-display">FAQ</h1><p class="body-lg">'+L("Answers to common questions about shopping and using AUX.","購入前後に必要な情報をまとめるページ。")+'</p>'+
- '<div class="faq-list">'+rows.map(function(x){return '<details><summary>'+L(x[0],x[1])+'</summary><p>'+L("Details will be added after the final sales and support policies are confirmed.","販売・サポート体制の確定後に正確な回答を反映します。")+'</p></details>';}).join("")+'</div></div></section>';
+ return '<section class="site-section"><div class="support-wrap">'+eyebrow("SUPPORT")+
+ '<h1 class="page-display">FAQ</h1><p class="body-lg">'+L("Answers to questions about AUX products, orders and care.","商品・配送・お手入れについて、よくあるご質問。")+'</p>'+
+ '<div class="faq-list">'+rows.map(function(x){return '<details><summary>'+L(x[0],x[1])+'</summary><p>'+L(x[2],x[3])+'</p></details>';}).join("")+'</div>'+
+ '<div class="btn-row">'+bline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
 }
 function policy(kind){
- var isShip=kind==="shipping";var title=isShip?"Shipping & Delivery":"Returns & Refunds";
- var rows=isShip?[["Shipping destinations","配送対象地域"],["Shipping costs","送料"],["Delivery times","配送日数"],["Duties & taxes","関税・税"]]:[["Return window","返品受付期間"],["Eligibility","返品可能な状態"],["Return shipping","返送料"],["Refund timeline","返金期間"]];
- return '<section class="site-section"><div class="support-wrap">'+eyebrow("SUPPORT")+'<h1 class="page-display">'+title+'</h1><p class="body-lg">'+(isShip?L("Clearly explain delivery coverage, shipping costs and duties before checkout.","配送地域、送料、日数、関税など購入前に知りたい条件を整理します。"):L("Make conditions for returns and refunds easy to understand.","返品・返金の条件を明確にするページ。"))+'</p>'+
- '<dl class="policy-table">'+rows.map(function(r){return '<div class="policy-row"><dt>'+L(r[0],r[1])+'</dt><dd>'+L("Final policy to be confirmed.","最終条件確認後に反映。")+'</dd></div>';}).join("")+'</dl></div></section>';
+ var ship=kind==="shipping",title=ship?"Shipping & Delivery":"Returns & Refunds";
+ var rows=ship?[
+  ["Shipping destinations","お届け先","Shipping availability depends on the delivery address selected at checkout.","配送対象地域はお届け先住所により異なります。"],
+  ["Shipping costs","送料","Shipping costs vary by destination and order. Review the available options before payment.","送料は配送地域・ご注文内容によって異なります。お支払い前にご確認ください。"],
+  ["Delivery times","お届けまでの日数","Delivery time depends on the destination and shipping service selected.","お届けまでの日数は配送地域や選択した配送方法によって異なります。"],
+  ["Duties & taxes","関税・税金","Applicable duties and taxes depend on the destination and shipping terms.","関税・税金は配送先と配送条件によって異なります。"]
+ ]:[
+  ["Need a return?","返品のご相談","Please contact our team with your order number and the reason for your return request.","注文番号と返品理由を添えて、お問い合わせください。"],
+  ["Damaged or incorrect item","商品違い・破損","If your item arrives damaged or incorrect, contact us with your order details and photos of the item.","破損や商品違いがあった場合は、注文情報と商品の写真を添えてご連絡ください。"],
+  ["Returning a product","商品の返送","Our support team will explain the next steps after reviewing your request.","お問い合わせ内容を確認のうえ、返送の手順をご案内します。"],
+  ["Refund enquiries","返金について","For questions about a refund, please contact customer support with your order number.","返金についてのご質問は、注文番号を添えてお問い合わせください。"]
+ ];
+ return '<section class="site-section"><div class="support-wrap">'+eyebrow("SUPPORT")+
+ '<h1 class="page-display">'+title+'</h1>'+
+ '<p class="body-lg">'+(ship?L("Everything you need to know about receiving your AUX order.","AUXの商品をお届けするための配送について。"):L("We are here to help with returns and order concerns.","返品・注文内容についてのご相談はこちら。"))+'</p>'+
+ '<dl class="policy-table">'+rows.map(function(r){return '<div class="policy-row"><dt>'+L(r[0],r[1])+'</dt><dd>'+L(r[2],r[3])+'</dd></div>';}).join("")+'</dl>'+
+ '<div class="btn-row">'+bline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
 }
 function contact(){
  return '<section class="site-section"><div class="support-wrap">'+eyebrow("CONTACT")+'<h1 class="page-display">'+L("How can we help?","お問い合わせ")+'</h1><p class="body-lg">'+L("For products, orders or business purchasing, please use the appropriate contact route.","商品・注文・法人取引などのお問い合わせを受け付ける想定です。")+'</p>'+
