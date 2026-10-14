@@ -25,10 +25,8 @@ var PAGES=[
 var ROUTES={home:"/",shop:"/collections/all",tongs:"/collections/aux-tongs",tools:"/collections/aux-tools",cook:"/collections/cook",serve:"/collections/serve",table:"/collections/table",pdp:"/products/{handle}",moments:"/pages/moments",business:"/pages/for-business",why:"/pages/why-aux",third:"/pages/the-third-utensil",engineering:"/pages/design-engineering",tsubame:"/pages/tsubame-sanjo",faq:"/pages/faq",shipping:"/pages/shipping",returns:"/pages/returns",contact:"/pages/contact"};
 function L(en,ja){return state.lang==="ja"?ja:en;}
 function img(file){return D.assetBase+file;}
-function photo(file,note,cls){
-  return '<div class="photo '+(cls||"")+'"><img src="'+img(file)+'" loading="lazy" alt=""><span class="photo-label">'+(state.lang==="ja"?"仮素材 / ":"V1 placeholder / ")+note+'</span></div>';
-}
-function note(en,ja){return '<div class="working-note">'+L(en,ja)+'</div>';}
+function photo(file,label,cls){return '<div class="photo '+(cls||"")+'"><img src="'+img(file)+'" loading="lazy" alt="'+(label||"AUX product and lifestyle photography").replace(/"/g,"&quot;")+'"></div>';}
+function note(){return '';}
 function bline(text,page,attrs){return '<button type="button" class="btn-line" data-go="'+page+'" '+(attrs||"")+'>'+text+'</button>';}
 function bfill(text,page,attrs){return '<button type="button" class="btn-fill" data-go="'+page+'" '+(attrs||"")+'>'+text+'</button>';}
 function eyebrow(text){return '<div class="section-label">'+text+'</div>';}
@@ -40,7 +38,7 @@ function card(p){
  return '<article class="product-card" role="link" tabindex="0" data-product="'+p.id+'">'+
    photo(p.image,"Product imagery", "contain")+
    '<h3>'+p.name+'</h3><div class="product-sub">'+L(p.desc[0],p.desc[1])+'</div>'+
-   '<div class="price">'+L("Price to be confirmed","価格：確認中")+'</div>'+
+   '<div class="price">$20.00</div>'+
  '</article>';
 }
 function productGrid(products){
@@ -53,7 +51,7 @@ function appHeader(){
  var nav=[["cook","COOK"],["serve","SERVE"],["table","TABLE"],["moments","MOMENTS"],["business","FOR BUSINESS"],["why","WHY AUX"]];
  var navh=nav.map(function(p){return '<button type="button" data-go="'+p[0]+'"'+(state.page===p[0]?' class="active"':'')+'>'+p[1]+'</button>';}).join("");
  return '<header class="site-header"><button class="site-wordmark" data-go="home" aria-label="AUX Home">'+
- '<span class="logo-big">AUX</span><span class="logo-small">CO., LTD.</span></button>'+
+ '<img src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="152" height="17"></button>'+
  '<nav class="site-menu" aria-label="Main navigation">'+navh+'</nav>'+
  '<button type="button" class="site-menu-mobile" data-demo="nav">MENU ☰</button>'+
  '<div class="site-util"><button type="button" data-demo="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>'+
@@ -62,7 +60,7 @@ function appHeader(){
 function footer(){
  function grp(title,items){return '<div class="footer-group"><b>'+title+'</b>'+items.map(function(x){return '<button type="button" data-go="'+x[0]+'">'+x[1]+'</button>';}).join("")+'</div>';}
  return '<footer class="site-footer"><div class="footer-columns">'+
- '<div><div class="footer-logo">AUX</div><p class="footer-intro">'+L("Tools that quietly support the meal, the people and the moments around the table.","食事と人、食卓を囲む時間を静かに支える道具。")+'</p></div>'+
+ '<div><img class="footer-logo-image" src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="175" height="20"><p class="footer-intro">'+L("Tools that quietly support the meal, the people and the moments around the table.","食事と人、食卓を囲む時間を静かに支える道具。")+'</p></div>'+
  grp("SHOP",[["shop","Shop All"],["tongs","AUX TONGS"],["tools","AUX Tools"],["cook","COOK"],["serve","SERVE"],["table","TABLE"]])+
  grp("DISCOVER",[["moments","MOMENTS"],["business","FOR BUSINESS"]])+
  grp("ABOUT",[["why","WHY AUX"],["third","The Third Utensil"],["engineering","Design & Engineering"],["tsubame","Tsubame-Sanjo"]])+
@@ -95,7 +93,7 @@ function home(){
  '<section class="site-section compact mist">'+sectionHead("FEATURED PRODUCTS",L("Tools worth reaching for.","代表商品を見る。"),L("A closer look at the tools and the jobs they are made for.","商品ごとの形と使い方がわかる4商品の紹介。"))+
  productStrip(featured)+'<div class="btn-row">'+bline(L("Shop all products","商品一覧を見る"),"shop")+'</div></section>'+
  '<section class="site-section">'+sectionHead("SHOP BY CATEGORY",L("Cook. Serve. Table.","COOK / SERVE / TABLE"),L("Start with what you want to do, then discover the tools.","やりたいことから道具を探せる3つの入口。"))+
- '<div class="product-collections">'+categories.map(function(c){return '<article class="category-card" tabindex="0" data-go="'+c[0]+'">'+photo(c[1],"Category / "+c[0])+'<div class="card-meta"><h3>'+c[0].toUpperCase()+'</h3><span class="arrow">↗</span></div><p>'+L(c[2],c[3])+'</p></article>';}).join("")+'</div></section>'+
+ '<div class="product-collections">'+categories.map(function(c){return '<article class="category-card" tabindex="0" data-go="'+c[0]+'">'+photo(c[1],"Category / "+c[0])+'<div class="card-meta"><h3>'+c[0].toUpperCase()+'</h3><span class="arrow">→</span></div><p>'+L(c[2],c[3])+'</p></article>';}).join("")+'</div></section>'+
  '<section class="site-section mist"><div class="split">'+photo("small-food-transfer.webp","TABLE / Fingertip Tongs as tableware")+
  '<div class="split-copy">'+eyebrow("TABLE / THE THIRD UTENSIL")+
  '<h2 class="display-medium">Knife.<br>Fork.<br>AUX.</h2>'+
@@ -106,7 +104,7 @@ function home(){
  '<div class="home-moments"><div class="home-moment-main" tabindex="0" data-go="moments" data-anchor="everyday">'+photo(D.moments[0].photo,"MOMENTS / everyday")+
  '<div class="moment-home-copy"><span>01 / MOMENTS</span><h3>'+D.moments[0].title+'</h3><p>'+D.moments[0].strap+'</p></div></div>'+
  '<div class="home-moment-list">'+D.moments.slice(1).map(function(m,i){return '<article tabindex="0" data-go="moments" data-anchor="'+m.id+'">'+photo(m.photo,"MOMENTS / "+m.title)+
- '<div><span>0'+(i+2)+' / MOMENTS</span><h3>'+m.title+'</h3><p>'+m.strap+'</p></div><span class="arrow">↗</span></article>';}).join("")+'</div></div>'+
+ '<div><span>0'+(i+2)+' / MOMENTS</span><h3>'+m.title+'</h3><p>'+m.strap+'</p></div><span class="arrow">→</span></article>';}).join("")+'</div></div>'+
  '<div class="btn-row">'+bline(L("Explore all MOMENTS","MOMENTSを見る"),"moments")+'</div></section>'+
  '<section class="b2b-banner"><div>'+eyebrow("FOR BUSINESS")+
  '<h2 class="display-medium">'+L("Thoughtful tools for thoughtful service.","お客様を迎える場所にも。")+'</h2>'+
@@ -129,7 +127,7 @@ function shop(){
  photo("product-lineup-warm.webp","Family lineup / replace with production photography")+'</div>'+
  '<section class="site-section compact">'+sectionHead("SHOP BY USE",L("Start with the movement.","使う動作から探す。"))+
  '<div class="shop-category-grid">'+categories.map(function(c){return '<article tabindex="0" data-go="'+c[0]+'">'+photo(c[1],"Shop by use / "+c[2])+
- '<div class="shop-category-title"><strong>'+c[2]+'</strong><span>↗</span></div></article>';}).join("")+'</div></section>'+
+ '<div class="shop-category-title"><strong>'+c[2]+'</strong><span>→</span></div></article>';}).join("")+'</div></section>'+
  '<section class="site-section compact mist">'+sectionHead("THE COLLECTION",L("All AUX products.","すべての商品。"),L("11 tongs and 2 other kitchen tools.","トング11商品、その他のキッチンツール2商品。"))+
  '<div class="related-links"><button class="tag-button" data-go="tongs">AUX TONGS / 11</button><button class="tag-button" data-go="tools">AUX Tools / 2</button></div>'+
  '<div class="filterline"><span>ALL PRODUCTS · 13</span><span>'+L("FEATURED","おすすめ順")+'</span></div>'+
@@ -214,7 +212,7 @@ function moments(){
 function business(){
  return '<div class="detail-hero"><div class="detail-copy">'+eyebrow("AUX / FOR BUSINESS")+'<h1 class="page-display">'+L("For spaces where<br>people gather.","人が集まる場所に、<br>AUXを。")+'</h1><p class="body-lg">'+L("Explore potential uses for AUX in hospitality, food service, events and retail. Business enquiries are welcome.","レストラン、ホテル、カフェ、イベント、販売店など。業態ごとの利用イメージと取引相談への入口。")+'</p><div class="btn-row">'+bline(L("Contact us","法人向け問い合わせ"),"contact")+'</div></div>'+photo("serving-salmon.webp","Hospitality scene / stock selection needed")+'</div>'+
  '<section class="site-section compact">'+sectionHead("BUSINESS APPLICATIONS",L("Five ways to work with AUX.","5つの業態・販路。"),L("Use these categories to explore the role AUX could play, or get in touch about business purchasing.","利用する事業者と販売する事業者を区別し、それぞれに適切な導線を用意します。"))+
- '<div class="business-tiles">'+D.businesses.map(function(b){return '<button class="business-tile" type="button" data-anchor="'+b.id+'"><strong>'+b.title+'</strong><span>EXPLORE ↗</span></button>';}).join("")+'</div></section>'+
+ '<div class="business-tiles">'+D.businesses.map(function(b){return '<button class="business-tile" type="button" data-anchor="'+b.id+'"><strong>'+b.title+'</strong><span>EXPLORE →</span></button>';}).join("")+'</div></section>'+
  D.businesses.map(function(b,i){return '<section class="site-section '+(i%2===1?"mist":"")+'" id="anchor-'+b.id+'"><div class="business-detail '+(i%2===1?"reverse":"")+'">'+photo(b.photo,b.title+" / illustrative photography")+
  '<div><div class="story-index">0'+(i+1)+' / FOR BUSINESS</div><h2 class="display-medium">'+b.title+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
  '<p class="body-sm">'+L("Products to explore:","関連商品例：")+' '+b.products.map(function(id){return productBy(id).name;}).join(" / ")+'</p><div class="btn-row">'+bline(L("Business enquiry","取引について問い合わせ"),"contact")+'</div></div></div></section>';}).join("")+
@@ -285,7 +283,7 @@ function pdp(){
  '<div class="compare-copy"><span>'+L(i===0?"CURRENT TOOL":"ALTERNATIVE",i===0?"表示中の商品":"比較商品")+'</span>'+
  '<h3>'+x.name+'</h3><p>'+L(x.desc[0],x.desc[1])+'</p>'+
  '<small>'+L("Detail to verify: ","特徴（確認中）：")+x.feature+'</small>'+
- '<div class="compare-cta">'+L("VIEW PRODUCT ↗","商品を見る ↗")+'</div></div></article>';}).join("")+'</div></section>'+
+ '<div class="compare-cta">'+L("VIEW PRODUCT →","商品を見る →")+'</div></div></article>';}).join("")+'</div></section>'+
  '<section class="site-section compact mist" id="anchor-reviews">'+sectionHead("CUSTOMER REVIEWS",L("What customers think.","お客様のレビュー。"),
  L("Reserved space for the Shopify review component. No ratings are available in this wireframe.","レビュー機能の表示場所を確保。実データがないため架空の評価・投稿は表示しません。"))+
  '<div class="reviews-empty"><div class="review-score-placeholder">—</div><div><strong>'+L("Customer reviews","お客様のレビュー")+'</strong>'+
@@ -334,7 +332,7 @@ function why(){
  '<section class="site-section compact mist">'+sectionHead("EXPLORE AUX",L("Find the right tool.","商品から確かめる。"),
  L("Continue from the story to the collection and the products.","WHY AUXで得た理解を、商品選びにつなげる。"))+
  '<div class="product-collections">'+[["cook","cook-greens-pan.webp"],["serve","serve-salad.webp"],["table","small-food-transfer.webp"]].map(function(x){return '<article tabindex="0" class="category-card" data-go="'+x[0]+'">'+photo(x[1],x[0]+" collection entry")+
- '<div class="card-meta"><h3>'+x[0].toUpperCase()+'</h3><span class="arrow">↗</span></div></article>';}).join("")+'</div>'+
+ '<div class="card-meta"><h3>'+x[0].toUpperCase()+'</h3><span class="arrow">→</span></div></article>';}).join("")+'</div>'+
  '<div class="btn-row">'+bline(L("Shop all products","すべての商品を見る"),"shop")+'</div>'+
  note("V1 Why AUX hierarchy restored: form comparison → product design details → manufacturing evidence → Shop AUX. Additional Third Utensil section reflects the later brand concept.","V1 Why AUXの骨格：形状差→設計・機能→製造背景→商品。Third Utensilは今回の追加ブランド方針。")+'</section>';
 }
@@ -403,7 +401,7 @@ function content(){
 }
 function renderRail(){
  var html=PAGES.map(function(group){return '<div class="rail-group"><div class="rail-label">'+group.group+'</div>'+
- group.pages.map(function(x){return '<button type="button" class="rail-button'+(state.page===x[0]?' active':'')+'" data-go="'+x[0]+'"><span>'+x[1]+'</span><small>↗</small></button>';}).join("")+'</div>';}).join("");
+ group.pages.map(function(x){return '<button type="button" class="rail-button'+(state.page===x[0]?' active':'')+'" data-go="'+x[0]+'"><span>'+x[1]+'</span><small>→</small></button>';}).join("")+'</div>';}).join("");
  document.getElementById("page-index").innerHTML=html;
  document.getElementById("page-count").textContent=Object.keys(ROUTES).length+" PAGES";
 }
@@ -417,12 +415,10 @@ function render(){
  document.getElementById("site-app").innerHTML=appHeader()+'<div class="site-content">'+content()+'</div>'+footer();
  renderRail();
  document.querySelectorAll("[data-lang]").forEach(function(x){x.classList.toggle("active",x.dataset.lang===state.lang);});
- document.getElementById("notes-toggle").textContent=state.notes?L("HIDE NOTES","メモを隠す"):L("SHOW NOTES","構成メモ");
- document.getElementById("rail-toggle").textContent=document.getElementById("app").classList.contains("no-rail")?L("SHOW PAGES","ページ一覧を表示"):L("HIDE PAGES","ページ一覧を隠す");
+  document.getElementById("rail-toggle").textContent=document.getElementById("app").classList.contains("no-rail")?L("SHOW PAGES","ページ一覧を表示"):L("HIDE PAGES","ページ一覧を隠す");
  var route=state.page==="pdp"?"/products/aux-"+state.product:ROUTES[state.page];
  document.getElementById("stage-breadcrumb").textContent="aux-global.com"+route+" / "+state.lang.toUpperCase();
- document.getElementById("app").classList.toggle("show-notes",state.notes);
- updateURL();
+  updateURL();
 }
 function navigate(page,product,anchor){
  if(!ROUTES[page])return;
@@ -436,7 +432,6 @@ function toast(message){var node=document.getElementById("demo-toast");node.text
 document.addEventListener("click",function(ev){
  var l=ev.target.closest("[data-lang]");
  if(l){state.lang=l.dataset.lang;render();return;}
- if(ev.target.closest("#notes-toggle")){state.notes=!state.notes;render();return;}
  if(ev.target.closest("#rail-toggle")){document.getElementById("app").classList.toggle("no-rail");render();return;}
  var qp=ev.target.closest("[data-qty]");
  if(qp){state.qty=Math.max(1,state.qty+(qp.dataset.qty==="+"?1:-1));var n=document.getElementById("qty-number");if(n)n.textContent=state.qty;return;}
