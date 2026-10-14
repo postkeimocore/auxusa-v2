@@ -569,3 +569,136 @@ html.site-only .preview-layout{display:block;min-height:100vh;grid-template-colu
 html.site-only .stage{width:100%;min-width:0;margin:0;padding:0}
 html.site-only .site-frame{width:100%;max-width:none;min-height:100vh;margin:0;box-shadow:none;overflow:visible}
 html.site-only #site-app{width:100%;min-height:100vh}
+
+
+/* Editorial HOME direction: keep V1 information architecture and its 8px design grid. */
+.home-page .product-first-hero{min-height:688px;background:#f4f4f2}
+.home-page .product-first-visual{min-height:688px}
+.home-page .product-first-content{padding:var(--space-12) var(--page-gutter);background:#f4f4f2}
+.home-page .product-first-content .page-display{font-size:var(--fs-h1);line-height:var(--lh-h1);max-width:480px}
+.home-page .product-first-content .body-lg{max-width:424px}
+.home-page .product-first-content .btn-row{margin-top:40px}
+
+/* 01 — Product logic becomes a full editorial spread rather than another 50/50 split. */
+.home-page .home-manifesto{padding-top:144px;padding-bottom:144px;background:#fff}
+.home-page .home-manifesto .feature-showcase{display:flex;flex-direction:column;align-items:stretch;gap:64px}
+.home-page .home-manifesto .feature-showcase-copy{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr);column-gap:80px;row-gap:24px;align-items:start;width:100%}
+.home-page .home-manifesto .feature-showcase-copy .section-label{grid-column:1 / -1;margin:0}
+.home-page .home-manifesto .feature-showcase-copy .display-medium{grid-column:1;grid-row:2;font-size:var(--fs-h1);line-height:var(--lh-h1);max-width:688px}
+.home-page .home-manifesto .feature-showcase-copy .body-lg{grid-column:2;grid-row:2;align-self:end;max-width:392px;margin:0}
+.home-page .home-manifesto .feature-showcase-copy .btn-line{grid-column:2;grid-row:3;justify-self:start}
+.home-page .home-manifesto .feature-collage{width:100%;height:560px;grid-template-columns:1.38fr .62fr;grid-template-rows:1fr 1fr}
+.home-page .home-manifesto .feature-collage .photo img{filter:saturate(.72) contrast(.96)}
+
+/* 02 — Commerce stays orderly; section headings, supporting copy and image grids share a common axis. */
+.home-page .home-products{padding-top:112px;padding-bottom:128px;background:#f7f7f5}
+.home-page .home-categories{padding-top:128px;padding-bottom:144px;background:#fff}
+.home-page .home-products .section-head,
+.home-page .home-categories .section-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);column-gap:64px;row-gap:24px;align-items:end;margin-bottom:56px}
+.home-page .home-products .section-head .section-label,
+.home-page .home-categories .section-head .section-label{grid-column:1 / -1;margin:0}
+.home-page .home-products .section-head .display-medium,
+.home-page .home-categories .section-head .display-medium{grid-column:1}
+.home-page .home-products .section-head .body-md,
+.home-page .home-categories .section-head .body-md{grid-column:2;max-width:392px;margin:0 0 8px}
+.home-page .home-products .product-strip{gap:24px}
+.home-page .home-products .product-card .photo{aspect-ratio:4/5}
+.home-page .home-products .btn-row{margin-top:48px}
+.home-page .home-categories .product-collections{gap:24px}
+.home-page .home-categories .category-card .photo{height:504px}
+.home-page .home-categories .category-card h3{font-size:var(--fs-h3);line-height:var(--lh-h3)}
+.home-page .home-categories .category-card .card-meta{padding-top:24px}
+.home-page .home-categories .category-card .photo img{transition:transform .45s ease}
+.home-page .home-categories .category-card:hover .photo img{transform:scale(1.025)}
+
+/* 03 — Knife / Fork / AUX is the distinct brand typographic moment. */
+.home-page .home-third{padding-top:112px;padding-bottom:112px;background:#efefec}
+.home-page .home-third .split{grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:96px}
+.home-page .home-third .split .photo{height:608px}
+.home-page .home-third .split-copy .display-medium{font-size:80px;line-height:88px;max-width:520px}
+.home-page .home-third .split-copy .body-lg{max-width:392px;margin:32px 0 0}
+.home-page .home-third .split-copy .btn-row{margin-top:40px}
+
+/* 04 — Preserve Moments' asymmetrical hierarchy; enlarge the primary editorial image. */
+.home-page .home-moments-section{padding-top:144px;padding-bottom:144px;background:#fff}
+.home-page .home-moments-section .section-head{max-width:1040px;margin-bottom:64px}
+.home-page .home-moments-section .section-head .display-medium{max-width:944px}
+.home-page .home-moments-section .home-moments{grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);gap:32px;min-height:600px}
+.home-page .home-moments-section .home-moment-main{min-height:600px}
+.home-page .home-moments-section .home-moment-list{min-height:600px;gap:24px}
+.home-page .home-moments-section .home-moment-list article{grid-template-columns:144px minmax(0,1fr) 16px;gap:24px}
+.home-page .home-moments-section .home-moment-list article .photo{min-height:160px}
+.home-page .home-moments-section>.btn-row{margin-top:48px}
+
+/* 05 — Business inquiry becomes part of the brand rhythm, not an advertisement-like black band. */
+.home-page .home-business{min-height:552px;grid-template-columns:44% 56%;background:#efefec;color:var(--ink);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.home-page .home-business>div:first-child{padding:96px var(--page-gutter)}
+.home-page .home-business .photo{min-height:552px}
+.home-page .home-business h2{color:var(--ink);font-size:var(--fs-h2);line-height:var(--lh-h2);max-width:560px}
+.home-page .home-business .section-label{color:#666}
+.home-page .home-business .body-md{color:#555;max-width:448px}
+.home-page .home-business .btn-line{color:var(--ink);border-bottom-color:var(--ink)}
+.home-page .home-business .btn-line:hover{color:var(--ink)}
+
+/* 06 — Manufacturing closes the page with a larger, calmer image/type contrast. */
+.home-page .home-about{padding-top:144px;padding-bottom:160px;background:#fff}
+.home-page .home-about .split.reverse{grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:96px}
+.home-page .home-about .split .photo{height:608px}
+.home-page .home-about .split-copy .display-medium{font-size:var(--fs-h1);line-height:var(--lh-h1);max-width:560px}
+.home-page .home-about .split-copy .body-md{max-width:424px;margin:32px 0 0}
+.home-page .home-about .split-copy .btn-line{margin-top:32px}
+
+@media(max-width:1168px){
+ .home-page .product-first-hero,.home-page .product-first-visual{min-height:576px}
+ .home-page .product-first-content{padding:64px var(--space-6)}
+ .home-page .home-manifesto .feature-showcase-copy{column-gap:48px}
+ .home-page .home-manifesto .feature-collage{height:480px}
+ .home-page .home-third .split,.home-page .home-about .split.reverse{gap:48px}
+ .home-page .home-third .split-copy .display-medium{font-size:64px;line-height:72px}
+ .home-page .home-moments-section .home-moment-list article{grid-template-columns:120px minmax(0,1fr) 16px;gap:16px}
+ .home-page .home-business>div:first-child{padding:64px var(--page-gutter)}
+}
+@media(max-width:880px){
+ .home-page .home-manifesto,.home-page .home-moments-section,.home-page .home-about{padding-top:96px;padding-bottom:96px}
+ .home-page .home-products,.home-page .home-categories,.home-page .home-third{padding-top:80px;padding-bottom:80px}
+ .home-page .home-manifesto .feature-showcase-copy{grid-template-columns:1fr;row-gap:24px}
+ .home-page .home-manifesto .feature-showcase-copy .section-label,
+ .home-page .home-manifesto .feature-showcase-copy .display-medium,
+ .home-page .home-manifesto .feature-showcase-copy .body-lg,
+ .home-page .home-manifesto .feature-showcase-copy .btn-line{grid-column:1;grid-row:auto}
+ .home-page .home-manifesto .feature-showcase-copy .display-medium{font-size:var(--fs-h2);line-height:var(--lh-h2)}
+ .home-page .home-manifesto .feature-showcase{gap:40px}
+ .home-page .home-manifesto .feature-collage{height:400px}
+ .home-page .home-third .split,.home-page .home-about .split.reverse{grid-template-columns:1fr 1fr;gap:32px}
+ .home-page .home-third .split .photo,.home-page .home-about .split .photo{height:440px}
+ .home-page .home-third .split-copy .display-medium{font-size:48px;line-height:56px}
+ .home-page .home-about .split-copy .display-medium{font-size:var(--fs-h2);line-height:var(--lh-h2)}
+ .home-page .home-products .section-head,.home-page .home-categories .section-head{grid-template-columns:1fr;row-gap:16px}
+ .home-page .home-products .section-head .section-label,.home-page .home-categories .section-head .section-label,
+ .home-page .home-products .section-head .display-medium,.home-page .home-categories .section-head .display-medium,
+ .home-page .home-products .section-head .body-md,.home-page .home-categories .section-head .body-md{grid-column:1}
+ .home-page .home-categories .category-card .photo{height:320px}
+ .home-page .home-moments-section .home-moments{grid-template-columns:1fr;min-height:0}
+ .home-page .home-moments-section .home-moment-main{min-height:448px}
+ .home-page .home-moments-section .home-moment-list{min-height:0}
+ .home-page .home-business{grid-template-columns:1fr 1fr}
+ .home-page .home-business .photo{min-height:416px}
+}
+@media(max-width:600px){
+ .home-page .product-first-hero{min-height:0;grid-template-columns:1fr}
+ .home-page .product-first-visual{min-height:392px}
+ .home-page .product-first-content{padding:48px var(--page-gutter)}
+ .home-page .product-first-content .page-display{font-size:40px;line-height:48px}
+ .home-page .home-manifesto,.home-page .home-moments-section,.home-page .home-about{padding-top:80px;padding-bottom:80px}
+ .home-page .home-manifesto .feature-collage{height:336px}
+ .home-page .home-products .product-strip{gap:8px}
+ .home-page .home-categories .product-collections{gap:32px}
+ .home-page .home-categories .category-card .photo{height:328px}
+ .home-page .home-third .split,.home-page .home-about .split.reverse{grid-template-columns:1fr}
+ .home-page .home-third .split .photo,.home-page .home-about .split .photo{height:352px}
+ .home-page .home-third .split-copy .display-medium{font-size:48px;line-height:56px}
+ .home-page .home-moments-section .home-moment-main{min-height:392px}
+ .home-page .home-moments-section .home-moment-list article{grid-template-columns:112px minmax(0,1fr) 8px;gap:16px}
+ .home-page .home-business{grid-template-columns:1fr}
+ .home-page .home-business .photo{min-height:352px}
+}
