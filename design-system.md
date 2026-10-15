@@ -167,7 +167,7 @@ No full-width lines between sections (footer top, filter bar, MOMENTS product ro
 
 ## Navigation dropdowns (2026-10-15)
 
-`SHOP ▾ | COOK | SERVE | TABLE | MOMENTS | WHY AUX | SUPPORT ▾ | [FOR BUSINESS]`. SHOP opens SHOP ALL / AUX TONGS / AUX TOOLS; SUPPORT opens FAQ / SHIPPING / RETURNS / CONTACT. On hover or keyboard focus a full-width bar opens under the header with centred 12px uppercase links separated by short `--line` rules (KINTO reference). Clicking SHOP goes to Shop All, SUPPORT to FAQ. On narrow screens the header is menu icon / centred logo / `CART (0)`, and sub-links are listed under their parent inside the menu.
+`SHOP ▾ | COOK | SERVE | TABLE | MOMENTS | WHY AUX | SUPPORT ▾ | [FOR BUSINESS]`. SHOP opens SHOP ALL / Leye TONGS / Leye TOOLS; SUPPORT opens FAQ / SHIPPING / RETURNS / CONTACT. On hover or keyboard focus a full-width bar opens under the header with centred 12px uppercase links separated by short `--line` rules (KINTO reference). Clicking SHOP goes to Shop All, SUPPORT to FAQ. On narrow screens the header is menu icon / centred logo / `CART (0)`, and sub-links are listed under their parent inside the menu.
 
 ## HOME specifics (2026-10-15)
 
@@ -190,12 +190,12 @@ No image hero. Short intro (H1 `All Products` + one line) → COOK / SERVE / TAB
 
 ## Listing toolbar (2026-10-15, V1 composition)
 
-Used on every product listing (Shop All, COOK / SERVE / TABLE, AUX TONGS / AUX Tools). Parts follow the V1 wireframe; values follow the V2 system.
+Used on every product listing (Shop All, COOK / SERVE / TABLE, Leye TONGS / Leye Tools). Parts follow the V1 wireframe; values follow the V2 system.
 
 - A 64px bar between two `--line` hairlines (component lines), 40px above the grid.
 - Left: `FILTER` label (12px, index tracking, muted) + chips (40px high, `0 16px`, 1px `--muted` border; active = ink fill, white text).
 - Right: `SORT` label + select (Featured / Name A–Z / Name Z–A), same 40px control style with a small caret.
-- Filters use the dimension the page does not already fix: Shop All and family pages filter by COOK / SERVE / TABLE; collection pages filter by AUX TONGS / AUX TOOLS. Only options that exist in the list are shown. Filter and sort reset when the page changes.
+- Filters use the dimension the page does not already fix: Shop All and family pages filter by COOK / SERVE / TABLE; collection pages filter by Leye TONGS / Leye TOOLS. Only options that exist in the list are shown. Filter and sort reset when the page changes.
 - Family pages keep their image hero (it carries the appeal before the list); the `PRODUCT FAMILY / N ITEMS` label is removed.
 
 ## PDP comparison carousel (2026-10-15)
@@ -236,7 +236,7 @@ After the comparison carousel. V1 composition: rating overview on the left (scor
 - Knife. Fork. AUX.: parallax close-up (see below). THE AUX DIFFERENCE copy (heading, text, button) uses the site-wide scroll reveal.
 - A button that follows a grid of cards is centred (`.btn-row.is-centred`): HOME featured products, PDP related tools, WHY AUX explore.
 - MOMENTS jump boxes are 16:9. Product rows alternate alignment for rhythm: centre (Everyday) / left (Together) / centre (Hosting) / right (Special occasions).
-- AUX TONGS / AUX Tools: hero, then directly the listing toolbar and grid (no intermediate heading).
+- Leye TONGS / Leye Tools: hero, then directly the listing toolbar and grid (no intermediate heading).
 
 ## Parallax close-up for full-width photos (2026-10-15)
 
@@ -285,3 +285,5 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 
 - `BRAND` sits after WHY AUX in the header with a dropdown of the ten AUX Co., Ltd. brands (tighter 16px item padding so they fit one line); each jumps to its row on the new **Brands** page (`/pages/brand`, sample after aux-ltd.co.jp/brand). Rows: photo left (16:9); brand mark (Leye) or serif name, one line and a `More` outline button centred on the right. Brand sub-pages are not built yet. The footer DISCOVER group lists Brands.
 - **Product names use the Leye brand on every URL (2026-10-15, client decision):** `Leye Fingertip Tongs` etc. in `v2-data.js` and the HOME hero slides. The hero rail shows the name without the brand prefix. The logo variants (`?logo=leye`, `?logo=leye-type`) only swap the header logo and are not maintained further.
+
+- Product family names and the PDP category label use Leye as well (2026-10-15): `Leye TONGS`, `Leye Tools`, `Leye / TONGS`.

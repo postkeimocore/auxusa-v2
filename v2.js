@@ -20,7 +20,7 @@ var state={
 };
 var PAGES=[
   {group:"START",pages:[["home","HOME"]]},
-  {group:"PRODUCT DISCOVERY",pages:[["shop","SHOP ALL"],["cook","COOK"],["serve","SERVE"],["table","TABLE"],["tongs","AUX TONGS"],["tools","AUX TOOLS"],["pdp","PRODUCT DETAIL"]]},
+  {group:"PRODUCT DISCOVERY",pages:[["shop","SHOP ALL"],["cook","COOK"],["serve","SERVE"],["table","TABLE"],["tongs","Leye TONGS"],["tools","Leye TOOLS"],["pdp","PRODUCT DETAIL"]]},
   {group:"MOMENTS",pages:[["moments","MOMENTS"]]},
   {group:"FOR BUSINESS",pages:[["business","FOR BUSINESS"]]},
   {group:"BRAND",pages:[["why","WHY AUX"],["brand","BRANDS"]]},
@@ -45,7 +45,7 @@ function categoryCards(){
   '<div class="card-meta"><h3>'+c[0].toUpperCase()+'</h3><span class="arrow">'+arw("arw-long")+'</span></div><p>'+L(c[2],c[3])+'</p></article>';}).join("")+'</div>';
 }
 /* Product listing toolbar — V1 composition (FILTER chips left, SORT right) in the V2 system.
-   kind: "use" filters by COOK/SERVE/TABLE, "family" by AUX TONGS / AUX TOOLS. */
+   kind: "use" filters by COOK/SERVE/TABLE, "family" by Leye TONGS / Leye TOOLS. */
 function filterList(list,kind){
  var f=state.filter||"all";
  var out=f==="all"?list.slice():list.filter(function(p){return kind==="use"?p.uses.indexOf(f)>-1:p.family===f;});
@@ -55,7 +55,7 @@ function filterList(list,kind){
 }
 function listingToolbar(list,kind){
  var f=state.filter||"all";
- var opts=kind==="use"?[["cook","COOK"],["serve","SERVE"],["table","TABLE"]]:[["tongs","AUX TONGS"],["tools","AUX TOOLS"]];
+ var opts=kind==="use"?[["cook","COOK"],["serve","SERVE"],["table","TABLE"]]:[["tongs","Leye TONGS"],["tools","Leye TOOLS"]];
  opts=opts.filter(function(o){return list.some(function(p){return kind==="use"?p.uses.indexOf(o[0])>-1:p.family===o[0];});});
  var chips=[["all",L("All","すべて")]].concat(opts);
  var sorts=[["featured",L("Featured","おすすめ順")],["az",L("Name A–Z","名前順 A–Z")],["za",L("Name Z–A","名前順 Z–A")]];
@@ -129,7 +129,7 @@ function appHeader(){
   return '<div class="nav-item has-sub sub-'+id+(current===id?' active':'')+'"><button type="button" class="nav-parent'+(current===id?' active':'')+'" data-go="'+go+'" aria-haspopup="true">'+label+'<span class="nav-caret" aria-hidden="true"></span></button>'+
   '<div class="nav-sub" role="menu">'+links.map(function(x){return '<button type="button" role="menuitem" data-go="'+x[0]+'"'+(x[2]?' data-anchor="'+x[2]+'"':'')+(state.page===x[0]&&!x[2]?' class="active"':'')+'>'+x[1]+'</button>';}).join("")+'</div></div>';
  }
- var navh=drop("shop","SHOP","shop",[["shop","SHOP ALL"],["tongs","AUX TONGS"],["tools","AUX TOOLS"]])+
+ var navh=drop("shop","SHOP","shop",[["shop","SHOP ALL"],["tongs","Leye TONGS"],["tools","Leye TOOLS"]])+
   item("cook","COOK")+item("serve","SERVE")+item("table","TABLE")+item("moments","MOMENTS")+item("why","WHY AUX")+
   drop("brand","BRAND","brand",BRANDS.map(function(b){return ["brand",b.name.toUpperCase(),b.id];}))+
   drop("support","SUPPORT","faq",[["faq","FAQ"],["shipping","SHIPPING"],["returns","RETURNS"],["privacy","PRIVACY POLICY"],["contact","CONTACT"]])+
@@ -149,7 +149,7 @@ function footer(){
  function grp(title,items){return '<div class="footer-group"><b>'+title+'</b>'+items.map(function(x){return '<button type="button" data-go="'+x[0]+'">'+x[1]+'</button>';}).join("")+'</div>';}
  return '<footer class="site-footer"><div class="footer-columns">'+
  '<div><img class="footer-logo-image" src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="175" height="20"><p class="footer-intro">'+L("Tools that quietly support the meal, the people and the moments around the table.","食事と人、食卓を囲む時間を静かに支える道具。")+'</p></div>'+
- '<div class="footer-links">'+grp("SHOP",[["shop","Shop All"],["tongs","AUX TONGS"],["tools","AUX Tools"],["cook","COOK"],["serve","SERVE"],["table","TABLE"]])+
+ '<div class="footer-links">'+grp("SHOP",[["shop","Shop All"],["tongs","Leye TONGS"],["tools","Leye Tools"],["cook","COOK"],["serve","SERVE"],["table","TABLE"]])+
  grp("DISCOVER",[["moments","MOMENTS"],["why","WHY AUX"],["brand","BRANDS"],["business","FOR BUSINESS"]])+
  grp("SUPPORT",[["faq","FAQ"],["shipping","Shipping"],["returns","Returns"],["privacy","Privacy Policy"],["contact","Contact"]])+'</div>'+
  '</div><div class="footer-bottom"><span>© 2026 AUX Co., Ltd. All rights reserved.</span></div></footer>';
@@ -294,7 +294,7 @@ function collection(id){
 function family(kind){
  var isT=kind==="tongs";var list=D.products.filter(function(p){return p.family===kind;});
  return '<div class="collection-banner"><div class="detail-copy">'+
- '<h1 class="page-display">'+(isT?"AUX TONGS":"AUX Tools")+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","「つかむ」動作の違いに合わせた11種類のトング。"):L("Small tools that bring thoughtfulness to everyday kitchen jobs.","毎日の小さな仕事を助ける2種類のキッチンツール。"))+'</p></div>'+
+ '<h1 class="page-display">'+(isT?"Leye TONGS":"Leye Tools")+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","「つかむ」動作の違いに合わせた11種類のトング。"):L("Small tools that bring thoughtfulness to everyday kitchen jobs.","毎日の小さな仕事を助ける2種類のキッチンツール。"))+'</p></div>'+
  photo(isT?"product-lineup-warm.webp":"product-pair-warm.webp","Family image / provisional")+'</div>'+
  '<section class="site-section compact">'+
  listingToolbar(list,"use")+productGrid(filterList(list,"use"))+'</section>';
@@ -403,7 +403,7 @@ function pdp(){
   ["product-tomato-scale.webp","Size and proportion","サイズと距離感","Sized to suit the food and the dish.","扱う食材と器に合わせた、ちょうどよいサイズ。"]
  ];
  return '<div class="pdp-layout">'+pdpGallery(p)+
- '<div class="pdp-buy">'+eyebrow("AUX / "+(p.family==="tongs"?"TONGS":"TOOLS"))+
+ '<div class="pdp-buy">'+eyebrow("Leye / "+(p.family==="tongs"?"TONGS":"TOOLS"))+
  '<h1>'+p.name+'</h1>'+
  '<p class="body-md">'+L(p.desc[0],p.desc[1])+'</p>'+
   '<div class="pdp-price">$20.00</div>'+

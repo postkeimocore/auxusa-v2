@@ -45,8 +45,8 @@ The site is **English-first**. Japanese is a mirror intended to help explain str
 3. COOK
 4. SERVE
 5. TABLE
-6. AUX TONGS
-7. AUX Tools
+6. Leye TONGS
+7. Leye Tools
 8. PRODUCT DETAIL (shared product template for all 13 items)
 
 ### Discovery
@@ -104,7 +104,7 @@ The UI does not contain the final photographed product assets. Source imagery is
 ## Product information
 
 13 working names (product names carry the **Leye** brand since 2026-10-15, e.g. `Leye Serving Tongs`):
-11 AUX TONGS and 2 AUX Tools. COOK/SERVE/TABLE overlap by use, and are not exclusive product families.
+11 Leye TONGS and 2 Leye Tools (family names renamed from AUX on 2026-10-15). COOK/SERVE/TABLE overlap by use, and are not exclusive product families.
 
 Product names and product-specific specifications, inventory, shipping, import duties, legal terms and photo accuracy remain subject to client confirmation. All product cards and PDPs temporarily use **$20.00** as a layout price, at the client’s request. Review placeholders: **2026-10-15 (user decision)** the PDP shows a Customer reviews section with three bracketed placeholders in the V1 composition (`[Verified buyer]`, `[Date]`, `[Review title]`, `[Customer review text]`, score `— / 5`). No invented names, dates, scores or review text are shown as real data; replace with the review app's data at implementation.
 
