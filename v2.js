@@ -98,8 +98,6 @@ function productStrip(ids){
 }
 /* Logo variants for client comparison: ?logo=leye (leye.html) or ?logo=leye-type (leye-type.html) swap the header mark. The URL keeps the parameter while browsing. */
 var LOGO=new URLSearchParams(location.search).get("logo")||"";
-/* On the leye variants the product names carry the Leye brand instead of AUX. */
-if(/^leye/.test(LOGO))D.products.forEach(function(p){p.name=p.name.replace(/^AUX /,"Leye ");});
 /* AUX Co., Ltd. brands (sample page modelled on aux-ltd.co.jp/brand). Sub-pages are not built yet. */
 var BRANDS=[
  {id:"leye",name:"Leye",jp:"Leye",logo:"./assets/leye-logo.svg",photo:"cook-pasta.webp",copy:["Ideas that keep everyday kitchen work moving, so there is more time for what you enjoy.","好きに使える時間のために、テキパキはかどるアイデアを。暮らし目線のひと工夫、Leye"]},
@@ -157,14 +155,13 @@ function footer(){
  '</div><div class="footer-bottom"><span>© 2026 AUX Co., Ltd. All rights reserved.</span></div></footer>';
 }
 var HERO_SLIDES=[
- {id:"fingertip",image:"small-food-transfer.webp",title:"AUX Fingertip Tongs",jpTitle:"AUX ゆびさきトング",copy:"A thoughtful grip for small foods and small movements.",jpCopy:"小さな食材や、食卓での繊細な動きに。"},
- {id:"noodle",image:"cook-pasta.webp",title:"AUX Noodle Tongs",jpTitle:"AUX しっかりめんトング",copy:"Lift a full portion, down to the last strand.",jpCopy:"ひと束から、最後の一本まで。"},
- {id:"serving",image:"serve-salad.webp",title:"AUX Serving Tongs",jpTitle:"AUX ゆびさきサーバートング",copy:"From a shared dish to the plate, in one natural movement.",jpCopy:"大皿から取り皿へ、自然な動きで。"}
+ {id:"fingertip",image:"small-food-transfer.webp",title:"Leye Fingertip Tongs",jpTitle:"Leye ゆびさきトング",copy:"A thoughtful grip for small foods and small movements.",jpCopy:"小さな食材や、食卓での繊細な動きに。"},
+ {id:"noodle",image:"cook-pasta.webp",title:"Leye Noodle Tongs",jpTitle:"Leye しっかりめんトング",copy:"Lift a full portion, down to the last strand.",jpCopy:"ひと束から、最後の一本まで。"},
+ {id:"serving",image:"serve-salad.webp",title:"Leye Serving Tongs",jpTitle:"Leye ゆびさきサーバートング",copy:"From a shared dish to the plate, in one natural movement.",jpCopy:"大皿から取り皿へ、自然な動きで。"}
 ];
 /* HOME hero. All three slides are stacked and cross-dissolve; the active photo slowly
    zooms in. The pager is three vertical bars: the active bar fills with ink over the slide
    interval (3s) and the hero advances when it is full (paused on hover). */
-if(/^leye/.test(LOGO))HERO_SLIDES.forEach(function(h){h.title=h.title.replace(/^AUX /,"Leye ");h.jpTitle=h.jpTitle.replace(/^AUX /,"Leye ");});
 function heroHTML(){
  var hi=Math.max(0,Math.min(2,state.heroIndex||0));
  return '<section class="photo-hero" aria-label="'+L("Featured products","注目の商品")+'">'+
@@ -174,7 +171,7 @@ function heroHTML(){
     '<p class="photo-hero-copy">'+L(h.copy,h.jpCopy)+'</p>'+
     '<button type="button" class="btn-outline on-photo has-arrow" data-product="'+h.id+'"'+(i===hi?'':' tabindex="-1"')+'>'+L("View product","商品を見る")+'</button></div>';}).join("")+
   '</div>'+
-  '<div class="photo-hero-rail"><div class="photo-hero-names" aria-hidden="true">'+HERO_SLIDES.map(function(h,i){return '<div class="photo-hero-name'+(i===hi?' is-active':'')+'" data-slide="'+i+'">'+productBy(h.id).name.replace(/^AUX /,"")+'</div>';}).join("")+'</div>'+
+  '<div class="photo-hero-rail"><div class="photo-hero-names" aria-hidden="true">'+HERO_SLIDES.map(function(h,i){return '<div class="photo-hero-name'+(i===hi?' is-active':'')+'" data-slide="'+i+'">'+productBy(h.id).name.replace(/^(AUX|Leye) /,"")+'</div>';}).join("")+'</div>'+
    '<div class="photo-hero-pager"><span class="photo-hero-count">0'+(hi+1)+' / 03</span>'+
    '<div class="photo-hero-bars" role="group" aria-label="'+L("Featured products","注目の商品")+'">'+HERO_SLIDES.map(function(s,i){
      return '<button type="button" class="hero-bar'+(i===hi?' active':'')+'" data-hero-index="'+i+'" aria-label="Show featured product '+(i+1)+' of 3" aria-pressed="'+(i===hi)+'"><span></span></button>';
