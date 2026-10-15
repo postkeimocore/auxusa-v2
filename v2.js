@@ -307,7 +307,8 @@ function editorialOpening(image,title,lead,extra){
  '<section class="site-section editorial-intro"><p class="body-lg">'+lead+'</p>'+(extra||"")+'</section>';
 }
 function chapter(o){
- var copy='<div class="chapter-copy"><div class="chapter-head">'+eyebrow(o.label||"")+'<h2 class="display-medium">'+o.title+'</h2></div>'+
+ var num=o.num?'<span class="chapter-num" aria-hidden="true">'+o.num+'</span>':'';
+ var copy='<div class="chapter-copy"><div class="chapter-head">'+eyebrow(o.label||"")+(o.layout==="wide"?'':num)+'<h2 class="display-medium">'+o.title+'</h2>'+(o.layout==="wide"?num:'')+'</div>'+
   '<div class="chapter-text">'+(o.lead?'<p class="body-lg">'+o.lead+'</p>':'')+(o.body?'<p class="body-md">'+o.body+'</p>':'')+
   (o.cta?'<div class="btn-row">'+o.cta+'</div>':'')+'</div></div>';
  var inner=o.layout==="wide"?'<div class="chapter-bleed">'+photo(o.photo,"")+'</div>'+copy:
@@ -318,9 +319,9 @@ function moments(){
  return '<div class="brand-page">'+
  editorialOpening("serving-salmon.webp",L("For the moments<br>around the table.","食卓を囲む、<br>4つの時間。"),
   L("Everyday meals, shared time, welcoming people and occasions worth celebrating. Find a tool by the moment—not only by the task.","何気ない食事、大切な人との食事、おもてなし、特別な日。動作だけでなく、過ごす時間を入口に。"),
-  '<div class="moment-jumps has-photos">'+D.moments.map(function(m){return '<button type="button" data-anchor="'+m.id+'" style="background-image:url('+img(m.photo)+')"><span>'+m.title+'</span>'+arw("arw-down")+'</button>';}).join("")+'</div>')+
+  '<div class="moment-jumps has-photos">'+D.moments.map(function(m,i){return '<button type="button" data-anchor="'+m.id+'" style="background-image:url('+img(m.photo)+')"><span>'+m.title+'</span><span class="jump-foot"><span class="jump-num">0'+(i+1)+'/</span>'+arw("arw-down")+'</span></button>';}).join("")+'</div>')+
  D.moments.map(function(m,i){
-  return chapter({id:m.id,layout:i%2?"offset":"wide",reverse:i===3,photo:m.photo,title:m.title,lead:m.strap,body:L(m.body[0],m.body[1]),
+  return chapter({id:m.id,num:"0"+(i+1)+"/",layout:i%2?"offset":"wide",reverse:i===3,photo:m.photo,title:m.title,lead:m.strap,body:L(m.body[0],m.body[1]),
    extra:'<div class="moment-products'+(i===1?' align-left':i===3?' align-right':'')+'"><div class="moment-products-heading">'+eyebrow(L("Tools for this moment","この時間に合う道具"))+
     '</div>'+
     '<div class="moment-related-grid">'+m.products.map(function(id){return card(productBy(id));}).join("")+'</div></div>'});
@@ -342,6 +343,28 @@ function bizGallery(id){
   '<button class="kinto-arrow next" type="button" data-biz-step="1" aria-label="Next image">'+arw()+'</button></div>'+
   '<div class="kinto-dots" role="group" aria-label="Photos">'+shots.map(function(f,i){return '<button type="button" class="'+(i===0?'active':'')+'" data-biz-index="'+i+'" aria-label="Image '+(i+1)+'" aria-pressed="'+(i===0)+'"><span></span></button>';}).join("")+'</div></div>';
 }
+function pdpShow(i){
+ var g=document.querySelector(".kinto-gallery");if(!g)return;
+ var thumbs=g.querySelectorAll(".kinto-thumb"),n=thumbs.length;if(!n)return;
+ i=(i+n)%n;state.galleryIndex=i;
+ var main=g.querySelector(".kinto-main img");if(main)main.src=thumbs[i].querySelector("img").getAttribute("src");
+ thumbs.forEach(function(t,k){t.classList.toggle("active",k===i);t.setAttribute("aria-pressed",String(k===i));});
+ g.querySelectorAll(".kinto-dots button").forEach(function(b,k){b.classList.toggle("active",k===i);b.setAttribute("aria-pressed",String(k===i));});
+}
+/* Photo carousels (PDP gallery, FOR BUSINESS sectors) advance every 3s while on screen;
+   paused on hover, for 3s after a manual change, and for reduced motion. */
+var AUTO_MS=3000;
+function holdGallery(el){var g=el.closest(".kinto-gallery,.biz-gallery");if(g)g.dataset.holdUntil=String(Date.now()+AUTO_MS);}
+setInterval(function(){
+ if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ var now=Date.now(),vh=window.innerHeight||0;
+ document.querySelectorAll(".kinto-gallery,.biz-gallery").forEach(function(g){
+  if(g.matches(":hover")||Number(g.dataset.holdUntil||0)>now)return;
+  var r=g.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;
+  if(g.classList.contains("kinto-gallery"))pdpShow((state.galleryIndex||0)+1);
+  else bizShow(g,Number(g.dataset.index||0)+1);
+ });
+},AUTO_MS);
 function bizShow(g,i){
  var shots=BIZ_PHOTOS[g.dataset.biz]||[];if(!shots.length)return;
  i=(i+shots.length)%shots.length;g.dataset.index=i;
@@ -356,7 +379,7 @@ function business(){
  photo("serving-salmon.webp","")+'</div>'+
  '<section class="site-section compact">'+sectionHead("",L("Made for your place.","それぞれの現場に。"),
  L("Explore kitchen tools and tableware for hospitality, events and retail.","レストラン、ホテル、カフェ、イベント、小売など幅広い現場に。"))+
- '<div class="moment-jumps has-photos cols-5">'+D.businesses.map(function(b){return '<button type="button" data-anchor="'+b.id+'" style="background-image:url('+img(b.photo)+')"><span>'+b.title+'</span>'+arw("arw-down")+'</button>';}).join("")+'</div></section>'+
+ '<div class="moment-jumps has-photos cols-5">'+D.businesses.map(function(b){return '<button type="button" data-anchor="'+b.id+'" style="background-image:url('+img(b.photo)+')"><span>'+b.title+'</span><span class="jump-foot">'+arw("arw-down")+'</span></button>';}).join("")+'</div></section>'+
  D.businesses.map(function(b,i){return '<section class="site-section '+(i%2?"mist":"")+'" id="anchor-'+b.id+'"><div class="business-detail '+(i%2?"reverse":"")+'">'+bizGallery(b.id)+
  '<div><h2 class="display-medium">'+b.title+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
  '<div class="business-related">'+eyebrow(L("Suggested tools","おすすめの道具"))+'<ul>'+b.products.map(function(id){var p=productBy(id);return '<li><button type="button" data-product="'+id+'">'+photo(p.image,"")+'<span>'+p.name+'</span>'+arw()+'</button></li>';}).join("")+'</ul></div>'+
@@ -681,7 +704,7 @@ document.addEventListener("click",function(ev){
  if(l){state.lang=l.dataset.lang;render();return;}
  if(ev.target.closest("#rail-toggle")){document.getElementById("app").classList.toggle("no-rail");render();return;}
  var bz=ev.target.closest("[data-biz-step],[data-biz-index]");
- if(bz){var g=bz.closest(".biz-gallery");if(g){var cur=Number(g.dataset.index||0);bizShow(g,bz.dataset.bizIndex!==undefined?Number(bz.dataset.bizIndex):cur+Number(bz.dataset.bizStep));}return;}
+ if(bz){var g=bz.closest(".biz-gallery");if(g){var cur=Number(g.dataset.index||0);bizShow(g,bz.dataset.bizIndex!==undefined?Number(bz.dataset.bizIndex):cur+Number(bz.dataset.bizStep));holdGallery(bz);}return;}
  var step=ev.target.closest("[data-compare-step]");
  if(step){var t=document.getElementById("compare-track");if(t&&t.firstElementChild){var cw=t.firstElementChild.getBoundingClientRect().width;t.scrollBy({left:Number(step.dataset.compareStep)*cw*Math.max(1,Math.floor(t.clientWidth/cw+.01)),behavior:"smooth"});}return;}
  var chip=ev.target.closest("[data-list-filter]");
@@ -689,9 +712,9 @@ document.addEventListener("click",function(ev){
  var chosenHero=ev.target.closest("[data-hero-index]");
  if(chosenHero){showHero(Number(chosenHero.dataset.heroIndex)||0);return;}
  var galleryIndex=ev.target.closest("[data-gallery-index]");
- if(galleryIndex){state.galleryIndex=parseInt(galleryIndex.dataset.galleryIndex,10)||0;render();return;}
+ if(galleryIndex){pdpShow(parseInt(galleryIndex.dataset.galleryIndex,10)||0);holdGallery(galleryIndex);return;}
  var galleryStep=ev.target.closest("[data-gallery-step]");
- if(galleryStep){var gn=GALLERY_EXTRA.length+2;state.galleryIndex=(state.galleryIndex+(galleryStep.dataset.galleryStep==="1"?1:-1)+gn)%gn;render();return;}
+ if(galleryStep){pdpShow((state.galleryIndex||0)+(galleryStep.dataset.galleryStep==="1"?1:-1));holdGallery(galleryStep);return;}
  var qp=ev.target.closest("[data-qty]");
  if(qp){state.qty=Math.max(1,state.qty+(qp.dataset.qty==="+"?1:-1));var n=document.getElementById("qty-number");if(n)n.textContent=state.qty;return;}
  var prod=ev.target.closest("[data-product]");
