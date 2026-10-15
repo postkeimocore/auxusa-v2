@@ -995,8 +995,8 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .moment-jumps.has-photos button:before{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 40%,transparent);transition:background .2s}
 .moment-jumps.has-photos button:hover:before{background:color-mix(in srgb,var(--ink) 56%,transparent)}
 .moment-jumps.has-photos button>*{position:relative;z-index:1}
-#site-app .moment-jumps.has-photos button span{font-family:var(--font-editorial);font-size:16px;line-height:24px;letter-spacing:var(--tracking-heading);color:var(--white)}
-.moment-jumps.has-photos .arw{align-self:flex-end}
+#site-app .moment-jumps.has-photos button>span:first-child{font-family:var(--font-editorial);font-size:16px;line-height:24px;letter-spacing:var(--tracking-heading);color:var(--white)}
+.moment-jumps.has-photos .jump-foot .arw{margin-left:auto}
 
 /* MOMENTS product rows: label and cards centred (cards keep the 4-column width). */
 .moment-products-heading{justify-content:center}
@@ -1039,7 +1039,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 }
 /* MOMENTS jump boxes: title trimmed to its cap height so its visible top-left inset (24 / 16)
    mirrors the arrow's visible bottom-right inset (24 / 16) on the diagonal. */
-#site-app .moment-jumps.has-photos button span{text-box:trim-both cap alphabetic}
+#site-app .moment-jumps.has-photos button>span:first-child{text-box:trim-both cap alphabetic}
 
 /* ============================================================
    PDP refinements (2026-10-15)
@@ -1150,3 +1150,14 @@ html.site-only #site-app{width:100%;min-height:100vh}
 @media(max-width:880px){.brand-row{grid-template-columns:minmax(0,1fr);gap:32px}.brand-list{gap:64px}}
 /* The Leye brand keeps its own casing inside uppercase labels and chips. */
 .brand-word{text-transform:none}
+
+/* Jump boxes (MOMENTS, FOR BUSINESS): 16px inset on every side. The footer row carries the
+   numeral bottom-left (MOMENTS) and the arrow bottom-right, mirroring the title top-left. */
+.moment-jumps.has-photos button{padding:16px}
+.moment-jumps.has-photos .jump-foot{display:flex;align-items:flex-end;justify-content:space-between;align-self:stretch}
+#site-app .moment-jumps.has-photos .jump-num{font-family:var(--font-editorial);font-size:16px;line-height:24px;letter-spacing:var(--tracking-heading);color:var(--white);text-box:trim-both cap alphabetic}
+/* MOMENTS chapter numerals: large serif in a light tint of muted (decorative; derived from the
+   colour tokens like the photo scrims). Below the heading on wide chapters, above it on offset ones. */
+#site-app .chapter-num{display:block;font-family:var(--font-editorial);font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--tracking-display);color:color-mix(in srgb,var(--muted) 50%,var(--white))}
+.chapter.is-wide .chapter-num{margin-top:8px}
+.chapter.is-offset .chapter-num{margin-bottom:8px}

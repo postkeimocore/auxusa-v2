@@ -244,7 +244,7 @@ Every full-width photo (MOMENTS / WHY AUX openings, wide chapters such as THE TH
 
 ## Other refinements (2026-10-15)
 
-- MOMENTS jump boxes: titles in the serif role at H3 size; the down arrow sits bottom-right; the title is trimmed to its cap height (`text-box: trim-both cap alphabetic`) so its visible inset top-left (24 / 16) mirrors the arrow's inset bottom-right (24 / 16).
+- MOMENTS jump boxes: titles in the serif role at H3 size; the down arrow sits bottom-right; the title is trimmed to its cap height (`text-box: trim-both cap alphabetic`) so its visible inset top-left mirrors the arrow's inset bottom-right (16 / 16 since 2026-10-15, see below).
 - Down arrow `.arw-down` is drawn vertically (16×24, barb on the right) instead of a rotated right arrow.
 - WHY AUX: `Discover Fingertip Tongs` is `.btn-fill`; Design & Engineering item names use the serif role at H3 size; the text column is vertically centred against the photo.
 - MOMENTS rows aligned left / right (desktop ≥881px): the `TOOLS FOR THIS MOMENT` label sits in the free fourth column — right of the products (Together at the table), left of them and right-aligned (Special occasions). Below 881px it returns above the products.
@@ -290,3 +290,10 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - The word **Leye** keeps its casing inside uppercase labels, chips and menus (`.brand-word{text-transform:none}`; the BRAND dropdown lists `Leye` as written).
 
 - HOME copy (2026-10-15, client decision): category heading reads `COOK. SERVE. TABLE.`; the statement reads `Knife. Fork. Tongs.` (the TABLE page label follows: `KNIFE. FORK. TONGS.`).
+
+## MOMENTS numerals and gallery autoplay (2026-10-15)
+
+- Jump boxes (MOMENTS ×4, FOR BUSINESS ×5): 16px inset on every side, so title (top-left) and arrow (bottom-right) sit 16 / 16 from the edges.
+- MOMENTS chapters carry a serif numeral `01/`–`04/` at H1 size (48 / 56, display tracking) in a light tint of muted (`color-mix(muted 50%, white)`). Wide chapters (Everyday table, Hosting): numeral 8px below the heading. Offset chapters (Together at the table, Special occasions): numeral 8px above the heading, on the heading's left edge.
+- MOMENTS jump boxes repeat the numeral (serif 16 / 24, white) bottom-left, opposite the arrow, on the same 16px inset. FOR BUSINESS boxes have no numerals.
+- Photo galleries (PDP, FOR BUSINESS sectors) advance every 3 seconds and loop. They pause while hovered, wait one interval after a manual click, only run while on screen, and stay still under `prefers-reduced-motion`. Switching happens in place (no page re-render).
