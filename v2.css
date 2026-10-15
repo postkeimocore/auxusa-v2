@@ -1124,3 +1124,8 @@ html.site-only #site-app{width:100%;min-height:100vh}
 /* PDP comparison: four and a half cards show, so the next one signals more; the half card fades
    until the end of the list is reached. Steps move by four whole cards. */
 .compare-track:not(.at-end){-webkit-mask-image:linear-gradient(to right,var(--ink) calc(100% - 12%),transparent);mask-image:linear-gradient(to right,var(--ink) calc(100% - 12%),transparent)}
+
+/* Logo variant (?logo=leye): the stacked leye mark in ink, sized to the header height. */
+.site-wordmark img.logo-leye{width:auto;height:56px}
+@media(max-width:880px){.site-wordmark img.logo-leye{height:48px}}
+@media(max-width:880px){.site-wordmark{align-items:center}}
