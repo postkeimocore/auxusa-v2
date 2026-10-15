@@ -815,7 +815,8 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .site-menu .nav-parent{display:flex;align-items:center;gap:8px}
 .nav-caret{display:block;width:4px;height:4px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg)}
 .nav-item:hover .nav-caret,.nav-item:focus-within .nav-caret{transform:translateY(2px) rotate(-135deg)}
-.nav-sub{position:absolute;left:0;right:0;top:100%;z-index:30;display:none;justify-content:center;align-items:center;padding:24px var(--page-gutter);background:var(--white);border-bottom:1px solid var(--line)}
+/* The bar starts on the header's own bottom rule (top:100% of the padding box), so it redraws that rule. */
+.nav-sub{position:absolute;left:0;right:0;top:100%;z-index:30;display:none;justify-content:center;align-items:center;padding:24px var(--page-gutter);background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .nav-item:hover .nav-sub,.nav-item:focus-within .nav-sub{display:flex}
 .site-menu .nav-sub button{height:auto;padding:0 32px;font-size:12px;line-height:16px;letter-spacing:var(--tracking-eyebrow);color:var(--ink)}
 .site-menu .nav-sub button+button{border-left:1px solid var(--line)}
