@@ -294,13 +294,15 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 ## MOMENTS numerals and gallery autoplay (2026-10-15)
 
 - Jump boxes (MOMENTS ×4, FOR BUSINESS ×5): 16px inset on every side, so title (top-left) and arrow (bottom-right) sit 16 / 16 from the edges.
-- MOMENTS chapters carry a serif numeral `01/`–`04/` at H1 size (48 / 56, display tracking) in muted (the footer grey). Wide chapters (Everyday table, Hosting): numeral 8px below the heading. Offset chapters (Together at the table, Special occasions): numeral 8px above the heading, on the heading's left edge.
+- MOMENTS chapters carry a serif numeral `01/`–`04/` at H1 size (48 / 56, display tracking) in `--line` (#dddddb), used as ornament rather than running text; no new colour added. Wide chapters (Everyday table, Hosting): numeral 8px below the heading. Offset chapters (Together at the table, Special occasions): numeral 8px above the heading, on the heading's left edge.
 - MOMENTS jump boxes repeat the numeral (serif 16 / 24, white) bottom-left, opposite the arrow, on the same 16px inset. FOR BUSINESS boxes have no numerals.
 - Photo galleries (PDP, FOR BUSINESS sectors) advance every 3 seconds and loop. They pause while hovered, wait one interval after a manual click, only run while on screen, and stay still under `prefers-reduced-motion`. Switching happens in place (no page re-render).
 
 ## Hover, business columns, contact (2026-10-15)
 
-- Clickable photo cards and boxes (HOME category cards, product cards, HOME moments, MOMENTS / FOR BUSINESS jump boxes): on hover the photo zooms slowly to 108% (1.6s) and the card lifts 8px (0.4s). Keyboard focus does the same; reduced motion turns both off. Intentional exception: PDP comparison cards zoom only, because they form one ruled table inside a scroller.
+- Clickable photo cards and boxes (HOME category cards, product cards, HOME moments, MOMENTS / FOR BUSINESS jump boxes): on hover the photo zooms slowly to 108% (1.6s) and the card lifts 8px (0.4s). Keyboard focus does the same; reduced motion turns both off. Intentional exceptions (zoom only, no lift): PDP comparison cards, because they form one ruled table inside a scroller; MOMENTS / FOR BUSINESS jump boxes, because they tile edge to edge and a lifted box leaves a gap below it.
 - Jump-box arrows and numerals stay white.
 - FOR BUSINESS sectors: the copy column is as wide as its text (592px max, 45% on narrower screens) and the photo takes the rest, so copy and photo are 56px apart whichever side the photo is on; photos keep to the page edges.
 - Contact: the form spans the support content width (same as the policy tables). A required privacy-policy checkbox (16px, ink) sits above SEND MESSAGE; `Privacy Policy` links to the policy page.
+- Product items (product cards, FOR BUSINESS suggested-tool rows) have no hover underline.
+- Arrow hover: every clickable element with an arrow (buttons with arrows, line links, cards, jump boxes, gallery and comparison arrows, PDP shipping rows) wipes its arrow out and back in, in the arrow's own direction: right arrows left → right, down arrows top → bottom, mirrored previous arrows right → left (0.8s, once per hover; also on keyboard focus; off under reduced motion).
