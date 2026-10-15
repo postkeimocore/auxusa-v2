@@ -877,7 +877,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .arw-long{width:48px;--arw-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 16' fill='none' stroke='currentColor' stroke-width='1'%3E%3Cpath d='M0 8.5H47.3M47.3 8.5L40.6 2.6'/%3E%3C/svg%3E")}
 
 /* SHOP ALL (V1 structure): short intro, category doorways, filterable list, MOMENTS exit */
-.shop-intro .body-lg{margin:16px 0 0}
+.shop-intro .body-lg{margin:16px 0 0;max-width:800px}
 .site-section.shop-categories{padding-top:0}
 /* Listing toolbar — V1 composition: a 64px bar between two hairlines (component lines),
    FILTER label + chips on the left, SORT label + select on the right, 40px above the grid. */
