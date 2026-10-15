@@ -96,7 +96,7 @@ function productGrid(products){
 function productStrip(ids){
  return '<div class="product-strip">'+ids.map(function(id){return card(productBy(id));}).join("")+'</div>';
 }
-/* Logo variant for client comparison: ?logo=leye (or leye.html) swaps the header mark. The URL keeps the parameter while browsing. */
+/* Logo variants for client comparison: ?logo=leye (leye.html) or ?logo=leye-type (leye-type.html) swap the header mark. The URL keeps the parameter while browsing. */
 var LOGO=new URLSearchParams(location.search).get("logo")||"";
 function appHeader(){
  var shopPages=["shop","tongs","tools"],supportPages=["faq","shipping","returns","privacy","contact"];
@@ -113,7 +113,9 @@ function appHeader(){
  return '<header class="site-header">'+
  '<button type="button" class="site-menu-mobile" data-demo="nav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18"></path></svg></button>'+
  '<button class="site-wordmark" data-go="home" aria-label="AUX Home">'+
- (LOGO==="leye"?'<img class="logo-leye" src="./assets/leye-logo.svg" alt="leye" width="42" height="56">':'<img src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="152" height="17">')+'</button>'+
+ (LOGO==="leye"?'<img class="logo-leye" src="./assets/leye-logo.svg" alt="leye" width="42" height="56">':
+  LOGO==="leye-type"?'<img class="logo-leye-type" src="./assets/leye-typelogo.svg" alt="leye" width="67" height="32">':
+  '<img src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="152" height="17">')+'</button>'+
  '<nav class="site-menu" aria-label="Main navigation">'+navh+'</nav>'+
  '<div class="site-util"><button type="button" class="util-search" data-demo="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>'+
  '<button type="button" class="util-account" data-demo="account" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 20c.9-3.6 3.9-6 7.5-6s6.6 2.4 7.5 6"></path></svg></button>'+
