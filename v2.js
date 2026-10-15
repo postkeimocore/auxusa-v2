@@ -228,11 +228,11 @@ function home(){
  '<button type="button" class="btn-fill has-arrow" data-go="why">'+L("Why AUX","AUXについて")+'</button></div></section>'+
  '<section class="site-section compact mist home-products">'+sectionHead("",L("Tools worth reaching for.","代表商品を見る。"),L("A closer look at the tools and the jobs they are made for.","日常のさまざまな動作に寄り添う、代表的な4つの道具。"))+
  productStrip(featured)+'<div class="btn-row is-centred">'+boutline(L("Shop all products","商品一覧を見る"),"shop")+'</div></section>'+
- '<section class="site-section home-categories">'+sectionHead("",L("Cook. Serve. Table.","COOK / SERVE / TABLE"),L("Start with what you want to do, then discover the tools.","やりたいことから道具を探せる3つの入口。"))+
+ '<section class="site-section home-categories">'+sectionHead("",L("COOK. SERVE. TABLE.","COOK / SERVE / TABLE"),L("Start with what you want to do, then discover the tools.","やりたいことから道具を探せる3つの入口。"))+
  categoryCards()+'</section>'+
  '<section class="site-section mist home-third"><div class="split">'+photo("small-food-transfer.webp","","scroll-zoom")+
  '<div class="split-copy">'+eyebrow("THE THIRD UTENSIL")+
- '<h2 class="display-medium">Knife.<br>Fork.<br>AUX.</h2>'+
+ '<h2 class="display-medium">Knife.<br>Fork.<br>Tongs.</h2>'+
  '<p class="body-lg">'+L("A small tong considered as part of the table setting<br>—not only a tool kept in the kitchen.","調理だけでなく、<br>ナイフやフォークと並ぶ食卓の道具として。")+'</p>'+
  '<div class="btn-row">'+boutline(L("Explore the idea","TABLEの考え方を見る"),"why",'data-anchor="third"')+'</div></div></div></section>'+
  '<section class="site-section home-moments-section">'+sectionHead("MOMENTS",L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","何気ない日も、特別な日も。食卓の時間に合う道具を見つけてください。"),true)+
@@ -286,7 +286,7 @@ function collection(id){
  '<div class="featured-pair">'+featuredIds.map(function(x){return card(productBy(x));}).join("")+'</div></section>'+
  '<section class="site-section compact" id="anchor-products">'+listingToolbar(matches,"family")+productGrid(filterList(matches,"family"))+'</section>'+
  (id==="table"?'<section class="site-section mist"><div class="split">'+photo("small-food-transfer.webp","Fingertip at table / THE THIRD UTENSIL")+
- '<div>'+eyebrow("KNIFE. FORK. AUX.")+'<h2 class="display-medium">'+L("A new place at the table.","食卓に、新しい道具を。")+'</h2><p class="body-md">'+L("Fingertip Tongs feel at home beside the knife and fork.","ナイフやフォークの隣に、ゆびさきトングという新しい選択肢を。")+'</p>'+
+ '<div>'+eyebrow("KNIFE. FORK. TONGS.")+'<h2 class="display-medium">'+L("A new place at the table.","食卓に、新しい道具を。")+'</h2><p class="body-md">'+L("Fingertip Tongs feel at home beside the knife and fork.","ナイフやフォークの隣に、ゆびさきトングという新しい選択肢を。")+'</p>'+
  boutline(L("View Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div></div></section>':"")+
  whyBand(L("Precision made visible.","使いやすさの理由を、形から。"),L("The shape you feel in your hand begins with thoughtful design and precise metalworking.","道具の形と使い心地を支える、日本の金属加工技術。"))+
  note("V1 Collection hierarchy restored: hero → use-value trio → featured products → complete listing → About AUX. COOK/SERVE/TABLE can overlap.","V1のCollection構成：Hero→3つの使用価値→代表商品→一覧→About AUX。COOK/SERVE/TABLEは重複掲載可。")+'</section>';
@@ -604,7 +604,7 @@ function bindGallery(){
 }
 function bindCompare(){var t=document.getElementById("compare-track");if(t){t.addEventListener("scroll",updateCompare,{passive:true});updateCompare();}}
 var scatterQueued=false;
-/* Full-width photos and the Knife. Fork. AUX. photo: parallax close-up while scrolling.
+/* Full-width photos and the Knife. Fork. Tongs. photo: parallax close-up while scrolling.
    Progress runs from when the frame enters the viewport (or page top) until it has passed.
    Scale 100% → 150%; the image also lags downwards, never further than the scaled overflow. */
 var ZOOM_SELECTOR=".scroll-zoom,.chapter-bleed .photo,.editorial-hero .photo";

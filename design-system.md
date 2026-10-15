@@ -288,3 +288,5 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 
 - Product family names and the PDP category label use Leye as well (2026-10-15): `Leye TONGS`, `Leye Tools`, `Leye / TONGS`.
 - The word **Leye** keeps its casing inside uppercase labels, chips and menus (`.brand-word{text-transform:none}`; the BRAND dropdown lists `Leye` as written).
+
+- HOME copy (2026-10-15, client decision): category heading reads `COOK. SERVE. TABLE.`; the statement reads `Knife. Fork. Tongs.` (the TABLE page label follows: `KNIFE. FORK. TONGS.`).
