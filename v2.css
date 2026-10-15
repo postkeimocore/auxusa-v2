@@ -995,7 +995,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .moment-jumps.has-photos button:before{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 40%,transparent);transition:background .2s}
 .moment-jumps.has-photos button:hover:before{background:color-mix(in srgb,var(--ink) 56%,transparent)}
 .moment-jumps.has-photos button>*{position:relative;z-index:1}
-#site-app .moment-jumps.has-photos button>span:first-child{font-family:var(--font-editorial);font-size:16px;line-height:24px;letter-spacing:var(--tracking-heading);color:var(--white)}
+#site-app .moment-jumps.has-photos .jump-title{font-family:var(--font-editorial);font-size:16px;line-height:24px;letter-spacing:var(--tracking-heading);color:var(--white)}
 .moment-jumps.has-photos .jump-foot .arw{margin-left:auto}
 
 /* MOMENTS product rows: label and cards centred (cards keep the 4-column width). */
@@ -1039,7 +1039,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 }
 /* MOMENTS jump boxes: title trimmed to its cap height so its visible top-left inset (24 / 16)
    mirrors the arrow's visible bottom-right inset (24 / 16) on the diagonal. */
-#site-app .moment-jumps.has-photos button>span:first-child{text-box:trim-both cap alphabetic}
+#site-app .moment-jumps.has-photos .jump-title{text-box:trim-both cap alphabetic}
 
 /* ============================================================
    PDP refinements (2026-10-15)
@@ -1156,8 +1156,50 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .moment-jumps.has-photos button{padding:16px}
 .moment-jumps.has-photos .jump-foot{display:flex;align-items:flex-end;justify-content:space-between;align-self:stretch}
 #site-app .moment-jumps.has-photos .jump-num{font-family:var(--font-editorial);font-size:16px;line-height:24px;letter-spacing:var(--tracking-heading);color:var(--white);text-box:trim-both cap alphabetic}
-/* MOMENTS chapter numerals: large serif in a light tint of muted (decorative; derived from the
-   colour tokens like the photo scrims). Below the heading on wide chapters, above it on offset ones. */
-#site-app .chapter-num{display:block;font-family:var(--font-editorial);font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--tracking-display);color:color-mix(in srgb,var(--muted) 50%,var(--white))}
+/* MOMENTS chapter numerals: large serif in muted (the footer grey). Below the heading on wide
+   chapters, above it on offset ones. */
+#site-app .chapter-num{display:block;font-family:var(--font-editorial);font-size:var(--fs-h1);line-height:var(--lh-h1);letter-spacing:var(--tracking-display);color:var(--muted)}
 .chapter.is-wide .chapter-num{margin-top:8px}
 .chapter.is-offset .chapter-num{margin-bottom:8px}
+
+/* Jump boxes: the photo sits on its own layer (.jump-bg) so it can zoom; the scrim rides on it.
+   Title, numeral and arrow stay white. */
+.moment-jumps.has-photos button{overflow:visible}
+.moment-jumps.has-photos button:before{content:none}
+.moment-jumps.has-photos button>.jump-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.moment-jumps.has-photos .jump-bg>span{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
+.moment-jumps.has-photos .jump-bg:after{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 40%,transparent);transition:background .2s}
+.moment-jumps.has-photos button:hover .jump-bg:after{background:color-mix(in srgb,var(--ink) 56%,transparent)}
+#site-app .moment-jumps.has-photos .jump-foot,#site-app .moment-jumps.has-photos .jump-foot .arw{color:var(--white)}
+
+/* Clickable photo cards and boxes: the photo zooms in slowly and the card lifts 8px.
+   The lift uses `translate` so it never fights the scroll-reveal `transform`; while lifted, an 8px
+   strip (:after) keeps the old footprint hoverable so the card does not flicker at its lower edge.
+   The comparison cards zoom only: they form one ruled table inside a scroller. */
+#site-app .category-card,#site-app .product-card,#site-app .home-moment-main,#site-app .home-moment-list article,#site-app .moment-jumps.has-photos button{position:relative;transition:opacity .8s ease-out,transform .8s ease-out,translate .4s cubic-bezier(.2,.7,.2,1)}
+#site-app .home-moment-main{overflow:visible}
+.category-card .photo img,.product-card .photo img,.home-moment-main .photo img,.home-moment-list article .photo img,.compare-track article .photo img,.moment-jumps.has-photos .jump-bg>span{transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+@media(hover:hover){
+ #site-app .category-card:hover,#site-app .product-card:hover,#site-app .home-moment-main:hover,#site-app .home-moment-list article:hover,#site-app .moment-jumps.has-photos button:hover{translate:0 -8px}
+ .category-card:hover:after,.product-card:hover:after,.home-moment-main:hover:after,.home-moment-list article:hover:after,.moment-jumps.has-photos button:hover:after{content:"";position:absolute;left:0;right:0;top:100%;height:8px}
+ .category-card:hover .photo img,.product-card:hover .photo img,.home-moment-main:hover .photo img,.home-moment-list article:hover .photo img,.compare-track article:hover .photo img,.moment-jumps.has-photos button:hover .jump-bg>span{transform:scale(1.08)}
+}
+#site-app .category-card:focus-visible,#site-app .product-card:focus-visible,#site-app .home-moment-main:focus-visible,#site-app .home-moment-list article:focus-visible,#site-app .moment-jumps.has-photos button:focus-visible{translate:0 -8px}
+.category-card:focus-visible .photo img,.product-card:focus-visible .photo img,.home-moment-main:focus-visible .photo img,.home-moment-list article:focus-visible .photo img,.compare-track article:focus-visible .photo img,.moment-jumps.has-photos button:focus-visible .jump-bg>span{transform:scale(1.08)}
+@media(prefers-reduced-motion:reduce){
+ #site-app .category-card,#site-app .product-card,#site-app .home-moment-main,#site-app .home-moment-list article,#site-app .moment-jumps.has-photos button{translate:none!important}
+ .category-card .photo img,.product-card .photo img,.home-moment-main .photo img,.home-moment-list article .photo img,.compare-track article .photo img,.moment-jumps.has-photos .jump-bg>span{transform:none!important}
+}
+
+/* FOR BUSINESS sectors: the copy column is as wide as its text (592px max), so the gap between
+   copy and photo is the same 56px whichever side the photo is on. Photos keep to the page edges. */
+.business-detail{grid-template-columns:minmax(0,1fr) min(592px,45%)}
+.business-detail.reverse{grid-template-columns:min(592px,45%) minmax(0,1fr)}
+@media(max-width:552px){.business-detail,.business-detail.reverse{grid-template-columns:minmax(0,1fr)}}
+
+/* Contact: the form spans the support content width (as the policy tables do); privacy consent
+   is required before sending. */
+#site-app .contact-fields{max-width:none}
+.field.consent label{display:flex;align-items:flex-start;gap:8px;cursor:pointer}
+.field.consent input{flex:none;width:16px;height:16px;margin:4px 0 0;padding:0;accent-color:var(--ink)}
+.consent-link{padding:0;border:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:4px;cursor:pointer}

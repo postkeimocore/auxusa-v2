@@ -319,7 +319,7 @@ function moments(){
  return '<div class="brand-page">'+
  editorialOpening("serving-salmon.webp",L("For the moments<br>around the table.","食卓を囲む、<br>4つの時間。"),
   L("Everyday meals, shared time, welcoming people and occasions worth celebrating. Find a tool by the moment—not only by the task.","何気ない食事、大切な人との食事、おもてなし、特別な日。動作だけでなく、過ごす時間を入口に。"),
-  '<div class="moment-jumps has-photos">'+D.moments.map(function(m,i){return '<button type="button" data-anchor="'+m.id+'" style="background-image:url('+img(m.photo)+')"><span>'+m.title+'</span><span class="jump-foot"><span class="jump-num">0'+(i+1)+'/</span>'+arw("arw-down")+'</span></button>';}).join("")+'</div>')+
+  '<div class="moment-jumps has-photos">'+D.moments.map(function(m,i){return '<button type="button" data-anchor="'+m.id+'"><span class="jump-bg" aria-hidden="true"><span style="background-image:url('+img(m.photo)+')"></span></span><span class="jump-title">'+m.title+'</span><span class="jump-foot"><span class="jump-num">0'+(i+1)+'/</span>'+arw("arw-down")+'</span></button>';}).join("")+'</div>')+
  D.moments.map(function(m,i){
   return chapter({id:m.id,num:"0"+(i+1)+"/",layout:i%2?"offset":"wide",reverse:i===3,photo:m.photo,title:m.title,lead:m.strap,body:L(m.body[0],m.body[1]),
    extra:'<div class="moment-products'+(i===1?' align-left':i===3?' align-right':'')+'"><div class="moment-products-heading">'+eyebrow(L("Tools for this moment","この時間に合う道具"))+
@@ -379,7 +379,7 @@ function business(){
  photo("serving-salmon.webp","")+'</div>'+
  '<section class="site-section compact">'+sectionHead("",L("Made for your place.","それぞれの現場に。"),
  L("Explore kitchen tools and tableware for hospitality, events and retail.","レストラン、ホテル、カフェ、イベント、小売など幅広い現場に。"))+
- '<div class="moment-jumps has-photos cols-5">'+D.businesses.map(function(b){return '<button type="button" data-anchor="'+b.id+'" style="background-image:url('+img(b.photo)+')"><span>'+b.title+'</span><span class="jump-foot">'+arw("arw-down")+'</span></button>';}).join("")+'</div></section>'+
+ '<div class="moment-jumps has-photos cols-5">'+D.businesses.map(function(b){return '<button type="button" data-anchor="'+b.id+'"><span class="jump-bg" aria-hidden="true"><span style="background-image:url('+img(b.photo)+')"></span></span><span class="jump-title">'+b.title+'</span><span class="jump-foot">'+arw("arw-down")+'</span></button>';}).join("")+'</div></section>'+
  D.businesses.map(function(b,i){return '<section class="site-section '+(i%2?"mist":"")+'" id="anchor-'+b.id+'"><div class="business-detail '+(i%2?"reverse":"")+'">'+bizGallery(b.id)+
  '<div><h2 class="display-medium">'+b.title+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
  '<div class="business-related">'+eyebrow(L("Suggested tools","おすすめの道具"))+'<ul>'+b.products.map(function(id){var p=productBy(id);return '<li><button type="button" data-product="'+id+'">'+photo(p.image,"")+'<span>'+p.name+'</span>'+arw()+'</button></li>';}).join("")+'</ul></div>'+
@@ -560,6 +560,7 @@ function contact(){
  '<div class="field"><label>'+L("Email address","メールアドレス")+'</label><input type="email" required></div>'+
  '<div class="field wide"><label>'+L("Inquiry type","お問い合わせ種別")+'</label><select><option>'+L("Product / order","商品・注文")+'</option><option>'+L("Business / wholesale","法人・卸取引")+'</option><option>'+L("Other","その他")+'</option></select></div>'+
  '<div class="field wide"><label>'+L("Message","お問い合わせ内容")+'</label><textarea required></textarea></div>'+
+ '<div class="field wide consent"><label><input type="checkbox" required><span>'+L('I agree to the <button type="button" class="consent-link" data-go="privacy">Privacy Policy</button>.','<button type="button" class="consent-link" data-go="privacy">プライバシーポリシー</button>に同意します。')+'</span></label></div>'+
  '<div class="field wide"><button class="btn-fill" type="submit">'+L("SEND MESSAGE","送信")+'</button></div></form>'+
  note("This is a nonfunctional wireframe form. Do not use for real inquiries.","これは説明用のフォームで、送信処理は実装していません。")+'</div></section>';
 }
@@ -612,7 +613,7 @@ function bindReveal(){
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  if(reduce||!("IntersectionObserver" in window))return;
  if(revealObserver)revealObserver.disconnect();
- revealObserver=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("is-in");revealObserver.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px"});
+ revealObserver=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var t=e.target;t.classList.add("is-in");revealObserver.unobserve(t);setTimeout(function(){t.style.transitionDelay="";},1200);}});},{rootMargin:"0px 0px -8% 0px"});
  document.querySelectorAll("#site-app .site-content "+REVEAL_SELECTOR.split(",").join(",#site-app .site-content ")).forEach(function(el){
   var i=Array.prototype.indexOf.call(el.parentNode.children,el)%4;
   el.style.transitionDelay=(i*80)+"ms";
