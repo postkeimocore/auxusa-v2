@@ -23,10 +23,10 @@ var PAGES=[
   {group:"PRODUCT DISCOVERY",pages:[["shop","SHOP ALL"],["cook","COOK"],["serve","SERVE"],["table","TABLE"],["tongs","AUX TONGS"],["tools","AUX TOOLS"],["pdp","PRODUCT DETAIL"]]},
   {group:"MOMENTS",pages:[["moments","MOMENTS"]]},
   {group:"FOR BUSINESS",pages:[["business","FOR BUSINESS"]]},
-  {group:"BRAND",pages:[["why","WHY AUX"]]},
+  {group:"BRAND",pages:[["why","WHY AUX"],["brand","BRANDS"]]},
   {group:"SUPPORT",pages:[["faq","FAQ"],["shipping","SHIPPING"],["returns","RETURNS"],["privacy","PRIVACY POLICY"],["contact","CONTACT"]]}
 ];
-var ROUTES={home:"/",shop:"/collections/all",tongs:"/collections/aux-tongs",tools:"/collections/aux-tools",cook:"/collections/cook",serve:"/collections/serve",table:"/collections/table",pdp:"/products/{handle}",moments:"/pages/moments",business:"/pages/for-business",why:"/pages/why-aux",faq:"/pages/faq",shipping:"/pages/shipping",returns:"/pages/returns",privacy:"/pages/privacy-policy",contact:"/pages/contact"};
+var ROUTES={home:"/",shop:"/collections/all",tongs:"/collections/aux-tongs",tools:"/collections/aux-tools",cook:"/collections/cook",serve:"/collections/serve",table:"/collections/table",pdp:"/products/{handle}",moments:"/pages/moments",business:"/pages/for-business",why:"/pages/why-aux",brand:"/pages/brand",faq:"/pages/faq",shipping:"/pages/shipping",returns:"/pages/returns",privacy:"/pages/privacy-policy",contact:"/pages/contact"};
 function L(en,ja){return state.lang==="ja"?ja:en;}
 function img(file){return D.assetBase+file;}
 function photo(file,label,cls){return '<div class="photo '+(cls||"")+'"><img src="'+img(file)+'" loading="lazy" alt=""></div>';}
@@ -98,16 +98,42 @@ function productStrip(ids){
 }
 /* Logo variants for client comparison: ?logo=leye (leye.html) or ?logo=leye-type (leye-type.html) swap the header mark. The URL keeps the parameter while browsing. */
 var LOGO=new URLSearchParams(location.search).get("logo")||"";
+/* On the leye variants the product names carry the Leye brand instead of AUX. */
+if(/^leye/.test(LOGO))D.products.forEach(function(p){p.name=p.name.replace(/^AUX /,"Leye ");});
+/* AUX Co., Ltd. brands (sample page modelled on aux-ltd.co.jp/brand). Sub-pages are not built yet. */
+var BRANDS=[
+ {id:"leye",name:"Leye",jp:"Leye",logo:"./assets/leye-logo.svg",photo:"cook-pasta.webp",copy:["Ideas that keep everyday kitchen work moving, so there is more time for what you enjoy.","好きに使える時間のために、テキパキはかどるアイデアを。暮らし目線のひと工夫、Leye"]},
+ {id:"teppan",name:"OTONA no TEPPAN",jp:"大人の鉄板",photo:"cook-steak-pan.webp",copy:["A griddle series that brings out the best in every ingredient.","食材の魅力を最大限に引き出す「大人の鉄板」シリーズ"]},
+ {id:"yakizakana",name:"OTONA no YAKIZAKANA",jp:"大人の焼魚",photo:"cook-frying.webp",copy:["Crisp-skinned grilled fish, the way a charcoal shichirin makes it.","目指したのは、七輪で焼き上げた皮パリの焼き魚"]},
+ {id:"ishiyakiimo",name:"OTONA no ISHIYAKIIMO",jp:"大人の石焼芋",photo:"plating-scallops.webp",copy:["Rich, sweet stone-roasted sweet potatoes, made at home.","大人をしあわせにする石焼芋。濃密で甘い本格的な石焼き芋をご自宅で。"]},
+ {id:"apeluca",name:"APELUCA",jp:"APELUCA",photo:"serve-salad-greens.webp",copy:["For premium time spent outdoors.","プレミアムな外時間を愉しむ"]},
+ {id:"haana",name:"Haana",jp:"Haana",photo:"small-food-olives-wide.webp",copy:["So that every flower lasts a little longer.","その花が、長く咲きますように"]},
+ {id:"bow",name:"BOW",jp:"BOW",photo:"product-lineup-marble.webp",copy:["Smart storage racks for design-led kitchen appliances.","デザイン家電をスマートに収納。家電収納ラックシリーズ"]},
+ {id:"soraie",name:"soraie",jp:"soraie",photo:"table-tea-bag.webp",copy:["Every day is a good day for laundry.","毎日が洗濯日和。"]},
+ {id:"fraclean",name:"Fra Clean",jp:"Fra Clean",photo:"serve-meatballs.webp",copy:["A fresh take on drying indoors, for a tidier, more comfortable home.","「部屋干し」の新発想、快適な暮らしをスッキリお手伝い。"]},
+ {id:"tasgarden",name:"Tas Garden",jp:"Tas Garden",photo:"product-pair-warm.webp",copy:["Add style. Add a sense of play.","スタイルを足す。遊びごころを足す。"]}
+];
+function brandPage(){
+ return '<section class="site-section compact shop-intro brand-intro"><h1 class="page-display">'+L("Brands","ブランド")+'</h1>'+
+ '<p class="body-lg">'+L("Alongside AUX, AUX Co., Ltd. makes tools for the kitchen and everyday life under several brands.","オークス株式会社は、AUXのほかにも、キッチンと暮らしのための道具をいくつかのブランドで展開しています。")+'</p></section>'+
+ '<section class="site-section compact brand-list-section"><div class="brand-list">'+BRANDS.map(function(b){
+  return '<article class="brand-row" id="anchor-'+b.id+'">'+photo(b.photo,"")+
+  '<div class="brand-copy">'+(b.logo?'<img class="brand-logo" src="'+b.logo+'" alt="'+b.name+'" width="44" height="58">':'<h2 class="brand-name">'+L(b.name,b.jp)+'</h2>')+
+  '<p class="body-md">'+L(b.copy[0],b.copy[1])+'</p>'+
+  '<div class="btn-row"><button type="button" class="btn-outline has-arrow" data-demo="brand">'+L("More","詳しく見る")+'</button></div></div></article>';
+ }).join("")+'</div></section>';
+}
 function appHeader(){
  var shopPages=["shop","tongs","tools"],supportPages=["faq","shipping","returns","privacy","contact"];
  var current=shopPages.indexOf(state.page)>-1?"shop":supportPages.indexOf(state.page)>-1?"support":state.page;
  function item(id,label){return '<button type="button" data-go="'+id+'"'+(current===id?' class="active"':'')+'>'+label+'</button>';}
  function drop(id,label,go,links){
-  return '<div class="nav-item has-sub'+(current===id?' active':'')+'"><button type="button" class="nav-parent'+(current===id?' active':'')+'" data-go="'+go+'" aria-haspopup="true">'+label+'<span class="nav-caret" aria-hidden="true"></span></button>'+
-  '<div class="nav-sub" role="menu">'+links.map(function(x){return '<button type="button" role="menuitem" data-go="'+x[0]+'"'+(state.page===x[0]?' class="active"':'')+'>'+x[1]+'</button>';}).join("")+'</div></div>';
+  return '<div class="nav-item has-sub sub-'+id+(current===id?' active':'')+'"><button type="button" class="nav-parent'+(current===id?' active':'')+'" data-go="'+go+'" aria-haspopup="true">'+label+'<span class="nav-caret" aria-hidden="true"></span></button>'+
+  '<div class="nav-sub" role="menu">'+links.map(function(x){return '<button type="button" role="menuitem" data-go="'+x[0]+'"'+(x[2]?' data-anchor="'+x[2]+'"':'')+(state.page===x[0]&&!x[2]?' class="active"':'')+'>'+x[1]+'</button>';}).join("")+'</div></div>';
  }
  var navh=drop("shop","SHOP","shop",[["shop","SHOP ALL"],["tongs","AUX TONGS"],["tools","AUX TOOLS"]])+
   item("cook","COOK")+item("serve","SERVE")+item("table","TABLE")+item("moments","MOMENTS")+item("why","WHY AUX")+
+  drop("brand","BRAND","brand",BRANDS.map(function(b){return ["brand",b.name.toUpperCase(),b.id];}))+
   drop("support","SUPPORT","faq",[["faq","FAQ"],["shipping","SHIPPING"],["returns","RETURNS"],["privacy","PRIVACY POLICY"],["contact","CONTACT"]])+
   '<button type="button" class="nav-business'+(current==="business"?' active':'')+'" data-go="business">FOR BUSINESS</button>';
  return '<header class="site-header">'+
@@ -126,7 +152,7 @@ function footer(){
  return '<footer class="site-footer"><div class="footer-columns">'+
  '<div><img class="footer-logo-image" src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="175" height="20"><p class="footer-intro">'+L("Tools that quietly support the meal, the people and the moments around the table.","食事と人、食卓を囲む時間を静かに支える道具。")+'</p></div>'+
  '<div class="footer-links">'+grp("SHOP",[["shop","Shop All"],["tongs","AUX TONGS"],["tools","AUX Tools"],["cook","COOK"],["serve","SERVE"],["table","TABLE"]])+
- grp("DISCOVER",[["moments","MOMENTS"],["why","WHY AUX"],["business","FOR BUSINESS"]])+
+ grp("DISCOVER",[["moments","MOMENTS"],["why","WHY AUX"],["brand","BRANDS"],["business","FOR BUSINESS"]])+
  grp("SUPPORT",[["faq","FAQ"],["shipping","Shipping"],["returns","Returns"],["privacy","Privacy Policy"],["contact","Contact"]])+'</div>'+
  '</div><div class="footer-bottom"><span>© 2026 AUX Co., Ltd. All rights reserved.</span></div></footer>';
 }
@@ -138,6 +164,7 @@ var HERO_SLIDES=[
 /* HOME hero. All three slides are stacked and cross-dissolve; the active photo slowly
    zooms in. The pager is three vertical bars: the active bar fills with ink over the slide
    interval (3s) and the hero advances when it is full (paused on hover). */
+if(/^leye/.test(LOGO))HERO_SLIDES.forEach(function(h){h.title=h.title.replace(/^AUX /,"Leye ");h.jpTitle=h.jpTitle.replace(/^AUX /,"Leye ");});
 function heroHTML(){
  var hi=Math.max(0,Math.min(2,state.heroIndex||0));
  return '<section class="photo-hero" aria-label="'+L("Featured products","注目の商品")+'">'+
@@ -526,6 +553,7 @@ function content(){
   case "business":return business();
   case "pdp":return pdp();
   case "why":return why();
+  case "brand":return brandPage();
   case "faq":return faq();
   case "shipping":case "returns":case "privacy":return policy(state.page);
   case "contact":return contact();
@@ -558,7 +586,7 @@ var REVEAL_SELECTOR=[".section-head",".listing-toolbar",".product-card",".catego
  ".pdp-use-trio>*",".pdp-primary-use>*",".pdp-detail-band",".home-moment-main",".home-moment-list article",".b2b-banner>*",".about-image-band>*",
  ".business-detail>*",".business-tiles",".chapter-bleed",".chapter-copy",".chapter-photo",".form-collage figure",".spec-layout>*",".moment-jumps",
  ".moment-products-heading",".moment-end>*",".review-shell>*",".compare-head",".pdp-comparison",".editorial-intro>*",".collection-banner>*",
- ".detail-hero>*",".shop-intro>*",".utility-heading",".featured-pair>*",".scatter-copy>*",".why-band-copy>*"].join(",");
+ ".detail-hero>*",".shop-intro>*",".utility-heading",".featured-pair>*",".scatter-copy>*",".why-band-copy>*",".brand-row>*"].join(",");
 var revealObserver=null;
 function bindReveal(){
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
