@@ -1148,3 +1148,5 @@ html.site-only #site-app{width:100%;min-height:100vh}
 #site-app .brand-copy .body-md{margin:24px 0 0;max-width:448px}
 .brand-copy .btn-row{margin-top:32px}
 @media(max-width:880px){.brand-row{grid-template-columns:minmax(0,1fr);gap:32px}.brand-list{gap:64px}}
+/* The Leye brand keeps its own casing inside uppercase labels and chips. */
+.brand-word{text-transform:none}

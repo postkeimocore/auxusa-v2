@@ -287,3 +287,4 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - **Product names use the Leye brand on every URL (2026-10-15, client decision):** `Leye Fingertip Tongs` etc. in `v2-data.js` and the HOME hero slides. The hero rail shows the name without the brand prefix. The logo variants (`?logo=leye`, `?logo=leye-type`) only swap the header logo and are not maintained further.
 
 - Product family names and the PDP category label use Leye as well (2026-10-15): `Leye TONGS`, `Leye Tools`, `Leye / TONGS`.
+- The word **Leye** keeps its casing inside uppercase labels, chips and menus (`.brand-word{text-transform:none}`; the BRAND dropdown lists `Leye` as written).

@@ -55,7 +55,7 @@ function filterList(list,kind){
 }
 function listingToolbar(list,kind){
  var f=state.filter||"all";
- var opts=kind==="use"?[["cook","COOK"],["serve","SERVE"],["table","TABLE"]]:[["tongs","Leye TONGS"],["tools","Leye TOOLS"]];
+ var opts=kind==="use"?[["cook","COOK"],["serve","SERVE"],["table","TABLE"]]:[["tongs",'<span class="brand-word">Leye</span> TONGS'],["tools",'<span class="brand-word">Leye</span> TOOLS']];
  opts=opts.filter(function(o){return list.some(function(p){return kind==="use"?p.uses.indexOf(o[0])>-1:p.family===o[0];});});
  var chips=[["all",L("All","すべて")]].concat(opts);
  var sorts=[["featured",L("Featured","おすすめ順")],["az",L("Name A–Z","名前順 A–Z")],["za",L("Name Z–A","名前順 Z–A")]];
@@ -131,7 +131,7 @@ function appHeader(){
  }
  var navh=drop("shop","SHOP","shop",[["shop","SHOP ALL"],["tongs","Leye TONGS"],["tools","Leye TOOLS"]])+
   item("cook","COOK")+item("serve","SERVE")+item("table","TABLE")+item("moments","MOMENTS")+item("why","WHY AUX")+
-  drop("brand","BRAND","brand",BRANDS.map(function(b){return ["brand",b.name.toUpperCase(),b.id];}))+
+  drop("brand","BRAND","brand",BRANDS.map(function(b){return ["brand",b.id==="leye"?b.name:b.name.toUpperCase(),b.id];}))+
   drop("support","SUPPORT","faq",[["faq","FAQ"],["shipping","SHIPPING"],["returns","RETURNS"],["privacy","PRIVACY POLICY"],["contact","CONTACT"]])+
   '<button type="button" class="nav-business'+(current==="business"?' active':'')+'" data-go="business">FOR BUSINESS</button>';
  return '<header class="site-header">'+
@@ -403,7 +403,7 @@ function pdp(){
   ["product-tomato-scale.webp","Size and proportion","サイズと距離感","Sized to suit the food and the dish.","扱う食材と器に合わせた、ちょうどよいサイズ。"]
  ];
  return '<div class="pdp-layout">'+pdpGallery(p)+
- '<div class="pdp-buy">'+eyebrow("Leye / "+(p.family==="tongs"?"TONGS":"TOOLS"))+
+ '<div class="pdp-buy">'+eyebrow('<span class="brand-word">Leye</span> / '+(p.family==="tongs"?"TONGS":"TOOLS"))+
  '<h1>'+p.name+'</h1>'+
  '<p class="body-md">'+L(p.desc[0],p.desc[1])+'</p>'+
   '<div class="pdp-price">$20.00</div>'+
