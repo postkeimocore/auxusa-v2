@@ -506,7 +506,7 @@ function why(){
  '<div class="spec-copy">'+eyebrow("DESIGN & ENGINEERING")+'<h2 class="display-medium">'+L("Shape, feel and proportion.","先端、角度、握り心地。")+'</h2>'+
  '<p class="body-md">'+L("The tip, the angle, the length and the grip. Each shape has a reason you can feel in use.","先端、角度、長さ、握り心地。一つひとつの形に理由があります。")+'</p>'+
  '<ul class="spec-list">'+uses.map(function(u){return '<li>'+photo(u[0],"")+'<div><h3>'+L(u[1],u[2])+'</h3><p>'+L(u[3],u[4])+'</p></div></li>';}).join("")+'</ul></div></div></section>'+
- chapter({id:"third",layout:"wide",photo:"small-food-transfer.webp",label:"THE THIRD UTENSIL",title:"Knife.<br>Fork.<br>Tongs.",
+ chapter({id:"third",layout:"wide",photo:"small-food-transfer.webp",label:"THE THIRD UTENSIL",title:"Knife. Fork. Tongs.",
   body:L("Fingertip Tongs can sit beside the knife and fork, not only in the kitchen. Pick a small bite, share a dish, and let the tool rest quietly on the table.","ゆびさきトングをキッチンだけでなく、ナイフやフォークと並ぶ食卓の道具に。小さな一口をつまむ、料理を取り分ける、食卓にさりげなく置く。"),
   cta:'<button type="button" class="btn-fill has-arrow" data-go="pdp" data-set-product="fingertip">'+L("Discover Fingertip Tongs","ゆびさきトングを見る")+'</button>'})+
  chapter({id:"tsubame",layout:"offset",reverse:true,photo:"manufacturing-caliper-close.webp",label:"TSUBAME-SANJO",title:L("The expertise behind the form.","形を支える、金属加工の技術。"),
@@ -645,12 +645,23 @@ function scrollZoom(){
   im.style.transform="translate3d(0,"+ty.toFixed(1)+"px,0) scale("+sc.toFixed(4)+")";
  });
 }
+/* Scattered photos fade in from the bottom of the viewport and out towards the top
+   (HOME Different forms and the WHY AUX band share this). ty = the drift currently applied. */
+function scrollFade(el,ty,vh){
+ var r=el.getBoundingClientRect();
+ var t=(r.top-ty+r.height/2)/vh;           /* 0 = viewport top, 1 = viewport bottom */
+ var op=t>.75?(1-t)/.25:(t<.25?t/.25:1);
+ return {t:t,op:Math.max(0,Math.min(1,op))};
+}
 function bandDrift(){
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches,vh=window.innerHeight||1;
  document.querySelectorAll(".why-float[data-drift]").forEach(function(el){
-  if(reduce||window.innerWidth<=880){el.style.transform="";return;}
+  if(reduce||window.innerWidth<=880){el.style.transform="";el.style.opacity="";return;}
+  var f=scrollFade(el,el._ty||0,vh);
   var r=el.parentNode.getBoundingClientRect();
   var off=Math.max(-48,Math.min(48,(r.top+r.height/2-vh/2)*Number(el.dataset.drift)));
+  el._ty=off;
+  el.style.opacity=f.op.toFixed(3);
   el.style.transform="translate3d(0,"+off.toFixed(1)+"px,0)";
  });
 }
@@ -663,13 +674,10 @@ function scatterParallax(){
  var vh=window.innerHeight||1,drift=window.innerWidth>880;
  nodes.forEach(function(el){
   if(reduce){el.style.transform="";el.style.opacity="";return;}
-  var r=el.getBoundingClientRect(),ty=el._ty||0;
-  var t=(r.top-ty+r.height/2)/vh;           /* 0 = viewport top, 1 = viewport bottom */
-  var op=t>.75?(1-t)/.25:(t<.25?t/.25:1);    /* fade in from the bottom, fade out towards the top */
-  op=Math.max(0,Math.min(1,op));
-  var off=drift?Math.max(-40,Math.min(40,(t-.5)*vh*Number(el.dataset.speed))):0;
+  var f=scrollFade(el,el._ty||0,vh);
+  var off=drift?Math.max(-40,Math.min(40,(f.t-.5)*vh*Number(el.dataset.speed))):0;
   el._ty=off;
-  el.style.opacity=op.toFixed(3);
+  el.style.opacity=f.op.toFixed(3);
   el.style.transform="translate3d(0,"+off.toFixed(1)+"px,0)";
  });
 }

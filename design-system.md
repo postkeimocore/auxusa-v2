@@ -306,3 +306,5 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - Contact: the form spans the support content width (same as the policy tables). A required privacy-policy checkbox (16px, ink) sits above SEND MESSAGE; `Privacy Policy` links to the policy page.
 - Product items (product cards, FOR BUSINESS suggested-tool rows) have no hover underline.
 - Arrow hover: every clickable element with an arrow (buttons with arrows, line links, cards, jump boxes, gallery and comparison arrows, PDP shipping rows) wipes its arrow out and back in, in the arrow's own direction: right arrows left → right, down arrows top → bottom, mirrored previous arrows right → left (0.8s, once per hover; also on keyboard focus; off under reduced motion).
+- WHY AUX › THE THIRD UTENSIL heading reads `Knife. Fork. Tongs.` on one line.
+- WHY AUX band (HOME, COOK / SERVE / TABLE, PDP): the four scattered photos fade in from the bottom of the viewport and out towards the top while scrolling, the same as HOME `Different forms`. Hovering the band closes up its background photo slowly (108%, 1.6s; off under reduced motion).

@@ -1095,7 +1095,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .why-band-bg{position:absolute;inset:0}
 .why-band-bg .photo{position:absolute;inset:0}
 .why-band-bg:after{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 64%,transparent)}
-.why-float{position:absolute;z-index:1;will-change:transform}
+.why-float{position:absolute;z-index:1;will-change:transform,opacity}
 .why-float .photo{width:100%}
 .why-float.f1{top:48px;left:48px;width:20%}
 .why-float.f1 .photo{aspect-ratio:4/3}
@@ -1215,3 +1215,8 @@ html.site-only #site-app{width:100%;min-height:100vh}
 :is(button,a,[data-go],[data-product],[data-anchor]):focus-visible .arw,.has-arrow:focus-visible:after,.btn-line:focus-visible:after{animation:arwWipeX .8s cubic-bezier(.65,0,.35,1)}
 :is(button,a,[data-go],[data-product],[data-anchor]):focus-visible .arw.arw-down{animation-name:arwWipeY}
 @media(prefers-reduced-motion:reduce){.arw,.has-arrow:after,.btn-line:after{animation:none!important}}
+
+/* WHY AUX band: the background photo closes up slowly while the band is hovered. */
+.why-band-bg .photo img{transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+@media(hover:hover){.why-band:hover .why-band-bg .photo img{transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.why-band-bg .photo img{transform:none!important}}
