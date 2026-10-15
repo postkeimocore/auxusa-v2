@@ -506,7 +506,7 @@ function why(){
  '<div class="spec-copy">'+eyebrow("DESIGN & ENGINEERING")+'<h2 class="display-medium">'+L("Shape, feel and proportion.","先端、角度、握り心地。")+'</h2>'+
  '<p class="body-md">'+L("The tip, the angle, the length and the grip. Each shape has a reason you can feel in use.","先端、角度、長さ、握り心地。一つひとつの形に理由があります。")+'</p>'+
  '<ul class="spec-list">'+uses.map(function(u){return '<li>'+photo(u[0],"")+'<div><h3>'+L(u[1],u[2])+'</h3><p>'+L(u[3],u[4])+'</p></div></li>';}).join("")+'</ul></div></div></section>'+
- chapter({id:"third",layout:"wide",photo:"small-food-transfer.webp",label:"THE THIRD UTENSIL",title:L("The third utensil.","食卓に、もうひとつの道具。"),
+ chapter({id:"third",layout:"wide",photo:"small-food-transfer.webp",label:"THE THIRD UTENSIL",title:"Knife.<br>Fork.<br>Tongs.",
   body:L("Fingertip Tongs can sit beside the knife and fork, not only in the kitchen. Pick a small bite, share a dish, and let the tool rest quietly on the table.","ゆびさきトングをキッチンだけでなく、ナイフやフォークと並ぶ食卓の道具に。小さな一口をつまむ、料理を取り分ける、食卓にさりげなく置く。"),
   cta:'<button type="button" class="btn-fill has-arrow" data-go="pdp" data-set-product="fingertip">'+L("Discover Fingertip Tongs","ゆびさきトングを見る")+'</button>'})+
  chapter({id:"tsubame",layout:"offset",reverse:true,photo:"manufacturing-caliper-close.webp",label:"TSUBAME-SANJO",title:L("The expertise behind the form.","形を支える、金属加工の技術。"),
