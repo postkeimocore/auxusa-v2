@@ -47,13 +47,32 @@ for(const m of text.matchAll(decl)){
   }
  }
 }
+// Colour system: storefront rules use only the five colour tokens (white, surface, line, muted, ink).
+// Literal colours are allowed only inside :root and in the review chrome (preview bar, page rail, stage).
+const reviewChrome=/(\.preview|\.page-rail|\.rail-|#page-index|\.lang-control|\.stage\b|\.stage-|\.site-frame|^\s*body\b)/;
+const colourLiteral=/#[0-9a-fA-F]{3,6}\b|rgba?\([^)]*\)|(?<![-\w])(white|black)(?![-\w])/g;
+for(const r of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)){
+ const sel=r[1].trim(),body=r[2];
+ if(sel.includes(":root")||reviewChrome.test(sel))continue;
+ for(const d of body.split(";")){
+  const i=d.indexOf(":");if(i<0)continue;
+  const prop=d.slice(0,i).trim();if(prop.startsWith("--")||prop==="content")continue;
+  const hits=d.slice(i+1).match(colourLiteral);
+  if(hits){counts.colour=(counts.colour||0)+hits.length;failures.push(`colour literal outside the colour tokens: ${sel} { ${d.trim()} }`);}
+ }
+}
 const must=[
  ["--grid:8px","8px grid token"],
  ["--fs-body:16px","16px body token"],
  ["--lh-body:24px","24px body baseline"],
  ["--fs-meta:12px","12px metadata"],
- ["--fs-h1:64px","64px desktop heading"],
- ["--lh-h1:64px","64px H1 baseline"],
+ ["--fs-h1:48px","48px desktop heading (quiet type volume)"],
+ ["--lh-h1:56px","56px H1 baseline"],
+ ["--fs-statement:64px","64px single brand statement"],
+ ["--surface:#f4f4f2","surface colour token"],
+ ["--line:#dddddb","line colour token"],
+ ["--muted:#666","muted colour token"],
+ ["--ink:#232323","ink colour token"],
  ["--tracking-display:.035em","display tracking"],
  ["--tracking-heading:.05em","heading tracking"],
  ["--tracking-body:.03em","body tracking"],

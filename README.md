@@ -27,7 +27,9 @@ No bright or burgundy accent. White / light gray / charcoal. The supplied black 
 
 ## Navigation
 
-`COOK | SERVE | TABLE | MOMENTS | FOR BUSINESS | WHY AUX`
+`SHOP | COOK | SERVE | TABLE | MOMENTS | WHY AUX | [FOR BUSINESS]`
+
+**2026-10-14 (user decision):** SHOP is added as the first item. FOR BUSINESS is a boxed button at the right end of the menu; search and cart icons stay after it.
 
 WHY AUX is the **single brand page**. The Third Utensil, Design & Engineering and Tsubame-Sanjo are sections within it, not separate routes. Only WHY AUX appears in the footer ABOUT navigation.
 
@@ -104,7 +106,7 @@ The UI does not contain the final photographed product assets. Source imagery is
 13 working names:
 11 AUX TONGS and 2 AUX Tools. COOK/SERVE/TABLE overlap by use, and are not exclusive product families.
 
-Product names and product-specific specifications, inventory, shipping, import duties, legal terms and photo accuracy remain subject to client confirmation. All product cards and PDPs temporarily use **$20.00** as a layout price, at the client’s request. Review placeholders are not displayed without genuine review data.
+Product names and product-specific specifications, inventory, shipping, import duties, legal terms and photo accuracy remain subject to client confirmation. All product cards and PDPs temporarily use **$20.00** as a layout price, at the client’s request. Review placeholders: **2026-10-15 (user decision)** the PDP shows a Customer reviews section with three bracketed placeholders in the V1 composition (`[Verified buyer]`, `[Date]`, `[Review title]`, `[Customer review text]`, score `— / 5`). No invented names, dates, scores or review text are shown as real data; replace with the review app's data at implementation.
 
 ## Technical files
 
