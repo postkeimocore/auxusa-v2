@@ -1133,3 +1133,18 @@ html.site-only #site-app{width:100%;min-height:100vh}
 /* Logo variant (?logo=leye-type): the leye wordmark in ink. */
 .site-wordmark img.logo-leye-type{width:auto;height:32px}
 @media(max-width:880px){.site-wordmark img.logo-leye-type{height:24px}}
+
+/* BRAND dropdown: ten names on one line — tighter item padding than SHOP / SUPPORT. */
+.nav-sub{flex-wrap:wrap;row-gap:16px}
+.nav-item.sub-brand .nav-sub button{padding:0 16px}
+/* Brands page (sample after aux-ltd.co.jp/brand): photo left, brand mark / name, line and More centred right. */
+.site-section.brand-list-section{padding-top:32px}
+.brand-list{display:grid;gap:96px}
+.brand-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.brand-row>.photo{aspect-ratio:16/9}
+.brand-copy{display:flex;flex-direction:column;align-items:center;text-align:center}
+.brand-logo{width:auto;height:96px}
+#site-app .brand-name{margin:0;font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--tracking-heading)}
+#site-app .brand-copy .body-md{margin:24px 0 0;max-width:448px}
+.brand-copy .btn-row{margin-top:32px}
+@media(max-width:880px){.brand-row{grid-template-columns:minmax(0,1fr);gap:32px}.brand-list{gap:64px}}

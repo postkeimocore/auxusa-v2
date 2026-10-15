@@ -280,3 +280,8 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 
 - FOR BUSINESS sector photos are small galleries (4 provisional photos each): prev / next harpoon arrows on the photo (same component as the PDP gallery — centred, white, difference blend) and one 32px bar per photo 16px below. Switching swaps the image in place (no page re-render).
 - PDP comparison: no `View product` line or rule (the whole card links to the product). Four and a half cards show (3.5 ≤1168px, 2.5 ≤880px, 80% ≤552px); the half card fades out until the end of the list; prev / next move by whole visible cards.
+
+## Brands and Leye naming (2026-10-15)
+
+- `BRAND` sits after WHY AUX in the header with a dropdown of the ten AUX Co., Ltd. brands (tighter 16px item padding so they fit one line); each jumps to its row on the new **Brands** page (`/pages/brand`, sample after aux-ltd.co.jp/brand). Rows: photo left (16:9); brand mark (Leye) or serif name, one line and a `More` outline button centred on the right. Brand sub-pages are not built yet. The footer DISCOVER group lists Brands.
+- On the leye logo variants (`?logo=leye`, `?logo=leye-type`) product names read `Leye …` instead of `AUX …` (cards, PDP, comparison, hero). The default URL keeps `AUX …`.
