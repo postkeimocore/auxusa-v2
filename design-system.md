@@ -284,4 +284,4 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 ## Brands and Leye naming (2026-10-15)
 
 - `BRAND` sits after WHY AUX in the header with a dropdown of the ten AUX Co., Ltd. brands (tighter 16px item padding so they fit one line); each jumps to its row on the new **Brands** page (`/pages/brand`, sample after aux-ltd.co.jp/brand). Rows: photo left (16:9); brand mark (Leye) or serif name, one line and a `More` outline button centred on the right. Brand sub-pages are not built yet. The footer DISCOVER group lists Brands.
-- On the leye logo variants (`?logo=leye`, `?logo=leye-type`) product names read `Leye …` instead of `AUX …` (cards, PDP, comparison, hero). The default URL keeps `AUX …`.
+- **Product names use the Leye brand on every URL (2026-10-15, client decision):** `Leye Fingertip Tongs` etc. in `v2-data.js` and the HOME hero slides. The hero rail shows the name without the brand prefix. The logo variants (`?logo=leye`, `?logo=leye-type`) only swap the header logo and are not maintained further.
