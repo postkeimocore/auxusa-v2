@@ -943,7 +943,6 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .photo-hero-bars button span{position:relative;display:block;width:4px;height:32px;background:linear-gradient(var(--line),var(--line)) center/2px 100% no-repeat}
 .photo-hero-bars button span:after{content:"";position:absolute;inset:0;background:linear-gradient(var(--ink),var(--ink)) center/2px 100% no-repeat;transform:scaleY(0);transform-origin:top}
 .photo-hero-bars button.active span:after{animation:heroBar 3s linear forwards}
-.photo-hero:hover .photo-hero-bars button.active span:after{animation-play-state:paused}
 .photo-hero-bars button:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
 @keyframes heroBar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @media(prefers-reduced-motion:reduce){.photo-hero-bars button.active span:after{animation:none;transform:scaleY(1)}}
@@ -975,7 +974,6 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .hero-slide .photo{position:absolute;inset:0}
 .hero-slide .photo img{filter:saturate(.8) contrast(.98)}
 .hero-slide.is-zoom .photo img{animation:heroZoom 4.2s linear forwards}
-.photo-hero:hover .hero-slide.is-zoom .photo img{animation-play-state:paused}
 @keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
 .photo-hero-caption{opacity:0;pointer-events:none;transition:opacity .8s ease}
 .photo-hero-caption.is-active{opacity:1;pointer-events:auto}
