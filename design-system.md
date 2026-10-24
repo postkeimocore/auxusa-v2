@@ -208,7 +208,7 @@ After the comparison carousel. V1 composition: rating overview on the left (scor
 
 ## HOME updates (2026-10-15, later)
 
-- Hero pager: three vertical bars (2px line, 32px tall, 40px targets). The active bar fills with ink over **3s** and the hero advances when it is full; hovering the hero pauses it. Slides are stacked and **cross-dissolve (1.2s)**; the active photo **zooms 100% → 106%** over the interval; caption and vertical name dissolve with it. Reduced motion: no auto-advance, active bar shown full. Only the hero is re-rendered on a slide change.
+- Hero pager: three vertical bars (2px line, 32px tall, 40px targets). The active bar fills with ink over **3s** and the hero advances when it is full; it keeps running while hovered. Slides are stacked and **cross-dissolve (1.2s)**; the active photo **zooms 100% → 106%** over the interval; caption and vertical name dissolve with it. Reduced motion: no auto-advance, active bar shown full. Only the hero is re-rendered on a slide change.
 - THE AUX DIFFERENCE photos: start 64px below the hero. On scroll each photo fades in as it enters from the bottom of the viewport and fades out as it passes towards the top (full opacity in the middle half), with a small drift on desktop (max 40px). Reduced motion: static, fully visible.
 - Featured products: `Shop all products` button centred.
 - Category doorway cards: 16px right inset after the arrow so it does not crowd the next card.
