@@ -58,16 +58,16 @@ window.AUX_DATA.compare = {
    computed when shown). care: care and precautions. */
 window.AUX_DATA.pdp = {
  mini:{
-  lead:["Our Fingertip Tongs at 7 cm, for small jobs you would rather not do with your fingers.","ゆびさきトングを全長7cmにしたミニサイズ。指でやりたくない小さな作業に。"],
+  lead:["Our Fingertip Tongs at 7 cm, for small jobs you would rather not do with your fingers.","ゆびさきトングを全長7cmにしたミニサイズ。指でやりたくない小さな作業に。"],
   proof:["GoodsPress award winner (Japan)","グッズプレス W受賞"],
   primary:[["Small jobs, without touching the food.","指を使わずに、小さな作業を。"],["The tips grip like your own fingertips, so you can peel shrimp, hold garlic or lift something hot and keep your hands and nails clean.","指先のようにつかめるので、エビの殻むきも、にんにくを押さえるのも、熱いものをつかむのも、手やネイルを汚さずにできます。"]],
   uses:[["Prep work","下ごしらえに","Peel shrimp and remove the vein with small, precise movements.","エビの殻むきや背ワタ取りなど、細かい作業がしやすい。"],
         ["Strong smells","においの強い食材に","Hold garlic firmly while you cut, so the smell stays off your fingers.","にんにくなどをしっかり押さえられ、指先ににおいが残りません。"],
         ["Hot or awkward things","熱いもの・つかみにくいものに","Peel back plastic wrap after the microwave, or take out a sheet mask.","電子レンジ後のラップをはがす、フェイスマスクを取り出す、といった場面にも。"]],
-  detailsLead:["The same shape as our Fingertip Tongs, scaled down to 7 cm.","ゆびさきトングの形をそのまま、全長7cmに。"],
+  detailsLead:["The same shape as our Fingertip Tongs, scaled down to 7 cm.","ゆびさきトングの形をそのまま、全長7cmに。"],
   details:[["Fingertip-like tips","指先のような先端","The tips pinch the way your fingers do, so small pieces are easy to hold.","指でつまむような感覚で、小さなものをつかめます。"],
            ["Patented spring fold","特許技術のバネ","A patented fold gives the tongs a soft spring, so you can grip with very little force.","特許技術のバネ構造で、やわらかい力でつかめます。"],
-           ["Rests tips-up","先端が浮く置き方","Turn it over and the tips stay off the table. At 7 cm, it never gets in the way.","裏返して置くと先端が浮き、テーブルを汚しません。7cmなので食卓でも邪魔になりません。"]],
+           ["Rests tips-up","先端が浮く置き方","Turn it over and the tips stay off the table. At 7 cm, it never gets in the way.","裏返して置くと先端が浮き、テーブルを汚しません。7cmなので食卓でも邪魔になりません。"]],
   specs:{length:7,height:3.3,weight:12,material:["18-0 stainless steel","18-0ステンレス"]},
   care:[["Dishwasher safe.","食器洗い乾燥機に対応しています。"]]
  },
@@ -77,7 +77,7 @@ window.AUX_DATA.pdp = {
   uses:[["Pickles","漬物に","Pickled plums and slippery pickled onions come out with a light grip.","梅干しや、滑りやすいらっきょうも軽い力でつかめます。"],
         ["Small, loose toppings","こぼれやすい食材に","Tiny dried fish and other loose toppings stay in the tips instead of spilling.","ちりめんじゃこなど、こぼれやすい食材もしっかり取れます。"],
         ["Tea bags","ティーバッグに","Lift a tea bag out of the cup without touching it.","カップからティーバッグを取り出すときにも。"]],
-  detailsLead:["A 13.5 cm tong made for the table.","食卓で使う、全長13.5cmのトング。"],
+  detailsLead:["A 13.5 cm tong made for the table.","食卓で使う、全長13.5cmのトング。"],
   details:[["Gap-free tips","すき間なく閉じる先端","The tips close fully, so thin pieces don't slip through.","先端がすき間なく閉じるので、薄いものもつまめます。"],
            ["Light grip","やわらかな握り心地","A light squeeze is all it takes to hold.","やわらかな握り心地で、軽い力でつかめます。"],
            ["Rests tips-up","先端が浮く置き方","Turn it over and the tips stay off the table.","裏返して置くと先端が浮き、テーブルを汚しません。"]],
@@ -103,8 +103,8 @@ window.AUX_DATA.pdp = {
   primary:[["One cube, or a scoop of ice.","ひとつでも、たっぷりでも。"],["Pick up a single cube with the tips. Squeeze the tong closed and it becomes a scoop for a handful of ice, so you don't need a separate ice scoop.","氷をひとつ取るときは先端でつまむ。たくさん取るときは握って閉じれば、スコップとして氷をすくえます。トングとスコップを別々に用意する必要がありません。"]],
   uses:[["Iced coffee and tea","アイスコーヒーやアイスティーに","The narrow tip lets ice slide into a tall glass or a water bottle with a small opening.","先端が細いので、ロンググラスや口の狭い水筒にも氷を入れやすい。"],
         ["Any size of ice","氷の大きさを問わず","Grips large cubes and ice balls as well as small ones.","大きめの角氷や丸氷も、サイズを問わずつかめます。"],
-        ["Beyond ice","氷のほかにも","Use it for frozen fruit, or open and closed to serve side dishes from a platter.","冷凍フルーツに。大皿のおかずも、開いてつまむ・閉じてすくうで取り分けられます。"]],
-  detailsLead:["Ice tongs and an ice scoop in one 16.6 cm tool.","アイストングとアイススコップを、全長16.6cmの1本に。"],
+        ["Beyond ice","氷のほかにも","Use it for frozen fruit, or to serve side dishes from a platter: open to pick up, closed to scoop.","冷凍フルーツに。大皿のおかずも、開いてつまむ・閉じてすくうで取り分けられます。"]],
+  detailsLead:["Ice tongs and an ice scoop in one 16.6 cm tool.","アイストングとアイススコップを、全長16.6cmの1本に。"],
   details:[["Serrated tips","ギザギザの先端","The serrated tips hold ice without slipping.","先端のギザギザ形状で、氷をしっかりつかめます。"],
            ["Closes into a scoop","閉じるとスコップ","Squeezed shut, the two sides form a scoop.","握って閉じると、スコップの形になります。"],
            ["Strong stainless steel","丈夫なステンレス","Strong enough to separate cubes that have lightly stuck together in the ice maker.","製氷機の中で軽くくっついた氷も離せる、丈夫なステンレス製です。"]],
@@ -153,7 +153,7 @@ window.AUX_DATA.pdp = {
   care:[["Dishwasher safe.","食器洗い乾燥機に対応しています。"]]
  },
  long:{
-  lead:["Fine tips for plating pasta and salad, on a 25 cm tong.","パスタやサラダをきれいに盛りつける細い先端と、全長25cmの長さ。"],
+  lead:["Fine tips for plating pasta and salad, on a 25 cm tong.","パスタやサラダをきれいに盛りつける細い先端と、全長25cmの長さ。"],
   primary:[["Plate pasta and salad neatly.","パスタやサラダを、きれいに盛りつける。"],["The fine tips let you arrange pasta and salad toppings neatly, with each color where you want it.","先端が細いので、サラダやパスタの具を彩りよく盛りつけられます。"]],
   uses:[["Hot pot at the table","食卓の鍋料理に","The long handle keeps your hand away from the heat of a hot pot or shabu-shabu.","柄が長いので手元が熱くならず、鍋料理やしゃぶしゃぶに使いやすい。"],
         ["Frying and grilling","揚げ物・焼き物に","Long enough to use safely over hot oil or a grill.","揚げ物や焼き料理にも安心な長さです。"],

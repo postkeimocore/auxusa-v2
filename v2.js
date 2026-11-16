@@ -406,13 +406,13 @@ function pdpGallery(p){
  }).join("")+'</div></div></div>';
 }
 /* Product page specs: cm and g from the AUX product data; inches and ounces added for the English view. */
-function pdpLen(cm){return cm+" cm"+(state.lang==="ja"?"":" ("+(cm/2.54).toFixed(1)+" in)");}
+function pdpLen(cm){return cm+"\u00a0cm"+(state.lang==="ja"?"":" ("+(cm/2.54).toFixed(1)+"\u00a0in)");}
 function pdpSpecs(s){
  var rows=[[L("Length","全長"),pdpLen(s.length)]];
  if(s.width)rows.push([L("Width","幅"),pdpLen(s.width)]);
  if(s.diameter)rows.push([L("Max. diameter","最大径"),pdpLen(s.diameter)]);
  if(s.height)rows.push([L("Height","高さ"),pdpLen(s.height)]);
- if(s.weight)rows.push([L("Weight","重さ"),s.weight+" g"+(state.lang==="ja"?"":" ("+(s.weight/28.35).toFixed(1)+" oz)")]);
+ if(s.weight)rows.push([L("Weight","重さ"),s.weight+"\u00a0g"+(state.lang==="ja"?"":" ("+(s.weight/28.35).toFixed(1)+"\u00a0oz)")]);
  rows.push([L("Material","材質"),L(s.material[0],s.material[1])],[L("Made in","原産国"),L("Japan","日本")]);
  return '<dl class="pdp-specs">'+rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>';}).join("")+'</dl>'+
   (s.closed?'<p>'+L("Measured with the tongs closed.","寸法は閉じたときのものです。")+'</p>':'');
