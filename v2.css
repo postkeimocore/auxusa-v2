@@ -1220,3 +1220,15 @@ html.site-only #site-app{width:100%;min-height:100vh}
 @media(hover:hover){.product-card:hover .photo-alt,.compare-track article:hover .photo-alt{opacity:1}}
 .product-card:focus-visible .photo-alt,.compare-track article:focus-visible .photo-alt{opacity:1}
 
+/* Product thumbnails: the single cut fades in over the image cut (keeps the slow zoom). */
+#site-app .product-card .photo .photo-alt,#site-app .compare-track article .photo .photo-alt{transition:opacity .6s ease,transform 1.6s cubic-bezier(.2,.7,.2,1)}
+
+/* HOME Different forms: photos float in, bob gently and drift with scroll (see bindFloat). */
+.scatter-photo.float{translate:0 var(--py,0px);opacity:0;transform:translateY(40px);transition:opacity 1.2s ease-out var(--float-delay,0ms),transform 1.6s cubic-bezier(.2,.7,.2,1) var(--float-delay,0ms)}
+.scatter-photo.float.is-in{opacity:1;transform:none}
+.scatter-photo.float .photo{animation:scatterBob 8s ease-in-out infinite;animation-delay:var(--bob-delay,0s)}
+@keyframes scatterBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.float-probe{position:absolute;left:0;width:8px;pointer-events:none;opacity:0}
+.float-probe i{display:block;height:40px}
+@media(prefers-reduced-motion:reduce){.scatter-photo.float{opacity:1;transform:none;translate:none}.scatter-photo.float .photo{animation:none}}
+

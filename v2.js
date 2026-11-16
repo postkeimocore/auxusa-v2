@@ -103,23 +103,23 @@ function productStrip(ids){
 var LOGO=new URLSearchParams(location.search).get("logo")||"";
 /* AUX Co., Ltd. brands (sample page modelled on aux-ltd.co.jp/brand). Sub-pages are not built yet. */
 var BRANDS=[
- {id:"leye",name:"Leye",jp:"Leye",logo:"./assets/leye-logo.svg",photo:"shinjo-lineup.webp",copy:["Ideas that keep everyday kitchen work moving, so there is more time for what you enjoy.","好きに使える時間のために、テキパキはかどるアイデアを。暮らし目線のひと工夫、Leye"]},
- {id:"teppan",name:"OTONA no TEPPAN",jp:"大人の鉄板",photo:"cook-steak-pan.webp",copy:["A griddle series that brings out the best in every ingredient.","食材の魅力を最大限に引き出す「大人の鉄板」シリーズ"]},
- {id:"yakizakana",name:"OTONA no YAKIZAKANA",jp:"大人の焼魚",photo:"cook-frying.webp",copy:["Crisp-skinned grilled fish, the way a charcoal shichirin makes it.","目指したのは、七輪で焼き上げた皮パリの焼き魚"]},
- {id:"ishiyakiimo",name:"OTONA no ISHIYAKIIMO",jp:"大人の石焼芋",photo:"plating-scallops.webp",copy:["Rich, sweet stone-roasted sweet potatoes, made at home.","大人をしあわせにする石焼芋。濃密で甘い本格的な石焼き芋をご自宅で。"]},
- {id:"apeluca",name:"APELUCA",jp:"APELUCA",photo:"serve-salad-greens.webp",copy:["For premium time spent outdoors.","プレミアムな外時間を愉しむ"]},
- {id:"haana",name:"Haana",jp:"Haana",photo:"small-food-olives-wide.webp",copy:["So that every flower lasts a little longer.","その花が、長く咲きますように"]},
- {id:"bow",name:"BOW",jp:"BOW",photo:"product-lineup-marble.webp",copy:["Smart storage racks for design-led kitchen appliances.","デザイン家電をスマートに収納。家電収納ラックシリーズ"]},
- {id:"soraie",name:"soraie",jp:"soraie",photo:"table-tea-bag.webp",copy:["Every day is a good day for laundry.","毎日が洗濯日和。"]},
- {id:"fraclean",name:"Fra Clean",jp:"Fra Clean",photo:"serve-meatballs.webp",copy:["A fresh take on drying indoors, for a tidier, more comfortable home.","「部屋干し」の新発想、快適な暮らしをスッキリお手伝い。"]},
- {id:"tasgarden",name:"Tas Garden",jp:"Tas Garden",photo:"product-pair-warm.webp",copy:["Add style. Add a sense of play.","スタイルを足す。遊びごころを足す。"]}
+ {id:"leye",name:"Leye",jp:"Leye",logo:"brand-leye-logo.svg",photo:"shinjo-lineup.webp",copy:["Ideas that keep everyday kitchen work moving, so there is more time for what you enjoy.","好きに使える時間のために、テキパキはかどるアイデアを。暮らし目線のひと工夫、Leye"]},
+ {id:"teppan",name:"OTONA no TEPPAN",jp:"大人の鉄板",logo:"brand-otona-teppan-logo.svg",photo:"brand-otona-teppan-thumb.webp",copy:["A griddle series that brings out the best in every ingredient.","食材の魅力を最大限に引き出す「大人の鉄板」シリーズ"]},
+ {id:"yakizakana",name:"OTONA no YAKIZAKANA",jp:"大人の焼魚",logo:"brand-otona-yakizakana-logo.svg",photo:"brand-otona-yakizakana-thumb.webp",copy:["Crisp-skinned grilled fish, the way a charcoal shichirin makes it.","目指したのは、七輪で焼き上げた皮パリの焼き魚"]},
+ {id:"ishiyakiimo",name:"OTONA no ISHIYAKIIMO",jp:"大人の石焼芋",logo:"brand-otona-ishiyakiimo-logo.svg",photo:"brand-otona-ishiyakiimo-thumb.webp",copy:["Rich, sweet stone-roasted sweet potatoes, made at home.","大人をしあわせにする石焼芋。濃密で甘い本格的な石焼き芋をご自宅で。"]},
+ {id:"apeluca",name:"APELUCA",jp:"APELUCA",logo:"brand-apeluca-logo.svg",photo:"brand-apeluca-thumb.webp",copy:["For premium time spent outdoors.","プレミアムな外時間を愉しむ"]},
+ {id:"haana",name:"Haana",jp:"Haana",logo:"brand-haana-logo.svg",photo:"brand-haana-thumb.webp",copy:["So that every flower lasts a little longer.","その花が、長く咲きますように"]},
+ {id:"bow",name:"BOW",jp:"BOW",logo:"brand-bow-logo.webp",photo:"brand-bow-thumb.webp",copy:["Smart storage racks for design-led kitchen appliances.","デザイン家電をスマートに収納。家電収納ラックシリーズ"]},
+ {id:"soraie",name:"soraie",jp:"soraie",logo:"brand-soraie-logo.svg",photo:"brand-soraie-thumb.webp",copy:["Every day is a good day for laundry.","毎日が洗濯日和。"]},
+ {id:"fraclean",name:"Fra Clean",jp:"Fra Clean",logo:"brand-fraclean-logo.svg",photo:"brand-fraclean-thumb.webp",copy:["A fresh take on drying indoors, for a tidier, more comfortable home.","「部屋干し」の新発想、快適な暮らしをスッキリお手伝い。"]},
+ {id:"tasgarden",name:"Tas Garden",jp:"Tas Garden",logo:"brand-tasgarden-logo.svg",photo:"brand-tasgarden-thumb.webp",copy:["Add style. Add a sense of play.","スタイルを足す。遊びごころを足す。"]}
 ];
 function brandPage(){
  return '<section class="site-section compact shop-intro brand-intro"><h1 class="page-display">'+L("Brands","ブランド")+'</h1>'+
  '<p class="body-lg">'+L("Alongside AUX, AUX Co., Ltd. makes tools for the kitchen and everyday life under several brands.","オークス株式会社は、AUXのほかにも、キッチンと暮らしのための道具をいくつかのブランドで展開しています。")+'</p></section>'+
  '<section class="site-section compact brand-list-section"><div class="brand-list">'+BRANDS.map(function(b){
   return '<article class="brand-row" id="anchor-'+b.id+'">'+photo(b.photo,"")+
-  '<div class="brand-copy">'+(b.logo?'<img class="brand-logo" src="'+b.logo+'" alt="'+b.name+'" width="44" height="58">':'<h2 class="brand-name">'+L(b.name,b.jp)+'</h2>')+
+  '<div class="brand-copy">'+(b.logo?'<img class="brand-logo" src="'+img(b.logo)+'" alt="'+b.name+'" width="160" height="96">':'<h2 class="brand-name">'+L(b.name,b.jp)+'</h2>')+
   '<p class="body-md">'+L(b.copy[0],b.copy[1])+'</p>'+
   '<div class="btn-row"><button type="button" class="btn-outline has-arrow" data-demo="brand">'+L("More","詳しく見る")+'</button></div></div></article>';
  }).join("")+'</div></section>';
@@ -672,17 +672,43 @@ function scatterParallax(){
  scatterQueued=false;
  scrollZoom();
  bandDrift();
- var nodes=document.querySelectorAll(".scatter-photo[data-speed]");
+}
+/* HOME Different forms: the photos float in when the section comes into view, bob gently and
+   drift with scroll (parallax, data-speed). The scroll position is read with IntersectionObserver
+   on thin strips around the section instead of scroll events, so it also works when the page is
+   shown inside a frame that does not scroll itself (XProof). */
+var floatObservers=[];
+function bindFloat(){
+ floatObservers.forEach(function(o){o.disconnect();});floatObservers=[];
+ var sec=document.querySelector(".scatter-section");if(!sec)return;
+ var photos=[].slice.call(sec.querySelectorAll(".scatter-photo"));
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- var vh=window.innerHeight||1,drift=window.innerWidth>880;
- nodes.forEach(function(el){
-  if(reduce){el.style.transform="";el.style.opacity="";return;}
-  var f=scrollFade(el,el._ty||0,vh);
-  var off=drift?Math.max(-40,Math.min(40,(f.t-.5)*vh*Number(el.dataset.speed))):0;
-  el._ty=off;
-  el.style.opacity=f.op.toFixed(3);
-  el.style.transform="translate3d(0,"+off.toFixed(1)+"px,0)";
+ if(reduce||!("IntersectionObserver" in window))return;
+ photos.forEach(function(el,i){el.classList.add("float");el.style.setProperty("--float-delay",(i*140)+"ms");el.style.setProperty("--bob-delay",(-i*1.7).toFixed(1)+"s");el._py=0;el._target=0;});
+ var appear=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;})){photos.forEach(function(el){el.classList.add("is-in");});appear.disconnect();}},{threshold:.15});
+ appear.observe(sec);floatObservers.push(appear);
+ var old=document.querySelector(".float-probe");if(old)old.remove();
+ var secTop=function(){return sec.getBoundingClientRect().top+(window.scrollY||0);};
+ var STRIP=40,EXTRA=1200,base=secTop()-EXTRA,probe=document.createElement("div"),visible={},n=Math.ceil((sec.offsetHeight+EXTRA*2)/STRIP);
+ probe.className="float-probe";probe.setAttribute("aria-hidden","true");probe.style.top=base+"px";
+ for(var k=0;k<n;k++){var st=document.createElement("i");st.dataset.k=k;probe.appendChild(st);}
+ document.body.appendChild(probe);  /* outside the section, which clips its overflow */
+ var running=false;
+ function tick(){
+  var moving=false;
+  photos.forEach(function(el){el._py+=(el._target-el._py)*.08;if(Math.abs(el._target-el._py)>.1)moving=true;el.style.setProperty("--py",el._py.toFixed(1)+"px");});
+  running=moving;if(moving)requestAnimationFrame(tick);
+ }
+ var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){var k=+e.target.dataset.k;if(e.isIntersecting)visible[k]=1;else delete visible[k];});
+  var ks=Object.keys(visible).map(Number);if(!ks.length)return;
+  var top=base+Math.min.apply(null,ks)*STRIP,bottom=base+(Math.max.apply(null,ks)+1)*STRIP;
+  var offset=(top+bottom)/2-(secTop()+sec.offsetHeight/2);  /* viewport centre relative to the section centre */
+  var drift=window.innerWidth>880;
+  photos.forEach(function(el){el._target=drift?Math.max(-48,Math.min(48,offset*Number(el.dataset.speed||0))):0;});
+  if(!running){running=true;requestAnimationFrame(tick);}
  });
+ [].forEach.call(probe.children,function(st){io.observe(st);});floatObservers.push(io);
 }
 window.addEventListener("scroll",function(){if(!scatterQueued){scatterQueued=true;requestAnimationFrame(scatterParallax);}},{passive:true});
 window.addEventListener("resize",function(){scatterParallax();updateCompare();bindGallery();});
@@ -696,6 +722,7 @@ function render(){
  document.getElementById("stage-breadcrumb").textContent="aux-global.com"+route+" / "+state.lang.toUpperCase();
   updateURL();
  scatterParallax();
+ bindFloat();
  bindCompare();
  bindHero();
  bindReveal();
