@@ -260,6 +260,7 @@ Every full-width photo (MOMENTS / WHY AUX openings, wide chapters such as THE TH
 
 ## PDP product copy and specifications (2026-11-17)
 
+- **Text and photo are one unit (2026-11-17, user rule).** Every text block that sits next to a photo names that photo in the data and describes what the photo shows (PDP main use, use cases, details; collection trios; WHY AUX lists). A use that no photo shows is left out rather than paired with an unrelated photo.
 - Every product has its own copy in `AUX_DATA.pdp` (v2-data.js): lead, optional proof line (sales or award), main use, three use cases, details lead and three detail points, specifications, care and use. Facts come from the current AUX product pages and the product spec sheet; nothing is shared between products any more.
 - Buy box accordions are `Specifications` and `Care and use`, both open on load so the text can be read (and reviewed in XProof) without clicking. Specifications are label / value rows (`.pdp-specs`, 12 / 24 like other accordion content): length, width or max. diameter when the product has one, height, weight when known, material, made in. English adds inches and ounces.
 - Proof line (`.pdp-proof`): meta size, muted, 16px under the lead. Only figures that read without context abroad (Fingertip: 1.7 million sold); Japanese awards are left out (2026-11-17).
