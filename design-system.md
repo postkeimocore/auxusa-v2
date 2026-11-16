@@ -200,7 +200,7 @@ Used on every product listing (Shop All, COOK / SERVE / TABLE, Leye TONGS / Leye
 
 ## PDP comparison carousel (2026-10-15)
 
-`Which tool fits your task?` compares **all thirteen tools**, the current product first (tagged VIEWING, `--surface` fill). It reads as one table: cards share `--line` separators and the Best for / Scale / Moment rows line up. Desktop shows 4 cards (3 ≤1168px, 2 ≤880px, 80% peek ≤552px); scroll-snap per card; 40px prev / next buttons step one page; a `1–4 / 13` counter; buttons turn `--line` when an end is reached. The previous arrow is the harpoon arrow mirrored. The buy-box jump link reads `Compare all AUX tools ↓`.
+`Which tool fits your task?` compares **all thirteen tools**, the current product first (tagged VIEWING, `--surface` fill). It reads as one table: cards share `--line` separators and the Best for / Length / Moment rows line up. Desktop shows 4 cards (3 ≤1168px, 2 ≤880px, 80% peek ≤552px); scroll-snap per card; 40px prev / next buttons step one page; a `1–4 / 13` counter; buttons turn `--line` when an end is reached. The previous arrow is the harpoon arrow mirrored. The buy-box jump link reads `Compare all AUX tools ↓`.
 
 ## PDP customer reviews (2026-10-15)
 
@@ -257,6 +257,13 @@ Every full-width photo (MOMENTS / WHY AUX openings, wide chapters such as THE TH
 - Accordion content: 12px / 24px muted — intentional exception to the 16px body minimum so content reads below its 12px uppercase label.
 - Gallery: six photos; photo frame 4:3; prev / next are 32px harpoon arrows centred vertically on the photo, white with `mix-blend-mode: difference` so they invert against any image; slide indicators are 32px bars (2px line, same tone as the HOME hero pager) 16px below the photo. Thumbnails follow the photo height; extra thumbnails scroll and the lower edge fades while more remain.
 - MOMENTS jump box titles: serif 16 / 24.
+
+## PDP product copy and specifications (2026-11-17)
+
+- Every product has its own copy in `AUX_DATA.pdp` (v2-data.js): lead, optional proof line (sales or award), main use, three use cases, details lead and three detail points, specifications, care and use. Facts come from the current AUX product pages and the product spec sheet; nothing is shared between products any more.
+- Buy box accordions are `Specifications` and `Care and use`, both open on load so the text can be read (and reviewed in XProof) without clicking. Specifications are label / value rows (`.pdp-specs`, 12 / 24 like other accordion content): length, width or max. diameter when the product has one, height, weight when known, material, made in. English adds inches and ounces.
+- Proof line (`.pdp-proof`): meta size, muted, 16px under the lead.
+- Comparison rows are `Best for / Length / Moment`; the length is the real one from the specifications (the 2026-10-15 request for a size-ordered overview).
 
 ## PDP / support (2026-10-15, later)
 

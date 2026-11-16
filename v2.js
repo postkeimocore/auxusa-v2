@@ -405,33 +405,28 @@ function pdpGallery(p){
  return '<button type="button" class="'+(i===idx?'active':'')+'" data-gallery-index="'+i+'" aria-label="Image '+(i+1)+'" aria-pressed="'+(idx===i)+'"><span></span></button>';
  }).join("")+'</div></div></div>';
 }
+/* Product page specs: cm and g from the AUX product data; inches and ounces added for the English view. */
+function pdpLen(cm){return cm+" cm"+(state.lang==="ja"?"":" ("+(cm/2.54).toFixed(1)+" in)");}
+function pdpSpecs(s){
+ var rows=[[L("Length","全長"),pdpLen(s.length)]];
+ if(s.width)rows.push([L("Width","幅"),pdpLen(s.width)]);
+ if(s.diameter)rows.push([L("Max. diameter","最大径"),pdpLen(s.diameter)]);
+ if(s.height)rows.push([L("Height","高さ"),pdpLen(s.height)]);
+ if(s.weight)rows.push([L("Weight","重さ"),s.weight+" g"+(state.lang==="ja"?"":" ("+(s.weight/28.35).toFixed(1)+" oz)")]);
+ rows.push([L("Material","材質"),L(s.material[0],s.material[1])],[L("Made in","原産国"),L("Japan","日本")]);
+ return '<dl class="pdp-specs">'+rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>';}).join("")+'</dl>'+
+  (s.closed?'<p>'+L("Measured with the tongs closed.","寸法は閉じたときのものです。")+'</p>':'');
+}
 function pdp(){
  var p=productBy(state.product);
  var close=D.products.filter(function(x){return x.id!==p.id && x.uses.some(function(u){return p.uses.indexOf(u)!==-1;});});
  if(close.length<4)close=close.concat(D.products.filter(function(x){return x.id!==p.id && close.indexOf(x)===-1;}));
  close=close.slice(0,4);
- var useContext={
-  cook:[["","In the kitchen","調理中に","Right beside the pan, where the cooking happens.","フライパンのすぐそばで、調理の動きに寄り添う。"],
-        ["","Turn and lift","返す・持ち上げる","Stay in control as the food turns and moves.","食材を返す、持ち上げる。その動きを確かに。"],
-        ["","At the right moment","必要な瞬間に","Made for the job it does best.","それぞれの道具が得意な仕事のために。"]],
-  serve:[["","Plate","盛り付ける","Place food as intended, in the right part of the plate.","皿の中の狙った位置に料理を置く。"],
-        ["","Share","取り分ける","From the central dish to someone's plate.","大皿から相手の皿へ自然に取り分ける。"],
-        ["","Refine","整える","Small corrections, just where they are needed.","仕上げの細かな調整にも。"]],
-  table:[["","One precise movement","一つをつまむ","Pick up a small or delicate piece.","小さな食材や一枚をつまむ。"],
-        ["","Small foods","小さな食材","A scale suited to the tabletop.","小皿の料理にも自然に手が伸びる、小回りのきくサイズ感。"],
-        ["","Everyday rituals","いつもの時間","A tool that naturally becomes part of the table.","日々の食卓に、自然に馴染む道具。"]]
- };
- var primary=p.uses.includes("table")?"table":p.uses.includes("cook")?"cook":"serve";
- var scenes=useContext[primary];
- var mechanics=[
-  ["","The contact point","食材に触れる先端","A closer view of the tip that meets the food.","食材に触れる部分こそ、使い心地を左右する。"],
-  ["","Grip and form","手に馴染む全体形状","A comfortable form that responds to the hand.","手の動きに沿うように考えられた形。"],
-  ["","Size and proportion","サイズと距離感","Sized to suit the food and the dish.","扱う食材と器に合わせた、ちょうどよいサイズ。"]
- ];
+ var P=D.pdp[p.id];
  return '<div class="pdp-layout">'+pdpGallery(p)+
  '<div class="pdp-buy">'+eyebrow('<span class="brand-word">Leye</span> / '+(p.family==="tongs"?"TONGS":"TOOLS"))+
  '<h1>'+p.name+'</h1>'+
- '<p class="body-md">'+L(p.desc[0],p.desc[1])+'</p>'+
+ '<p class="body-md">'+L(P.lead[0],P.lead[1])+'</p>'+(P.proof?'<p class="pdp-proof">'+L(P.proof[0],P.proof[1])+'</p>':'')+
   '<div class="pdp-price">$20.00</div>'+
  '<div class="qty-row"><span>'+L("QUANTITY","数量")+'</span><div class="qty-control"><button type="button" data-qty="-" aria-label="'+L("Decrease quantity","数量を減らす")+'">−</button><span id="qty-number">'+state.qty+'</span><button type="button" data-qty="+" aria-label="'+L("Increase quantity","数量を増やす")+'">+</button></div></div>'+
  '<button class="btn-fill" type="button" data-demo="cart">'+L("ADD TO CART","カートに入れる")+'</button>'+
@@ -440,23 +435,22 @@ function pdp(){
  '<button type="button" data-go="shipping"><b>'+L("SHIPPING","配送")+'</b>'+arw()+'</button>'+
  '<button type="button" data-go="returns"><b>'+L("RETURNS","返品")+'</b>'+arw()+'</button>'+
  '<button type="button" data-go="faq"><b>'+L("DUTIES & TAXES","関税・税金")+'</b>'+arw()+'</button></div>'+
-  '<div class="accordion"><details><summary>'+L("Product details","商品仕様")+'</summary><p>'+L("Made with stainless steel and formed for easy handling.","材質：ステンレス鋼。持ちやすさを考えた形状。")+'</p></details>'+
- '<details><summary>'+L("Care","お手入れ")+'</summary><p>'+L("Clean after each use and dry thoroughly before storing.","使用後は洗浄し、十分に乾かしてから保管してください。")+'</p></details>'+
- '<details><summary>'+L("Use and precautions","使用上の注意")+'</summary><p>'+L("Take care around hot cookware. Wash and dry after use.","加熱した調理器具の近くではご注意ください。使用後は洗浄し、十分に乾かしてください。")+'</p></details></div>'+
+  '<div class="accordion"><details open><summary>'+L("Specifications","仕様")+'</summary>'+pdpSpecs(P.specs)+'</details>'+
+ '<details open><summary>'+L("Care and use","お手入れ・使用上の注意")+'</summary><p>'+P.care.map(function(c){return L(c[0],c[1]);}).join(state.lang==="ja"?"":" ")+'</p></details></div>'+
  '<div class="btn-row">'+boutline(L("Buying for a business?","法人・業務用はこちら"),"business")+'</div></div></div>'+
  '<section class="site-section">'+sectionHead("",L("Made for the movement.","動作から考えられた形。"),
   L("AUX is shaped to suit the food, the hand and the movement.","食材や動作に合わせて、つかみやすさを考えた形状。"))+
  '<div class="pdp-primary-use"><div class="pdp-primary-photo">'+photo(p.scene,"Primary use image / hand + food + exact product")+'</div>'+
- '<div class="pdp-primary-copy"><h3 class="display-small">'+L({cook:"Made for cooking movements.",serve:"Made for plating and sharing.",table:"Made for small movements at the table."}[primary],{cook:"調理の動きのために。",serve:"盛り付けと取り分けのために。",table:"食卓の小さな動きのために。"}[primary])+'</h3>'+
- '<p class="body-md">'+L("From lifting a single bite to serving a shared dish, the details work together.","小さなひと口から大皿の取り分けまで、使う動きに沿った工夫。")+'</p></div></div>'+
- '<div class="pdp-use-trio">'+scenes.map(function(x,i){return '<article>'+photo([p.photos.uses[0],p.photos.scenes[1]||p.thumb,p.photos.uses[1]||p.photos.single][i],"Use context / check specific product match")+'<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div></section>'+
+ '<div class="pdp-primary-copy"><h3 class="display-small">'+L(P.primary[0][0],P.primary[0][1])+'</h3>'+
+ '<p class="body-md">'+L(P.primary[1][0],P.primary[1][1])+'</p></div></div>'+
+ '<div class="pdp-use-trio">'+P.uses.map(function(x,i){return '<article>'+photo([p.photos.uses[0],p.photos.scenes[1]||p.thumb,p.photos.uses[1]||p.photos.single][i],"")+'<h3>'+L(x[0],x[1])+'</h3><p>'+L(x[2],x[3])+'</p></article>';}).join("")+'</div></section>'+
  '<section class="site-section pdp-details-section"><div class="sub-head"><h3 class="display-small">'+L("A closer look at the details.","細かな仕事を支える設計。")+'</h3>'+
-  '<p class="body-md">'+L("Considered tips, balanced proportions, and a shape that sits naturally in the hand.","先端の形、サイズ、持ったときのバランス。使い心地を左右する細部。")+'</p></div>'+
- '<div class="feature-trio">'+mechanics.map(function(x,i){return '<article>'+photo([p.photos.detail,p.image,p.photos.form][i],x[1]+" / illustrative close-up")+
- '<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div>'+
+  '<p class="body-md">'+L(P.detailsLead[0],P.detailsLead[1])+'</p></div>'+
+ '<div class="feature-trio">'+P.details.map(function(x,i){return '<article>'+photo([p.photos.detail,p.image,p.photos.form][i],"")+
+ '<h3>'+L(x[0],x[1])+'</h3><p>'+L(x[2],x[3])+'</p></article>';}).join("")+'</div>'+
  note("V1 PDP structural restoration: primary-use image + 3 use-value cards → physical-feature detail cards → wide feature band. Photos are not a guarantee of the exact SKU.","V1 PDP構成を復元：使用価値の画像＋3項目→形状の詳細→横長Feature写真。商品写真の個別対応は未確定。")+'</section>'+
  '<section class="site-section" id="anchor-comparison"><div class="compare-head">'+sectionHead("",L("Which tool fits your task?","どの道具が、動作に合う？"),
- L("Compare all thirteen AUX tools by purpose, scale and moment.","得意な用途・サイズ感・使う場面から、ぴったりの一本を見つけてください。"))+
+ L("Compare all thirteen AUX tools by purpose, length and moment.","得意な用途・長さ・使う場面から、ぴったりの一本を見つけてください。"))+
  '<div class="compare-controls"><span class="compare-count" id="compare-count" aria-live="polite"></span>'+
  '<button type="button" class="compare-step prev" data-compare-step="-1" aria-label="'+L("Previous tools","前の道具")+'">'+arw()+'</button>'+
  '<button type="button" class="compare-step" data-compare-step="1" aria-label="'+L("Next tools","次の道具")+'">'+arw()+'</button></div></div>'+
@@ -467,7 +461,7 @@ function pdp(){
  thumbPhoto(x.thumb,x.image)+
  '<div class="compare-copy"><h3>'+x.name+'</h3>'+
  '<dl class="compare-facts"><dt>'+L("Best for","適した用途")+'</dt><dd>'+L(m.best,m.jpBest)+'</dd>'+
- '<dt>'+L("Scale","サイズ・特徴")+'</dt><dd>'+L(m.size,m.jpSize)+'</dd>'+
+ '<dt>'+L("Length","全長")+'</dt><dd>'+pdpLen(D.pdp[x.id].specs.length)+'</dd>'+
  '<dt>'+L("Moment","食事のシーン")+'</dt><dd>'+L(m.moment,m.jpMoment)+'</dd></dl>'+
  '</div></article>';
  }).join("")+'</div></section>'+

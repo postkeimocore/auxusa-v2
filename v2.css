@@ -1041,6 +1041,13 @@ html.site-only #site-app{width:100%;min-height:100vh}
 /* Accordion content: smaller than its 12px uppercase label would read as body copy, so it uses
    the 12px meta size with a 24px line (intentional exception to the 16px body minimum). */
 #site-app .accordion details p{font-size:12px;line-height:24px;color:var(--muted);margin:16px 0 0}
+/* Specifications: label / value rows in the same 12px / 24px accordion size. */
+#site-app .pdp-specs{display:grid;grid-template-columns:max-content 1fr;column-gap:24px;margin:16px 0 0;font-size:12px;line-height:24px}
+#site-app .pdp-specs dt{color:var(--muted)}
+#site-app .pdp-specs dd{margin:0;color:var(--ink)}
+#site-app .accordion .pdp-specs+p{margin-top:8px}
+/* Proof line under the product lead (sales, awards): meta size, 16px below the lead. */
+#site-app .pdp-buy .pdp-proof{margin:-8px 0 0;font-size:var(--fs-meta);line-height:var(--lh-meta);letter-spacing:var(--tracking-ui);color:var(--muted)}
 /* Quantity: one framed control (− 1 +) instead of separate boxed buttons. */
 .qty-row{gap:16px}
 .qty-control{display:inline-flex;align-items:center;border:1px solid var(--muted)}
