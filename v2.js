@@ -454,7 +454,6 @@ function pdp(){
   '<p class="body-md">'+L("Considered tips, balanced proportions, and a shape that sits naturally in the hand.","先端の形、サイズ、持ったときのバランス。使い心地を左右する細部。")+'</p></div>'+
  '<div class="feature-trio">'+mechanics.map(function(x,i){return '<article>'+photo([p.photos.detail,p.image,p.photos.form][i],x[1]+" / illustrative close-up")+
  '<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div>'+
- '<div class="pdp-detail-band">'+photo(p.photos.single,"Full-width primary feature image / final shoot replacement")+'</div>'+
  note("V1 PDP structural restoration: primary-use image + 3 use-value cards → physical-feature detail cards → wide feature band. Photos are not a guarantee of the exact SKU.","V1 PDP構成を復元：使用価値の画像＋3項目→形状の詳細→横長Feature写真。商品写真の個別対応は未確定。")+'</section>'+
  '<section class="site-section" id="anchor-comparison"><div class="compare-head">'+sectionHead("",L("Which tool fits your task?","どの道具が、動作に合う？"),
  L("Compare all thirteen AUX tools by purpose, scale and moment.","得意な用途・サイズ感・使う場面から、ぴったりの一本を見つけてください。"))+
@@ -660,11 +659,12 @@ function scatterParallax(){
  scatterQueued=false;
  scrollZoom();
 }
-/* Floating photos (HOME Different forms, WHY AUX band): they fade in slowly while settling, the
-   photo breathes in and out like the HOME hero, and the frame drifts gently with scroll
-   (parallax, lagging behind). The scroll position is read with IntersectionObserver on thin strips
-   around each section instead of scroll events, so it also works when the page is shown inside a
-   frame that does not scroll itself (XProof). */
+/* Floating photos (HOME Different forms, WHY AUX band), after bird-and-insect: each photo's opacity
+   follows its position in the viewport (it fades in just after entering, fades out near the top) and
+   it drifts at its own speed (parallax), both eased towards the scroll position for a soft lag.
+   No time-based motion. The scroll position is read with IntersectionObserver on thin strips around
+   each section instead of scroll events, so it also works inside a frame that does not scroll
+   itself (XProof). */
 var FLOAT_GROUPS=[[".scatter-section",".scatter-photo","speed"],[".why-band",".why-float","drift"]];
 var floatObservers=[];
 function bindFloat(){
@@ -676,27 +676,35 @@ function bindFloat(){
 }
 function floatSection(sec,items,speedKey){
  if(!items.length)return;
- items.forEach(function(el,i){el.classList.add("float-item");el.style.setProperty("--float-delay",(i*320)+"ms");el.style.setProperty("--bob-delay",(-i*2.3).toFixed(1)+"s");el._py=0;el._target=0;});
- var appear=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;})){items.forEach(function(el){el.classList.add("is-in");});appear.disconnect();}},{threshold:.12});
- appear.observe(sec);floatObservers.push(appear);
+ items.forEach(function(el){el.classList.add("float-item");el._py=0;el._tpy=0;el._op=0;el._top=0;el.style.opacity="0";});
  var secTop=function(){return sec.getBoundingClientRect().top+(window.scrollY||0);};
  var STRIP=16,EXTRA=1200,base=secTop()-EXTRA,probe=document.createElement("div"),visible={},n=Math.ceil((sec.offsetHeight+EXTRA*2)/STRIP);
  probe.className="float-probe";probe.setAttribute("aria-hidden","true");probe.style.top=base+"px";
  for(var k=0;k<n;k++){var st=document.createElement("i");st.dataset.k=k;probe.appendChild(st);}
  document.body.appendChild(probe);  /* outside the section, which may clip its overflow */
- var running=false;
+ var view=null,running=false;
+ function targets(){
+  var vh=Math.max(1,view.bottom-view.top),y0=window.scrollY||0,drift=window.innerWidth>880;
+  items.forEach(function(el){
+   var r=el.getBoundingClientRect(),t=(r.top+y0+r.height/2-el._py-view.top)/vh;  /* 0 = viewport top, 1 = bottom */
+   el._top=Math.max(0,Math.min(1,t>.85?(1-t)/.15:(t<.15?t/.15:1)));
+   el._tpy=drift?Math.max(-40,Math.min(40,(t-.5)*vh*Number(el.dataset[speedKey]||0))):0;
+  });
+ }
  function tick(){
   var moving=false;
-  items.forEach(function(el){el._py+=(el._target-el._py)*.035;if(Math.abs(el._target-el._py)>.05)moving=true;el.style.setProperty("--py",el._py.toFixed(2)+"px");});
+  items.forEach(function(el){
+   el._py+=(el._tpy-el._py)*.1;el._op+=(el._top-el._op)*.12;
+   if(Math.abs(el._tpy-el._py)>.05||Math.abs(el._top-el._op)>.003)moving=true;
+   el.style.setProperty("--py",el._py.toFixed(2)+"px");el.style.opacity=el._op.toFixed(3);
+  });
   running=moving;if(moving)requestAnimationFrame(tick);
  }
  var io=new IntersectionObserver(function(es){
   es.forEach(function(e){var k=+e.target.dataset.k;if(e.isIntersecting)visible[k]=1;else delete visible[k];});
   var ks=Object.keys(visible).map(Number);if(!ks.length)return;
-  var top=base+Math.min.apply(null,ks)*STRIP,bottom=base+(Math.max.apply(null,ks)+1)*STRIP;
-  var offset=(top+bottom)/2-(secTop()+sec.offsetHeight/2);  /* viewport centre relative to the section centre */
-  var drift=window.innerWidth>880;
-  items.forEach(function(el){el._target=drift?Math.max(-32,Math.min(32,offset*Number(el.dataset[speedKey]||0)*.7)):0;});
+  view={top:base+Math.min.apply(null,ks)*STRIP,bottom:base+(Math.max.apply(null,ks)+1)*STRIP};
+  targets();
   if(!running){running=true;requestAnimationFrame(tick);}
  });
  [].forEach.call(probe.children,function(st){io.observe(st);});floatObservers.push(io);

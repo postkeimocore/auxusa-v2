@@ -1223,15 +1223,9 @@ html.site-only #site-app{width:100%;min-height:100vh}
 /* Product thumbnails: the single cut fades in over the image cut (keeps the slow zoom). */
 #site-app .product-card .photo .photo-alt,#site-app .compare-track article .photo .photo-alt{transition:opacity .6s ease,transform 1.6s cubic-bezier(.2,.7,.2,1)}
 
-/* Floating photos (HOME Different forms, WHY AUX band; see bindFloat): a slow fade-in while
-   settling, the photo breathing in and out like the HOME hero, a slow drift, and a lagging parallax. */
-.float-item{translate:0 var(--py,0px);opacity:0;transform:translateY(24px) scale(.97);transition:opacity 2.4s cubic-bezier(.45,0,.55,1) var(--float-delay,0ms),transform 3.2s cubic-bezier(.45,0,.55,1) var(--float-delay,0ms)}
-.float-item.is-in{opacity:1;transform:none}
-.float-item .photo{animation:floatDrift 11s ease-in-out infinite;animation-delay:var(--bob-delay,0s)}
-.float-item .photo img{animation:floatBreathe 14s ease-in-out infinite alternate;animation-delay:var(--bob-delay,0s)}
-@keyframes floatDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes floatBreathe{from{transform:scale(1)}to{transform:scale(1.06)}}
+/* Floating photos (HOME Different forms, WHY AUX band; see bindFloat): opacity and drift follow
+   the scroll position; no time-based motion. */
+.float-item{translate:0 var(--py,0px);will-change:translate,opacity}
 .float-probe{position:absolute;left:0;width:8px;pointer-events:none;opacity:0}
 .float-probe i{display:block;height:16px}
-@media(prefers-reduced-motion:reduce){.float-item{opacity:1;transform:none;translate:none}.float-item .photo,.float-item .photo img{animation:none}}
 
