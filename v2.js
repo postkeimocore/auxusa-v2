@@ -440,14 +440,14 @@ function pdp(){
  '<div class="btn-row">'+boutline(L("Buying for a business?","法人・業務用はこちら"),"business")+'</div></div></div>'+
  '<section class="site-section">'+sectionHead("",L("Made for the movement.","動作から考えられた形。"),
   L("AUX is shaped to suit the food, the hand and the movement.","食材や動作に合わせて、つかみやすさを考えた形状。"))+
- '<div class="pdp-primary-use"><div class="pdp-primary-photo">'+photo(p.scene,"Primary use image / hand + food + exact product")+'</div>'+
- '<div class="pdp-primary-copy"><h3 class="display-small">'+L(P.primary[0][0],P.primary[0][1])+'</h3>'+
- '<p class="body-md">'+L(P.primary[1][0],P.primary[1][1])+'</p></div></div>'+
- '<div class="pdp-use-trio">'+P.uses.map(function(x,i){return '<article>'+photo([p.photos.uses[0],p.photos.scenes[1]||p.thumb,p.photos.uses[1]||p.photos.single][i],"")+'<h3>'+L(x[0],x[1])+'</h3><p>'+L(x[2],x[3])+'</p></article>';}).join("")+'</div></section>'+
+ '<div class="pdp-primary-use"><div class="pdp-primary-photo">'+photo(P.primary[0],"")+'</div>'+
+ '<div class="pdp-primary-copy"><h3 class="display-small">'+L(P.primary[1],P.primary[2])+'</h3>'+
+ '<p class="body-md">'+L(P.primary[3],P.primary[4])+'</p></div></div>'+
+ '<div class="pdp-use-trio">'+P.uses.map(function(x){return '<article>'+photo(x[0],"")+'<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div></section>'+
  '<section class="site-section pdp-details-section"><div class="sub-head"><h3 class="display-small">'+L("A closer look at the details.","細かな仕事を支える設計。")+'</h3>'+
   '<p class="body-md">'+L(P.detailsLead[0],P.detailsLead[1])+'</p></div>'+
- '<div class="feature-trio">'+P.details.map(function(x,i){return '<article>'+photo([p.photos.detail,p.image,p.photos.form][i],"")+
- '<h3>'+L(x[0],x[1])+'</h3><p>'+L(x[2],x[3])+'</p></article>';}).join("")+'</div>'+
+ '<div class="feature-trio">'+P.details.map(function(x){return '<article>'+photo(x[0],"")+
+ '<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div>'+
  note("V1 PDP structural restoration: primary-use image + 3 use-value cards → physical-feature detail cards → wide feature band. Photos are not a guarantee of the exact SKU.","V1 PDP構成を復元：使用価値の画像＋3項目→形状の詳細→横長Feature写真。商品写真の個別対応は未確定。")+'</section>'+
  '<section class="site-section" id="anchor-comparison"><div class="compare-head">'+sectionHead("",L("Which tool fits your task?","どの道具が、動作に合う？"),
  L("Compare all thirteen AUX tools by purpose, length and moment.","得意な用途・長さ・使う場面から、ぴったりの一本を見つけてください。"))+
