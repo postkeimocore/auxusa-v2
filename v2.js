@@ -83,9 +83,10 @@ function sectionHead(label,title,description,center){
  return '<div class="section-head'+(center?" center":"")+'">'+eyebrow(label)+'<h2 class="display-medium">'+title+'</h2>'+(description?'<p class="body-md">'+description+'</p>':'')+'</div>';
 }
 function productBy(id){return D.products.find(function(p){return p.id===id;})||D.products[2];}
+/* image: optional photo override (a string; card is also used directly as a map callback). */
 function card(p,image){
  return '<article class="product-card" role="link" tabindex="0" data-product="'+p.id+'">'+
-   photo(image||p.image,"Product imagery", "contain")+
+   photo(typeof image==="string"?image:p.image,"Product imagery", "contain")+
    '<h3>'+p.name+'</h3>'+
    '<div class="price">$20.00</div>'+
  '</article>';
