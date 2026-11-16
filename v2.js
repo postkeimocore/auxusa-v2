@@ -448,12 +448,12 @@ function pdp(){
  '<div class="pdp-primary-use"><div class="pdp-primary-photo">'+photo(p.scene,"Primary use image / hand + food + exact product")+'</div>'+
  '<div class="pdp-primary-copy"><h3 class="display-small">'+L({cook:"Made for cooking movements.",serve:"Made for plating and sharing.",table:"Made for small movements at the table."}[primary],{cook:"調理の動きのために。",serve:"盛り付けと取り分けのために。",table:"食卓の小さな動きのために。"}[primary])+'</h3>'+
  '<p class="body-md">'+L("From lifting a single bite to serving a shared dish, the details work together.","小さなひと口から大皿の取り分けまで、使う動きに沿った工夫。")+'</p></div></div>'+
- '<div class="pdp-use-trio">'+scenes.map(function(x,i){return '<article>'+photo([p.photos.uses[0],p.photos.scenes[1]||p.photos.single,p.photos.uses[1]][i],"Use context / check specific product match")+'<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div></section>'+
+ '<div class="pdp-use-trio">'+scenes.map(function(x,i){return '<article>'+photo([p.photos.uses[0],p.photos.scenes[1]||p.thumb,p.photos.uses[1]][i],"Use context / check specific product match")+'<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div></section>'+
  '<section class="site-section pdp-details-section"><div class="sub-head"><h3 class="display-small">'+L("A closer look at the details.","細かな仕事を支える設計。")+'</h3>'+
   '<p class="body-md">'+L("Considered tips, balanced proportions, and a shape that sits naturally in the hand.","先端の形、サイズ、持ったときのバランス。使い心地を左右する細部。")+'</p></div>'+
- '<div class="feature-trio">'+mechanics.map(function(x,i){return '<article>'+photo([p.photos.detail,p.image,p.thumb][i],x[1]+" / illustrative close-up")+
+ '<div class="feature-trio">'+mechanics.map(function(x,i){return '<article>'+photo([p.photos.detail,p.image,p.photos.form][i],x[1]+" / illustrative close-up")+
  '<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div>'+
- '<div class="pdp-detail-band">'+photo(p.photos.scenes[1]||p.photos.single,"Full-width primary feature image / final shoot replacement")+'</div>'+
+ '<div class="pdp-detail-band">'+photo(p.photos.single,"Full-width primary feature image / final shoot replacement")+'</div>'+
  note("V1 PDP structural restoration: primary-use image + 3 use-value cards → physical-feature detail cards → wide feature band. Photos are not a guarantee of the exact SKU.","V1 PDP構成を復元：使用価値の画像＋3項目→形状の詳細→横長Feature写真。商品写真の個別対応は未確定。")+'</section>'+
  '<section class="site-section" id="anchor-comparison"><div class="compare-head">'+sectionHead("",L("Which tool fits your task?","どの道具が、動作に合う？"),
  L("Compare all thirteen AUX tools by purpose, scale and moment.","得意な用途・サイズ感・使う場面から、ぴったりの一本を見つけてください。"))+
