@@ -680,7 +680,7 @@ function floatSection(sec,items,speedKey){
  var appear=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;})){items.forEach(function(el){el.classList.add("is-in");});appear.disconnect();}},{threshold:.12});
  appear.observe(sec);floatObservers.push(appear);
  var secTop=function(){return sec.getBoundingClientRect().top+(window.scrollY||0);};
- var STRIP=20,EXTRA=1200,base=secTop()-EXTRA,probe=document.createElement("div"),visible={},n=Math.ceil((sec.offsetHeight+EXTRA*2)/STRIP);
+ var STRIP=16,EXTRA=1200,base=secTop()-EXTRA,probe=document.createElement("div"),visible={},n=Math.ceil((sec.offsetHeight+EXTRA*2)/STRIP);
  probe.className="float-probe";probe.setAttribute("aria-hidden","true");probe.style.top=base+"px";
  for(var k=0;k<n;k++){var st=document.createElement("i");st.dataset.k=k;probe.appendChild(st);}
  document.body.appendChild(probe);  /* outside the section, which may clip its overflow */

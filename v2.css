@@ -1232,6 +1232,6 @@ html.site-only #site-app{width:100%;min-height:100vh}
 @keyframes floatDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes floatBreathe{from{transform:scale(1)}to{transform:scale(1.06)}}
 .float-probe{position:absolute;left:0;width:8px;pointer-events:none;opacity:0}
-.float-probe i{display:block;height:20px}
+.float-probe i{display:block;height:16px}
 @media(prefers-reduced-motion:reduce){.float-item{opacity:1;transform:none;translate:none}.float-item .photo,.float-item .photo img{animation:none}}
 
