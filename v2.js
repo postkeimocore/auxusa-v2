@@ -509,7 +509,7 @@ function why(){
  chapter({id:"third",layout:"wide",photo:"shinjo-fingertip-2.webp",label:"THE THIRD UTENSIL",title:"Knife. Fork. Tongs.",
   body:L("Fingertip Tongs can sit beside the knife and fork, not only in the kitchen. Pick a small bite, share a dish, and let the tool rest quietly on the table.","ゆびさきトングをキッチンだけでなく、ナイフやフォークと並ぶ食卓の道具に。小さな一口をつまむ、料理を取り分ける、食卓にさりげなく置く。"),
   cta:'<button type="button" class="btn-fill has-arrow" data-go="pdp" data-set-product="fingertip">'+L("Discover Fingertip Tongs","ゆびさきトングを見る")+'</button>'})+
- chapter({id:"tsubame",layout:"offset",reverse:true,photo:"manufacturing-caliper-close.webp",label:"TSUBAME-SANJO",title:L("The expertise behind the form.","形を支える、金属加工の技術。"),
+ chapter({id:"tsubame",layout:"offset",reverse:true,photo:"katou-craft-lineup.webp",label:"TSUBAME-SANJO",title:L("The expertise behind the form.","形を支える、金属加工の技術。"),
   body:L("Behind each form is careful metalworking, from cutting and forming to the final finish.","形の背景には、切る・曲げる・仕上げるまでの丁寧な金属加工があります。")})+
  '<section class="site-section compact">'+sectionHead("",L("Find the right tool.","商品から確かめる。"),
  L("Continue from the story to the collection and the products.","ストーリーから、商品選びへ。"))+
