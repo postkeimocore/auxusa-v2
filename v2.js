@@ -656,47 +656,38 @@ function scrollFade(el,ty,vh){
  var op=t>.75?(1-t)/.25:(t<.25?t/.25:1);
  return {t:t,op:Math.max(0,Math.min(1,op))};
 }
-function bandDrift(){
- var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches,vh=window.innerHeight||1;
- document.querySelectorAll(".why-float[data-drift]").forEach(function(el){
-  if(reduce||window.innerWidth<=880){el.style.transform="";el.style.opacity="";return;}
-  var f=scrollFade(el,el._ty||0,vh);
-  var r=el.parentNode.getBoundingClientRect();
-  var off=Math.max(-48,Math.min(48,(r.top+r.height/2-vh/2)*Number(el.dataset.drift)));
-  el._ty=off;
-  el.style.opacity=f.op.toFixed(3);
-  el.style.transform="translate3d(0,"+off.toFixed(1)+"px,0)";
- });
-}
 function scatterParallax(){
  scatterQueued=false;
  scrollZoom();
- bandDrift();
 }
-/* HOME Different forms: the photos float in when the section comes into view, bob gently and
-   drift with scroll (parallax, data-speed). The scroll position is read with IntersectionObserver
-   on thin strips around the section instead of scroll events, so it also works when the page is
-   shown inside a frame that does not scroll itself (XProof). */
+/* Floating photos (HOME Different forms, WHY AUX band): they fade in slowly while settling, the
+   photo breathes in and out like the HOME hero, and the frame drifts gently with scroll
+   (parallax, lagging behind). The scroll position is read with IntersectionObserver on thin strips
+   around each section instead of scroll events, so it also works when the page is shown inside a
+   frame that does not scroll itself (XProof). */
+var FLOAT_GROUPS=[[".scatter-section",".scatter-photo","speed"],[".why-band",".why-float","drift"]];
 var floatObservers=[];
 function bindFloat(){
  floatObservers.forEach(function(o){o.disconnect();});floatObservers=[];
- var sec=document.querySelector(".scatter-section");if(!sec)return;
- var photos=[].slice.call(sec.querySelectorAll(".scatter-photo"));
+ [].forEach.call(document.querySelectorAll(".float-probe"),function(el){el.remove();});
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  if(reduce||!("IntersectionObserver" in window))return;
- photos.forEach(function(el,i){el.classList.add("float");el.style.setProperty("--float-delay",(i*140)+"ms");el.style.setProperty("--bob-delay",(-i*1.7).toFixed(1)+"s");el._py=0;el._target=0;});
- var appear=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;})){photos.forEach(function(el){el.classList.add("is-in");});appear.disconnect();}},{threshold:.15});
+ FLOAT_GROUPS.forEach(function(g){[].forEach.call(document.querySelectorAll(g[0]),function(sec){floatSection(sec,[].slice.call(sec.querySelectorAll(g[1])),g[2]);});});
+}
+function floatSection(sec,items,speedKey){
+ if(!items.length)return;
+ items.forEach(function(el,i){el.classList.add("float-item");el.style.setProperty("--float-delay",(i*320)+"ms");el.style.setProperty("--bob-delay",(-i*2.3).toFixed(1)+"s");el._py=0;el._target=0;});
+ var appear=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;})){items.forEach(function(el){el.classList.add("is-in");});appear.disconnect();}},{threshold:.12});
  appear.observe(sec);floatObservers.push(appear);
- var old=document.querySelector(".float-probe");if(old)old.remove();
  var secTop=function(){return sec.getBoundingClientRect().top+(window.scrollY||0);};
- var STRIP=40,EXTRA=1200,base=secTop()-EXTRA,probe=document.createElement("div"),visible={},n=Math.ceil((sec.offsetHeight+EXTRA*2)/STRIP);
+ var STRIP=20,EXTRA=1200,base=secTop()-EXTRA,probe=document.createElement("div"),visible={},n=Math.ceil((sec.offsetHeight+EXTRA*2)/STRIP);
  probe.className="float-probe";probe.setAttribute("aria-hidden","true");probe.style.top=base+"px";
  for(var k=0;k<n;k++){var st=document.createElement("i");st.dataset.k=k;probe.appendChild(st);}
- document.body.appendChild(probe);  /* outside the section, which clips its overflow */
+ document.body.appendChild(probe);  /* outside the section, which may clip its overflow */
  var running=false;
  function tick(){
   var moving=false;
-  photos.forEach(function(el){el._py+=(el._target-el._py)*.08;if(Math.abs(el._target-el._py)>.1)moving=true;el.style.setProperty("--py",el._py.toFixed(1)+"px");});
+  items.forEach(function(el){el._py+=(el._target-el._py)*.035;if(Math.abs(el._target-el._py)>.05)moving=true;el.style.setProperty("--py",el._py.toFixed(2)+"px");});
   running=moving;if(moving)requestAnimationFrame(tick);
  }
  var io=new IntersectionObserver(function(es){
@@ -705,7 +696,7 @@ function bindFloat(){
   var top=base+Math.min.apply(null,ks)*STRIP,bottom=base+(Math.max.apply(null,ks)+1)*STRIP;
   var offset=(top+bottom)/2-(secTop()+sec.offsetHeight/2);  /* viewport centre relative to the section centre */
   var drift=window.innerWidth>880;
-  photos.forEach(function(el){el._target=drift?Math.max(-48,Math.min(48,offset*Number(el.dataset.speed||0))):0;});
+  items.forEach(function(el){el._target=drift?Math.max(-32,Math.min(32,offset*Number(el.dataset[speedKey]||0)*.7)):0;});
   if(!running){running=true;requestAnimationFrame(tick);}
  });
  [].forEach.call(probe.children,function(st){io.observe(st);});floatObservers.push(io);
