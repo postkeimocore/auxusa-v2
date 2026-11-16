@@ -59,7 +59,6 @@ window.AUX_DATA.compare = {
 window.AUX_DATA.pdp = {
  mini:{
   lead:["Our Fingertip Tongs at 7 cm, for small jobs you would rather not do with your fingers.","ゆびさきトングを全長7cmにしたミニサイズ。指でやりたくない小さな作業に。"],
-  proof:["GoodsPress award winner (Japan)","グッズプレス W受賞"],
   primary:[["Small jobs, without touching the food.","指を使わずに、小さな作業を。"],["The tips grip like your own fingertips, so you can peel shrimp, hold garlic or lift something hot and keep your hands and nails clean.","指先のようにつかめるので、エビの殻むきも、にんにくを押さえるのも、熱いものをつかむのも、手やネイルを汚さずにできます。"]],
   uses:[["Prep work","下ごしらえに","Peel shrimp and remove the vein with small, precise movements.","エビの殻むきや背ワタ取りなど、細かい作業がしやすい。"],
         ["Strong smells","においの強い食材に","Hold garlic firmly while you cut, so the smell stays off your fingers.","にんにくなどをしっかり押さえられ、指先ににおいが残りません。"],
@@ -219,7 +218,6 @@ window.AUX_DATA.pdp = {
  },
  grating:{
   lead:["Grate ginger or garlic into the spoon, then stir it in.","しょうがやにんにくをおろして、そのまま混ぜる。"],
-  proof:["JIDA Design Museum Selection","JIDAデザインミュージアムセレクション"],
   primary:[["Grate, stir and pour with one spoon.","おろす、混ぜる、かけるを1本で。"],["A grater shaped like a spoon. Grate ginger or garlic into it and mix it straight into a drink or a dish.","おろし金がスプーンの形になっています。しょうがやにんにくをおろして、そのまま飲み物や料理に混ぜられます。"]],
   uses:[["Ginger tea","ジンジャーティーに","Grate fresh ginger and stir it into a cup of black tea.","しょうがをおろして、そのまま紅茶に混ぜられます。"],
         ["Only what you need","必要な分だけ","Grate just the amount you need, so nothing goes to waste.","必要な分だけおろせるので、薬味が無駄になりません。"],
