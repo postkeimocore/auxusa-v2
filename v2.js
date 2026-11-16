@@ -205,7 +205,7 @@ function bindHero(){
 }
 /* WHY AUX doorway band (HOME, COOK / SERVE / TABLE, PDP): a content-width photo background
    with a few photos scattered over it and the statement centred. Returns an open section. */
-var WHY_FLOATS=[["shinjo-serving-2.webp","f1",".05"],["shinjo-fingertip-card.webp","f2","-.06"],["shinjo-bread-single.webp","f3",".07"],["shinjo-finetip-thumb.webp","f4","-.04"]];
+var WHY_FLOATS=[["shinjo-long-1.webp","f1",".05"],["shinjo-bread-thumb.webp","f2","-.06"],["shinjo-scoop-thumb.webp","f3",".07"],["shinjo-finetip-thumb.webp","f4","-.04"]];
 function whyBand(title,text){
  return '<section class="site-section why-band-section"><div class="why-band">'+
   '<div class="why-band-bg" aria-hidden="true">'+photo("shinjo-lineup.webp","")+'</div>'+
@@ -221,7 +221,7 @@ function home(){
   ["serve","shinjo-serving-2.webp","Made for plating and sharing.","盛り付け・取り分けに。"],
   ["table","shinjo-mini-1.webp","Made for the table.","食卓の細かな動きに。"]
  ];
- var scatter=[["shinjo-fry-thumb.webp",".08"],["shinjo-basting-single.webp","-.06"],["shinjo-noodle-1.webp",".06"],["shinjo-mini-card.webp","-.06"],["shinjo-grating-card.webp",".06"]];
+ var scatter=[["shinjo-fry-thumb.webp",".08"],["shinjo-garnish-thumb.webp","-.06"],["shinjo-noodle-1.webp",".06"],["shinjo-mini-thumb.webp","-.06"],["shinjo-grating-thumb.webp",".06"]];
  return '<div class="home-page">'+heroHTML()+
  /* THE AUX DIFFERENCE: centred statement; photographs scattered behind it as background. */
  '<section class="site-section home-difference scatter-section">'+
@@ -277,7 +277,7 @@ function collection(id){
  table:[
  ["shinjo-fingertip-1.webp","Fingertip control","指先のようにつまむ","Pick up one small or delicate piece.","小さな食材や薄い一枚をつまむ。"],
  ["shinjo-garnish-1.webp","The smaller things","小さな器・小さな食材","A scale that suits small bowls and jars.","小鉢や瓶など、小さな器にもちょうどいいサイズ。"],
- ["katou-garnish-use3.webp","At the tea table","お茶の時間にも","From lifting a tea bag to other small jobs at the table.","ティーバッグを引き上げるような、食卓の小さな動きにも。"]]
+ ["katou-garnish-use2.webp","At the tea table","お茶の時間にも","From lifting a tea bag to other small jobs at the table.","ティーバッグを引き上げるような、食卓の小さな動きにも。"]]
  }[id];
  return '<div class="collection-banner"><div class="detail-copy">'+
  '<h1 class="page-display">'+id.toUpperCase()+'</h1><p class="body-lg">'+L(c.lead[0],c.lead[1])+'</p>'+
@@ -391,7 +391,7 @@ function business(){
  whyBand(L("Precision for every service.","業務の現場にも、確かな精度を。"),L("Explore the design and metalworking behind every AUX tool.","AUXの道具を支える設計と金属加工について。"))+'</section>';
 }
 function pdpGallery(p){
- var ph=p.photos,shots=[ph.scenes[0],ph.single].concat(ph.scenes.slice(1),ph.uses,[ph.detail]).slice(0,6);
+ var ph=p.photos,shots=ph.scenes.concat([ph.single,ph.form],ph.uses);
  state.galleryIndex=Math.max(0,Math.min(shots.length-1,state.galleryIndex||0));
  var idx=state.galleryIndex;
  return '<div class="kinto-gallery" aria-label="Product photos">'+
@@ -449,7 +449,7 @@ function pdp(){
  '<div class="pdp-primary-use"><div class="pdp-primary-photo">'+photo(p.scene,"Primary use image / hand + food + exact product")+'</div>'+
  '<div class="pdp-primary-copy"><h3 class="display-small">'+L({cook:"Made for cooking movements.",serve:"Made for plating and sharing.",table:"Made for small movements at the table."}[primary],{cook:"調理の動きのために。",serve:"盛り付けと取り分けのために。",table:"食卓の小さな動きのために。"}[primary])+'</h3>'+
  '<p class="body-md">'+L("From lifting a single bite to serving a shared dish, the details work together.","小さなひと口から大皿の取り分けまで、使う動きに沿った工夫。")+'</p></div></div>'+
- '<div class="pdp-use-trio">'+scenes.map(function(x,i){return '<article>'+photo([p.photos.uses[0],p.photos.scenes[1]||p.thumb,p.photos.uses[1]][i],"Use context / check specific product match")+'<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div></section>'+
+ '<div class="pdp-use-trio">'+scenes.map(function(x,i){return '<article>'+photo([p.photos.uses[0],p.photos.scenes[1]||p.thumb,p.photos.uses[1]||p.photos.single][i],"Use context / check specific product match")+'<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div></section>'+
  '<section class="site-section pdp-details-section"><div class="sub-head"><h3 class="display-small">'+L("A closer look at the details.","細かな仕事を支える設計。")+'</h3>'+
   '<p class="body-md">'+L("Considered tips, balanced proportions, and a shape that sits naturally in the hand.","先端の形、サイズ、持ったときのバランス。使い心地を左右する細部。")+'</p></div>'+
  '<div class="feature-trio">'+mechanics.map(function(x,i){return '<article>'+photo([p.photos.detail,p.image,p.photos.form][i],x[1]+" / illustrative close-up")+
@@ -490,13 +490,13 @@ function pdp(){
 function why(){
  var factors=[
  ["shinjo-serving-2.webp","The point of contact","食材に触れる先端","Different tips for different foods and movements.","食材やつかむ動作に合わせた先端形状。"],
- ["katou-fry-detail.webp","One form, one job","目的のある形","Draining openings and task-specific silhouettes.","油を切る穴など、必要な作業につながる形。"],
+ ["katou-fry-use1.webp","One form, one job","目的のある形","Draining openings and task-specific silhouettes.","油を切る穴など、必要な作業につながる形。"],
  ["shinjo-mini-1.webp","The right scale","適切な大きさ","Size and reach in relation to hand and dish.","手や器、食卓での距離感に合うサイズ。"]
  ];
  var uses=[
  ["shinjo-basting-1.webp","Contact & precision","先端の精度","A considered contact point for precise handling.","食材を繊細につかむための先端形状。"],
- ["shinjo-fingertip-single.webp","Grip and response","握り心地と操作性","A spring and grip designed for natural control.","手に馴染む形と、自然に開閉するばねの感覚。"],
- ["katou-lineup.webp","Scale & proportion","サイズとバランス","Sized for the food and the hand that holds it.","手にも食材にも合う、考えられたバランス。"]
+ ["shinjo-noodle-2.webp","Grip and response","握り心地と操作性","A spring and grip designed for natural control.","手に馴染む形と、自然に開閉するばねの感覚。"],
+ ["shinjo-garnish-1.webp","Scale & proportion","サイズとバランス","Sized for the food and the hand that holds it.","手にも食材にも合う、考えられたバランス。"]
  ];
  return '<div class="brand-page">'+
  editorialOpening("shinjo-basting-2.webp",L("A better movement<br>starts with a better tool.","使う人の動きから、<br>道具を考える。"),
@@ -505,7 +505,7 @@ function why(){
   L("Look at the distinctive shapes first, then see where they make a difference.","食材が変われば、必要な形も変わる。"))+
  '<div class="form-collage">'+factors.map(function(f){return '<figure>'+photo(f[0],"")+
  '<figcaption><h3>'+L(f[1],f[2])+'</h3><p>'+L(f[3],f[4])+'</p></figcaption></figure>';}).join("")+'</div></section>'+
- '<section class="site-section" id="anchor-engineering"><div class="spec-layout">'+photo("shinjo-lineup.webp","")+
+ '<section class="site-section" id="anchor-engineering"><div class="spec-layout">'+photo("shinjo-finetip-2.webp","")+
  '<div class="spec-copy">'+eyebrow("DESIGN & ENGINEERING")+'<h2 class="display-medium">'+L("Shape, feel and proportion.","先端、角度、握り心地。")+'</h2>'+
  '<p class="body-md">'+L("The tip, the angle, the length and the grip. Each shape has a reason you can feel in use.","先端、角度、長さ、握り心地。一つひとつの形に理由があります。")+'</p>'+
  '<ul class="spec-list">'+uses.map(function(u){return '<li>'+photo(u[0],"")+'<div><h3>'+L(u[1],u[2])+'</h3><p>'+L(u[3],u[4])+'</p></div></li>';}).join("")+'</ul></div></div></section>'+

@@ -743,7 +743,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
    ============================================================ */
 .photo-hero{display:grid;grid-template-columns:minmax(0,1fr) 80px;height:calc(100vh - 80px);min-height:560px;max-height:960px;background:var(--white)}
 .photo-hero-visual{position:relative;min-width:0;overflow:hidden;cursor:default}
-.photo-hero-visual:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,color-mix(in srgb,var(--ink) 60%,transparent) 0,color-mix(in srgb,var(--ink) 24%,transparent) 32%,transparent 56%)}
+.photo-hero-visual:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(140% 100% at 0 100%,color-mix(in srgb,var(--ink) 60%,transparent) 0,color-mix(in srgb,var(--ink) 30%,transparent) 35%,transparent 62%)}
 .photo-hero-caption{position:absolute;left:var(--page-gutter);bottom:64px;z-index:2;max-width:480px;color:var(--white)}
 #site-app .photo-hero-title{font-family:var(--font-editorial);font-weight:400;font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--tracking-heading);color:var(--white);margin:0}
 #site-app .photo-hero-copy{margin:16px 0 0;color:var(--white)}
