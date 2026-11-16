@@ -205,7 +205,7 @@ function bindHero(){
 }
 /* WHY AUX doorway band (HOME, COOK / SERVE / TABLE, PDP): a content-width photo background
    with a few photos scattered over it and the statement centred. Returns an open section. */
-var WHY_FLOATS=[["shinjo-serving-2.webp","f1",".05"],["shinjo-fingertip-card.webp","f2","-.06"],["shinjo-whisk-thumb.webp","f3",".07"],["shinjo-finetip-card.webp","f4","-.04"]];
+var WHY_FLOATS=[["shinjo-serving-2.webp","f1",".05"],["shinjo-fingertip-card.webp","f2","-.06"],["shinjo-bread-single.webp","f3",".07"],["shinjo-finetip-thumb.webp","f4","-.04"]];
 function whyBand(title,text){
  return '<section class="site-section why-band-section"><div class="why-band">'+
   '<div class="why-band-bg" aria-hidden="true">'+photo("shinjo-lineup.webp","")+'</div>'+
@@ -221,7 +221,7 @@ function home(){
   ["serve","shinjo-serving-2.webp","Made for plating and sharing.","盛り付け・取り分けに。"],
   ["table","shinjo-mini-1.webp","Made for the table.","食卓の細かな動きに。"]
  ];
- var scatter=[["shinjo-fry-thumb.webp",".08"],["shinjo-noodle-single.webp","-.06"],["shinjo-noodle-1.webp",".06"],["shinjo-mini-thumb.webp","-.06"],["shinjo-grating-card.webp",".06"]];
+ var scatter=[["shinjo-fry-thumb.webp",".08"],["shinjo-basting-single.webp","-.06"],["shinjo-noodle-1.webp",".06"],["shinjo-mini-card.webp","-.06"],["shinjo-grating-card.webp",".06"]];
  return '<div class="home-page">'+heroHTML()+
  /* THE AUX DIFFERENCE: centred statement; photographs scattered behind it as background. */
  '<section class="site-section home-difference scatter-section">'+
@@ -332,15 +332,16 @@ function moments(){
  whyBand(L("Precision behind every moment.","どの時間にも、確かな使い心地を。"),L("The forms that make each moment easier begin with careful design and metalworking.","それぞれの時間を心地よくする形は、丁寧な設計と金属加工から生まれます。"))+'</section></div>';
 }
 var BIZ_PHOTOS={
- restaurants:["istock-479169402.webp","shinjo-finetip-2.webp","shinjo-long-2.webp","istock-2226618325.webp"],
- hotels:["istock-2172505701.webp","shinjo-serving-2.webp","shinjo-scoop-1.webp","istock-2219298796.webp"],
+ restaurants:["istock-479169402.webp","shinjo-finetip-2.webp","istock-2226618325.webp","shinjo-long-2.webp"],
+ hotels:["istock-2172505701.webp","shinjo-serving-2.webp","istock-2219298796.webp","shinjo-scoop-1.webp"],
  cafes:["shinjo-bread-1.webp","istock-1839957842.webp","shinjo-mini-1.webp","istock-1772714735.webp"],
  catering:["istock-1388916470.webp","shinjo-serving-1.webp","istock-2235046527.webp","shinjo-long-1.webp"],
- retail:["shinjo-lineup.webp","shinjo-fingertip-single.webp","katou-lineup.webp","shinjo-serving-single.webp"]
+ retail:["shinjo-lineup.webp"]
 };
 /* FOR BUSINESS sector photo: prev / next arrows on the photo (same as the PDP gallery) and one bar per photo below. */
 function bizGallery(id){
  var shots=BIZ_PHOTOS[id]||[];
+ if(shots.length<2)return photo(shots[0],"");
  return '<div class="biz-gallery" data-biz="'+id+'"><div class="biz-frame">'+photo(shots[0],"")+
   '<button class="kinto-arrow prev" type="button" data-biz-step="-1" aria-label="Previous image">'+arw()+'</button>'+
   '<button class="kinto-arrow next" type="button" data-biz-step="1" aria-label="Next image">'+arw()+'</button></div>'+
@@ -390,7 +391,7 @@ function business(){
  whyBand(L("Precision for every service.","業務の現場にも、確かな精度を。"),L("Explore the design and metalworking behind every AUX tool.","AUXの道具を支える設計と金属加工について。"))+'</section>';
 }
 function pdpGallery(p){
- var ph=p.photos,shots=[ph.single].concat(ph.scenes,ph.uses,[ph.detail]).slice(0,6);
+ var ph=p.photos,shots=[ph.scenes[0],ph.single].concat(ph.scenes.slice(1),ph.uses,[ph.detail]).slice(0,6);
  state.galleryIndex=Math.max(0,Math.min(shots.length-1,state.galleryIndex||0));
  var idx=state.galleryIndex;
  return '<div class="kinto-gallery" aria-label="Product photos">'+
