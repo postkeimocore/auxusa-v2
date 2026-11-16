@@ -273,9 +273,9 @@ function collection(id){
  serve:[
  ["shinjo-serving-1.webp","Share from one plate","大皿から取り分ける","Make serving from a shared dish feel natural.","みんなで囲む大皿から自然に取り分ける。"],
  ["shinjo-finetip-2.webp","Place with control","狙った位置に盛り付ける","Make small, careful adjustments to every plate.","盛り付けの位置を調整する繊細な動き。"],
- ["shinjo-garnish-2.webp","Serve together with sauce","食材とソースを扱う","Grip the food and serve it with its sauce.","すくう形を使って料理を取り分ける。"]],
+ ["shinjo-bread-2.webp","Keep the toppings in place","具材をくずさずに","Lift toast and open sandwiches by the edge, without touching the toppings.","トーストや具をのせたパンを、フチでつかんで取り分ける。"]],
  table:[
- ["shinjo-fingertip-1.webp","Fingertip control","指先のようにつまむ","Pick up one small or delicate piece.","小さな食材や薄い一枚をつまむ。"],
+ ["shinjo-fingertip-1.webp","Sharing at the table","食卓で取り分ける","Pass salad and small bites from the middle of the table.","テーブル中央の料理を、それぞれの皿へ取り分ける。"],
  ["shinjo-garnish-1.webp","The smaller things","小さな器・小さな食材","A scale that suits small bowls and jars.","小鉢や瓶など、小さな器にもちょうどいいサイズ。"],
  ["katou-garnish-use2.webp","At the tea table","お茶の時間にも","From lifting a tea bag to other small jobs at the table.","ティーバッグを引き上げるような、食卓の小さな動きにも。"]]
  }[id];
@@ -487,8 +487,8 @@ function why(){
  ["shinjo-mini-1.webp","The right scale","適切な大きさ","Size and reach in relation to hand and dish.","手や器、食卓での距離感に合うサイズ。"]
  ];
  var uses=[
- ["shinjo-basting-1.webp","Contact & precision","先端の精度","A considered contact point for precise handling.","食材を繊細につかむための先端形状。"],
- ["shinjo-noodle-2.webp","Grip and response","握り心地と操作性","A spring and grip designed for natural control.","手に馴染む形と、自然に開閉するばねの感覚。"],
+ ["katou-finetip-contact.webp","Contact & precision","先端の精度","A considered contact point for precise handling.","食材を繊細につかむための先端形状。"],
+ ["katou-fingertip-contact.webp","Grip and response","握り心地と操作性","A spring and grip designed for natural control.","手に馴染む形と、自然に開閉するばねの感覚。"],
  ["shinjo-garnish-1.webp","Scale & proportion","サイズとバランス","Sized for the food and the hand that holds it.","手にも食材にも合う、考えられたバランス。"]
  ];
  return '<div class="brand-page">'+
