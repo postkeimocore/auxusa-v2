@@ -83,9 +83,9 @@ function sectionHead(label,title,description,center){
  return '<div class="section-head'+(center?" center":"")+'">'+eyebrow(label)+'<h2 class="display-medium">'+title+'</h2>'+(description?'<p class="body-md">'+description+'</p>':'')+'</div>';
 }
 function productBy(id){return D.products.find(function(p){return p.id===id;})||D.products[2];}
-function card(p){
+function card(p,image){
  return '<article class="product-card" role="link" tabindex="0" data-product="'+p.id+'">'+
-   photo(p.image,"Product imagery", "contain")+
+   photo(image||p.image,"Product imagery", "contain")+
    '<h3>'+p.name+'</h3>'+
    '<div class="price">$20.00</div>'+
  '</article>';
@@ -283,7 +283,7 @@ function collection(id){
  '<div class="collection-value-grid">'+values.map(function(v,i){return '<article>'+photo(v[0],"Physical use / working example")+
  '<h3>'+L(v[1],v[2])+'</h3><p>'+L(v[3],v[4])+'</p></article>';}).join("")+'</div></section>'+
  '<section class="site-section compact mist">'+sectionHead("",L("Start with these tools.","代表商品から選ぶ。"))+
- '<div class="featured-pair">'+featuredIds.map(function(x){return card(productBy(x));}).join("")+'</div></section>'+
+ '<div class="featured-pair">'+featuredIds.map(function(x){var p=productBy(x);return card(p,p.photos.single);}).join("")+'</div></section>'+
  '<section class="site-section compact" id="anchor-products">'+listingToolbar(matches,"family")+productGrid(filterList(matches,"family"))+'</section>'+
  (id==="table"?'<section class="site-section mist"><div class="split">'+photo("shinjo-fingertip-2.webp","Fingertip at table / THE THIRD UTENSIL")+
  '<div>'+eyebrow("KNIFE. FORK. TONGS.")+'<h2 class="display-medium">'+L("A new place at the table.","食卓に、新しい道具を。")+'</h2><p class="body-md">'+L("Fingertip Tongs feel at home beside the knife and fork.","ナイフやフォークの隣に、ゆびさきトングという新しい選択肢を。")+'</p>'+
