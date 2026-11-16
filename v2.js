@@ -614,7 +614,7 @@ function updateCompare(){
    hover transitions are untouched. Off for reduced motion; the header stays still. */
 var REVEAL_UNIT=".photo,figure,img,picture,video,svg,canvas,table,details,input,select,textarea,button,a,[data-product],[data-go],[role=link],.hero-slide";
 var REVEAL_SKIP=".float-item,.float-probe,.why-band-bg,script,style,template";
-var REVEAL_GAP=80,REVEAL_MAX_DELAY=640,revealObserver=null,revealClock=0;
+var REVEAL_GAP=80,REVEAL_MAX_DELAY=640,revealObserver=null,revealClock=0,revealAnims=[];
 function revealUnits(root,out){
  [].forEach.call(root.children,function(el){
   if(el.matches(REVEAL_SKIP))return;
@@ -629,7 +629,7 @@ function revealHold(el){
  var cs=getComputedStyle(el),op=cs.opacity,tr=cs.translate,wide=el.getBoundingClientRect().width>=window.innerWidth*.9;
  var fade=el.animate([{opacity:0},{opacity:op}],{duration:1200,easing:"cubic-bezier(.37,0,.63,1)",fill:"both"});
  var rise=wide||(tr&&tr!=="none")?null:el.animate([{translate:"0 24px"},{translate:"0 0"}],{duration:1600,easing:"cubic-bezier(.22,.61,.36,1)",fill:"both"});
- el._reveal=[fade,rise].filter(Boolean);
+ el._reveal=[fade,rise].filter(Boolean);revealAnims=revealAnims.concat(el._reveal);
  el._reveal.forEach(function(a){a.pause();a.onfinish=function(){a.cancel();};});
 }
 function revealPlay(el,delay){
@@ -638,8 +638,9 @@ function revealPlay(el,delay){
 }
 function bindReveal(){
  if(revealObserver)revealObserver.disconnect();
+ revealAnims.forEach(function(a){a.cancel();});revealAnims=[];  /* parts show their final state */
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if(reduce||!("IntersectionObserver" in window)||!Element.prototype.animate)return;
+ if(reduce||!scrollFx||!("IntersectionObserver" in window)||!Element.prototype.animate)return;
  var units=[];
  document.querySelectorAll("#site-app .site-content,#site-app .site-footer").forEach(function(r){revealUnits(r,units);});
  revealObserver=new IntersectionObserver(function(entries){
@@ -661,6 +662,13 @@ function bindGallery(){
 }
 function bindCompare(){var t=document.getElementById("compare-track");if(t){t.addEventListener("scroll",updateCompare,{passive:true});updateCompare();}}
 var scatterQueued=false;
+/* Scroll effects (soft reveal, floating photos, close-up) need a page that scrolls in its own window.
+   When the window is as tall as the page (an XProof artboard stretches to the content height) they
+   show their final state; when the page scrolls again (XProof full-screen preview, a browser) they
+   come back. Checked on every render and on resize. */
+var scrollFx=null;
+function pageScrolls(){return document.documentElement.scrollHeight>window.innerHeight+2;}
+function syncScrollFx(){var on=pageScrolls();if(on===scrollFx)return;scrollFx=on;bindFloat();bindReveal();scrollZoom();}
 /* Full-width photos and the Knife. Fork. Tongs. photo: parallax close-up while scrolling.
    Progress runs from when the frame enters the viewport (or page top) until it has passed.
    Scale 100% → 150%; the image also lags downwards, never further than the scaled overflow. */
@@ -670,7 +678,7 @@ function scrollZoom(){
  var vh=window.innerHeight||1,y=window.scrollY||window.pageYOffset||0;
  document.querySelectorAll(ZOOM_SELECTOR).forEach(function(frame){
   var im=frame.querySelector("img");if(!im)return;
-  if(reduce){im.style.transform="";return;}
+  if(reduce||!scrollFx){im.style.transform="";return;}
   var r=frame.getBoundingClientRect(),top=r.top+y,h=r.height||1;
   var start=Math.max(0,top-vh),end=top+h;
   var p=Math.max(0,Math.min(1,(y-start)/Math.max(1,end-start)));
@@ -697,12 +705,13 @@ function scatterParallax(){
    each section instead of scroll events, so it also works inside a frame that does not scroll
    itself (XProof). */
 var FLOAT_GROUPS=[[".scatter-section",".scatter-photo","speed"],[".why-band",".why-float","drift"]];
-var floatObservers=[];
+var floatObservers=[],floatGen=0;
 function bindFloat(){
- floatObservers.forEach(function(o){o.disconnect();});floatObservers=[];
+ floatObservers.forEach(function(o){o.disconnect();});floatObservers=[];floatGen++;
  [].forEach.call(document.querySelectorAll(".float-probe"),function(el){el.remove();});
+ [].forEach.call(document.querySelectorAll(".float-item"),function(el){el.classList.remove("float-item");el.style.opacity="";el.style.removeProperty("--py");});
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if(reduce||!("IntersectionObserver" in window))return;
+ if(reduce||!scrollFx||!("IntersectionObserver" in window))return;
  var pageH=document.documentElement.scrollHeight;
  FLOAT_GROUPS.forEach(function(g){[].forEach.call(document.querySelectorAll(g[0]),function(sec){floatSection(sec,[].slice.call(sec.querySelectorAll(g[1])),g[2],pageH);});});
 }
@@ -715,7 +724,7 @@ function floatSection(sec,items,speedKey,pageH){
  probe.className="float-probe";probe.setAttribute("aria-hidden","true");probe.style.top=base+"px";
  for(var k=0;k<n;k++){var st=document.createElement("i");st.dataset.k=k;probe.appendChild(st);}
  document.body.appendChild(probe);  /* outside the section, which may clip its overflow */
- var view=null,running=false;
+ var view=null,running=false,gen=floatGen;
  function targets(){
   var vh=Math.max(1,view.bottom-view.top),y0=window.scrollY||0,drift=window.innerWidth>880;
   items.forEach(function(el){
@@ -725,6 +734,7 @@ function floatSection(sec,items,speedKey,pageH){
   });
  }
  function tick(){
+  if(gen!==floatGen){running=false;return;}
   var moving=false;
   items.forEach(function(el){
    el._py+=(el._tpy-el._py)*.1;el._op+=(el._top-el._op)*.12;
@@ -743,7 +753,7 @@ function floatSection(sec,items,speedKey,pageH){
  [].forEach.call(probe.children,function(st){io.observe(st);});floatObservers.push(io);
 }
 window.addEventListener("scroll",function(){if(!scatterQueued){scatterQueued=true;requestAnimationFrame(scatterParallax);}},{passive:true});
-window.addEventListener("resize",function(){scatterParallax();updateCompare();bindGallery();});
+window.addEventListener("resize",function(){syncScrollFx();scatterParallax();updateCompare();bindGallery();});
 function render(){
  document.documentElement.lang=state.lang;
  document.getElementById("site-app").innerHTML=appHeader()+'<div class="site-content">'+content()+'</div>'+footer();
@@ -753,6 +763,7 @@ function render(){
  var route=state.page==="pdp"?"/products/aux-"+state.product:ROUTES[state.page];
  document.getElementById("stage-breadcrumb").textContent="aux-global.com"+route+" / "+state.lang.toUpperCase();
   updateURL();
+ scrollFx=pageScrolls();
  scatterParallax();
  bindFloat();
  bindCompare();
