@@ -647,7 +647,7 @@ function bindReveal(){
   entries.filter(function(e){return e.isIntersecting;}).sort(function(a,b){return a.target.compareDocumentPosition(b.target)&4?-1:1;}).forEach(function(e){
    revealObserver.unobserve(e.target);revealPlay(e.target,revealClock-now);revealClock=Math.min(revealClock+REVEAL_GAP,now+REVEAL_MAX_DELAY);
   });
- },{rootMargin:"0px 0px -48px 0px"});
+ });  /* starts as soon as a part enters (the last lines of the page must be reachable too) */
  units.forEach(function(el){
   if(el.getBoundingClientRect().bottom<0)return;  /* already scrolled past (re-render after a filter change) */
   revealHold(el);revealObserver.observe(el);
