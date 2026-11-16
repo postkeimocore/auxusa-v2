@@ -465,7 +465,7 @@ function pdp(){
  var here=x.id===p.id;
  return '<article class="'+(here?'current':'')+'" data-product="'+x.id+'" role="link" tabindex="0"'+(here?' aria-current="page"':'')+'>'+
  thumbPhoto(x.thumb,x.image)+
- '<div class="compare-copy">'+(here?'<span class="compare-current">'+L("Viewing","表示中")+'</span>':'')+'<h3>'+x.name+'</h3>'+
+ '<div class="compare-copy"><h3>'+x.name+'</h3>'+
  '<dl class="compare-facts"><dt>'+L("Best for","適した用途")+'</dt><dd>'+L(m.best,m.jpBest)+'</dd>'+
  '<dt>'+L("Scale","サイズ・特徴")+'</dt><dd>'+L(m.size,m.jpSize)+'</dd>'+
  '<dt>'+L("Moment","食事のシーン")+'</dt><dd>'+L(m.moment,m.jpMoment)+'</dd></dl>'+
@@ -605,21 +605,52 @@ function updateCompare(){
  if(prev)prev.disabled=t.scrollLeft<=1;
  if(next)next.disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-1;
 }
-var REVEAL_SELECTOR=[".section-head",".listing-toolbar",".product-card",".category-card",".split>*",".feature-trio>*",".collection-value-grid>*",
- ".pdp-use-trio>*",".pdp-primary-use>*",".pdp-detail-band",".home-moment-main",".home-moment-list article",".b2b-banner>*",".about-image-band>*",
- ".business-detail>*",".business-tiles",".chapter-bleed",".chapter-copy",".chapter-photo",".form-collage figure",".spec-layout>*",".moment-jumps",
- ".moment-products-heading",".moment-end>*",".review-shell>*",".compare-head",".pdp-comparison",".editorial-intro>*",".collection-banner>*",
- ".detail-hero>*",".shop-intro>*",".utility-heading",".featured-pair>*",".scatter-copy>*",".why-band-copy>*",".brand-row>*"].join(",");
-var revealObserver=null;
+/* Soft reveal for every part of the page, on page load and on scroll: each part fades in (1.2s) and
+   rises 24px (1.6s, eased out) the first time it enters the viewport; parts entering together follow
+   one another 80ms apart. Parts are found automatically: photos, clickable cards, buttons and form
+   fields move as one; otherwise the smallest blocks of text (heading, paragraph, list item, ...).
+   Full-width photos only fade. Played with the Web Animations API on opacity and `translate`, held at
+   the start until the part is in view and removed when done, so the parts' own opacity, transforms and
+   hover transitions are untouched. Off for reduced motion; the header stays still. */
+var REVEAL_UNIT=".photo,figure,img,picture,video,svg,canvas,table,details,input,select,textarea,button,a,[data-product],[data-go],[role=link],.hero-slide";
+var REVEAL_SKIP=".float-item,.float-probe,.why-band-bg,script,style,template";
+var REVEAL_GAP=80,REVEAL_MAX_DELAY=640,revealObserver=null,revealClock=0;
+function revealUnits(root,out){
+ [].forEach.call(root.children,function(el){
+  if(el.matches(REVEAL_SKIP))return;
+  if(!el.getClientRects().length){if(getComputedStyle(el).display==="contents")revealUnits(el,out);return;}
+  if(el.matches(REVEAL_UNIT)){out.push(el);return;}
+  var block=[].some.call(el.children,function(c){return c.tagName!=="BR"&&!/^inline/.test(getComputedStyle(c).display);});
+  if(block)revealUnits(el,out);else if(el.textContent.trim()||el.children.length)out.push(el);
+ });
+ return out;
+}
+function revealHold(el){
+ var cs=getComputedStyle(el),op=cs.opacity,tr=cs.translate,wide=el.getBoundingClientRect().width>=window.innerWidth*.9;
+ var fade=el.animate([{opacity:0},{opacity:op}],{duration:1200,easing:"cubic-bezier(.37,0,.63,1)",fill:"both"});
+ var rise=wide||(tr&&tr!=="none")?null:el.animate([{translate:"0 24px"},{translate:"0 0"}],{duration:1600,easing:"cubic-bezier(.22,.61,.36,1)",fill:"both"});
+ el._reveal=[fade,rise].filter(Boolean);
+ el._reveal.forEach(function(a){a.pause();a.onfinish=function(){a.cancel();};});
+}
+function revealPlay(el,delay){
+ (el._reveal||[]).forEach(function(a){a.effect.updateTiming({delay:delay});a.play();});
+ el._reveal=null;
+}
 function bindReveal(){
- var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if(reduce||!("IntersectionObserver" in window))return;
  if(revealObserver)revealObserver.disconnect();
- revealObserver=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var t=e.target;t.classList.add("is-in");revealObserver.unobserve(t);setTimeout(function(){t.style.transitionDelay="";},1200);}});},{rootMargin:"0px 0px -8% 0px"});
- document.querySelectorAll("#site-app .site-content "+REVEAL_SELECTOR.split(",").join(",#site-app .site-content ")).forEach(function(el){
-  var i=Array.prototype.indexOf.call(el.parentNode.children,el)%4;
-  el.style.transitionDelay=(i*80)+"ms";
-  el.classList.add("reveal");revealObserver.observe(el);
+ var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(reduce||!("IntersectionObserver" in window)||!Element.prototype.animate)return;
+ var units=[];
+ document.querySelectorAll("#site-app .site-content,#site-app .site-footer").forEach(function(r){revealUnits(r,units);});
+ revealObserver=new IntersectionObserver(function(entries){
+  var now=performance.now();revealClock=Math.min(Math.max(revealClock,now),now+REVEAL_MAX_DELAY);
+  entries.filter(function(e){return e.isIntersecting;}).sort(function(a,b){return a.target.compareDocumentPosition(b.target)&4?-1:1;}).forEach(function(e){
+   revealObserver.unobserve(e.target);revealPlay(e.target,revealClock-now);revealClock=Math.min(revealClock+REVEAL_GAP,now+REVEAL_MAX_DELAY);
+  });
+ },{rootMargin:"0px 0px -48px 0px"});
+ units.forEach(function(el){
+  if(el.getBoundingClientRect().bottom<0)return;  /* already scrolled past (re-render after a filter change) */
+  revealHold(el);revealObserver.observe(el);
  });
 }
 /* PDP thumbnails: when the column overflows the photo height, fade its lower edge (until scrolled to the end). */
@@ -672,13 +703,15 @@ function bindFloat(){
  [].forEach.call(document.querySelectorAll(".float-probe"),function(el){el.remove();});
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  if(reduce||!("IntersectionObserver" in window))return;
- FLOAT_GROUPS.forEach(function(g){[].forEach.call(document.querySelectorAll(g[0]),function(sec){floatSection(sec,[].slice.call(sec.querySelectorAll(g[1])),g[2]);});});
+ var pageH=document.documentElement.scrollHeight;
+ FLOAT_GROUPS.forEach(function(g){[].forEach.call(document.querySelectorAll(g[0]),function(sec){floatSection(sec,[].slice.call(sec.querySelectorAll(g[1])),g[2],pageH);});});
 }
-function floatSection(sec,items,speedKey){
+function floatSection(sec,items,speedKey,pageH){
  if(!items.length)return;
  items.forEach(function(el){el.classList.add("float-item");el._py=0;el._tpy=0;el._op=0;el._top=0;el.style.opacity="0";});
  var secTop=function(){return sec.getBoundingClientRect().top+(window.scrollY||0);};
- var STRIP=16,EXTRA=1200,base=secTop()-EXTRA,probe=document.createElement("div"),visible={},n=Math.ceil((sec.offsetHeight+EXTRA*2)/STRIP);
+ var STRIP=16,EXTRA=1200,base=Math.max(0,secTop()-EXTRA),probe=document.createElement("div"),visible={};
+ var n=Math.floor((Math.min(secTop()+sec.offsetHeight+EXTRA,pageH)-base)/STRIP);  /* strips end at the page bottom: no blank space below the footer */
  probe.className="float-probe";probe.setAttribute("aria-hidden","true");probe.style.top=base+"px";
  for(var k=0;k<n;k++){var st=document.createElement("i");st.dataset.k=k;probe.appendChild(st);}
  document.body.appendChild(probe);  /* outside the section, which may clip its overflow */
