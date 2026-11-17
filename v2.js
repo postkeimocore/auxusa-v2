@@ -407,6 +407,14 @@ function pdpGallery(p){
 }
 /* Product page specs: cm and g from the AUX product data; inches and ounces added for the English view. */
 function pdpLen(cm){return cm+"\u00a0cm"+(state.lang==="ja"?"":" ("+(cm/2.54).toFixed(1)+"\u00a0in)");}
+/* Size check: every tool stands on one baseline at 8px per cm (the cutouts are 16px per cm for 2x screens),
+   so heights compare across the whole carousel. Guide lines every 2 in (EN) / 5 cm (JA); the first card labels them. */
+var SIZE_PX=8,SIZE_BASE=16;
+function sizeStage(p,labels){
+ var ja=state.lang==="ja",step=ja?5:5.08,lines="";
+ for(var i=1;i*step<=26;i++){lines+='<span class="size-line" style="bottom:'+(SIZE_BASE+i*step*SIZE_PX).toFixed(1)+'px">'+(labels?'<em>'+(ja?(i*5)+"\u00a0cm":(i*2)+"\u00a0in")+'</em>':"")+'</span>';}
+ return '<div class="size-stage">'+lines+'<img src="'+img(p.size)+'" style="height:'+(D.pdp[p.id].specs.length*SIZE_PX)+'px" loading="lazy" alt=""></div>';
+}
 function pdpSpecs(s){
  var rows=[[L("Length","全長"),pdpLen(s.length)]];
  if(s.width)rows.push([L("Width","幅"),pdpLen(s.width)]);
@@ -450,7 +458,7 @@ function pdp(){
  '<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div>'+
  note("V1 PDP structural restoration: primary-use image + 3 use-value cards → physical-feature detail cards → wide feature band. Photos are not a guarantee of the exact SKU.","V1 PDP構成を復元：使用価値の画像＋3項目→形状の詳細→横長Feature写真。商品写真の個別対応は未確定。")+'</section>'+
  '<section class="site-section" id="anchor-comparison"><div class="compare-head">'+sectionHead("",L("Which tool fits your task?","どの道具が、動作に合う？"),
- L("Compare all thirteen AUX tools by purpose, length and moment.","得意な用途・長さ・使う場面から、ぴったりの一本を見つけてください。"))+
+ L("All thirteen AUX tools, drawn to the same scale. Compare them by size, purpose and moment.","13の道具を同じ縮尺で並べています。サイズ・用途・使う場面から比べられます。"))+
  '<div class="compare-controls"><span class="compare-count" id="compare-count" aria-live="polite"></span>'+
  '<button type="button" class="compare-step prev" data-compare-step="-1" aria-label="'+L("Previous tools","前の道具")+'">'+arw()+'</button>'+
  '<button type="button" class="compare-step" data-compare-step="1" aria-label="'+L("Next tools","次の道具")+'">'+arw()+'</button></div></div>'+
@@ -458,7 +466,7 @@ function pdp(){
  var m=D.compare[x.id]||D.compare.fingertip;
  var here=x.id===p.id;
  return '<article class="'+(here?'current':'')+'" data-product="'+x.id+'" role="link" tabindex="0"'+(here?' aria-current="page"':'')+'>'+
- thumbPhoto(x.thumb,x.image)+
+ sizeStage(x,here)+
  '<div class="compare-copy"><h3>'+x.name+'</h3>'+
  '<dl class="compare-facts"><dt>'+L("Best for","適した用途")+'</dt><dd>'+L(m.best,m.jpBest)+'</dd>'+
  '<dt>'+L("Length","全長")+'</dt><dd>'+pdpLen(D.pdp[x.id].specs.length)+'</dd>'+
