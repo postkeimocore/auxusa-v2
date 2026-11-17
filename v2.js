@@ -103,7 +103,7 @@ function productStrip(ids){
 var LOGO=new URLSearchParams(location.search).get("logo")||"";
 /* AUX Co., Ltd. brands (sample page modelled on aux-ltd.co.jp/brand). Sub-pages are not built yet. */
 var BRANDS=[
- {id:"leye",name:"Leye",jp:"Leye",logo:"brand-leye-logo.svg",photo:"shinjo-lineup.webp",copy:["Ideas that keep everyday kitchen work moving, so there is more time for what you enjoy.","好きに使える時間のために、テキパキはかどるアイデアを。暮らし目線のひと工夫、Leye"]},
+ {id:"leye",name:"Leye",jp:"Leye",logo:"brand-leye-logo.svg",photo:"shinjo-lineup.webp",copy:["Precision tongs and kitchen tools, engineered in Japan.","日本で設計した、精密なトングとキッチンツール。"]},
  {id:"teppan",name:"OTONA no TEPPAN",jp:"大人の鉄板",logo:"brand-otona-teppan-logo.svg",photo:"brand-otona-teppan-thumb.webp",copy:["A griddle series that brings out the best in every ingredient.","食材の魅力を最大限に引き出す「大人の鉄板」シリーズ"]},
  {id:"yakizakana",name:"OTONA no YAKIZAKANA",jp:"大人の焼魚",logo:"brand-otona-yakizakana-logo.svg",photo:"brand-otona-yakizakana-thumb.webp",copy:["Crisp-skinned grilled fish, the way a charcoal shichirin makes it.","目指したのは、七輪で焼き上げた皮パリの焼き魚"]},
  {id:"ishiyakiimo",name:"OTONA no ISHIYAKIIMO",jp:"大人の石焼芋",logo:"brand-otona-ishiyakiimo-logo.svg",photo:"brand-otona-ishiyakiimo-thumb.webp",copy:["Rich, sweet stone-roasted sweet potatoes, made at home.","大人をしあわせにする石焼芋。濃密で甘い本格的な石焼き芋をご自宅で。"]},
@@ -276,7 +276,7 @@ function collection(id){
  ["shinjo-bread-2.webp","Keep the toppings in place","具材をくずさずに","Lift toast and open sandwiches by the edge, without touching the toppings.","トーストや具をのせたパンを、フチでつかんで取り分ける。"]],
  table:[
  ["shinjo-fingertip-1.webp","Sharing at the table","食卓で取り分ける","Pass salad and small bites from the middle of the table.","テーブル中央の料理を、それぞれの皿へ取り分ける。"],
- ["shinjo-garnish-1.webp","The smaller things","小さな器・小さな食材","A scale that suits small bowls and jars.","小鉢や瓶など、小さな器にもちょうどいいサイズ。"],
+ ["shinjo-garnish-1.webp","The smaller things","小さな器・小さな食材","A scale that suits small bowls and jars.","小さなボウルや瓶にも、ちょうどいいサイズ。"],
  ["katou-garnish-use2.webp","At the tea table","お茶の時間にも","From lifting a tea bag to other small jobs at the table.","ティーバッグを引き上げるような、食卓の小さな動きにも。"]]
  }[id];
  return '<div class="collection-banner"><div class="detail-copy">'+
@@ -297,7 +297,7 @@ function collection(id){
 function family(kind){
  var isT=kind==="tongs";var list=D.products.filter(function(p){return p.family===kind;});
  return '<div class="collection-banner"><div class="detail-copy">'+
- '<h1 class="page-display">'+(isT?"Leye TONGS":"Leye Tools")+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","「つかむ」動作の違いに合わせた11種類のトング。"):L("Small tools that bring thoughtfulness to everyday kitchen jobs.","毎日の小さな仕事を助ける2種類のキッチンツール。"))+'</p></div>'+
+ '<h1 class="page-display">'+(isT?"Leye TONGS":"Leye Tools")+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","「つかむ」動作の違いに合わせた11種類のトング。"):L("A small whisk and a grating spoon, for dressings, sauces and finishing touches.","ドレッシングやソース、料理の仕上げに使う、小さな泡立て器とおろしスプーン。"))+'</p></div>'+
  photo(isT?"shinjo-lineup.webp":"katou-tools-board.webp","Family image / provisional")+'</div>'+
  '<section class="site-section compact">'+
  listingToolbar(list,"use")+productGrid(filterList(list,"use"))+'</section>';
