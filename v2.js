@@ -407,9 +407,9 @@ function pdpGallery(p){
 }
 /* Product page specs: cm and g from the AUX product data; inches and ounces added for the English view. */
 function pdpLen(cm){return cm+"\u00a0cm"+(state.lang==="ja"?"":" ("+(cm/2.54).toFixed(1)+"\u00a0in)");}
-/* Size check: every tool stands on one baseline at 8px per cm (the cutouts are 16px per cm for 2x screens),
+/* Size check: every tool stands on one baseline at 10px per cm (the cutouts are 20px per cm for 2x screens),
    so heights compare across the whole carousel. Guide lines every 2 in (EN) / 5 cm (JA); the first card labels them. */
-var SIZE_PX=8,SIZE_BASE=16;
+var SIZE_PX=10,SIZE_BASE=16;
 function sizeStage(p,labels){
  var ja=state.lang==="ja",step=ja?5:5.08,lines="";
  for(var i=1;i*step<=26;i++){lines+='<span class="size-line" style="bottom:'+(SIZE_BASE+i*step*SIZE_PX).toFixed(1)+'px">'+(labels?'<em>'+(ja?(i*5)+"\u00a0cm":(i*2)+"\u00a0in")+'</em>':"")+'</span>';}

@@ -428,8 +428,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .pdp-comparison article{background:var(--white);cursor:pointer;min-width:0}
 .pdp-comparison article.current{background:var(--surface)}
 .pdp-comparison .photo{aspect-ratio:1}
-/* Size check (2026-11-17): tools to scale, 8px per cm, on one baseline 16px above the stage bottom. */
-.pdp-comparison .size-stage{position:relative;height:256px;overflow:hidden}
+/* Size check (2026-11-17): tools to scale, 10px per cm, on one baseline 16px above the stage bottom. */
+.pdp-comparison .size-stage{position:relative;height:296px;overflow:hidden}
 .pdp-comparison .size-stage::after{content:"";position:absolute;left:0;right:0;bottom:16px;border-top:1px solid var(--line)}
 .pdp-comparison .size-line{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--line)}
 .pdp-comparison .size-line em{position:absolute;left:16px;bottom:4px;font-style:normal;font-size:var(--fs-meta);line-height:var(--lh-meta);letter-spacing:var(--tracking-index);color:var(--muted)}
