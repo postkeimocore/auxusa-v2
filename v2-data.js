@@ -1,7 +1,7 @@
 /* AUX product family, collection and editorial content data.
    jp: Japanese names; | marks where a Japanese heading may wrap (phrase boundaries). */
 window.AUX_DATA = {
-  assetBase:"https://raw.githubusercontent.com/postkeimocore/auxusa/main/assets/wireframe/",
+  assetBase:"./assets/photos/",
   products:[
     {id:"mini",name:"Leye Mini Tongs",jp:"ミニ|ゆびさき|トング",family:"tongs",uses:["table"],image:"shinjo-mini-card.webp",thumb:"shinjo-mini-thumb.webp",thumbScene:"shinjo-mini-1.webp",scene:"shinjo-mini-1.webp",photos:{single:"shinjo-mini-single.webp",scenes:["shinjo-mini-1.webp"],uses:["katou-mini-use1.webp","katou-mini-use2.webp"],detail:"katou-mini-contact.webp",form:"katou-mini-form.webp"},size:"size-mini.webp",feature:"7 cm / light touch"},
     {id:"garnish",name:"Leye Garnish Tongs",jp:"ごはんの|おとも|トング",family:"tongs",uses:["table"],image:"shinjo-garnish-card.webp",thumb:"shinjo-garnish-thumb.webp",thumbScene:"shinjo-garnish-1.webp",scene:"shinjo-garnish-1.webp",photos:{single:"shinjo-garnish-single.webp",scenes:["shinjo-garnish-1.webp","shinjo-garnish-2.webp"],uses:["katou-garnish-use1.webp","katou-garnish-use2.webp"],detail:"katou-garnish-contact.webp",form:"katou-garnish-form.webp"},size:"size-garnish.webp",feature:"Slim tips"},
