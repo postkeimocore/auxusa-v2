@@ -784,7 +784,9 @@ html.site-only #site-app{width:100%;min-height:100vh}
  .site-section.scatter-section{min-height:0;flex-direction:column;align-items:center;padding-top:64px;padding-bottom:64px}
  .scatter-photos{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:48px;width:100%}
  .scatter-photo,.scatter-photo.s1,.scatter-photo.s2,.scatter-photo.s3,.scatter-photo.s4{position:static;width:auto}
- .scatter-photo.s2,.scatter-photo.s4{margin-top:48px}
+ /* Rows line up on an edge: row 1 (tall left, shorter right) shares the bottom edge, row 2 (landscape left, portrait right) shares the top edge. */
+ .scatter-photos{align-items:start}
+ .scatter-photo.s1,.scatter-photo.s2{align-self:end}
  .scatter-photo.s5{display:none}
  .scatter-copy{order:-1}
 }
@@ -816,7 +818,8 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .nav-sub{position:absolute;left:0;right:0;top:100%;z-index:30;display:flex;visibility:hidden;opacity:0;transition:opacity .16s ease .3s,visibility 0s linear .46s;justify-content:center;align-items:center;padding:8px var(--page-gutter);background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .nav-item:hover .nav-sub,.nav-item:focus-within .nav-sub{visibility:visible;opacity:1;transition-delay:0s}
 .site-menu .nav-sub button{height:auto;padding:16px 32px;font-size:12px;line-height:16px;letter-spacing:var(--tracking-eyebrow);color:var(--ink)}
-.site-menu .nav-sub button+button{border-left:1px solid var(--line)}
+/* Dividers between dropdown items: 16px tall, level with the text (the item boxes are 48px tall for easier pointing). */
+.site-menu .nav-sub button+button:before{content:"";position:absolute;left:0;top:16px;height:16px;border-left:1px solid var(--line)}
 .site-menu .nav-sub button:hover,.site-menu .nav-sub button.active{text-decoration:underline;text-underline-offset:4px}
 .site-menu .nav-sub button.active:after{display:none}
 .cart-text{display:none}
@@ -1142,7 +1145,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 
 /* BRAND dropdown: ten names on one line — tighter item padding than SHOP / SUPPORT. */
 .nav-sub{flex-wrap:wrap;row-gap:0}
-.nav-item.sub-brand .nav-sub button{padding:0 16px}
+.nav-item.sub-brand .nav-sub button{padding:16px}
 /* Brands page (sample after aux-ltd.co.jp/brand): photo left, brand mark / name, line and More centred right. */
 .site-section.brand-list-section{padding-top:32px}
 .brand-list{display:grid;gap:96px}
@@ -1303,6 +1306,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
  #site-app.mobile-open .site-menu .nav-item:not(.is-open) .nav-sub{display:none}
  #site-app.mobile-open .site-menu .nav-item.is-open .nav-parent{border-bottom-color:transparent}
  #site-app.mobile-open .site-menu .nav-item.is-open .nav-sub{visibility:visible;opacity:1;transition:none;display:flex;position:static;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:0 0 16px 16px;background:none;border:0;border-bottom:1px solid var(--line)}
+ #site-app.mobile-open .site-menu .nav-sub button:before{display:none}
  #site-app.mobile-open .site-menu .nav-sub button{height:48px;min-height:48px;padding:0;border:0;text-align:left;font-size:12px;line-height:16px;letter-spacing:var(--tracking-ui)}
  #site-app.mobile-open .site-menu button.nav-business{display:flex;align-items:center;justify-content:center;width:100%;height:48px;min-height:48px;margin-top:32px;padding:0 24px;border:1px solid var(--ink)}
  #site-app.mobile-open .site-menu .nav-lang{display:flex;gap:24px;margin-top:24px}
@@ -1324,3 +1328,11 @@ html.site-only #site-app{width:100%;min-height:100vh}
 #site-app .moment-jumps.has-photos{border:0;gap:8px;grid-auto-rows:1fr}
 #site-app .moment-jumps.has-photos button{border:0}
 @media(max-width:880px){#site-app .moment-jumps.cols-5 button:last-child:nth-child(odd){aspect-ratio:auto}}
+/* Wide chapters (WHY AUX "Knife. Fork. Tongs.", MOMENTS 01 / 03): heading and text form one group centred on the page,
+   144px apart (was a 5:7 split across the full width, ~290px of air between them). Phones: 16px between heading and text. */
+@media(min-width:881px){
+ .chapter.is-wide .chapter-copy{grid-template-columns:fit-content(480px) minmax(0,592px);column-gap:144px;justify-content:center}
+}
+@media(max-width:880px){
+ .chapter-copy{row-gap:16px}
+}

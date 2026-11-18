@@ -345,3 +345,11 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - **Phone hero rail** is 40px (was 56px), so the photo is wider.
 - **Photo carousels** (PDP gallery, FOR BUSINESS sectors): prev / next arrows sit in the bar row under the photo at the same 16px left / right inset, not over the photo.
 - **Jump boxes with photos** (MOMENTS, FOR BUSINESS): no frame lines (they appeared before the photos faded in); boxes are separated by an 8px gap, rows share one height, and on narrow screens the fifth FOR BUSINESS box spans both columns at the same height.
+
+## Design fixes, third round (2026-11-18, user review)
+
+- **Dropdown bars are one height** (64px + rules) for SHOP, BRAND and SUPPORT; BRAND items use 16px padding all round. Dividers between items are 16px tall, level with the text (`button+button:before`), not the full 48px item box.
+- **Scroll strips for the floating photos re-measure** when `#site-app` changes height (ResizeObserver) or the window is resized. Stale strips sat below a shorter page — blank space under the footer — and the WHY AUX photos never faded in until a reload.
+- **HOME scatter photos on phones and tablets** line up by row: row 1 (tall left, shorter right) shares the bottom edge, row 2 (landscape left, portrait right) shares the top edge.
+- **Wide chapters** (WHY AUX "Knife. Fork. Tongs.", MOMENTS 01 / 03): heading and text are one group centred on the page, 144px apart (heading column fit-content up to 480px, text up to 592px). Phones: 16px between heading and text.
+- **Japanese copy** follows the 2026-11-18 review: body text in です・ます, headings as noun phrases, no decorative commas, concrete wording. The Japanese view stays a translation of the English for the client's text check, so a proposal that added or dropped meaning was rewritten to match the English. The shared PDP line "食材や動作に合わせて、つかみやすさを考えた形状。" is for tongs; the whisk and the grating spoon read "食材や手の動きに合わせて考えた形状。".
