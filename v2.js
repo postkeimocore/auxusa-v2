@@ -348,7 +348,7 @@ function moments(){
     '</div>'+
     '<div class="moment-related-grid">'+m.products.map(function(id){return card(productBy(id));}).join("")+'</div></div>'});
  }).join("")+
- whyBand(L("Precision behind every moment.",phrase("使いやすさを支える|設計と技術")),L("Thoughtful shapes and precise metalworking support the moments we share.","用途に合わせた形と精密な金属加工で、食卓の時間を支えます。"))+'</section></div>';
+ whyBand(L("Precision behind every moment.",phrase("使いやすさを|支える|設計と技術")),L("Thoughtful shapes and precise metalworking support the moments we share.","用途に合わせた形と精密な金属加工で、食卓の時間を支えます。"))+'</section></div>';
 }
 var BIZ_PHOTOS={
  restaurants:["istock-479169402.webp","shinjo-finetip-2.webp","istock-2226618325.webp","shinjo-long-2.webp"],
@@ -407,7 +407,7 @@ function business(){
  '<div><h2 class="display-medium">'+L(b.title,phrase(b.jp))+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
  '<div class="business-related">'+eyebrow(L("Suggested tools","おすすめの道具"))+'<ul>'+b.products.map(function(id){var p=productBy(id);return '<li><button type="button" data-product="'+id+'">'+photo(p.image,"")+'<span>'+pname(p)+'</span>'+arw()+'</button></li>';}).join("")+'</ul></div>'+
  '<div class="btn-row">'+boutline(L("Business & wholesale inquiries","法人・卸取引について問い合わせる"),"contact")+'</div></div></div></section>';}).join("")+
- whyBand(L("Precision for every service.",phrase("業務でも使いやすい|道具づくり")),L("Explore the design and metalworking behind every AUX tool.","AUXの道具を支える設計と金属加工をご紹介します。"))+'</section>';
+ whyBand(L("Precision for every service.",phrase("業務でも|使いやすい|道具づくり")),L("Explore the design and metalworking behind every AUX tool.","AUXの道具を支える設計と金属加工をご紹介します。"))+'</section>';
 }
 function pdpGallery(p){
  var ph=p.photos,shots=ph.scenes.concat([ph.single,ph.form],ph.uses);

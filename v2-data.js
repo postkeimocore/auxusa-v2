@@ -185,7 +185,7 @@ window.AUX_DATA.pdp = {
  },
  bread:{
   lead:["Grips bread by the edge, helping keep the toppings in place.","パンの端をつかむことで、具材を崩しにくいトングです。"],
-  primary:["shinjo-bread-2.webp","Lift toast without touching the toppings.","具材に触れずにトーストを持ち上げる","The shaped tips grip the edge of the bread, helping keep the toppings in place.","パンの端をつかむ形状で、トーストやオープンサンドの具材を崩しにくくなっています。"],
+  primary:["shinjo-bread-2.webp","Lift toast without touching the toppings.","具材に触れずに|トーストを|持ち上げる","The shaped tips grip the edge of the bread, helping keep the toppings in place.","パンの端をつかむ形状で、トーストやオープンサンドの具材を崩しにくくなっています。"],
   uses:[["katou-bread-use2.webp","Open sandwiches","具をのせたパンに","Pick up an open sandwich by the crust, without touching the topping.","具材に触れずに、パンの端をつかめます。"],
         ["katou-bread-use1.webp","Croissants","クロワッサンに","The shaped tips gently grip different breads, including croissants.","クロワッサンなど形の違うパンも、やさしくつかめます。"],
         ["shinjo-bread-1.webp","From the board","ボードから","Serve open sandwiches from a board onto plates.","ボードに並べたパンも取り皿へ移しやすくなっています。"]],
