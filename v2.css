@@ -106,7 +106,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .site-wordmark .logo-small{font-size:12px;font-weight:600;letter-spacing:var(--tracking-eyebrow);margin-top:8px}
 .site-menu{display:flex;gap:32px;margin-left:auto;align-items:center;height:100%}
 .site-menu button{border:0;background:transparent;font-size:12px;white-space:nowrap;letter-spacing:var(--tracking-ui);height:100%;padding:0;position:relative}
-.site-menu button.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--ink)}
+/* Current page: a 2px ink stroke under the menu item (was a 4px bar; thinned 2026-11-18). */
+.site-menu button.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:0;border-bottom:2px solid var(--ink)}
 .site-util{display:flex;gap:16px;align-items:center;margin-left:16px}
 .site-util button{padding:8px;border:0;background:none;display:flex;align-items:center;gap:8px;color:var(--ink);font-size:12px;white-space:nowrap}
 .site-util svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round}
@@ -192,7 +193,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .product-card .photo{aspect-ratio:4/5;background:var(--surface)}
 .product-card h3{font-size:16px;font-weight:400;margin:16px 0 8px}
 /* Japanese headings break only at the phrase marks (<wbr>); a phrase wider than its box still wraps. */
-.jp-phrase{word-break:keep-all;overflow-wrap:anywhere}
+/* The wrap span must look exactly like its heading: `span` rules elsewhere (e.g. .moment-jumps button span) must not reach it. */
+#site-app .jp-phrase{all:unset;word-break:keep-all;overflow-wrap:anywhere}
 .product-card .product-sub{font-size:12px;color:var(--muted);line-height:16px;min-height:24px}
 .product-card .price{font-size:12px;margin-top:8px;color:var(--muted)}
 .moment-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px 16px}
@@ -810,9 +812,10 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .nav-caret{display:block;width:4px;height:4px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg)}
 .nav-item:hover .nav-caret,.nav-item:focus-within .nav-caret{transform:translateY(2px) rotate(-135deg)}
 /* The bar starts on the header's own bottom rule (top:100% of the padding box), so it redraws that rule. */
-.nav-sub{position:absolute;left:0;right:0;top:100%;z-index:30;display:none;justify-content:center;align-items:center;padding:24px var(--page-gutter);background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.nav-item:hover .nav-sub,.nav-item:focus-within .nav-sub{display:flex}
-.site-menu .nav-sub button{height:auto;padding:0 32px;font-size:12px;line-height:16px;letter-spacing:var(--tracking-eyebrow);color:var(--ink)}
+/* Hover intent: the bar opens at once and stays 300ms after the pointer leaves, so moving down onto it never closes it. */
+.nav-sub{position:absolute;left:0;right:0;top:100%;z-index:30;display:flex;visibility:hidden;opacity:0;transition:opacity .16s ease .3s,visibility 0s linear .46s;justify-content:center;align-items:center;padding:8px var(--page-gutter);background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nav-item:hover .nav-sub,.nav-item:focus-within .nav-sub{visibility:visible;opacity:1;transition-delay:0s}
+.site-menu .nav-sub button{height:auto;padding:16px 32px;font-size:12px;line-height:16px;letter-spacing:var(--tracking-eyebrow);color:var(--ink)}
 .site-menu .nav-sub button+button{border-left:1px solid var(--line)}
 .site-menu .nav-sub button:hover,.site-menu .nav-sub button.active{text-decoration:underline;text-underline-offset:4px}
 .site-menu .nav-sub button.active:after{display:none}
@@ -843,10 +846,10 @@ html.site-only #site-app{width:100%;min-height:100vh}
  .footer-links{flex-wrap:wrap;gap:48px}
 }
 
-/* HOME hero on phones: same composition as desktop — photo with a 56px rail
+/* HOME hero on phones: same composition as desktop — photo with a 40px rail (was 56px; narrowed 2026-11-18 so the photo is wider)
    (vertical name top, pager bottom). The page counter is hidden at this size. */
 @media(max-width:640px){
- .photo-hero{grid-template-columns:minmax(0,1fr) 56px;height:calc(100vh - 72px);min-height:560px;max-height:800px}
+ .photo-hero{grid-template-columns:minmax(0,1fr) 40px;height:calc(100vh - 72px);min-height:560px;max-height:800px}
  .photo-hero-caption{left:var(--page-gutter);right:var(--page-gutter);bottom:32px}
  .photo-hero-rail{padding:24px 0 16px}
  .photo-hero-count{display:none}
@@ -875,6 +878,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
    .arw = 24px (default), .arw-long = 48px (category doorways).
    ============================================================ */
 .arw,.has-arrow:after,.btn-line:after{content:"";display:inline-block;flex:none;width:24px;height:16px;vertical-align:middle;background:currentColor;-webkit-mask:var(--arw-mask) center/100% 100% no-repeat;mask:var(--arw-mask) center/100% 100% no-repeat;--arw-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 16' fill='none' stroke='currentColor' stroke-width='1'%3E%3Cpath d='M0 8.5H23.3M23.3 8.5L16.6 2.6'/%3E%3C/svg%3E")}
+.arw-short{width:16px;--arw-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='1'%3E%3Cpath d='M0 8.5H15.3M15.3 8.5L10.8 4.6'/%3E%3C/svg%3E")}
 .arw-long{width:48px;--arw-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 16' fill='none' stroke='currentColor' stroke-width='1'%3E%3Cpath d='M0 8.5H47.3M47.3 8.5L40.6 2.6'/%3E%3C/svg%3E")}
 
 /* SHOP ALL (V1 structure): short intro, category doorways, filterable list, MOMENTS exit */
@@ -1008,7 +1012,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
  .site-menu{margin-left:0;justify-self:center}
  .site-util{margin-left:0;justify-self:end}
 }
-.site-menu>button:not(.nav-business):hover:after,.site-menu .nav-item:hover .nav-parent:after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--ink)}
+.site-menu>button:not(.nav-business):hover:after,.site-menu .nav-item:hover .nav-parent:after{content:"";position:absolute;bottom:0;left:0;right:0;height:0;border-bottom:2px solid var(--ink)}
 
 /* MOMENTS jump boxes: 16:9 so the photos read. */
 .moment-jumps.has-photos button{aspect-ratio:16/9;min-height:0}
@@ -1120,7 +1124,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 }
 /* FOR BUSINESS sector index uses the MOMENTS jump-box component, five across. */
 .moment-jumps.cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}
-@media(max-width:880px){.moment-jumps.cols-5{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:880px){.moment-jumps.cols-5{grid-template-columns:repeat(2,minmax(0,1fr))}.moment-jumps.cols-5 button:last-child:nth-child(odd){grid-column:1/-1}}
 
 /* FOR BUSINESS sector photos: a small gallery — arrows on the photo, one bar per photo below. */
 .biz-frame{position:relative}
@@ -1137,7 +1141,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 @media(max-width:880px){.site-wordmark img.logo-leye-type{height:24px}}
 
 /* BRAND dropdown: ten names on one line — tighter item padding than SHOP / SUPPORT. */
-.nav-sub{flex-wrap:wrap;row-gap:16px}
+.nav-sub{flex-wrap:wrap;row-gap:0}
 .nav-item.sub-brand .nav-sub button{padding:0 16px}
 /* Brands page (sample after aux-ltd.co.jp/brand): photo left, brand mark / name, line and More centred right. */
 .site-section.brand-list-section{padding-top:32px}
@@ -1298,10 +1302,25 @@ html.site-only #site-app{width:100%;min-height:100vh}
  #site-app.mobile-open .site-menu .nav-item.is-open .nav-caret{transform:translateY(2px) rotate(-135deg)}
  #site-app.mobile-open .site-menu .nav-item:not(.is-open) .nav-sub{display:none}
  #site-app.mobile-open .site-menu .nav-item.is-open .nav-parent{border-bottom-color:transparent}
- #site-app.mobile-open .site-menu .nav-item.is-open .nav-sub{display:flex;position:static;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:0 0 16px 16px;background:none;border:0;border-bottom:1px solid var(--line)}
+ #site-app.mobile-open .site-menu .nav-item.is-open .nav-sub{visibility:visible;opacity:1;transition:none;display:flex;position:static;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:0 0 16px 16px;background:none;border:0;border-bottom:1px solid var(--line)}
  #site-app.mobile-open .site-menu .nav-sub button{height:48px;min-height:48px;padding:0;border:0;text-align:left;font-size:12px;line-height:16px;letter-spacing:var(--tracking-ui)}
  #site-app.mobile-open .site-menu button.nav-business{display:flex;align-items:center;justify-content:center;width:100%;height:48px;min-height:48px;margin-top:32px;padding:0 24px;border:1px solid var(--ink)}
  #site-app.mobile-open .site-menu .nav-lang{display:flex;gap:24px;margin-top:24px}
  #site-app.mobile-open .site-menu .nav-lang button{height:48px;min-height:48px;padding:0;border:0;letter-spacing:var(--tracking-eyebrow)}
  #site-app.mobile-open .site-menu .nav-lang button.active{text-decoration:underline;text-underline-offset:4px}
 }
+
+/* Photo carousels (PDP gallery, FOR BUSINESS sectors): the prev / next arrows leave the photo and sit in the bar row
+   under it, at the same left / right inset as before (16px). The row is 48px (the arrow targets); the bars stay
+   centred 24px below the photo as before. (2026-11-18) */
+.kinto-nav{display:flex;align-items:center;justify-content:space-between;padding:0 var(--space-2)}
+#site-app .kinto-nav .kinto-arrow{position:static;transform:none;width:48px;height:48px;color:var(--ink);mix-blend-mode:normal}
+#site-app .kinto-nav .kinto-arrow:hover{color:var(--ink)}
+#site-app .kinto-nav .kinto-dots{margin-top:0}
+@media(max-width:552px){.kinto-nav{padding:0}}
+/* Jump boxes with photos (MOMENTS, FOR BUSINESS): no frame lines (they drew before the photos faded in);
+   the boxes are separated by an 8px gap instead. Every row is the same height, so a fifth box spanning
+   both columns on narrow screens is not twice as tall. */
+#site-app .moment-jumps.has-photos{border:0;gap:8px;grid-auto-rows:1fr}
+#site-app .moment-jumps.has-photos button{border:0}
+@media(max-width:880px){#site-app .moment-jumps.cols-5 button:last-child:nth-child(odd){aspect-ratio:auto}}
