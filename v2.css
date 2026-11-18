@@ -134,10 +134,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .section-head.center{text-align:center;margin-left:auto;margin-right:auto}
 .section-head.center .body-md,.section-head.center .body-lg{margin-left:auto;margin-right:auto}
 .photo{position:relative;overflow:hidden;background:var(--surface)}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;filter:saturate(.72) contrast(.96)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0}
 /* Product listings and feature collages: fill the assigned photo frame, with no interior letterboxing. */
 .photo.contain img{object-fit:cover;object-position:center;background:transparent;padding:0}
-.photo.gray img{filter:saturate(.1) contrast(.96)}
 .photo.aspect-wide{aspect-ratio:16/9}
 .photo.aspect-land{aspect-ratio:4/3}
 .photo.aspect-port{aspect-ratio:3/4}
@@ -192,6 +191,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .product-card{cursor:pointer;text-align:left}
 .product-card .photo{aspect-ratio:4/5;background:var(--surface)}
 .product-card h3{font-size:16px;font-weight:400;margin:16px 0 8px}
+/* Japanese headings break only at the phrase marks (<wbr>); a phrase wider than its box still wraps. */
+.jp-phrase{word-break:keep-all;overflow-wrap:anywhere}
 .product-card .product-sub{font-size:12px;color:var(--muted);line-height:16px;min-height:24px}
 .product-card .price{font-size:12px;margin-top:8px;color:var(--muted)}
 .moment-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px 16px}
@@ -347,7 +348,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .product-first-hero{display:grid;grid-template-columns:57% 43%;min-height:560px;background:var(--surface)}
 .product-first-visual{min-height:560px;position:relative;cursor:pointer}
 .product-first-visual>.photo{height:100%;position:absolute;inset:0}
-.product-first-visual .photo img{filter:saturate(.65) contrast(.97)}
 .hero-index{position:absolute;left:6%;bottom:24px;z-index:3;color:var(--muted);background:var(--white);padding:8px 16px;font-size:12px;letter-spacing:var(--tracking-index)}
 .product-first-content{padding:72px var(--space-10);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-width:0}
 .product-first-content .page-display{font-size:var(--fs-h1);line-height:var(--lh-h1)}
@@ -362,7 +362,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .feature-showcase-copy .body-lg{margin:24px 0 32px}
 .feature-collage{display:grid;grid-template-columns:1.25fr .8fr;grid-template-rows:1fr 1fr;gap:8px;height:472px}
 .feature-collage .photo:first-child{grid-row:span 2}
-.feature-collage .photo img{filter:saturate(.55)}
 .home-moments{display:grid;grid-template-columns:1.07fr .93fr;gap:24px;min-height:544px}
 .home-moment-main{position:relative;min-height:544px;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
 .home-moment-main .photo{position:absolute;inset:0}
@@ -431,6 +430,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .pdp-comparison article{background:var(--white);cursor:pointer;min-width:0}
 .pdp-comparison article.current{background:var(--surface)}
 .pdp-comparison .photo{aspect-ratio:1}
+/* Size check (2026-11-17): tools to scale, 10px per cm, on one baseline 16px above the stage bottom. */
+.pdp-comparison .size-stage{position:relative;height:296px;overflow:hidden}
+.pdp-comparison .size-stage::after{content:"";position:absolute;left:0;right:0;bottom:16px;border-top:1px solid var(--line)}
+.pdp-comparison .size-line{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--line)}
+.pdp-comparison .size-line em{position:absolute;left:16px;bottom:4px;font-style:normal;font-size:var(--fs-meta);line-height:var(--lh-meta);letter-spacing:var(--tracking-index);color:var(--muted)}
+.pdp-comparison .size-stage img{position:absolute;left:50%;bottom:16px;width:auto;max-width:none;transform:translateX(-50%)}
 .pdp-comparison .compare-copy{padding:24px 16px 24px}
 .pdp-comparison .compare-copy>span{font-size:12px;color:var(--muted);letter-spacing:var(--tracking-index)}
 .pdp-comparison h3{font-size:16px;font-weight:500;line-height:24px;margin:16px 0}
@@ -722,7 +727,6 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .pdp-keyfacts dd{margin:0;font-size:16px;line-height:24px;color:var(--ink)}
 .accordion summary{font-size:12px;line-height:16px;letter-spacing:var(--tracking-ui);text-transform:uppercase;font-weight:500;color:var(--ink)}
 .pdp-comparison article{position:relative}
-.pdp-comparison .compare-copy>.compare-current{display:block;position:absolute;top:16px;left:16px;z-index:2;background:var(--white);color:var(--ink);font-size:12px;line-height:16px;letter-spacing:var(--tracking-ui);text-transform:uppercase;padding:4px 8px}
 
 /* ============================================================
    GLOBAL NAVIGATION (2026-10-14): SHOP first; FOR BUSINESS is a boxed
@@ -746,7 +750,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
    ============================================================ */
 .photo-hero{display:grid;grid-template-columns:minmax(0,1fr) 80px;height:calc(100vh - 80px);min-height:560px;max-height:960px;background:var(--white)}
 .photo-hero-visual{position:relative;min-width:0;overflow:hidden;cursor:default}
-.photo-hero-visual:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,color-mix(in srgb,var(--ink) 60%,transparent) 0,color-mix(in srgb,var(--ink) 24%,transparent) 32%,transparent 56%)}
+.photo-hero-visual:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(140% 100% at 0 100%,color-mix(in srgb,var(--ink) 60%,transparent) 0,color-mix(in srgb,var(--ink) 30%,transparent) 35%,transparent 62%)}
 .photo-hero-caption{position:absolute;left:var(--page-gutter);bottom:64px;z-index:2;max-width:480px;color:var(--white)}
 #site-app .photo-hero-title{font-family:var(--font-editorial);font-weight:400;font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--tracking-heading);color:var(--white);margin:0}
 #site-app .photo-hero-copy{margin:16px 0 0;color:var(--white)}
@@ -821,6 +825,15 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .site-menu .nav-sub button:hover,.site-menu .nav-sub button.active{text-decoration:underline;text-underline-offset:4px}
 .site-menu .nav-sub button.active:after{display:none}
 .cart-text{display:none}
+/* Language switch (2026-11-18): "English ⌄" beside search, same 12px utility text and caret as the menu.
+   Its list drops from the switch itself (right-aligned), not as a full-width bar: two items don't need one. */
+.lang-switch{position:relative;display:flex;align-items:center}
+.lang-switch:hover .nav-caret,.lang-switch:focus-within .nav-caret{transform:translateY(2px) rotate(-135deg)}
+.lang-menu{position:absolute;right:0;top:100%;z-index:30;display:none;flex-direction:column;min-width:128px;padding:8px 0;background:var(--white);border:1px solid var(--line)}
+.lang-switch:hover .lang-menu,.lang-switch:focus-within .lang-menu{display:flex}
+.site-util .lang-menu button{padding:8px 16px;letter-spacing:var(--tracking-eyebrow)}
+.site-util .lang-menu button:hover,.site-util .lang-menu button.active{text-decoration:underline;text-underline-offset:4px}
+.nav-lang{display:none}
 
 /* Narrow screens: menu icon left, logo centred, "CART (0)" right. */
 @media(max-width:880px){
@@ -835,6 +848,14 @@ html.site-only #site-app{width:100%;min-height:100vh}
  #site-app.mobile-open .site-menu .nav-item{display:block;height:auto}
  #site-app.mobile-open .site-menu .nav-sub{display:flex;position:static;flex-direction:column;align-items:stretch;padding:0 0 8px 16px;border:0}
  #site-app.mobile-open .site-menu .nav-sub button{height:40px;min-height:40px;padding:0;text-align:left;border:0}
+ /* No room for the language switch in the phone header: it becomes the last row of the menu.
+    The open menu hangs from the sticky header, so it scrolls inside itself to reach its last rows. */
+ .lang-switch{display:none}
+ #site-app.mobile-open .site-menu{max-height:calc(100vh - 72px);max-height:calc(100dvh - 72px);overflow-y:auto;overscroll-behavior:contain}
+ #site-app.mobile-open .site-menu .nav-lang{display:flex;gap:24px;margin-top:16px}
+ #site-app.mobile-open .site-menu .nav-lang button{height:48px;min-height:48px;padding:0;border:0;letter-spacing:var(--tracking-eyebrow)}
+ #site-app.mobile-open .site-menu .nav-lang button.active{text-decoration:underline;text-underline-offset:4px}
+ #site-app.mobile-open .site-menu .nav-lang button.active:after{display:none}
  .footer-columns{flex-direction:column;gap:48px}
  .footer-links{flex-wrap:wrap;gap:48px}
 }
@@ -951,10 +972,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .category-card .card-meta{padding-right:16px}
 .section-head.center .display-medium{margin-left:auto;margin-right:auto}
 
-/* Scroll reveal (KINTO-like): parts fade in and rise 24px as they enter the viewport, once.
-   Added by script only, so content stays visible without it; off for reduced motion. */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease-out,transform .8s ease-out}
-.reveal.is-in{opacity:1;transform:none}
+/* Soft reveal on load and scroll: played from v2.js (bindReveal) with the Web Animations API, no CSS needed. */
 
 /* Brand-page opening (MOMENTS, WHY AUX): large photo, white fade at the bottom,
    page title centred over the fade; the lead sits centred below. */
@@ -972,7 +990,6 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
 .hero-slide.is-active{opacity:1}
 .hero-slide .photo{position:absolute;inset:0}
-.hero-slide .photo img{filter:saturate(.8) contrast(.98)}
 .hero-slide.is-zoom .photo img{animation:heroZoom 4.2s linear forwards}
 @keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
 .photo-hero-caption{opacity:0;pointer-events:none;transition:opacity .8s ease}
@@ -1049,6 +1066,13 @@ html.site-only #site-app{width:100%;min-height:100vh}
 /* Accordion content: smaller than its 12px uppercase label would read as body copy, so it uses
    the 12px meta size with a 24px line (intentional exception to the 16px body minimum). */
 #site-app .accordion details p{font-size:12px;line-height:24px;color:var(--muted);margin:16px 0 0}
+/* Specifications: label / value rows in the same 12px / 24px accordion size. */
+#site-app .pdp-specs{display:grid;grid-template-columns:max-content 1fr;column-gap:24px;margin:16px 0 0;font-size:12px;line-height:24px}
+#site-app .pdp-specs dt{color:var(--muted)}
+#site-app .pdp-specs dd{margin:0;color:var(--ink)}
+#site-app .accordion .pdp-specs+p{margin-top:8px}
+/* Proof line under the product lead (sales, awards): meta size, 16px below the lead. */
+#site-app .pdp-buy .pdp-proof{margin:-8px 0 0;font-size:var(--fs-meta);line-height:var(--lh-meta);letter-spacing:var(--tracking-ui);color:var(--muted)}
 /* Quantity: one framed control (− 1 +) instead of separate boxed buttons. */
 .qty-row{gap:16px}
 .qty-control{display:inline-flex;align-items:center;border:1px solid var(--muted)}
@@ -1169,11 +1193,11 @@ html.site-only #site-app{width:100%;min-height:100vh}
 #site-app .moment-jumps.has-photos .jump-foot,#site-app .moment-jumps.has-photos .jump-foot .arw{color:var(--white)}
 
 /* Clickable photo cards and boxes: the photo zooms in slowly and the card lifts 8px.
-   The lift uses `translate` so it never fights the scroll-reveal `transform`; while lifted, an 8px
+   The lift uses `translate`; while lifted, an 8px
    strip (:after) keeps the old footprint hoverable so the card does not flicker at its lower edge.
    Zoom only (no lift) for the comparison cards (one ruled table inside a scroller) and the jump
    boxes (they tile edge to edge, so a lifted box would leave a gap below it). */
-#site-app .category-card,#site-app .product-card,#site-app .home-moment-main,#site-app .home-moment-list article{position:relative;transition:opacity .8s ease-out,transform .8s ease-out,translate .4s cubic-bezier(.2,.7,.2,1)}
+#site-app .category-card,#site-app .product-card,#site-app .home-moment-main,#site-app .home-moment-list article{position:relative;transition:translate .4s cubic-bezier(.2,.7,.2,1)}
 #site-app .home-moment-main{overflow:visible}
 .category-card .photo img,.product-card .photo img,.home-moment-main .photo img,.home-moment-list article .photo img,.compare-track article .photo img,.moment-jumps.has-photos .jump-bg>span{transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
 @media(hover:hover){
@@ -1218,3 +1242,18 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .why-band-bg .photo img{transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
 @media(hover:hover){.why-band:hover .why-band-bg .photo img{transform:scale(1.08)}}
 @media(prefers-reduced-motion:reduce){.why-band-bg .photo img{transform:none!important}}
+
+/* Product thumbnails show an image cut; the single cut fades in over it on hover. */
+.photo .photo-alt{opacity:0;transition:opacity .5s ease}
+@media(hover:hover){.product-card:hover .photo-alt,.compare-track article:hover .photo-alt{opacity:1}}
+.product-card:focus-visible .photo-alt,.compare-track article:focus-visible .photo-alt{opacity:1}
+
+/* Product thumbnails: the single cut fades in over the image cut (keeps the slow zoom). */
+#site-app .product-card .photo .photo-alt,#site-app .compare-track article .photo .photo-alt{transition:opacity .6s ease,transform 1.6s cubic-bezier(.2,.7,.2,1)}
+
+/* Floating photos (HOME Different forms, WHY AUX band; see bindFloat): opacity and drift follow
+   the scroll position; no time-based motion. */
+.float-item{translate:0 var(--py,0px);will-change:translate,opacity}
+.float-probe{position:absolute;left:0;width:8px;pointer-events:none;opacity:0}
+.float-probe i{display:block;height:16px}
+
