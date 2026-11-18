@@ -25,19 +25,19 @@ window.AUX_DATA = {
   collections:{
     cook:{name:"COOK",photo:"shinjo-basting-1.webp",lead:["For the movements that make a meal.","料理のさまざまな場面で使える道具です。"],body:["From the pan to the plate: gripping, turning, lifting and draining. Discover tools shaped around the actual task.","食材をつかむ、返す、持ち上げる、油を切る。作業に合わせて先端や形状を工夫しています。"],scene:"shinjo-noodle-1.webp",feature:["A little more control, in the middle of cooking.","調理中の小さな動きを、より自然に。"]},
     serve:{name:"SERVE",photo:"shinjo-serving-2.webp",lead:["Made for sharing and serving.","盛り付けや取り分けに。"],body:["From shared plates to carefully arranged dishes, find the tool that helps the movement feel natural.","大皿料理の取り分けから繊細な盛り付けまで、食材を扱いやすい形状を揃えています。"],scene:"shinjo-serving-1.webp",feature:["Pass the dish. Keep the moment.","取り分ける動作で、食卓の流れを止めない。"]},
-    table:{name:"TABLE",photo:"shinjo-mini-1.webp",lead:["A considered place at the table.","食卓に、もうひとつの道具。"],body:["From small bites to shared dishes, discover how tongs can become a natural part of the table setting.","小さな食材をつまむときも料理を取り分けるときも、トングを食卓の道具のひとつとして使えます。"],scene:"shinjo-lineup.webp",feature:["Knife. Fork. Tongs.","Knife. Fork. Tongs."]}
+    table:{name:"TABLE",photo:"shinjo-mini-1.webp",lead:["A considered place at the table.","食卓に、もうひとつの道具。"],body:["From small bites to shared dishes, discover how tongs can become a natural part of the table setting.","小さな食材をつまむときも料理を取り分けるときも、トングをナイフやフォークと一緒に食卓で使えます。"],scene:"shinjo-lineup.webp",feature:["Knife. Fork. Tongs.","Knife. Fork. Tongs."]}
   },
   moments:[
-    {id:"everyday",title:"EVERYDAY TABLE",strap:"For everyday meals, made a little better.",jp:"なんでもない日の|食卓",jpStrap:"いつもの食事を少しだけ心地よく。",body:["Breakfast, a quick salad, or pasta on a weekday evening. Small movements feel effortless when the right tool is always within reach.","朝食や手早く作るサラダ、平日の夜のパスタ。使いやすい道具が手元にあれば、毎日の細かな作業が楽になります。"],photo:"shinjo-noodle-2.webp",products:["noodle","whisk","fingertip"]},
-    {id:"together",title:"TOGETHER AT THE TABLE",strap:"For meals shared with the people who matter.",jp:"大切な人との|食事",jpStrap:"大切な人と食卓を囲む時間に。",body:["A meal with family, a partner, or friends. Pass a favorite dish, share a small bite, and stay in the conversation.","家族やパートナー、友人との食事に。好きな料理を回したり小さなひと口を分け合ったりしながら、会話を楽しめます。"],photo:"shinjo-garnish-2.webp",products:["fingertip","serving","long"]},
-    {id:"hosting",title:"HOSTING AT HOME",strap:"For welcoming people into your home.",jp:"人を招く日の|食卓",jpStrap:"自宅に人を招くときに。",body:["A weekend dinner, lunch with friends, or a relaxed gathering at home. Shared platters, salads passed around the table, and serving your guests.","週末のディナーや友人とのランチ、自宅での気軽な集まりに。大皿料理やサラダを取り分けて、ゲストをもてなすときに使えます。"],photo:"shinjo-long-2.webp",products:["serving","bread","scoop"]},
-    {id:"special",title:"SPECIAL OCCASIONS",strap:"For moments worth celebrating.",jp:"少し特別な日",jpStrap:"お祝いしたい日に。",body:["Birthdays, anniversaries, holidays and seasonal gatherings. A meal prepared with a little extra care, with tools that complement the occasion without drawing attention to themselves.","誕生日や記念日、祝日や季節の集まりに。少し丁寧に作った料理に、主張しすぎずになじむ道具です。"],photo:"shinjo-finetip-1.webp",products:["fingertip","long","basting"]}
+    {id:"everyday",title:"EVERYDAY TABLE",strap:"For everyday meals, made a little better.",jp:"なんでもない日の|食卓",jpStrap:"いつもの食事を少しだけ心地よく。",body:["Breakfast, a quick salad, or pasta on a weekday evening. Small movements feel effortless when the right tool is always within reach.","朝食のフルーツや平日の夕食に作るサラダ・パスタなど、毎日の食事で使いやすい商品をご紹介します。"],photo:"shinjo-noodle-2.webp",products:["noodle","whisk","fingertip"]},
+    {id:"together",title:"TOGETHER AT THE TABLE",strap:"For meals shared with the people who matter.",jp:"大切な人との|食事",jpStrap:"大切な人と食卓を囲む時間に。",body:["A meal with family, a partner, or friends. Pass a favorite dish, share a small bite, and stay in the conversation.","家族や友人と囲む食卓に。大皿料理を取り分けるときも、会話を楽しみながら使えます。"],photo:"shinjo-garnish-2.webp",products:["fingertip","serving","long"]},
+    {id:"hosting",title:"HOSTING AT HOME",strap:"For welcoming people into your home.",jp:"人を招く日の|食卓",jpStrap:"友人や家族を招く食事に。",body:["A weekend dinner, lunch with friends, or a relaxed gathering at home. Shared platters, salads passed around the table, and serving your guests.","週末のディナーや友人とのランチ、自宅での気軽な集まりに。大皿料理やサラダを取り分けて、ゲストをもてなすときに使えます。"],photo:"shinjo-long-2.webp",products:["serving","bread","scoop"]},
+    {id:"special",title:"SPECIAL OCCASIONS",strap:"For moments worth celebrating.",jp:"少し特別な日",jpStrap:"お祝いしたい日に。",body:["Birthdays, anniversaries, holidays and seasonal gatherings. A meal prepared with a little extra care, with tools that complement the occasion without drawing attention to themselves.","誕生日や記念日など少し特別な食事に。料理の盛り付けや取り分けを丁寧に仕上げたいときにも役立ちます。"],photo:"shinjo-finetip-1.webp",products:["fingertip","long","basting"]}
   ],
   businesses:[
     {id:"restaurants",title:"RESTAURANTS",jp:"レストラン",photo:"istock-479169402.webp",body:["From preparation to plating and tableside service, precision tools designed for each task.","調理から盛り付け、テーブルサービスまで、用途に合わせた道具を揃えています。"],products:["finetip","long","serving"]},
-    {id:"hotels",title:"HOTELS & HOSPITALITY",jp:"ホテル・|宿泊施設",photo:"istock-2172505701.webp",body:["From the breakfast buffet to the lounge, tools for serving guests with care.","朝食ビュッフェからラウンジまで、ゲストに丁寧に料理を提供するための道具です。"],products:["scoop","serving","fingertip"]},
-    {id:"cafes",title:"CAFÉS & BAKERIES",jp:"カフェ・|ベーカリー",photo:"istock-1839957842.webp",body:["Bread, pastries and fresh salads deserve a gentle touch at the counter.","パンやペストリー、サラダをカウンターでやさしく取り分けられます。"],products:["bread","mini","garnish"]},
-    {id:"catering",title:"CATERING & EVENTS",jp:"ケータリング・|イベント",photo:"istock-1388916470.webp",body:["From buffets to shared platters, serve food with precise tools that are easy to handle.","ビュッフェから大皿料理まで、扱いやすく精密な道具で料理を取り分けられます。"],products:["serving","long","fry"]},
+    {id:"hotels",title:"HOTELS & HOSPITALITY",jp:"ホテル・|宿泊施設",photo:"istock-2172505701.webp",body:["From the breakfast buffet to the lounge, tools for serving guests with care.","朝食ビュッフェやラウンジなど、料理を提供するさまざまな場面でお使いいただけます。"],products:["scoop","serving","fingertip"]},
+    {id:"cafes",title:"CAFÉS & BAKERIES",jp:"カフェ・|ベーカリー",photo:"istock-1839957842.webp",body:["Bread, pastries and fresh salads deserve a gentle touch at the counter.","パンやペストリー、サラダの取り分けなど、カウンターサービスにもお使いいただけます。"],products:["bread","mini","garnish"]},
+    {id:"catering",title:"CATERING & EVENTS",jp:"ケータリング・|イベント",photo:"istock-1388916470.webp",body:["From buffets to shared platters, serve food with precise tools that are easy to handle.","パーティーやビュッフェなど、大皿料理を取り分ける場面で使いやすい商品をご紹介します。"],products:["serving","long","fry"]},
     {id:"retail",title:"RETAIL & DISTRIBUTION",jp:"小売・|卸売",photo:"shinjo-lineup.webp",body:["Offer your customers kitchen and tabletop tools engineered in Japan, each shaped for a specific task. Explore the AUX range and ask about retail or distribution partnerships.","キッチンウェアショップや百貨店、セレクトショップなど、商品のお取り扱いや卸取引についてご相談いただけます。"],products:["fingertip","mini","whisk"]}
   ]
 };
@@ -65,9 +65,9 @@ window.AUX_DATA.compare = {
    are computed when shown). care: care and precautions. */
 window.AUX_DATA.pdp = {
  mini:{
-  lead:["A compact 7 cm version of our Fingertip Tongs, made for the table.","ゆびさきトングを全長7cmにした、食卓向けのミニサイズです。"],
-  primary:["shinjo-mini-1.webp","Pick up one small bite.","小さな食材をつまむ","The fingertip-shaped tips pick up a single berry at the table.","指先の形をした先端で、食卓でもベリーをひと粒ずつつまめます。"],
-  uses:[["katou-mini-use1.webp","From a shared plate","大皿から","Take an olive or a piece of cheese without touching the food.","オリーブやチーズも、指で触れずに取れます。"],
+  lead:["A compact 7 cm version of our Fingertip Tongs, made for the table.","ゆびさきトングを全長7cmにしたミニサイズです。ナイフやフォークと一緒に食卓に置いて使えます。"],
+  primary:["shinjo-mini-1.webp","Pick up one small bite.","小さな食材をつまむ","The fingertip-shaped tips pick up a single berry at the table.","ベリーなど小さな食材も1粒ずつつまめます。"],
+  uses:[["katou-mini-use1.webp","From a shared plate","盛り合わせから取り分ける","Take an olive or a piece of cheese without touching the food.","オリーブやチーズも、指で触れずに取れます。"],
         ["katou-mini-use2.webp","Beside the cutlery","カトラリーの横に","At 7 cm, it sits with the knife and fork without getting in the way.","全長7cmなので、ナイフやフォークの横に置いても邪魔になりません。"],
         ["katou-mini-contact.webp","Small, round foods","小さく丸いものも","The tips close like two fingertips and hold a single olive firmly.","先端が指先のように合わさり、オリーブひと粒もしっかりつかめます。"]],
   detailsLead:["The shape of our Fingertip Tongs, scaled down to 7 cm.","ゆびさきトングと同じ先端形状を全長7cmに収めました。"],
@@ -79,7 +79,7 @@ window.AUX_DATA.pdp = {
  },
  garnish:{
   lead:["Slim tongs for tea bags, olives and other small things at the table.","ティーバッグやオリーブなどをつまみやすい細身のトングです。"],
-  primary:["shinjo-garnish-1.webp","Pick up one piece, even from a narrow jar.","口の狭い瓶からも|1つずつ取り出す","The slim, gap-free tips pick up small, slippery foods from jars and small bowls.","細い先端がすき間なく閉じるので、瓶や小さな器から小さく滑りやすいものもつまめます。"],
+  primary:["shinjo-garnish-1.webp","Pick up one piece, even from a narrow jar.","瓶から|1つずつ取り出す","The slim, gap-free tips pick up small, slippery foods from jars and small bowls.","先端が細く、すき間なく閉じるので、口の狭い瓶からもオリーブを1つずつつまめます。"],
   uses:[["katou-garnish-use2.webp","Tea bags","ティーバッグに","Lift a tea bag out of the pot or cup without touching it.","ポットやカップからティーバッグを手で触れずに取り出せます。"],
         ["katou-garnish-use1.webp","Olives and pickles","オリーブやピクルスに","Lift olives one at a time, even from a narrow jar.","口の狭い瓶からも、オリーブを1つずつ取り出せます。"],
         ["shinjo-garnish-2.webp","Toppings for bread","パンにのせる具に","Add toppings to bread a piece at a time.","パンにのせる具材を、1つずつつまんで盛り付けられます。"]],
@@ -96,8 +96,8 @@ window.AUX_DATA.pdp = {
   uses:[["shinjo-fingertip-1.webp","Sharing a salad","サラダを取り分ける","Serve salad from the middle of the table to each plate.","テーブル中央のサラダを、それぞれの皿へ取り分けられます。"],
         ["katou-fingertip-use1.webp","Thin slices","薄いものも","The tapered tips pick up thin slices of prosciutto.","先端が細いので、生ハムのような薄いものもつまめます。"],
         ["katou-fingertip-contact.webp","A light hold","やさしくつかむ","A soft spring helps you hold delicate foods with a light touch.","やわらかいバネで、繊細な食材もやさしくつかめます。"]],
-  detailsLead:["Palm-sized, with a soft spring and tips that taper like fingertips.","手のひらに収まるサイズに、やわらかいバネと指先のように細い先端を備えています。"],
-  details:[["katou-fingertip-form.webp","Tapered tips","細い先端","The tips taper like fingertips, for quick, precise handling.","先端が指先のように細く、すばやく正確に扱えます。"],
+  detailsLead:["Palm-sized, with a soft spring and tips that taper like fingertips.","手のひらに収まるサイズに、指先のような先端と軽いバネ構造を備えています。"],
+  details:[["katou-fingertip-form.webp","Tapered tips","細い先端","The tips taper like fingertips, for quick, precise handling.","先端が細いので、小さな食材もつまみやすくなっています。"],
            ["shinjo-fingertip-card.webp","Patented bending process","特許取得の曲げ加工","A patented bending process gives a soft spring, so a small squeeze is enough.","特許取得の曲げ加工により、軽い力でつかめます。"],
            ["shinjo-fingertip-single.webp","Tips stay off the table","先端が浮く置き方","Turn it over and the tips lift off the table.","裏返して置くと先端がテーブルに触れず、清潔に使える構造です。"]],
   specs:{length:14.7,height:4.5,weight:60,material:["18-0 stainless steel","18-0ステンレス"]},
@@ -123,7 +123,7 @@ window.AUX_DATA.pdp = {
   primary:["shinjo-serving-1.webp","Serve without standing up.","座ったまま取り分ける。","The curve from handle to tip is angled for serving while seated, so you can pass salad from the shared dish to a plate without getting up.","持ち手から先端までのカーブを、イスに座ったまま取り分けやすい角度にしています。"],
   uses:[["katou-serving-use1.webp","A generous portion","たっぷりつかむ","Takes a full serving of salad in one grip.","サラダを一度にたっぷりつかめます。"],
         ["shinjo-serving-2.webp","Delicate slices","ちぎれやすいものも","The tips lift thin slices of prosciutto gently, helping keep them intact.","ちぎれやすい生ハムも、やさしく持ち上げられます。"],
-        ["katou-serving-use2.webp","Onto each plate","取り皿へ","Place salad neatly on each plate.","サラダを取り皿へきれいに取り分けられます。"]],
+        ["katou-serving-use2.webp","Onto each plate","取り皿へ","Place salad neatly on each plate.","大皿から取り皿へスムーズに取り分けられます。"]],
   detailsLead:["Tips that meet exactly, finished by craftspeople in Tsubame-Sanjo.","燕三条の職人技でつくる、ぴたりと合わさる先端。"],
   details:[["katou-serving-contact.webp","Gentle on leaves","葉物をやさしく","The tips grip leafy greens gently, helping prevent bruising.","食材を包み込むようにつかむので、レタスなどの葉物も傷めにくくなっています。"],
            ["katou-serving-form.webp","Precisely matched tips","ぴたりと合う刃先","Craftspeople in Tsubame-Sanjo finish the tips so they meet exactly.","燕三条の職人技で、刃先がぴったり合わさります。"],
@@ -139,7 +139,7 @@ window.AUX_DATA.pdp = {
         ["katou-fry-contact.webp","Heavy pieces","重いものも","The ring-shaped tips grip larger or irregularly shaped fried foods securely.","大きな揚げ物や形の不揃いな食材も、しっかりつかめます。"]],
   detailsLead:["Openings to drain oil, and a spring that stays soft in the hand.","油を切りやすい先端と軽い握り心地が特徴です。"],
   details:[["katou-fry-form.webp","Large openings","大きな穴","The open rings let oil drain as soon as you lift.","大きな穴から油がよく切れます。"],
-           ["shinjo-fry-card.webp","Patented spring design","特許取得のバネ","An easy opening angle and a patented spring design keep the grip soft.","使いやすい開き角度と特許取得のバネ構造で、やわらかく握れます。"],
+           ["shinjo-fry-card.webp","Patented spring design","特許取得のバネ","An easy opening angle and a patented spring design keep the grip soft.","開く角度と特許取得のバネ構造により、軽い力で開閉できます。"],
            ["shinjo-fry-single.webp","One-piece stainless steel","ステンレス一体成形","Formed from a single piece of stainless steel, with no joints to clean around.","ステンレス一体成形で継ぎ目がなく、洗いやすい構造です。"]],
   specs:{length:23,height:4,weight:45,material:["18-0 stainless steel","18-0ステンレス"]},
   care:[["Dishwasher safe.","食器洗い乾燥機に対応しています。"]]
@@ -149,10 +149,10 @@ window.AUX_DATA.pdp = {
   primary:["shinjo-finetip-1.webp","Serve sliced meat at the table.","切り分けた肉を取り分ける","The fine tips pick up one slice of steak or roast beef at a time and hold it securely.","細い先端で、ステーキやローストビーフを一切れずつしっかりつかめます。"],
   uses:[["katou-finetip-use1.webp","From the board","まな板から","Pick up a slice of steak straight from the cutting board.","まな板の上で切ったステーキも、そのままつかめます。"],
         ["shinjo-finetip-2.webp","Plating","盛り付けに","Place shrimp and other small pieces exactly where you want them on the plate.","えびなどの小さな具材も、皿の上の狙った位置に盛り付けられます。"],
-        ["katou-finetip-use2.webp","Resting between dishes","食器の間に置く","Set the tongs down and the raised tips stay clear of the plate.","お皿に置いても先端が浮いて、食器に当たりません。"]],
+        ["katou-finetip-use2.webp","Resting between dishes","食器のそばに置く","Set the tongs down and the raised tips stay clear of the plate.","お皿に置いても先端が浮いて、食器に当たりません。"]],
   detailsLead:["Fine tips that stay aligned when gripping, and stay raised when set down.","つかむときにズレにくく、置いたときは先端が浮く構造です。"],
   details:[["katou-finetip-contact.webp","Aligned fine tips","ズレにくい細い先端","A patented design keeps the fine tips aligned as they close, so even a thin slice is held steadily.","閉じたときに先端がズレにくい特許技術で、薄い一切れも安定してつかめます。"],
-           ["katou-finetip-form.webp","Raised tips","高く浮く先端","Set down, the tips sit high enough to clear the plate and the table.","置いたときも先端が皿やテーブルに触れない高さです。"],
+           ["katou-finetip-form.webp","Raised tips","高く浮く先端","Set down, the tips sit high enough to clear the plate and the table.","置いたときに先端が浮き、皿やテーブルに触れにくい設計です。"],
            ["shinjo-finetip-card.webp","A simple form","シンプルな形","A simple shape that sits comfortably in the hand and rinses clean.","手になじむシンプルな形状で、汚れも落としやすくなっています。"]],
   specs:{length:24,height:6.3,weight:62,material:["18-0 stainless steel","18-0ステンレス"]},
   care:[["Dishwasher safe.","食器洗い乾燥機に対応しています。"]]
@@ -187,7 +187,7 @@ window.AUX_DATA.pdp = {
   lead:["Grips bread by the edge, helping keep the toppings in place.","パンの端をつかむことで、具材を崩しにくいトングです。"],
   primary:["shinjo-bread-2.webp","Lift toast without touching the toppings.","具材に触れずに|トーストを|持ち上げる","The shaped tips grip the edge of the bread, helping keep the toppings in place.","パンの端をつかむ形状で、トーストやオープンサンドの具材を崩しにくくなっています。"],
   uses:[["katou-bread-use2.webp","Open sandwiches","具をのせたパンに","Pick up an open sandwich by the crust, without touching the topping.","具材に触れずに、パンの端をつかめます。"],
-        ["katou-bread-use1.webp","Croissants","クロワッサンに","The shaped tips gently grip different breads, including croissants.","クロワッサンなど形の違うパンも、やさしくつかめます。"],
+        ["katou-bread-use1.webp","Croissants","クロワッサンに","The shaped tips gently grip different breads, including croissants.","クロワッサンなど、どんな形のパンもやさしく掴めます。"],
         ["shinjo-bread-1.webp","From the board","ボードから","Serve open sandwiches from a board onto plates.","ボードに並べたパンも取り皿へ移しやすくなっています。"]],
   detailsLead:["A head shaped around the bread.","パンの端をつかみやすい先端形状です。"],
   details:[["katou-bread-contact.webp","Tips shaped for bread","パンに合わせた先端","The tip shape follows the curve of the bread.","パンの形にしっかりフィットする先端です。"],
@@ -225,7 +225,7 @@ window.AUX_DATA.pdp = {
  grating:{
   lead:["Grate citrus, ginger or garlic into the spoon, then stir it straight into the dish.","柑橘類やしょうが、にんにくをおろし、そのまま料理に混ぜられます。"],
   primary:["shinjo-grating-1.webp","Grate it over the dish.","料理の上でおろす","Grate lemon peel straight over a salad, only as much as you need.","サラダの上で、レモンの皮を必要な分だけおろせます。"],
-  uses:[["katou-grating-use1.webp","A finishing touch","仕上げに","Add fresh zest to pasta just before serving.","パスタの仕上げに柑橘の皮をその場でおろして加えられます。"],
+  uses:[["katou-grating-use1.webp","A finishing touch","仕上げに","Add fresh zest to pasta just before serving.","パスタの仕上げにレモンの皮をおろして加えられます。"],
         ["katou-grating-use2.webp","Grate, mix, pour","おろす、混ぜる、かける","The spoon holds what you grate, so you can mix it and pour it over the dish.","おろしたものをスプーンで受けて、混ぜて、そのまま料理にかけられます。"],
         ["katou-grating-use3.webp","Garlic","にんにくに","Grate garlic straight into oil or a dressing.","にんにくをおろし、そのまま油やドレッシングに加えられます。"]],
   detailsLead:["Blades set by craftspeople in Tsubame-Sanjo.","燕三条の職人による目立て。"],
