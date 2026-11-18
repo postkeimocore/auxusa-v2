@@ -1253,8 +1253,8 @@ html.site-only #site-app{width:100%;min-height:100vh}
 #site-app .category-card .photo{height:auto;aspect-ratio:3/2}
 /* PDP: the main photo frame is 3:2 like the photos, so its top lines up with the thumbnails and the buy column. */
 #site-app .kinto-main{aspect-ratio:3/2}
-/* PDP: "Made for the movement" and "A closer look at the details" use one photo shape (4:3) at every width. */
-#site-app .pdp-use-trio .photo,#site-app .feature-trio .photo{aspect-ratio:4/3}
+/* PDP: "Made for the movement" and "A closer look at the details" use one photo shape (3:2, the shape of the shoot) at every width. */
+#site-app .pdp-use-trio .photo,#site-app .feature-trio .photo{aspect-ratio:3/2}
 /* Stacked cards (photo + text in one column): 40px between them, the same as the product grid rows. */
 @media(max-width:880px){
  .product-collections{gap:16px}
