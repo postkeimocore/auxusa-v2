@@ -183,6 +183,7 @@ No full-width lines between sections (footer top, filter bar, MOMENTS product ro
 
 - The header is sticky at the top of the viewport (`z-index:40`); anchored sections use `scroll-margin-top` equal to the header height (80px, 72px on narrow screens).
 - While a dropdown is open, the bar has thin `--line` rules top and bottom, and the page below is dimmed with an ink scrim at 16% (`color-mix`).
+- **Language switch (2026-11-18).** `English ⌄` / `日本語 ⌄` sits first in the utility group, in the same 12px utility text and caret as the menu. Its list (English, 日本語, each written in its own language; the current one underlined) drops from the switch itself, right-aligned, white with a `--line` border, 128px wide, items 8 / 16 padding. Deliberate exception to the full-width dropdown bar: two items do not need a bar or the scrim. On phones the switch leaves the header (no room beside the logo and cart) and becomes the last row of the menu; the open menu scrolls inside itself (`max-height: 100dvh − 72px`) so that row and FOR BUSINESS stay reachable. The choice sets `?lang=`; in the XProof export, moving to another page keeps `?lang=ja`.
 
 ## Shop All (2026-10-15, V1 structure)
 
