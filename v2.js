@@ -117,7 +117,7 @@ function productStrip(ids){
 var LOGO=new URLSearchParams(location.search).get("logo")||"";
 /* AUX Co., Ltd. brands (sample page modelled on aux-ltd.co.jp/brand). Sub-pages are not built yet. */
 var BRANDS=[
- {id:"leye",name:"Leye",jp:"Leye",logo:"brand-leye-logo.svg",photo:"shinjo-lineup.webp",copy:["Precision tongs and kitchen tools, engineered in Japan.","日本で設計した精密なトングとキッチンツール。"]},
+ {id:"leye",name:"Leye",jp:"Leye",logo:"brand-leye-logo.svg",photo:"shinjo-lineup.webp",copy:["Precision tongs and kitchen tools, engineered in Japan.","日本で設計したトングやキッチンツールを展開しています。"]},
  {id:"teppan",name:"OTONA no TEPPAN",jp:"大人の鉄板",logo:"brand-otona-teppan-logo.svg",photo:"brand-otona-teppan-thumb.webp",copy:["A griddle series that brings out the best in every ingredient.","食材の魅力を最大限に引き出す「大人の鉄板」シリーズ"]},
  {id:"yakizakana",name:"OTONA no YAKIZAKANA",jp:"大人の焼魚",logo:"brand-otona-yakizakana-logo.svg",photo:"brand-otona-yakizakana-thumb.webp",copy:["Made to grill fish with crisp skin, the way a charcoal shichirin does.","目指したのは、七輪で焼き上げた皮パリの焼き魚"]},
  {id:"ishiyakiimo",name:"OTONA no ISHIYAKIIMO",jp:"大人の石焼芋",logo:"brand-otona-ishiyakiimo-logo.svg",photo:"brand-otona-ishiyakiimo-thumb.webp",copy:["Bring the rich flavor of stone-roasted sweet potatoes into your home.","大人をしあわせにする石焼芋。濃密で甘い本格的な石焼き芋をご自宅で。"]},
@@ -248,7 +248,7 @@ function home(){
  '<div class="scatter-copy"><h2 class="display-medium">'+L("Different forms<br>for different movements.","使い方に合わせて<br>変えた形状。")+'</h2>'+
  '<p class="body-lg">'+L("Tips that grip noodles, openings that drain oil, and proportions suited to smaller foods. Every detail has a purpose.","麺をつかむ先端、揚げ物の油を切る穴、小さな食材に合うサイズ。使う場面に合わせて細部まで工夫しています。")+'</p>'+
  '<button type="button" class="btn-fill has-arrow" data-go="why">'+L("Why AUX","AUXについて")+'</button></div></section>'+
- '<section class="site-section compact mist home-products">'+sectionHead("",L("Tools worth reaching for.","代表的な商品"),L("A closer look at the tools and the jobs they are made for.","4つの道具と、それぞれが得意な作業をご紹介します。"))+
+ '<section class="site-section compact mist home-products">'+sectionHead("",L("Tools worth reaching for.","代表的な商品"),L("A closer look at the tools and the jobs they are made for.","日常のさまざまな動作に寄り添う4つの商品をご紹介します。"))+
  productStrip(featured)+'<div class="btn-row is-centred">'+boutline(L("Shop all products","商品一覧を見る"),"shop")+'</div></section>'+
  '<section class="site-section home-categories">'+sectionHead("",L("COOK. SERVE. TABLE.",phrase("調理。|取り分け。|食卓。")),L("Start with what you want to do, then discover the tools.","調理・取り分け・食卓の用途から商品を探せます。"))+
  categoryCards()+'</section>'+
@@ -257,17 +257,17 @@ function home(){
  '<h2 class="display-medium">'+L("Knife.<br>Fork.<br>Tongs.","ナイフ。<br>フォーク。<br>トング。")+'</h2>'+
  '<p class="body-lg">'+L("Small tongs that belong beside the knife and fork<br>—not only in the kitchen.","キッチンだけでなく、ナイフやフォークと一緒に食卓でも使える小さなトングです。")+'</p>'+
  '<div class="btn-row">'+boutline(L("Explore the idea","この考え方を見る"),"why",'data-anchor="third"')+'</div></div></div></section>'+
- '<section class="site-section home-moments-section">'+sectionHead(L("MOMENTS","食卓のシーン"),L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","食卓のシーンからAUXの道具を探すこともできます。"),true)+
+ '<section class="site-section home-moments-section">'+sectionHead(L("MOMENTS","食卓のシーン"),L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","普段の食事からおもてなしまで、食卓のシーンに合った道具をご紹介します。"),true)+
  '<div class="home-moments"><div class="home-moment-main" tabindex="0" data-go="moments" data-anchor="everyday">'+photo(D.moments[0].photo,"MOMENTS / everyday")+
  '<div class="moment-home-copy"><h3>'+mTitle(D.moments[0])+'</h3><p>'+mStrap(D.moments[0])+'</p></div><span class="arrow">'+arw()+'</span></div>'+
  '<div class="home-moment-list">'+D.moments.slice(1).map(function(m,i){return '<article tabindex="0" data-go="moments" data-anchor="'+m.id+'">'+photo(m.photo,"MOMENTS / "+m.title)+
  '<div><h3>'+mTitle(m)+'</h3><p>'+mStrap(m)+'</p></div><span class="arrow">'+arw()+'</span></article>';}).join("")+'</div></div></section>'+
  '<section class="b2b-banner home-business"><div>'+
  '<h2 class="display-medium">'+L("Tools designed for attentive service.","お客様を迎える場所にも。")+'</h2>'+
- '<p class="body-md">'+L("Discover how AUX tools fit restaurants, hotels, cafés, events and retail.","レストランやホテル、カフェ、イベント、小売店でのAUXの使い方をご紹介します。")+'</p>'+
+ '<p class="body-md">'+L("Discover how AUX tools fit restaurants, hotels, cafés, events and retail.","レストランやホテル、カフェなどでの業務用利用に加え、小売・卸取引についてもご相談いただけます。")+'</p>'+
  '<div class="btn-row"><button type="button" class="btn-fill has-arrow" data-go="business">'+L("For Business","法人・事業者向け")+'</button></div></div>'+
  photo("istock-1054862736.webp","Hospitality / editorial stock selection")+'</section>'+
- whyBand(L("Precision in every detail.",phrase("使いやすさを|支える|細部の工夫")),L("Considered proportions, precise tips and careful manufacturing help each tool move naturally with the hand.","全体のバランス、精密な先端、丁寧な仕上げによって、どの道具も手の動きになじみます。"))+
+ whyBand(L("Precision in every detail.",phrase("使いやすさを|支える|細部の工夫")),L("Considered proportions, precise tips and careful manufacturing help each tool move naturally with the hand.","先端の形や握り心地、仕上げまで。使いやすさを考えて細部を設計しています。"))+
  note("V1 priority restored: featured-product hero → AUX difference → featured products → category discovery → use-scene discovery → About AUX. New direction adds Third Utensil and Business within this sequence.","V1の基本順序：代表商品のHero→AUXの特徴→代表商品→カテゴリ→MOMENTS→About AUX。今回の方針でTABLEコンテンツ・法人導線を追加。")+'</section></div>';
 }
 function shop(){
@@ -277,8 +277,8 @@ function shop(){
  '<section class="site-section compact shop-categories">'+categoryCards()+'</section>'+
  '<section class="site-section compact" id="anchor-products">'+listingToolbar(D.products,"use")+productGrid(list)+'</section>'+
  '<section class="site-section"><div class="split">'+photo("shinjo-garnish-1.webp","")+
- '<div class="split-copy">'+eyebrow(L("MOMENTS","食卓のシーン"))+'<h2 class="display-medium">'+L("Find the right tool for the moment.",phrase("食卓のシーンに合う|道具を選ぶ"))+'</h2>'+
- '<p class="body-md">'+L("Everyday meals, shared time, hosting and special occasions. See which tools suit each moment.","毎日の食事から人を招く日、特別な日まで、それぞれのシーンに合う道具をご紹介します。")+'</p>'+
+ '<div class="split-copy">'+eyebrow(L("MOMENTS","食卓のシーン"))+'<h2 class="display-medium">'+L("Find the right tool for the moment.",phrase("食卓のシーンから|選ぶ"))+'</h2>'+
+ '<p class="body-md">'+L("Everyday meals, shared time, hosting and special occasions. See which tools suit each moment.","毎日の食事から人を招く日、特別な日まで、それぞれのシーンに合う商品をご紹介します。")+'</p>'+
  '<div class="btn-row">'+boutline(L("Explore MOMENTS","食卓のシーンを見る"),"moments")+'</div></div></div></section>';
 }
 function collection(id){
@@ -295,8 +295,8 @@ function collection(id){
  ["shinjo-bread-2.webp","Keep the toppings in place","具材をくずさずに","Lift toast and open sandwiches by the edge, without touching the toppings.","パンの端をつかめるので、トッピングに触れずに取り分けやすくなっています。"]],
  table:[
  ["shinjo-fingertip-1.webp","Sharing at the table","食卓で取り分ける","Pass salad and small bites from the middle of the table.","テーブル中央の料理をそれぞれの皿へ取り分けられます。"],
- ["shinjo-garnish-1.webp","The smaller things","小さな器・小さな食材","A scale that suits small bowls and jars.","小さなボウルや瓶にちょうどいいサイズです。"],
- ["katou-garnish-use2.webp","At the tea table","お茶の時間にも","From lifting a tea bag to other small jobs at the table.","ティーバッグを取り出すなど、食卓の細かな作業にも使えます。"]]
+ ["shinjo-garnish-1.webp","The smaller things","小さな器・小さな食材","A scale that suits small bowls and jars.","小さなボウルや瓶にも入れやすい細い先端です。"],
+ ["katou-garnish-use2.webp","At the tea table","お茶の時間にも","From lifting a tea bag to other small jobs at the table.","ティーバッグを取り出すなど、食卓の細かな動作にも使えます。"]]
  }[id];
  return '<div class="collection-banner"><div class="detail-copy">'+
  '<h1 class="page-display">'+useLabel(id)+'</h1><p class="body-lg">'+L(c.lead[0],c.lead[1])+'</p>'+
@@ -316,7 +316,7 @@ function collection(id){
 function family(kind){
  var isT=kind==="tongs";var list=D.products.filter(function(p){return p.family===kind;});
  return '<div class="collection-banner"><div class="detail-copy">'+
- '<h1 class="page-display">'+(isT?L("Leye TONGS","Leye トング"):L("Leye Tools","Leye "+phrase("キッチン|ツール")))+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","つかみ方の違いに合わせて、11種類の形のトングを揃えています。"):L("A small whisk and a grating spoon, for dressings, sauces and finishing touches.","ドレッシングやソースづくり、料理の仕上げに使える小さな泡立て器とおろしスプーンです。"))+'</p></div>'+
+ '<h1 class="page-display">'+(isT?L("Leye TONGS","Leye トング"):L("Leye Tools","Leye "+phrase("キッチン|ツール")))+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","食材や使い方に合わせて、11種類のトングを揃えています。"):L("A small whisk and a grating spoon, for dressings, sauces and finishing touches.","ドレッシングやソースづくり、料理の仕上げに使える小さな泡立て器とおろしスプーンです。"))+'</p></div>'+
  photo(isT?"shinjo-lineup.webp":"katou-tools-board.webp","Family image / provisional")+'</div>'+
  '<section class="site-section compact">'+
  listingToolbar(list,"use")+productGrid(filterList(list,"use"))+'</section>';
@@ -348,7 +348,7 @@ function moments(){
     '</div>'+
     '<div class="moment-related-grid">'+m.products.map(function(id){return card(productBy(id));}).join("")+'</div></div>'});
  }).join("")+
- whyBand(L("Precision behind every moment.",phrase("使いやすさを|支える|設計と技術")),L("Thoughtful shapes and precise metalworking support the moments we share.","用途に合わせた形と精密な金属加工で、食卓の時間を支えます。"))+'</section></div>';
+ whyBand(L("Precision behind every moment.",phrase("使いやすさを|支える|設計と技術")),L("Thoughtful shapes and precise metalworking support the moments we share.","用途に合わせた先端や握り心地を、設計と金属加工の技術で実現しています。"))+'</section></div>';
 }
 var BIZ_PHOTOS={
  restaurants:["istock-479169402.webp","shinjo-finetip-2.webp","istock-2226618325.webp","shinjo-long-2.webp"],
@@ -396,8 +396,8 @@ function bizShow(g,i){
 }
 function business(){
  return '<div class="detail-hero"><div class="detail-copy">'+
- '<h1 class="page-display">'+L("For spaces where<br>people gather.","人が集まる場所に<br>AUXを。")+'</h1>'+
- '<p class="body-lg">'+L("From professional kitchens to the table, AUX tools support the details of serving and sharing food.","厨房から客席まで、料理を盛り付けて取り分ける細かな作業をAUXの道具が支えます。")+'</p>'+
+ '<h1 class="page-display">'+L("For spaces where<br>people gather.","飲食店や宿泊施設にも<br>Leyeのトングを。")+'</h1>'+
+ '<p class="body-lg">'+L("From professional kitchens to the table, AUX tools support the details of serving and sharing food.","厨房での調理からテーブルサービスまで、さまざまな業務で使える商品を揃えています。")+'</p>'+
  '<div class="btn-row">'+boutline(L("Business inquiries","法人・業務用のお問い合わせ"),"contact")+'</div></div>'+
  photo("istock-2195526262.webp","")+'</div>'+
  '<section class="site-section compact">'+sectionHead("",L("Tools for kitchens, hospitality and retail.",phrase("飲食店・|宿泊施設・|小売店向け")),
@@ -407,7 +407,7 @@ function business(){
  '<div><h2 class="display-medium">'+L(b.title,phrase(b.jp))+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
  '<div class="business-related">'+eyebrow(L("Suggested tools","おすすめの道具"))+'<ul>'+b.products.map(function(id){var p=productBy(id);return '<li><button type="button" data-product="'+id+'">'+photo(p.image,"")+'<span>'+pname(p)+'</span>'+arw()+'</button></li>';}).join("")+'</ul></div>'+
  '<div class="btn-row">'+boutline(L("Business & wholesale inquiries","法人・卸取引について問い合わせる"),"contact")+'</div></div></div></section>';}).join("")+
- whyBand(L("Precision for every service.",phrase("業務でも|使いやすい|道具づくり")),L("Explore the design and metalworking behind every AUX tool.","AUXの道具を支える設計と金属加工をご紹介します。"))+'</section>';
+ whyBand(L("Precision for every service.",phrase("業務でも|使いやすい|道具づくり")),L("Explore the design and metalworking behind every AUX tool.","AUXの商品づくりに生かしている設計や金属加工をご紹介します。"))+'</section>';
 }
 function pdpGallery(p){
  var ph=p.photos,shots=ph.scenes.concat([ph.single,ph.form],ph.uses);
@@ -465,19 +465,19 @@ function pdp(){
   '<div class="accordion"><details open><summary>'+L("Specifications","仕様")+'</summary>'+pdpSpecs(P.specs)+'</details>'+
  '<details open><summary>'+L("Care and use","お手入れ・使用上の注意")+'</summary><p>'+P.care.map(function(c){return L(c[0],c[1]);}).join(state.lang==="ja"?"":" ")+'</p></details></div>'+
  '<div class="btn-row">'+boutline(L("Buying for a business?","法人・業務用はこちら"),"business")+'</div></div></div>'+
- '<section class="site-section">'+sectionHead("",L("Made for the movement.","動作に合わせた形"),
+ '<section class="site-section">'+sectionHead("",L("Made for the movement.","この商品の使い方"),
   L("AUX is shaped to suit the food, the hand and the movement.",p.family==="tools"?"食材や手の動きに合わせて考えた形状。":"食材や動作に合わせて、つかみやすさを考えた形状。"))+
  '<div class="pdp-primary-use"><div class="pdp-primary-photo">'+photo(P.primary[0],"")+'</div>'+
  '<div class="pdp-primary-copy"><h3 class="display-small">'+L(P.primary[1],phrase(P.primary[2]))+'</h3>'+
  '<p class="body-md">'+L(P.primary[3],P.primary[4])+'</p></div></div>'+
  '<div class="pdp-use-trio">'+P.uses.map(function(x){return '<article>'+photo(x[0],"")+'<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div></section>'+
- '<section class="site-section pdp-details-section"><div class="sub-head"><h3 class="display-small">'+L("A closer look at the details.","細部の工夫")+'</h3>'+
+ '<section class="site-section pdp-details-section"><div class="sub-head"><h3 class="display-small">'+L("A closer look at the details.","先端や持ち手の工夫")+'</h3>'+
   '<p class="body-md">'+L(P.detailsLead[0],P.detailsLead[1])+'</p></div>'+
  '<div class="feature-trio">'+P.details.map(function(x){return '<article>'+photo(x[0],"")+
  '<h3>'+L(x[1],x[2])+'</h3><p>'+L(x[3],x[4])+'</p></article>';}).join("")+'</div>'+
  note("V1 PDP structural restoration: primary-use image + 3 use-value cards → physical-feature detail cards → wide feature band. Photos are not a guarantee of the exact SKU.","V1 PDP構成を復元：使用価値の画像＋3項目→形状の詳細→横長Feature写真。商品写真の個別対応は未確定。")+'</section>'+
- '<section class="site-section" id="anchor-comparison"><div class="compare-head">'+sectionHead("",L("Which tool fits your task?","作業に合う道具を比べる"),
- L("All thirteen AUX tools, drawn to the same scale. Compare them by size, purpose and moment.","13商品を同じ縮尺で並べました。サイズや用途、使う場面で比べられます。"))+
+ '<section class="site-section" id="anchor-comparison"><div class="compare-head">'+sectionHead("",L("Which tool fits your task?","用途に合う道具を比較"),
+ L("All thirteen AUX tools, drawn to the same scale. Compare them by size, purpose and moment.","13商品を同じ縮尺で並べました。長さや用途、使う場面を比較できます。"))+
  '<div class="compare-controls"><span class="compare-count" id="compare-count" aria-live="polite"></span>'+
  '<button type="button" class="compare-step prev" data-compare-step="-1" aria-label="'+L("Previous tools","前の道具")+'">'+arw()+'</button>'+
  '<button type="button" class="compare-step" data-compare-step="1" aria-label="'+L("Next tools","次の道具")+'">'+arw()+'</button></div></div>'+
@@ -501,7 +501,7 @@ function pdp(){
   '<span>'+r.name+'</span><span>'+L(r.place[0],r.place[1])+'</span><span>'+L(r.date[0],r.date[1])+'</span></div>'+
   '<div><h3>'+L(r.title[0],r.title[1])+'</h3><p>'+L(r.body[0],r.body[1])+'</p></div></article>';}).join("")+
  '</div></div></section>'+
- whyBand(L("Precision behind every movement.",phrase("使い心地を|支える精度。")),L("Explore the design and metalworking behind the tool.","この道具を支える設計と金属加工をご紹介します。"))+'</section>'+
+ whyBand(L("Precision behind every movement.",phrase("使い心地を|支える精度。")),L("Explore the design and metalworking behind the tool.","AUXの商品づくりをご紹介します。"))+'</section>'+
  '<section class="site-section compact"><h2 class="utility-heading">'+L("Related tools","関連する商品")+'</h2>'+
  productStrip(close.map(function(x){return x.id;}))+
  '<div class="btn-row is-centred">'+boutline(L("Shop all products","商品一覧を見る"),"shop")+'</div>'+
@@ -509,20 +509,20 @@ function pdp(){
 }
 function why(){
  var factors=[
- ["shinjo-serving-2.webp","The point of contact","食材に触れる先端","Different tips for different foods and movements.","食材や動作に合わせて先端の形を変えています。"],
- ["katou-fry-use1.webp","One form, one job","1つの形に1つの役割","Openings that drain oil. Tips shaped for the food they hold.","油を切る穴や、つかむ食材に合わせた先端があります。"],
- ["shinjo-mini-1.webp","The right scale","ちょうどいいサイズ","A size and reach suited to the hand, the food and the dish.","手や食材、器に合わせたサイズと長さです。"]
+ ["shinjo-serving-2.webp","The point of contact","食材に触れる先端","Different tips for different foods and movements.","食材の大きさや形に合わせて先端を設計しています。"],
+ ["katou-fry-use1.webp","One form, one job","1つの形に1つの役割","Openings that drain oil. Tips shaped for the food they hold.","揚げ物の油を切る穴など、使い方に合わせた工夫があります。"],
+ ["shinjo-mini-1.webp","The right scale","食材や器に合うサイズ","A size and reach suited to the hand, the food and the dish.","手や器の大きさ、取り分ける距離に合わせてサイズを選べます。"]
  ];
  var uses=[
- ["katou-finetip-contact.webp","Contact & precision","先端の精度","Tip shapes designed to grip delicate foods with control.","繊細な食材を狙いどおりにつかめる先端形状です。"],
- ["katou-fingertip-contact.webp","Grip and response","握り心地と操作性","A light spring and comfortable grip for controlled handling.","軽いバネと握りやすい形で、思いどおりに扱えます。"],
- ["shinjo-garnish-1.webp","Scale & proportion","サイズとバランス","Sized for the food and the hand that holds it.","食材と、それを持つ手に合わせたサイズです。"]
+ ["katou-finetip-contact.webp","Contact & precision","先端の精度","Tip shapes designed to grip delicate foods with control.","食材を扱いやすいよう先端の形を調整しています。"],
+ ["katou-fingertip-contact.webp","Grip and response","握り心地と操作性","A light spring and comfortable grip for controlled handling.","手になじむ形状と、軽い力で開閉できるバネを採用しています。"],
+ ["shinjo-garnish-1.webp","Scale & proportion","サイズとバランス","Sized for the food and the hand that holds it.","手に持ちやすく、食材を扱いやすいサイズやバランスを考えています。"]
  ];
  return '<div class="brand-page">'+
- editorialOpening("shinjo-basting-2.webp",L("The right tool makes<br>each movement feel natural.","道具が合えば<br>動きは自然になる。"),
-  L("You shouldn't have to think about the tongs. A closely considered tool keeps the focus on the food and the people at the table.","トングの使い方を意識する必要はありません。細部まで考えた道具なら、料理と食卓を囲む人に集中できます。"))+
- '<section class="site-section">'+sectionHead("",L("Different forms for different tasks.","作業ごとに違う形"),
-  L("Each shape answers a different task. See how the details work in use.","形はそれぞれ違う作業のためのものです。使う場面で細部がどう働くかをご覧ください。"))+
+ editorialOpening("shinjo-basting-2.webp",L("The right tool makes<br>each movement feel natural.","使いやすさを<br>細部まで考える"),
+  L("You shouldn't have to think about the tongs. A closely considered tool keeps the focus on the food and the people at the table.","Leyeのトングは、道具の扱いに気を取られず料理や会話を楽しめることを大切にしています。食材のつかみやすさや手に持ったときの感覚まで考えて設計しています。"))+
+ '<section class="site-section">'+sectionHead("",L("Different forms for different tasks.","食材に合わせた先端とサイズ"),
+  L("Each shape answers a different task. See how the details work in use.","食材の大きさや形、使い方に合わせて先端や長さを工夫しています。"))+
  '<div class="form-collage">'+factors.map(function(f){return '<figure>'+photo(f[0],"")+
  '<figcaption><h3>'+L(f[1],f[2])+'</h3><p>'+L(f[3],f[4])+'</p></figcaption></figure>';}).join("")+'</div></section>'+
  '<section class="site-section" id="anchor-engineering"><div class="spec-layout">'+photo("shinjo-finetip-2.webp","")+
@@ -534,8 +534,8 @@ function why(){
   cta:'<button type="button" class="btn-fill has-arrow" data-go="pdp" data-set-product="fingertip">'+L("Discover Fingertip Tongs","ゆびさきトングを見る")+'</button>'})+
  chapter({id:"tsubame",layout:"offset",reverse:true,photo:"katou-craft-lineup.webp",label:L("TSUBAME-SANJO","燕三条"),title:L("The expertise behind the form.",phrase("使いやすい形をつくる|金属加工")),
   body:L("Each shape reflects careful cutting, forming and finishing.","金属を切る、曲げる、仕上げる。それぞれの工程を丁寧に重ねて商品をつくっています。")})+
- '<section class="site-section compact">'+sectionHead("",L("Find the right tool.","合う道具を探す"),
- L("Explore the tools behind the story.","ここで紹介した考え方から生まれた道具をご覧ください。"))+
+ '<section class="site-section compact">'+sectionHead("",L("Find the right tool.","用途から商品を選ぶ"),
+ L("Explore the tools behind the story.","調理・取り分け・食卓の用途から商品をご覧いただけます。"))+
  categoryCards()+
  '<div class="btn-row is-centred">'+boutline(L("Shop all products","すべての商品を見る"),"shop")+'</div></section></div>';
 }
@@ -578,7 +578,7 @@ function policy(kind){
  '<div class="btn-row">'+boutline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
 }
 function contact(){
- return '<section class="site-section"><div class="support-wrap">'+eyebrow(L("CONTACT","お問い合わせ"))+'<h1 class="page-display">'+L("How can we help?","どのような<br>ご用件ですか？")+'</h1><p class="body-lg">'+L("Get in touch about products, orders or business purchasing using the form below.","商品やご注文、法人取引については以下のフォームからお問い合わせください。")+'</p>'+
+ return '<section class="site-section"><div class="support-wrap">'+eyebrow("CONTACT")+'<h1 class="page-display">'+L("How can we help?","お問い合わせ")+'</h1><p class="body-lg">'+L("Get in touch about products, orders or business purchasing using the form below.","商品やご注文、法人取引については以下のフォームからお問い合わせください。")+'</p>'+
  '<form class="contact-fields" id="demo-contact"><div class="field"><label>'+L("Name","お名前")+'</label><input type="text" required placeholder=""></div>'+
  '<div class="field"><label>'+L("Email address","メールアドレス")+'</label><input type="email" required></div>'+
  '<div class="field wide"><label>'+L("Inquiry type","お問い合わせ種別")+'</label><select><option>'+L("Product / order","商品・注文")+'</option><option>'+L("Business / wholesale","法人・卸取引")+'</option><option>'+L("Other","その他")+'</option></select></div>'+
@@ -634,7 +634,7 @@ function updateCompare(){
    the start until the part is in view and removed when done, so the parts' own opacity, transforms and
    hover transitions are untouched. Off for reduced motion; the header stays still. */
 var REVEAL_UNIT=".photo,figure,img,picture,video,svg,canvas,table,details,input,select,textarea,button,a,[data-product],[data-go],[role=link],.hero-slide";
-var REVEAL_SKIP=".float-item,.float-probe,.why-band-bg,script,style,template";
+var REVEAL_SKIP=".scatter-photo,.why-float,.why-band-bg,script,style,template";
 var REVEAL_GAP=80,REVEAL_MAX_DELAY=640,revealObserver=null,revealClock=0,revealAnims=[];
 /* An element that draws its own frame (border on all four sides) is revealed whole; otherwise the frame would show before its contents. */
 function boxed(el){var cs=getComputedStyle(el);return ["Top","Right","Bottom","Left"].every(function(k){return parseFloat(cs["border"+k+"Width"])>0&&cs["border"+k+"Style"]!=="none";})&&el.getBoundingClientRect().width<window.innerWidth*.9;}
@@ -683,7 +683,28 @@ function bindGallery(){
  var f=function(){t.classList.toggle("is-overflowing",t.scrollHeight>t.clientHeight+1);t.classList.toggle("at-end",t.scrollTop+t.clientHeight>=t.scrollHeight-1);};
  t.addEventListener("scroll",f,{passive:true});f();
 }
-function bindCompare(){var t=document.getElementById("compare-track");if(t){t.addEventListener("scroll",updateCompare,{passive:true});updateCompare();}}
+function bindCompare(){
+ var t=document.getElementById("compare-track");if(!t)return;
+ t.addEventListener("scroll",updateCompare,{passive:true});updateCompare();
+ /* Mouse: press and drag sideways to scroll (touch and trackpads scroll natively). A drag does not open the card under the pointer. */
+ var drag=null,moved=false;
+ t.addEventListener("pointerdown",function(ev){if(ev.pointerType!=="mouse"||ev.button!==0)return;drag={x:ev.clientX,left:t.scrollLeft,id:ev.pointerId};moved=false;});
+ t.addEventListener("pointermove",function(ev){
+  if(!drag||ev.pointerId!==drag.id)return;
+  var dx=ev.clientX-drag.x;if(!moved&&Math.abs(dx)<6)return;
+  if(!moved){moved=true;t.setPointerCapture(drag.id);t.classList.add("is-dragging");var sel=window.getSelection&&window.getSelection();if(sel)sel.removeAllRanges();}
+  t.scrollLeft=drag.left-dx;
+ });
+ function end(ev){
+  if(!drag||ev.pointerId!==drag.id)return;drag=null;if(!moved)return;
+  t.classList.remove("is-dragging");
+  var w=t.firstElementChild.getBoundingClientRect().width||1;
+  t.scrollTo({left:Math.round(t.scrollLeft/w)*w,behavior:"smooth"});  /* settle on the nearest card */
+ }
+ t.addEventListener("pointerup",end);t.addEventListener("pointercancel",end);
+ t.addEventListener("click",function(ev){if(moved){ev.preventDefault();ev.stopPropagation();moved=false;}},true);
+ t.addEventListener("dragstart",function(ev){ev.preventDefault();});
+}
 var scatterQueued=false;
 /* Scroll effects (soft reveal, floating photos, close-up) need a page that scrolls in its own window.
    When the window is as tall as the page (an XProof artboard stretches to the content height) they
@@ -709,82 +730,50 @@ function scrollZoom(){
   im.style.transform="translate3d(0,"+ty.toFixed(1)+"px,0) scale("+sc.toFixed(4)+")";
  });
 }
-/* Scattered photos fade in from the bottom of the viewport and out towards the top
-   (HOME Different forms and the WHY AUX band share this). ty = the drift currently applied. */
-function scrollFade(el,ty,vh){
- var r=el.getBoundingClientRect();
- var t=(r.top-ty+r.height/2)/vh;           /* 0 = viewport top, 1 = viewport bottom */
- var op=t>.75?(1-t)/.25:(t<.25?t/.25:1);
- return {t:t,op:Math.max(0,Math.min(1,op))};
-}
 function scatterParallax(){
  scatterQueued=false;
  scrollZoom();
+ floatKick();
 }
-/* Floating photos (HOME Different forms, WHY AUX band), after bird-and-insect: each photo's opacity
-   follows its position in the viewport (it fades in just after entering, fades out near the top) and
-   it drifts at its own speed (parallax), both eased towards the scroll position for a soft lag.
-   No time-based motion. The scroll position is read with IntersectionObserver on thin strips around
-   each section instead of scroll events, so it also works inside a frame that does not scroll
-   itself (XProof). */
-var FLOAT_GROUPS=[[".scatter-section",".scatter-photo","speed"],[".why-band",".why-float","drift"]];
-/* The scroll strips are measured once per layout. When the page height changes after that (web fonts, late layout),
-   measure again: stale strips sat below a shorter page (blank space under the footer) and the photos never showed. */
-var floatLayoutH=0,floatLayoutT=0;
-if("ResizeObserver" in window)new ResizeObserver(function(){
- var app=document.getElementById("site-app"),h=app?app.offsetHeight:0;if(Math.abs(h-floatLayoutH)<2)return;floatLayoutH=h;
- clearTimeout(floatLayoutT);floatLayoutT=setTimeout(function(){if(document.querySelector(".float-probe"))bindFloat();},150);
-}).observe(document.getElementById("site-app"));
-var floatObservers=[],floatGen=0;
+/* Floating photos (HOME Different forms, WHY AUX band), after bird-and-insect: each photo fades in
+   just after entering the viewport and out near the top, and on desktop drifts at its own speed
+   (parallax). Both are read from the photo's own position (getBoundingClientRect) on each frame and
+   eased for a soft lag; the loop stops once everything has settled. Nothing is added to the page,
+   and a photo that is not handled shows normally. */
+var FLOAT_SEL=[[".scatter-photo","speed"],[".why-float","drift"]];
+var floatItems=[],floatRunning=false;
 function bindFloat(){
- floatObservers.forEach(function(o){o.disconnect();});floatObservers=[];floatGen++;
- [].forEach.call(document.querySelectorAll(".float-probe"),function(el){el.remove();});
- [].forEach.call(document.querySelectorAll(".float-item"),function(el){el.classList.remove("float-item");el.style.opacity="";el.style.removeProperty("--py");});
+ floatItems.forEach(function(el){el.style.opacity="";el.style.translate="";});
+ floatItems=[];
  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if(reduce||!scrollFx||!("IntersectionObserver" in window))return;
- var pageH=document.documentElement.scrollHeight;
- FLOAT_GROUPS.forEach(function(g){[].forEach.call(document.querySelectorAll(g[0]),function(sec){floatSection(sec,[].slice.call(sec.querySelectorAll(g[1])),g[2],pageH);});});
+ if(reduce||!scrollFx)return;
+ FLOAT_SEL.forEach(function(g){[].forEach.call(document.querySelectorAll(g[0]),function(el){
+  el._speed=Number(el.dataset[g[1]]||0);el._py=0;el._op=null;floatItems.push(el);
+ });});
+ floatKick();
 }
-function floatSection(sec,items,speedKey,pageH){
- if(!items.length)return;
- items.forEach(function(el){el.classList.add("float-item");el._py=0;el._tpy=0;el._op=0;el._top=0;el.style.opacity="0";});
- var secTop=function(){return sec.getBoundingClientRect().top+(window.scrollY||0);};
- var STRIP=16,EXTRA=1200,base=Math.max(0,secTop()-EXTRA),probe=document.createElement("div"),visible={};
- var n=Math.floor((Math.min(secTop()+sec.offsetHeight+EXTRA,pageH)-base)/STRIP);  /* strips end at the page bottom: no blank space below the footer */
- probe.className="float-probe";probe.setAttribute("aria-hidden","true");probe.style.top=base+"px";
- for(var k=0;k<n;k++){var st=document.createElement("i");st.dataset.k=k;probe.appendChild(st);}
- document.body.appendChild(probe);  /* outside the section, which may clip its overflow */
- var view=null,running=false,gen=floatGen;
- function targets(){
-  var vh=Math.max(1,view.bottom-view.top),y0=window.scrollY||0,drift=window.innerWidth>880;
-  items.forEach(function(el){
-   var r=el.getBoundingClientRect(),t=(r.top+y0+r.height/2-el._py-view.top)/vh;  /* 0 = viewport top, 1 = bottom */
-   el._top=Math.max(0,Math.min(1,t>.85?(1-t)/.15:(t<.15?t/.15:1)));
-   el._tpy=drift?Math.max(-40,Math.min(40,(t-.5)*vh*Number(el.dataset[speedKey]||0))):0;
-  });
- }
- function tick(){
-  if(gen!==floatGen){running=false;return;}
-  var moving=false;
-  items.forEach(function(el){
-   el._py+=(el._tpy-el._py)*.1;el._op+=(el._top-el._op)*.12;
-   if(Math.abs(el._tpy-el._py)>.05||Math.abs(el._top-el._op)>.003)moving=true;
-   el.style.setProperty("--py",el._py.toFixed(2)+"px");el.style.opacity=el._op.toFixed(3);
-  });
-  running=moving;if(moving)requestAnimationFrame(tick);
- }
- var io=new IntersectionObserver(function(es){
-  es.forEach(function(e){var k=+e.target.dataset.k;if(e.isIntersecting)visible[k]=1;else delete visible[k];});
-  var ks=Object.keys(visible).map(Number);if(!ks.length)return;
-  view={top:base+Math.min.apply(null,ks)*STRIP,bottom:base+(Math.max.apply(null,ks)+1)*STRIP};
-  targets();
-  if(!running){running=true;requestAnimationFrame(tick);}
+function floatKick(){if(floatItems.length&&!floatRunning){floatRunning=true;requestAnimationFrame(floatStep);}}
+function floatStep(){
+ floatRunning=false;
+ var vh=window.innerHeight||1,drift=window.innerWidth>880,moving=false;
+ floatItems.forEach(function(el){
+  var r=el.getBoundingClientRect();if(!r.height)return;  /* hidden at this width */
+  var t=(r.top-el._py+r.height/2)/vh;  /* 0 = viewport top, 1 = viewport bottom */
+  var op=Math.max(0,Math.min(1,t>.85?(1-t)/.15:(t<.15?t/.15:1)));
+  var py=drift?Math.max(-40,Math.min(40,(t-.5)*vh*el._speed)):0;
+  if(el._op===null){el._op=op;el._py=py;}  /* first frame: no easing from zero */
+  el._op+=(op-el._op)*.12;el._py+=(py-el._py)*.1;
+  if(Math.abs(op-el._op)>.003||Math.abs(py-el._py)>.05)moving=true;
+  el.style.opacity=el._op>.997?"":el._op.toFixed(3);
+  el.style.translate=Math.abs(el._py)<.05?"":"0 "+el._py.toFixed(2)+"px";
  });
- [].forEach.call(probe.children,function(st){io.observe(st);});floatObservers.push(io);
+ if(moving)floatKick();
 }
+/* Layout can still move after render (web fonts, images): settle the photos again. */
+if("ResizeObserver" in window)new ResizeObserver(function(){floatKick();}).observe(document.getElementById("site-app"));
+window.addEventListener("load",function(){floatKick();});
 window.addEventListener("scroll",function(){if(!scatterQueued){scatterQueued=true;requestAnimationFrame(scatterParallax);}},{passive:true});
-window.addEventListener("resize",function(){syncScrollFx();scatterParallax();updateCompare();bindGallery();
- clearTimeout(floatLayoutT);floatLayoutT=setTimeout(function(){if(document.querySelector(".float-probe"))bindFloat();},200);});  /* new width: lay the strips out again */
+window.addEventListener("resize",function(){syncScrollFx();scatterParallax();updateCompare();bindGallery();});
 function render(){
  document.documentElement.lang=state.lang;
  document.getElementById("site-app").innerHTML=appHeader()+'<div class="site-content">'+content()+'</div>'+footer();
