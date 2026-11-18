@@ -398,7 +398,7 @@ function business(){
  return '<div class="detail-hero"><div class="detail-copy">'+
  '<h1 class="page-display">'+L("For spaces where<br>people gather.",phrase("飲食店や|宿泊施設にも<br>Leyeの|トングを。"))+'</h1>'+
  '<p class="body-lg">'+L("From professional kitchens to the table, AUX tools support the details of serving and sharing food.","厨房での調理からテーブルサービスまで、さまざまな業務で使える商品を揃えています。")+'</p>'+
- '<div class="btn-row cta-centre">'+boutline(L("Business inquiries","法人・業務用のお問い合わせ"),"contact")+'</div></div>'+
+ '<div class="btn-row cta-centre"><button type="button" class="btn-fill has-arrow" data-go="contact">'+L("Business inquiries","法人・業務用のお問い合わせ")+'</button>'+'</div></div>'+
  photo("istock-2195526262.webp","")+'</div>'+
  '<section class="site-section compact">'+sectionHead("",L("Tools for kitchens, hospitality and retail.",phrase("飲食店・|宿泊施設・|小売店向け")),
  L("Explore kitchen tools and tableware for hospitality, events and retail.","レストランやホテル、カフェ、イベント、小売店などでの用途をご紹介します。"))+
