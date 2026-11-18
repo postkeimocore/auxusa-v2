@@ -87,14 +87,13 @@ window.AUX_DATA.pdp = {
  },
  fingertip:{
   lead:["Fingertip-like control, with a form designed to belong at the table.","指先のような操作性と、食卓になじむ形。"],
-  proof:["1.7 million sold","累計販売数170万本"],
   primary:["shinjo-fingertip-2.webp","Set it beside the knife and fork.","ナイフとフォークの横に置く。","Small and simple enough to stay on the table with the cutlery, ready to share food during the meal.","小さくシンプルなので、カトラリーと並べて食卓に置き、食事中の取り分けに使えます。"],
   uses:[["shinjo-fingertip-1.webp","Sharing a salad","サラダを取り分ける","Serve salad from the middle of the table to each plate.","テーブル中央のサラダを、それぞれの皿へ取り分けられます。"],
         ["katou-fingertip-use1.webp","Thin slices","薄いものも","The tapered tips pick up thin slices of prosciutto.","先端が細いので、生ハムのような薄いものもつまめます。"],
         ["katou-fingertip-contact.webp","A light hold","やさしくつかむ","A soft spring helps you hold delicate foods with a light touch.","やわらかいバネで、繊細な食材もやさしくつかめます。"]],
   detailsLead:["Palm-sized, with a soft spring and tips that taper like fingertips.","手のひらサイズに、やわらかいバネと指先のように細い先端。"],
   details:[["katou-fingertip-form.webp","Tapered tips","細い先端","The tips taper like fingertips, for quick, precise handling.","先端が指先のように細く、サッとつかんで手際よく使えます。"],
-           ["shinjo-fingertip-card.webp","Patented spring design","特許取得の曲げ加工","A patented bending process gives a soft spring, so a small squeeze is enough.","特許取得のやわらかい曲げ加工で、小さな力でやさしくつかめます。"],
+           ["shinjo-fingertip-card.webp","Patented bending process","特許取得の曲げ加工","A patented bending process gives a soft spring, so a small squeeze is enough.","特許取得のやわらかい曲げ加工で、小さな力でやさしくつかめます。"],
            ["shinjo-fingertip-single.webp","Tips stay off the table","先端が浮く置き方","Turn it over and the tips lift off the table.","裏返して置くと先端がテーブルに触れず、清潔に使える構造です。"]],
   specs:{length:14.7,height:4.5,weight:60,material:["18-0 stainless steel","18-0ステンレス"]},
   care:[["Dishwasher safe.","食器洗い乾燥機に対応しています。"]]
