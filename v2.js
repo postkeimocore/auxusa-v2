@@ -256,7 +256,7 @@ function home(){
  '<div class="split-copy">'+eyebrow(L("THE THIRD UTENSIL","第3の食卓道具"))+
  '<h2 class="display-medium">'+L("Knife.<br>Fork.<br>Tongs.","ナイフ。<br>フォーク。<br>トング。")+'</h2>'+
  '<p class="body-lg">'+L("Small tongs that belong beside the knife and fork<br>—not only in the kitchen.","キッチンだけでなく、ナイフやフォークと一緒に食卓でも使える小さなトングです。")+'</p>'+
- '<div class="btn-row">'+boutline(L("Explore the idea","この考え方を見る"),"why",'data-anchor="third"')+'</div></div></div></section>'+
+ '<div class="btn-row">'+boutline(L("Read more","詳しく読む"),"why",'data-anchor="third"')+'</div></div></div></section>'+
  '<section class="site-section home-moments-section">'+sectionHead(L("MOMENTS","食卓のシーン"),L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","普段の食事からおもてなしまで、食卓のシーンに合った道具をご紹介します。"),true)+
  '<div class="home-moments"><div class="home-moment-main" tabindex="0" data-go="moments" data-anchor="everyday">'+photo(D.moments[0].photo,"MOMENTS / everyday")+
  '<div class="moment-home-copy"><h3>'+mTitle(D.moments[0])+'</h3><p>'+mStrap(D.moments[0])+'</p></div><span class="arrow">'+arw()+'</span></div>'+
@@ -398,7 +398,7 @@ function business(){
  return '<div class="detail-hero"><div class="detail-copy">'+
  '<h1 class="page-display">'+L("For spaces where<br>people gather.",phrase("飲食店や|宿泊施設にも<br>Leyeの|トングを。"))+'</h1>'+
  '<p class="body-lg">'+L("From professional kitchens to the table, AUX tools support the details of serving and sharing food.","厨房での調理からテーブルサービスまで、さまざまな業務で使える商品を揃えています。")+'</p>'+
- '<div class="btn-row cta-centre">'+boutline(L("Business inquiries","法人・業務用のお問い合わせ"),"contact")+'</div></div>'+
+ '<div class="btn-row cta-centre"><button type="button" class="btn-fill has-arrow" data-go="contact">'+L("Business inquiries","法人・業務用のお問い合わせ")+'</button>'+'</div></div>'+
  photo("istock-2195526262.webp","")+'</div>'+
  '<section class="site-section compact">'+sectionHead("",L("Tools for kitchens, hospitality and retail.",phrase("飲食店・|宿泊施設・|小売店向け")),
  L("Explore kitchen tools and tableware for hospitality, events and retail.","レストランやホテル、カフェ、イベント、小売店などでの用途をご紹介します。"))+
