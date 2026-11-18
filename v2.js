@@ -581,10 +581,10 @@ function contact(){
  return '<section class="site-section"><div class="support-wrap">'+eyebrow("CONTACT")+'<h1 class="page-display">'+L("How can we help?","お問い合わせ")+'</h1><p class="body-lg">'+L("Get in touch about products, orders or business purchasing using the form below.","商品やご注文、法人取引については以下のフォームからお問い合わせください。")+'</p>'+
  '<form class="contact-fields" id="demo-contact"><div class="field"><label>'+L("Name","お名前")+'</label><input type="text" required placeholder=""></div>'+
  '<div class="field"><label>'+L("Email address","メールアドレス")+'</label><input type="email" required></div>'+
- '<div class="field wide"><label>'+L("Inquiry type","お問い合わせ種別")+'</label><select><option>'+L("Product / order","商品・注文")+'</option><option>'+L("Business / wholesale","法人・卸取引")+'</option><option>'+L("Other","その他")+'</option></select></div>'+
+ '<div class="field wide"><label>'+L("Inquiry type","お問い合わせ種別")+'</label><span class="select-wrap"><select><option>'+L("Product / order","商品・注文")+'</option><option>'+L("Business / wholesale","法人・卸取引")+'</option><option>'+L("Other","その他")+'</option></select></span></div>'+
  '<div class="field wide"><label>'+L("Message","お問い合わせ内容")+'</label><textarea required></textarea></div>'+
  '<div class="field wide consent"><label><input type="checkbox" required><span>'+L('I agree to the <button type="button" class="consent-link" data-go="privacy">Privacy Policy</button>.','<button type="button" class="consent-link" data-go="privacy">プライバシーポリシー</button>に同意します。')+'</span></label></div>'+
- '<div class="field wide"><button class="btn-fill" type="submit">'+L("SEND MESSAGE","送信")+'</button></div></form>'+
+ '<div class="field wide submit"><button class="btn-fill" type="submit">'+L("SEND MESSAGE","送信")+'</button></div></form>'+
  note("This is a nonfunctional wireframe form. Do not use for real inquiries.","これは説明用のフォームで、送信処理は実装していません。")+'</div></section>';
 }
 function content(){

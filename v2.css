@@ -218,7 +218,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .collection-banner .detail-copy{padding:72px var(--space-10) 72px var(--space-12)}
 .collection-banner .photo{aspect-ratio:3/2}
 /* Tablet and phone: the 3:2 photo sits above the copy (beside it, it would float in a taller text column). */
-@media(max-width:880px){.detail-hero,.collection-banner{grid-template-columns:minmax(0,1fr)}.detail-hero .photo,.collection-banner .photo{order:-1}}
+@media(max-width:880px){.detail-hero,.collection-banner{grid-template-columns:minmax(0,1fr)}.detail-hero .photo,.collection-banner .photo{order:-1}.detail-hero .detail-copy,.collection-banner .detail-copy{padding:var(--space-5) var(--page-gutter) var(--space-6)}}
 /* Small laptops / tablets in landscape: the copy column starts at the page gutter so the headings fit without breaking inside a word. */
 @media(min-width:881px) and (max-width:1168px){.detail-hero .detail-copy,.collection-banner .detail-copy{padding-left:var(--page-gutter);padding-right:var(--space-6)}}
 .collection-lead{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:start;margin-bottom:32px}
@@ -325,6 +325,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .field label{font-size:12px}
 .field input,.field textarea,.field select{width:100%;padding:16px;border:1px solid var(--muted);background:var(--white);color:var(--ink);outline:none;border-radius:0;font-size:12px}
 .field textarea{min-height:168px}
+/* Text fields and the select share one height (48px); the select draws the same chevron as the listing sort control. */
+.field input,.field select{height:48px;padding:0 16px;line-height:16px}
+.field select{-webkit-appearance:none;appearance:none;padding-right:48px;cursor:pointer}
+.select-wrap{position:relative;display:block}
+.select-wrap:after{content:"";position:absolute;right:16px;top:50%;width:4px;height:4px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:translateY(-75%) rotate(45deg);pointer-events:none}
+/* Send: centred at its own width (min 240px); full width on phones. */
+.field.submit{align-items:center}
+.field.submit .btn-fill{min-width:240px}
+@media(max-width:552px){.field.submit{align-items:stretch}}
 .site-footer{padding:80px var(--page-gutter) 32px;background:var(--surface)}
 .footer-columns{display:flex;justify-content:space-between;align-items:flex-start;gap:64px}
 .footer-links{display:flex;gap:80px}
@@ -391,6 +400,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .featured-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .featured-pair .product-card .photo{aspect-ratio:3/2}
 .featured-pair .product-card h3{font-size:20px}
+@media(max-width:552px){#site-app .featured-pair{gap:16px}.featured-pair .product-card .photo{aspect-ratio:4/5}}
 .about-image-band{display:grid;grid-template-columns:1.1fr .9fr;min-height:440px;align-items:stretch;background:var(--surface)}
 .about-image-band>.photo{min-height:440px}
 .about-image-band>div:nth-child(2){padding:64px var(--space-8);align-self:center}
@@ -1021,7 +1031,7 @@ html.site-only #site-app{width:100%;min-height:100vh}
 
 /* MOMENTS product rows: label and cards centred (cards keep the 4-column width). */
 .moment-products-heading{justify-content:center}
-@media(max-width:880px){.moment-related-grid>*{flex-basis:calc((100% - 8px) / 2)}}
+@media(max-width:880px){.moment-related-grid>*{flex-basis:calc((100% - 8px) / 2)}#site-app .moment-related-grid{justify-content:flex-start}}
 
 /* A button that follows a grid of cards is centred (HOME featured, PDP related, WHY AUX explore). */
 .btn-row.is-centred{justify-content:center}
