@@ -1328,3 +1328,11 @@ html.site-only #site-app{width:100%;min-height:100vh}
 #site-app .moment-jumps.has-photos{border:0;gap:8px;grid-auto-rows:1fr}
 #site-app .moment-jumps.has-photos button{border:0}
 @media(max-width:880px){#site-app .moment-jumps.cols-5 button:last-child:nth-child(odd){aspect-ratio:auto}}
+/* Wide chapters (WHY AUX "Knife. Fork. Tongs.", MOMENTS 01 / 03): heading and text form one group centred on the page,
+   144px apart (was a 5:7 split across the full width, ~290px of air between them). Phones: 16px between heading and text. */
+@media(min-width:881px){
+ .chapter.is-wide .chapter-copy{grid-template-columns:fit-content(480px) minmax(0,592px);column-gap:144px;justify-content:center}
+}
+@media(max-width:880px){
+ .chapter-copy{row-gap:16px}
+}
