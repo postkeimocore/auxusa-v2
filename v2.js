@@ -98,7 +98,7 @@ function thumbPhoto(main,alt){return '<div class="photo contain has-alt"><img sr
 function card(p,image,alt){
  return '<article class="product-card" role="link" tabindex="0" data-product="'+p.id+'">'+
    thumbPhoto(typeof image==="string"?image:p.thumb,typeof alt==="string"?alt:p.image)+
-   '<h3>'+pname(p)+'</h3>'+
+   '<div class="product-meta"><h3>'+pname(p)+'</h3>'+arw()+'</div>'+
    '<div class="price">$20.00</div>'+
  '</article>';
 }
@@ -138,7 +138,7 @@ function appHeader(){
  var current=shopPages.indexOf(state.page)>-1?"shop":supportPages.indexOf(state.page)>-1?"support":state.page;
  function item(id,label){return '<button type="button" data-go="'+id+'"'+(current===id?' class="active"':'')+'>'+label+'</button>';}
  function drop(id,label,go,links){
-  return '<div class="nav-item has-sub sub-'+id+(current===id?' active':'')+'"><button type="button" class="nav-parent'+(current===id?' active':'')+'" data-go="'+go+'" aria-haspopup="true">'+label+'<span class="nav-caret" aria-hidden="true"></span></button>'+
+  return '<div class="nav-item has-sub sub-'+id+(current===id?' active':'')+'"><button type="button" class="nav-parent'+(current===id?' active':'')+'" data-go="'+go+'" aria-haspopup="true" aria-expanded="false">'+label+'<span class="nav-caret" aria-hidden="true"></span></button>'+
   '<div class="nav-sub" role="menu">'+links.map(function(x){return '<button type="button" role="menuitem" data-go="'+x[0]+'"'+(x[2]?' data-anchor="'+x[2]+'"':'')+(state.page===x[0]&&!x[2]?' class="active"':'')+'>'+x[1]+'</button>';}).join("")+'</div></div>';
  }
  /* Language: a small menu beside search (desktop); a row at the end of the mobile menu. Each name is written in its own language. */
@@ -150,7 +150,7 @@ function appHeader(){
   '<button type="button" class="nav-business'+(current==="business"?' active':'')+'" data-go="business">'+L("FOR BUSINESS","法人・事業者向け")+'</button>'+
   '<div class="nav-lang" role="group" aria-label="'+L("Language","言語")+'">'+langButtons+'</div>';
  return '<header class="site-header">'+
- '<button type="button" class="site-menu-mobile" data-demo="nav" aria-label="'+L("Menu","メニュー")+'"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18"></path></svg></button>'+
+ '<button type="button" class="site-menu-mobile" data-demo="nav" aria-expanded="false" aria-label="'+L("Menu","メニュー")+'"><svg class="icon-open" viewBox="0 0 24 24"><path d="M3 9h18M3 15h18"></path></svg><svg class="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>'+
  '<button class="site-wordmark" data-go="home" aria-label="'+L("AUX Home","AUX トップページ")+'">'+
  (LOGO==="leye"?'<img class="logo-leye" src="./assets/leye-logo.svg" alt="leye" width="42" height="56">':
   LOGO==="leye-type"?'<img class="logo-leye-type" src="./assets/leye-typelogo.svg" alt="leye" width="67" height="32">':
@@ -481,7 +481,7 @@ function pdp(){
  var here=x.id===p.id;
  return '<article class="'+(here?'current':'')+'" data-product="'+x.id+'" role="link" tabindex="0"'+(here?' aria-current="page"':'')+'>'+
  sizeStage(x,here)+
- '<div class="compare-copy"><h3>'+pname(x)+'</h3>'+
+ '<div class="compare-copy"><div class="compare-name"><h3>'+pname(x)+'</h3>'+(here?'':arw())+'</div>'+
  '<dl class="compare-facts"><dt>'+L("Best for","適した用途")+'</dt><dd>'+L(m.best,m.jpBest)+'</dd>'+
  '<dt>'+L("Length","全長")+'</dt><dd>'+pdpLen(D.pdp[x.id].specs.length)+'</dd>'+
  '<dt>'+L("Moment","食事のシーン")+'</dt><dd>'+L(m.moment,m.jpMoment)+'</dd></dl>'+
@@ -631,11 +631,13 @@ function updateCompare(){
 var REVEAL_UNIT=".photo,figure,img,picture,video,svg,canvas,table,details,input,select,textarea,button,a,[data-product],[data-go],[role=link],.hero-slide";
 var REVEAL_SKIP=".float-item,.float-probe,.why-band-bg,script,style,template";
 var REVEAL_GAP=80,REVEAL_MAX_DELAY=640,revealObserver=null,revealClock=0,revealAnims=[];
+/* An element that draws its own frame (border on all four sides) is revealed whole; otherwise the frame would show before its contents. */
+function boxed(el){var cs=getComputedStyle(el);return ["Top","Right","Bottom","Left"].every(function(k){return parseFloat(cs["border"+k+"Width"])>0&&cs["border"+k+"Style"]!=="none";})&&el.getBoundingClientRect().width<window.innerWidth*.9;}
 function revealUnits(root,out){
  [].forEach.call(root.children,function(el){
   if(el.matches(REVEAL_SKIP))return;
   if(!el.getClientRects().length){if(getComputedStyle(el).display==="contents")revealUnits(el,out);return;}
-  if(el.matches(REVEAL_UNIT)){out.push(el);return;}
+  if(el.matches(REVEAL_UNIT)||boxed(el)){out.push(el);return;}
   var block=[].some.call(el.children,function(c){return c.tagName!=="BR"&&!/^inline/.test(getComputedStyle(c).display);});
   if(block)revealUnits(el,out);else if(el.textContent.trim()||el.children.length)out.push(el);
  });
@@ -643,8 +645,8 @@ function revealUnits(root,out){
 }
 function revealHold(el){
  var cs=getComputedStyle(el),op=cs.opacity,tr=cs.translate,wide=el.getBoundingClientRect().width>=window.innerWidth*.9;
- var fade=el.animate([{opacity:0},{opacity:op}],{duration:1200,easing:"cubic-bezier(.37,0,.63,1)",fill:"both"});
- var rise=wide||(tr&&tr!=="none")?null:el.animate([{translate:"0 24px"},{translate:"0 0"}],{duration:1600,easing:"cubic-bezier(.22,.61,.36,1)",fill:"both"});
+ var fade=el.animate([{opacity:0},{opacity:op}],{duration:960,easing:"cubic-bezier(.37,0,.63,1)",fill:"both"});
+ var rise=wide||(tr&&tr!=="none")?null:el.animate([{translate:"0 24px"},{translate:"0 0"}],{duration:1280,easing:"cubic-bezier(.22,.61,.36,1)",fill:"both"});
  el._reveal=[fade,rise].filter(Boolean);revealAnims=revealAnims.concat(el._reveal);
  el._reveal.forEach(function(a){a.pause();a.onfinish=function(){a.cancel();};});
 }
@@ -773,6 +775,7 @@ window.addEventListener("resize",function(){syncScrollFx();scatterParallax();upd
 function render(){
  document.documentElement.lang=state.lang;
  document.getElementById("site-app").innerHTML=appHeader()+'<div class="site-content">'+content()+'</div>'+footer();
+ if(menuOpen())setMenu(true);  /* a language change re-renders the header while the menu is open */
  renderRail();
  document.querySelectorAll("[data-lang]").forEach(function(x){x.classList.toggle("active",x.dataset.lang===state.lang);});
   document.getElementById("rail-toggle").textContent=document.getElementById("app").classList.contains("no-rail")?L("SHOW PAGES","ページ一覧を表示"):L("HIDE PAGES","ページ一覧を隠す");
@@ -797,7 +800,18 @@ function navigate(page,product,anchor){
 }
 var timeout;
 function toast(message){var node=document.getElementById("demo-toast");node.textContent=message;node.classList.add("show");clearTimeout(timeout);timeout=setTimeout(function(){node.classList.remove("show");},3500);}
+/* Phone / tablet menu (≤880px): a drawer from the left. The dimmed strip on its right closes it; parents open as accordions. */
+function menuOpen(){var a=document.getElementById("site-app");return !!a&&a.classList.contains("mobile-open");}
+function setMenu(on){var a=document.getElementById("site-app");if(!a)return;a.classList.toggle("mobile-open",on);document.documentElement.classList.toggle("menu-lock",on);
+ var b=document.querySelector(".site-menu-mobile");if(b){b.setAttribute("aria-expanded",String(on));b.setAttribute("aria-label",on?L("Close menu","メニューを閉じる"):L("Menu","メニュー"));}}
+window.addEventListener("resize",function(){if(window.innerWidth>880&&menuOpen())setMenu(false);});
 document.addEventListener("click",function(ev){
+ if(menuOpen()){
+  if(ev.target===document.getElementById("site-app")){setMenu(false);return;}  /* the dimmed strip (#site-app::before) */
+  var parent=ev.target.closest(".site-menu .nav-parent");
+  if(parent&&window.innerWidth<=880){var it=parent.closest(".nav-item"),open=it.classList.toggle("is-open");parent.setAttribute("aria-expanded",String(open));return;}
+  if(ev.target.closest(".site-menu [data-go],.site-menu [data-anchor],.site-menu [data-product]"))setMenu(false);
+ }
  var l=ev.target.closest("[data-lang]");
  if(l){state.lang=l.dataset.lang;render();return;}
  if(ev.target.closest("#rail-toggle")){document.getElementById("app").classList.toggle("no-rail");render();return;}
@@ -822,7 +836,7 @@ document.addEventListener("click",function(ev){
  var anchor=ev.target.closest("[data-anchor]");
  if(anchor){var el=document.getElementById("anchor-"+anchor.dataset.anchor);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});return;}
  var demo=ev.target.closest("[data-demo]");
- if(demo){if(demo.dataset.demo==="nav"){document.getElementById("site-app").classList.toggle("mobile-open");return;}toast(L("Layout preview only. This interaction is not connected to a live store.","レイアウト確認用です。実際のEC機能には接続していません。"));}
+ if(demo){if(demo.dataset.demo==="nav"){setMenu(!menuOpen());return;}toast(L("Layout preview only. This interaction is not connected to a live store.","レイアウト確認用です。実際のEC機能には接続していません。"));}
 });
 document.addEventListener("change",function(ev){if(ev.target.matches("[data-list-sort]")){state.sort=ev.target.value;render();var el=document.getElementById("list-sort");if(el)el.focus();}});
 document.addEventListener("submit",function(ev){if(ev.target.id==="demo-contact"){ev.preventDefault();toast(L("Preview only. No message has been sent.","説明用フォームです。送信されていません。"));}});
