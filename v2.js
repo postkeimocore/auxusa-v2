@@ -141,11 +141,14 @@ function appHeader(){
   return '<div class="nav-item has-sub sub-'+id+(current===id?' active':'')+'"><button type="button" class="nav-parent'+(current===id?' active':'')+'" data-go="'+go+'" aria-haspopup="true">'+label+'<span class="nav-caret" aria-hidden="true"></span></button>'+
   '<div class="nav-sub" role="menu">'+links.map(function(x){return '<button type="button" role="menuitem" data-go="'+x[0]+'"'+(x[2]?' data-anchor="'+x[2]+'"':'')+(state.page===x[0]&&!x[2]?' class="active"':'')+'>'+x[1]+'</button>';}).join("")+'</div></div>';
  }
+ /* Language: a small menu beside search (desktop); a row at the end of the mobile menu. Each name is written in its own language. */
+ var langButtons='<button type="button" data-lang="en" lang="en" aria-pressed="'+(state.lang==="en")+'">English</button><button type="button" data-lang="ja" lang="ja" aria-pressed="'+(state.lang==="ja")+'">日本語</button>';
  var navh=drop("shop",L("SHOP","商品"),"shop",[["shop",L("SHOP ALL","すべての商品")],["tongs",L("Leye TONGS","Leye トング")],["tools",L("Leye TOOLS","Leye キッチンツール")]])+
   item("cook",useLabel("cook"))+item("serve",useLabel("serve"))+item("table",useLabel("table"))+item("moments",L("MOMENTS","食卓のシーン"))+item("why",L("WHY AUX","AUXについて"))+
   drop("brand",L("BRAND","ブランド"),"brand",BRANDS.map(function(b){return ["brand",b.id==="leye"?b.name:L(b.name.toUpperCase(),b.jp),b.id];}))+
   drop("support",L("SUPPORT","サポート"),"faq",[["faq",L("FAQ","よくある質問")],["shipping",L("SHIPPING","配送")],["returns",L("RETURNS","返品・返金")],["privacy",L("PRIVACY POLICY","プライバシーポリシー")],["contact",L("CONTACT","お問い合わせ")]])+
-  '<button type="button" class="nav-business'+(current==="business"?' active':'')+'" data-go="business">'+L("FOR BUSINESS","法人・事業者向け")+'</button>';
+  '<button type="button" class="nav-business'+(current==="business"?' active':'')+'" data-go="business">'+L("FOR BUSINESS","法人・事業者向け")+'</button>'+
+  '<div class="nav-lang" role="group" aria-label="'+L("Language","言語")+'">'+langButtons+'</div>';
  return '<header class="site-header">'+
  '<button type="button" class="site-menu-mobile" data-demo="nav" aria-label="'+L("Menu","メニュー")+'"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18"></path></svg></button>'+
  '<button class="site-wordmark" data-go="home" aria-label="'+L("AUX Home","AUX トップページ")+'">'+
@@ -153,7 +156,9 @@ function appHeader(){
   LOGO==="leye-type"?'<img class="logo-leye-type" src="./assets/leye-typelogo.svg" alt="leye" width="67" height="32">':
   '<img src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="152" height="17">')+'</button>'+
  '<nav class="site-menu" aria-label="'+L("Main navigation","メインナビゲーション")+'">'+navh+'</nav>'+
- '<div class="site-util"><button type="button" class="util-search" data-demo="search" aria-label="'+L("Search","検索")+'"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>'+
+ '<div class="site-util"><div class="lang-switch"><button type="button" class="lang-current" aria-haspopup="true" aria-label="'+L("Language: English","言語：日本語")+'">'+L("English","日本語")+'<span class="nav-caret" aria-hidden="true"></span></button>'+
+ '<div class="lang-menu">'+langButtons+'</div></div>'+
+ '<button type="button" class="util-search" data-demo="search" aria-label="'+L("Search","検索")+'"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>'+
  '<button type="button" class="util-account" data-demo="account" aria-label="'+L("Account","アカウント")+'"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 20c.9-3.6 3.9-6 7.5-6s6.6 2.4 7.5 6"></path></svg></button>'+
  '<button type="button" class="util-cart" data-demo="cart" aria-label="'+L("Cart","カート")+'"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.2 12H5.2L4 8ZM8 9V6a4 4 0 0 1 8 0v3"></path></svg><span class="cart-count">0</span><span class="cart-text">'+L("CART","カート")+' (0)</span></button></div></header>';
 }

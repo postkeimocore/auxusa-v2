@@ -825,6 +825,15 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .site-menu .nav-sub button:hover,.site-menu .nav-sub button.active{text-decoration:underline;text-underline-offset:4px}
 .site-menu .nav-sub button.active:after{display:none}
 .cart-text{display:none}
+/* Language switch (2026-11-18): "English ⌄" beside search, same 12px utility text and caret as the menu.
+   Its list drops from the switch itself (right-aligned), not as a full-width bar: two items don't need one. */
+.lang-switch{position:relative;display:flex;align-items:center}
+.lang-switch:hover .nav-caret,.lang-switch:focus-within .nav-caret{transform:translateY(2px) rotate(-135deg)}
+.lang-menu{position:absolute;right:0;top:100%;z-index:30;display:none;flex-direction:column;min-width:128px;padding:8px 0;background:var(--white);border:1px solid var(--line)}
+.lang-switch:hover .lang-menu,.lang-switch:focus-within .lang-menu{display:flex}
+.site-util .lang-menu button{padding:8px 16px;letter-spacing:var(--tracking-eyebrow)}
+.site-util .lang-menu button:hover,.site-util .lang-menu button.active{text-decoration:underline;text-underline-offset:4px}
+.nav-lang{display:none}
 
 /* Narrow screens: menu icon left, logo centred, "CART (0)" right. */
 @media(max-width:880px){
@@ -839,6 +848,12 @@ html.site-only #site-app{width:100%;min-height:100vh}
  #site-app.mobile-open .site-menu .nav-item{display:block;height:auto}
  #site-app.mobile-open .site-menu .nav-sub{display:flex;position:static;flex-direction:column;align-items:stretch;padding:0 0 8px 16px;border:0}
  #site-app.mobile-open .site-menu .nav-sub button{height:40px;min-height:40px;padding:0;text-align:left;border:0}
+ /* No room for the language switch in the phone header: it becomes the last row of the menu. */
+ .lang-switch{display:none}
+ #site-app.mobile-open .site-menu .nav-lang{display:flex;gap:24px;margin-top:16px}
+ #site-app.mobile-open .site-menu .nav-lang button{height:48px;min-height:48px;padding:0;border:0;letter-spacing:var(--tracking-eyebrow)}
+ #site-app.mobile-open .site-menu .nav-lang button.active{text-decoration:underline;text-underline-offset:4px}
+ #site-app.mobile-open .site-menu .nav-lang button.active:after{display:none}
  .footer-columns{flex-direction:column;gap:48px}
  .footer-links{flex-wrap:wrap;gap:48px}
 }
