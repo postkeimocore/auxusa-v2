@@ -366,3 +366,10 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - **Split heroes on tablets and phones (≤880px)** stack, photo first at 3:2 (before: side by side down to 553px, where the 3:2 photo would float in a taller text column). From 881 to 1168px the copy column starts at the page gutter (was a fixed 96px) so the headings fit without breaking inside a word.
 - **FOR BUSINESS Japanese heading** "飲食店や宿泊施設にも / Leyeのトングを。" breaks after にも and otherwise only between 飲食店や｜宿泊施設にも and Leyeの｜トングを。
 
+## Design fixes, fifth round (2026-11-18, user review)
+
+- **MOMENTS product rows on tablets and phones (≤880px)** fill from the left like the product grid; the odd last card no longer sits in the centre (01, 03) or on the right (04).
+- **Stacked split heroes (≤880px):** the copy under the photo sits on the page gutter (40px above, 48px below), like the MOMENTS chapter text; body text keeps its 592px measure.
+- **"Start with these tools." on phones (≤552px):** the two cards are ordinary product cards — 4:5 photo, 16px apart.
+- **Contact form:** name, email and the inquiry select are one height (48px, 16px side padding); the select is drawn without the browser arrow and uses the listing sort control's chevron, 16px from the right edge. Send is centred at its own width (min 240px) from 553px up, full width on phones.
+
