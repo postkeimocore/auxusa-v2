@@ -372,4 +372,5 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - **Stacked split heroes (≤880px):** the copy under the photo sits on the page gutter (40px above, 48px below), like the MOMENTS chapter text; body text keeps its 592px measure.
 - **"Start with these tools." on phones (≤552px):** the two cards are ordinary product cards — 4:5 photo, 16px apart.
 - **Contact form:** name, email and the inquiry select are one height (48px, 16px side padding); the select is drawn without the browser arrow and uses the listing sort control's chevron, 16px from the right edge. Send is centred at its own width (min 240px) from 553px up, full width on phones.
+- **Buttons to CONTACT and FOR BUSINESS are centred on tablets and phones (≤880px)** (`.btn-row.cta-centre`): FOR BUSINESS hero and the five sector buttons, FAQ, shipping / returns / privacy, the HOME business banner and the PDP "Buying for a business?". Desktop keeps them on the text's left edge. The sector button's Japanese label wraps only between 法人・卸取引について｜問い合わせる.
 
