@@ -338,11 +338,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 
 /* Narrow-screen navigation */
 .site-header{position:relative}
-@media(max-width:880px){
- #site-app.mobile-open .site-menu{display:flex;position:absolute;top:72px;left:0;right:0;z-index:25;background:var(--white);padding:16px var(--space-5) 24px;height:auto;flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid var(--line);box-shadow:0 20px 24px color-mix(in srgb,var(--ink) 8%,transparent)}
- #site-app.mobile-open .site-menu button{height:48px;min-height:48px;text-align:left;font-size:12px;border-bottom:1px solid var(--line)}
- #site-app.mobile-open .site-menu button.active:after{display:none}
-}
 
 /* V1 content-structure restoration, with independent V2 visual styling */
 .product-first-hero{display:grid;grid-template-columns:57% 43%;min-height:560px;background:var(--surface)}
@@ -736,9 +731,6 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .site-menu button.nav-business:hover{background:var(--white);color:var(--ink)}
 .site-menu button.nav-business.active{background:var(--ink);color:var(--white)}
 .site-menu button.nav-business.active:after{display:none}
-@media(max-width:880px){
- #site-app.mobile-open .site-menu button.nav-business{height:48px;margin-top:16px;text-align:center;border:1px solid var(--ink)}
-}
 
 /* ============================================================
    HOME HERO — photo-led (2026-10-14)
@@ -845,17 +837,8 @@ html.site-only #site-app{width:100%;min-height:100vh}
  .site-util .util-search,.site-util .util-account,.site-util .util-cart svg,.site-util .util-cart .cart-count{display:none}
  .util-cart .cart-text{display:inline;font-size:12px;line-height:16px;letter-spacing:var(--tracking-ui)}
  .nav-caret{display:none}
- #site-app.mobile-open .site-menu .nav-item{display:block;height:auto}
- #site-app.mobile-open .site-menu .nav-sub{display:flex;position:static;flex-direction:column;align-items:stretch;padding:0 0 8px 16px;border:0}
- #site-app.mobile-open .site-menu .nav-sub button{height:40px;min-height:40px;padding:0;text-align:left;border:0}
- /* No room for the language switch in the phone header: it becomes the last row of the menu.
-    The open menu hangs from the sticky header, so it scrolls inside itself to reach its last rows. */
+ /* No room for the language switch in the phone header: it becomes the last row of the menu. */
  .lang-switch{display:none}
- #site-app.mobile-open .site-menu{max-height:calc(100vh - 72px);max-height:calc(100dvh - 72px);overflow-y:auto;overscroll-behavior:contain}
- #site-app.mobile-open .site-menu .nav-lang{display:flex;gap:24px;margin-top:16px}
- #site-app.mobile-open .site-menu .nav-lang button{height:48px;min-height:48px;padding:0;border:0;letter-spacing:var(--tracking-eyebrow)}
- #site-app.mobile-open .site-menu .nav-lang button.active{text-decoration:underline;text-underline-offset:4px}
- #site-app.mobile-open .site-menu .nav-lang button.active:after{display:none}
  .footer-columns{flex-direction:column;gap:48px}
  .footer-links{flex-wrap:wrap;gap:48px}
 }
@@ -878,7 +861,6 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .home-moment-main>.arrow{position:absolute;right:32px;bottom:32px;z-index:2;color:var(--white);font-size:20px;line-height:24px}
 @media(max-width:880px){
  [id^="anchor-"]{scroll-margin-top:72px}
- #site-app.mobile-open .site-menu .nav-sub:after{display:none}
 }
 @media(max-width:880px){
  .home-page .home-third .split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-4)}
@@ -1257,3 +1239,69 @@ html.site-only #site-app{width:100%;min-height:100vh}
 .float-probe{position:absolute;left:0;width:8px;pointer-events:none;opacity:0}
 .float-probe i{display:block;height:16px}
 
+
+/* ============================================================
+   2026-11-18 design fixes
+   ============================================================ */
+/* Product boxes that open a product page carry the arrow (cards, comparison). */
+.product-card .product-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-top:16px}
+#site-app .product-card .product-meta h3{margin:0}
+.product-card .product-meta .arw,.compare-name .arw{margin-top:4px}
+.compare-name{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:16px 0}
+#site-app .compare-name h3{margin:0}
+/* Category doorways (HOME, SHOP ALL, WHY AUX): the photo keeps its own 3:2 shape at the column width. */
+#site-app .category-card .photo{height:auto;aspect-ratio:3/2}
+/* PDP: the main photo frame is 3:2 like the photos, so its top lines up with the thumbnails and the buy column. */
+#site-app .kinto-main{aspect-ratio:3/2}
+/* PDP: "Made for the movement" and "A closer look at the details" use one photo shape (4:3) at every width. */
+#site-app .pdp-use-trio .photo,#site-app .feature-trio .photo{aspect-ratio:4/3}
+/* Stacked cards (photo + text in one column): 40px between them, the same as the product grid rows. */
+@media(max-width:880px){
+ .product-collections{gap:16px}
+ .moment-related-grid{gap:40px 8px}
+ .home-moments{gap:40px}
+}
+@media(max-width:600px){
+ .collection-value-grid,.pdp-use-trio,.aux-form-gallery{gap:40px}
+}
+@media(max-width:552px){
+ .product-collections,.feature-trio{gap:40px}
+}
+/* WHY AUX band on tablets and phones: the four photos sit above and below the copy instead of disappearing. */
+@media(max-width:880px){
+ .why-float{display:block}
+ .why-float.f1{top:24px;left:24px;width:30%;max-width:176px}
+ .why-float.f2{top:56px;right:24px;width:24%;max-width:128px}
+ .why-float.f3{bottom:24px;left:16%;width:24%;max-width:136px}
+ .why-float.f4{bottom:48px;right:24px;width:20%;max-width:112px}
+ .why-band-copy{padding:224px var(--space-4) 208px}
+}
+@media(max-width:552px){
+ .why-band-copy{padding:184px var(--space-3) 176px}
+}
+
+/* Phone / tablet menu (≤880px): a drawer from the left under the 72px header. A 64px strip on the right shows
+   the page under an ink scrim at 32% (tap to close; stronger than the 16% dropdown scrim because the drawer covers most of the screen). SHOP / BRAND / SUPPORT open as accordions. Rows: 56px top level with a rule,
+   48px sub rows indented 16px; FOR BUSINESS 32px below the list, the language row 24px below that. */
+.site-menu-mobile .icon-close{display:none}
+@media(max-width:880px){
+ html.menu-lock{overflow:hidden}
+ #site-app.mobile-open .site-menu-mobile .icon-open{display:none}
+ #site-app.mobile-open .site-menu-mobile .icon-close{display:block}
+ #site-app.mobile-open:before{content:"";position:fixed;left:0;right:0;bottom:0;top:calc(env(safe-area-inset-top,0px) + 72px);z-index:39;background:color-mix(in srgb,var(--ink) 32%,transparent)}
+ #site-app.mobile-open .site-menu{display:flex;flex-direction:column;align-items:stretch;gap:0;position:fixed;top:calc(env(safe-area-inset-top,0px) + 72px);left:0;bottom:0;width:calc(100% - 64px);max-width:480px;height:auto;padding:8px var(--page-gutter) 40px;background:var(--white);overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--line)}
+ #site-app.mobile-open .site-menu .nav-item{display:block;height:auto}
+ #site-app.mobile-open .site-menu>button:not(.nav-business),#site-app.mobile-open .site-menu .nav-parent{display:flex;align-items:center;justify-content:space-between;width:100%;height:56px;min-height:56px;padding:0;border:0;border-bottom:1px solid var(--line);text-align:left;font-size:12px;line-height:16px;letter-spacing:var(--tracking-ui)}
+ #site-app.mobile-open .site-menu button:after,#site-app.mobile-open .site-menu .nav-sub:after{display:none}
+ #site-app.mobile-open .site-menu .nav-caret{display:block;margin-right:4px}
+ #site-app.mobile-open .site-menu .nav-item:not(.is-open) .nav-caret{transform:translateY(-2px) rotate(45deg)}
+ #site-app.mobile-open .site-menu .nav-item.is-open .nav-caret{transform:translateY(2px) rotate(-135deg)}
+ #site-app.mobile-open .site-menu .nav-item:not(.is-open) .nav-sub{display:none}
+ #site-app.mobile-open .site-menu .nav-item.is-open .nav-parent{border-bottom-color:transparent}
+ #site-app.mobile-open .site-menu .nav-item.is-open .nav-sub{display:flex;position:static;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:0 0 16px 16px;background:none;border:0;border-bottom:1px solid var(--line)}
+ #site-app.mobile-open .site-menu .nav-sub button{height:48px;min-height:48px;padding:0;border:0;text-align:left;font-size:12px;line-height:16px;letter-spacing:var(--tracking-ui)}
+ #site-app.mobile-open .site-menu button.nav-business{display:flex;align-items:center;justify-content:center;width:100%;height:48px;min-height:48px;margin-top:32px;padding:0 24px;border:1px solid var(--ink)}
+ #site-app.mobile-open .site-menu .nav-lang{display:flex;gap:24px;margin-top:24px}
+ #site-app.mobile-open .site-menu .nav-lang button{height:48px;min-height:48px;padding:0;border:0;letter-spacing:var(--tracking-eyebrow)}
+ #site-app.mobile-open .site-menu .nav-lang button.active{text-decoration:underline;text-underline-offset:4px}
+}

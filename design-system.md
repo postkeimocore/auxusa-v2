@@ -183,6 +183,7 @@ No full-width lines between sections (footer top, filter bar, MOMENTS product ro
 
 - The header is sticky at the top of the viewport (`z-index:40`); anchored sections use `scroll-margin-top` equal to the header height (80px, 72px on narrow screens).
 - While a dropdown is open, the bar has thin `--line` rules top and bottom, and the page below is dimmed with an ink scrim at 16% (`color-mix`).
+- **Language switch (2026-11-18).** `English ⌄` / `日本語 ⌄` sits first in the utility group, in the same 12px utility text and caret as the menu. Its list (English, 日本語, each written in its own language; the current one underlined) drops from the switch itself, right-aligned, white with a `--line` border, 128px wide, items 8 / 16 padding. Deliberate exception to the full-width dropdown bar: two items do not need a bar or the scrim. On phones the switch leaves the header (no room beside the logo and cart) and becomes the last row of the menu; the open menu scrolls inside itself (`max-height: 100dvh − 72px`) so that row and FOR BUSINESS stay reachable. The choice sets `?lang=`; in the XProof export, moving to another page keeps `?lang=ja`.
 
 ## Shop All (2026-10-15, V1 structure)
 
@@ -322,3 +323,14 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - Arrow hover: every clickable element with an arrow (buttons with arrows, line links, cards, jump boxes, gallery and comparison arrows, PDP shipping rows) wipes its arrow out and back in, in the arrow's own direction: right arrows left → right, down arrows top → bottom, mirrored previous arrows right → left (0.8s, once per hover; also on keyboard focus; off under reduced motion).
 - WHY AUX › THE THIRD UTENSIL heading reads `Knife. Fork. Tongs.` on one line.
 - WHY AUX band (HOME, COOK / SERVE / TABLE, PDP): the four scattered photos fade in from the bottom of the viewport and out towards the top while scrolling, the same as HOME `Different forms`. Hovering the band closes up its background photo slowly (108%, 1.6s; off under reduced motion).
+
+## Design fixes (2026-11-18, user review)
+
+- **Product boxes carry the arrow.** Every box that opens a product page (product cards in grids, strips, MOMENTS and featured pairs; the comparison cards except the current product) has the 24px arrow at the right of the name line; the arrow wipes on hover like other links. FOR BUSINESS rows already had it.
+- **Category doorways keep the photo's own shape:** 3:2 at the column width (was a fixed 440px square-ish crop).
+- **PDP gallery frame is 3:2**, the shape of the photos, so the main photo's top edge lines up with the thumbnails and the buy column (the 4:3 frame letterboxed it).
+- **PDP photo trios share one shape:** "Made for the movement" and "A closer look at the details" are both 4:3 at every width.
+- **Stacked cards are 40px apart** (photo + text in one column: category doorways, detail cards, MOMENTS products, HOME MOMENTS, use cases), the same as the product grid rows, so text never touches the next photo.
+- **WHY AUX band on tablets and phones** keeps its four photos: two above and two below the copy (copy padding 224 / 208px on tablets, 184 / 176px on phones), no drift.
+- **Phone / tablet menu (≤880px)** is a drawer from the left under the header, leaving a 64px strip on the right with the page under a 32% ink scrim (tap to close). SHOP / BRAND / SUPPORT open as accordions with the caret; top-level rows 56px with a rule, sub rows 48px indented 16px; FOR BUSINESS 32px below the list, language row 24px below that. Choosing any item closes the menu; the page behind does not scroll while it is open; the menu icon turns into a close icon.
+- **Reveal is a little quicker:** fade 960ms, rise 1280ms (was 1200 / 1600). A box that draws its own frame (the quantity stepper) is revealed as one piece, so the frame no longer shows before everything else.
