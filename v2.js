@@ -28,6 +28,12 @@ var PAGES=[
 ];
 var ROUTES={home:"/",shop:"/collections/all",tongs:"/collections/aux-tongs",tools:"/collections/aux-tools",cook:"/collections/cook",serve:"/collections/serve",table:"/collections/table",pdp:"/products/{handle}",moments:"/pages/moments",business:"/pages/for-business",why:"/pages/why-aux",brand:"/pages/brand",faq:"/pages/faq",shipping:"/pages/shipping",returns:"/pages/returns",privacy:"/pages/privacy-policy",contact:"/pages/contact"};
 function L(en,ja){return state.lang==="ja"?ja:en;}
+/* Japanese view: product names are Leye + the AUX Japanese product name; COOK / SERVE / TABLE are translated. */
+function pname(p){return L(p.name,"Leye "+p.jp);}
+var USE_JA={cook:"調理",serve:"取り分け",table:"食卓"};
+function useLabel(id){return L(id.toUpperCase(),USE_JA[id]);}
+function mTitle(m){return L(m.title,m.jp);}
+function mStrap(m){return L(m.strap,m.jpStrap);}
 function img(file){return D.assetBase+file;}
 function photo(file,label,cls){return '<div class="photo '+(cls||"")+'"><img src="'+img(file)+'" loading="lazy" alt=""></div>';}
 function note(){return '';}
@@ -42,23 +48,23 @@ var CATEGORIES=[
 /* One category-doorway component for HOME, SHOP ALL and WHY AUX. */
 function categoryCards(){
  return '<div class="product-collections">'+CATEGORIES.map(function(c){return '<article class="category-card" tabindex="0" data-go="'+c[0]+'">'+photo(c[1],"")+
-  '<div class="card-meta"><h3>'+c[0].toUpperCase()+'</h3><span class="arrow">'+arw("arw-long")+'</span></div><p>'+L(c[2],c[3])+'</p></article>';}).join("")+'</div>';
+  '<div class="card-meta"><h3>'+useLabel(c[0])+'</h3><span class="arrow">'+arw("arw-long")+'</span></div><p>'+L(c[2],c[3])+'</p></article>';}).join("")+'</div>';
 }
 /* Product listing toolbar — V1 composition (FILTER chips left, SORT right) in the V2 system.
    kind: "use" filters by COOK/SERVE/TABLE, "family" by Leye TONGS / Leye TOOLS. */
 function filterList(list,kind){
  var f=state.filter||"all";
  var out=f==="all"?list.slice():list.filter(function(p){return kind==="use"?p.uses.indexOf(f)>-1:p.family===f;});
- if(state.sort==="az")out.sort(function(a,b){return a.name.localeCompare(b.name);});
- if(state.sort==="za")out.sort(function(a,b){return b.name.localeCompare(a.name);});
+ if(state.sort==="az")out.sort(function(a,b){return pname(a).localeCompare(pname(b),state.lang);});
+ if(state.sort==="za")out.sort(function(a,b){return pname(b).localeCompare(pname(a),state.lang);});
  return out;
 }
 function listingToolbar(list,kind){
  var f=state.filter||"all";
- var opts=kind==="use"?[["cook","COOK"],["serve","SERVE"],["table","TABLE"]]:[["tongs",'<span class="brand-word">Leye</span> TONGS'],["tools",'<span class="brand-word">Leye</span> TOOLS']];
+ var opts=kind==="use"?[["cook",useLabel("cook")],["serve",useLabel("serve")],["table",useLabel("table")]]:[["tongs",'<span class="brand-word">Leye</span> '+L("TONGS","トング")],["tools",'<span class="brand-word">Leye</span> '+L("TOOLS","キッチンツール")]];
  opts=opts.filter(function(o){return list.some(function(p){return kind==="use"?p.uses.indexOf(o[0])>-1:p.family===o[0];});});
  var chips=[["all",L("All","すべて")]].concat(opts);
- var sorts=[["featured",L("Featured","おすすめ順")],["az",L("Name A–Z","名前順 A–Z")],["za",L("Name Z–A","名前順 Z–A")]];
+ var sorts=[["featured",L("Featured","おすすめ順")],["az",L("Name A–Z","名前順")],["za",L("Name Z–A","名前の逆順")]];
  return '<div class="listing-toolbar"><div class="toolbar-group" role="group" aria-label="'+L("Filter","絞り込み")+'"><span class="toolbar-label">'+L("Filter","絞り込み")+'</span>'+
   chips.map(function(c){return '<button type="button" class="filter-chip'+(f===c[0]?' active':'')+'" data-list-filter="'+c[0]+'" aria-pressed="'+(f===c[0])+'">'+c[1]+'</button>';}).join("")+'</div>'+
   '<label class="toolbar-group sort-control"><span class="toolbar-label">'+L("Sort","並び替え")+'</span><select id="list-sort" data-list-sort>'+
@@ -89,7 +95,7 @@ function thumbPhoto(main,alt){return '<div class="photo contain has-alt"><img sr
 function card(p,image,alt){
  return '<article class="product-card" role="link" tabindex="0" data-product="'+p.id+'">'+
    thumbPhoto(typeof image==="string"?image:p.thumb,typeof alt==="string"?alt:p.image)+
-   '<h3>'+p.name+'</h3>'+
+   '<h3>'+pname(p)+'</h3>'+
    '<div class="price">$20.00</div>'+
  '</article>';
 }
@@ -132,35 +138,35 @@ function appHeader(){
   return '<div class="nav-item has-sub sub-'+id+(current===id?' active':'')+'"><button type="button" class="nav-parent'+(current===id?' active':'')+'" data-go="'+go+'" aria-haspopup="true">'+label+'<span class="nav-caret" aria-hidden="true"></span></button>'+
   '<div class="nav-sub" role="menu">'+links.map(function(x){return '<button type="button" role="menuitem" data-go="'+x[0]+'"'+(x[2]?' data-anchor="'+x[2]+'"':'')+(state.page===x[0]&&!x[2]?' class="active"':'')+'>'+x[1]+'</button>';}).join("")+'</div></div>';
  }
- var navh=drop("shop","SHOP","shop",[["shop","SHOP ALL"],["tongs","Leye TONGS"],["tools","Leye TOOLS"]])+
-  item("cook","COOK")+item("serve","SERVE")+item("table","TABLE")+item("moments","MOMENTS")+item("why","WHY AUX")+
-  drop("brand","BRAND","brand",BRANDS.map(function(b){return ["brand",b.id==="leye"?b.name:b.name.toUpperCase(),b.id];}))+
-  drop("support","SUPPORT","faq",[["faq","FAQ"],["shipping","SHIPPING"],["returns","RETURNS"],["privacy","PRIVACY POLICY"],["contact","CONTACT"]])+
-  '<button type="button" class="nav-business'+(current==="business"?' active':'')+'" data-go="business">FOR BUSINESS</button>';
+ var navh=drop("shop",L("SHOP","商品"),"shop",[["shop",L("SHOP ALL","すべての商品")],["tongs",L("Leye TONGS","Leye トング")],["tools",L("Leye TOOLS","Leye キッチンツール")]])+
+  item("cook",useLabel("cook"))+item("serve",useLabel("serve"))+item("table",useLabel("table"))+item("moments",L("MOMENTS","食卓のシーン"))+item("why",L("WHY AUX","AUXについて"))+
+  drop("brand",L("BRAND","ブランド"),"brand",BRANDS.map(function(b){return ["brand",b.id==="leye"?b.name:L(b.name.toUpperCase(),b.jp),b.id];}))+
+  drop("support",L("SUPPORT","サポート"),"faq",[["faq",L("FAQ","よくある質問")],["shipping",L("SHIPPING","配送")],["returns",L("RETURNS","返品・返金")],["privacy",L("PRIVACY POLICY","プライバシーポリシー")],["contact",L("CONTACT","お問い合わせ")]])+
+  '<button type="button" class="nav-business'+(current==="business"?' active':'')+'" data-go="business">'+L("FOR BUSINESS","法人・事業者向け")+'</button>';
  return '<header class="site-header">'+
- '<button type="button" class="site-menu-mobile" data-demo="nav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18"></path></svg></button>'+
- '<button class="site-wordmark" data-go="home" aria-label="AUX Home">'+
+ '<button type="button" class="site-menu-mobile" data-demo="nav" aria-label="'+L("Menu","メニュー")+'"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18"></path></svg></button>'+
+ '<button class="site-wordmark" data-go="home" aria-label="'+L("AUX Home","AUX トップページ")+'">'+
  (LOGO==="leye"?'<img class="logo-leye" src="./assets/leye-logo.svg" alt="leye" width="42" height="56">':
   LOGO==="leye-type"?'<img class="logo-leye-type" src="./assets/leye-typelogo.svg" alt="leye" width="67" height="32">':
   '<img src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="152" height="17">')+'</button>'+
- '<nav class="site-menu" aria-label="Main navigation">'+navh+'</nav>'+
- '<div class="site-util"><button type="button" class="util-search" data-demo="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>'+
- '<button type="button" class="util-account" data-demo="account" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 20c.9-3.6 3.9-6 7.5-6s6.6 2.4 7.5 6"></path></svg></button>'+
- '<button type="button" class="util-cart" data-demo="cart" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.2 12H5.2L4 8ZM8 9V6a4 4 0 0 1 8 0v3"></path></svg><span class="cart-count">0</span><span class="cart-text">CART (0)</span></button></div></header>';
+ '<nav class="site-menu" aria-label="'+L("Main navigation","メインナビゲーション")+'">'+navh+'</nav>'+
+ '<div class="site-util"><button type="button" class="util-search" data-demo="search" aria-label="'+L("Search","検索")+'"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg></button>'+
+ '<button type="button" class="util-account" data-demo="account" aria-label="'+L("Account","アカウント")+'"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 20c.9-3.6 3.9-6 7.5-6s6.6 2.4 7.5 6"></path></svg></button>'+
+ '<button type="button" class="util-cart" data-demo="cart" aria-label="'+L("Cart","カート")+'"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.2 12H5.2L4 8ZM8 9V6a4 4 0 0 1 8 0v3"></path></svg><span class="cart-count">0</span><span class="cart-text">'+L("CART","カート")+' (0)</span></button></div></header>';
 }
 function footer(){
  function grp(title,items){return '<div class="footer-group"><b>'+title+'</b>'+items.map(function(x){return '<button type="button" data-go="'+x[0]+'">'+x[1]+'</button>';}).join("")+'</div>';}
  return '<footer class="site-footer"><div class="footer-columns">'+
  '<div><img class="footer-logo-image" src="./assets/aux-logo-original.svg" alt="AUX Co., Ltd." width="175" height="20"><p class="footer-intro">'+L("Tools that quietly support the meal, the people and the moments around the table.","食事と人、食卓を囲む時間を静かに支える道具。")+'</p></div>'+
- '<div class="footer-links">'+grp("SHOP",[["shop","Shop All"],["tongs","Leye TONGS"],["tools","Leye Tools"],["cook","COOK"],["serve","SERVE"],["table","TABLE"]])+
- grp("DISCOVER",[["moments","MOMENTS"],["why","WHY AUX"],["brand","BRANDS"],["business","FOR BUSINESS"]])+
- grp("SUPPORT",[["faq","FAQ"],["shipping","Shipping"],["returns","Returns"],["privacy","Privacy Policy"],["contact","Contact"]])+'</div>'+
+ '<div class="footer-links">'+grp(L("SHOP","商品"),[["shop",L("Shop All","すべての商品")],["tongs",L("Leye TONGS","Leye トング")],["tools",L("Leye Tools","Leye キッチンツール")],["cook",useLabel("cook")],["serve",useLabel("serve")],["table",useLabel("table")]])+
+ grp(L("DISCOVER","AUXを知る"),[["moments",L("MOMENTS","食卓のシーン")],["why",L("WHY AUX","AUXについて")],["brand",L("BRANDS","ブランド")],["business",L("FOR BUSINESS","法人・事業者向け")]])+
+ grp(L("SUPPORT","サポート"),[["faq",L("FAQ","よくある質問")],["shipping",L("Shipping","配送")],["returns",L("Returns","返品・返金")],["privacy",L("Privacy Policy","プライバシーポリシー")],["contact",L("Contact","お問い合わせ")]])+'</div>'+
  '</div><div class="footer-bottom"><span>© 2026 AUX Co., Ltd. All rights reserved.</span></div></footer>';
 }
 var HERO_SLIDES=[
- {id:"fingertip",image:"shinjo-fingertip-1.webp",title:"Leye Fingertip Tongs",jpTitle:"Leye ゆびさきトング",copy:"A thoughtful grip for small foods and small movements.",jpCopy:"小さな食材や、食卓での繊細な動きに。"},
- {id:"noodle",image:"shinjo-noodle-1.webp",title:"Leye Noodle Tongs",jpTitle:"Leye しっかりめんトング",copy:"Lift a full portion, down to the last strand.",jpCopy:"ひと束から、最後の一本まで。"},
- {id:"serving",image:"shinjo-serving-1.webp",title:"Leye Serving Tongs",jpTitle:"Leye ゆびさきサーバートング",copy:"From a shared dish to the plate, in one natural movement.",jpCopy:"大皿から取り皿へ、自然な動きで。"}
+ {id:"fingertip",image:"shinjo-fingertip-1.webp",copy:"A thoughtful grip for small foods and small movements.",jpCopy:"小さな食材や、食卓での繊細な動きに。"},
+ {id:"noodle",image:"shinjo-noodle-1.webp",copy:"Lift a full portion, down to the last strand.",jpCopy:"ひと束から、最後の一本まで。"},
+ {id:"serving",image:"shinjo-serving-1.webp",copy:"From a shared dish to the plate, in one natural movement.",jpCopy:"大皿から取り皿へ、自然な動きで。"}
 ];
 /* HOME hero. All three slides are stacked and cross-dissolve; the active photo slowly
    zooms in. The pager is three vertical bars: the active bar fills with ink over the slide
@@ -170,14 +176,14 @@ function heroHTML(){
  return '<section class="photo-hero" aria-label="'+L("Featured products","注目の商品")+'">'+
   '<div class="photo-hero-visual">'+HERO_SLIDES.map(function(h,i){return '<div class="hero-slide'+(i===hi?' is-active is-zoom':'')+'" data-slide="'+i+'">'+photo(h.image,"")+'</div>';}).join("")+
    HERO_SLIDES.map(function(h,i){return '<div class="photo-hero-caption'+(i===hi?' is-active':'')+'" data-slide="'+i+'"'+(i===hi?'':' aria-hidden="true"')+'>'+
-    (i===hi?'<h1 class="photo-hero-title">':'<p class="photo-hero-title">')+L(h.title,h.jpTitle)+(i===hi?'</h1>':'</p>')+
+    (i===hi?'<h1 class="photo-hero-title">':'<p class="photo-hero-title">')+pname(productBy(h.id))+(i===hi?'</h1>':'</p>')+
     '<p class="photo-hero-copy">'+L(h.copy,h.jpCopy)+'</p>'+
     '<button type="button" class="btn-outline on-photo has-arrow" data-product="'+h.id+'"'+(i===hi?'':' tabindex="-1"')+'>'+L("View product","商品を見る")+'</button></div>';}).join("")+
   '</div>'+
-  '<div class="photo-hero-rail"><div class="photo-hero-names" aria-hidden="true">'+HERO_SLIDES.map(function(h,i){return '<div class="photo-hero-name'+(i===hi?' is-active':'')+'" data-slide="'+i+'">'+productBy(h.id).name.replace(/^(AUX|Leye) /,"")+'</div>';}).join("")+'</div>'+
+  '<div class="photo-hero-rail"><div class="photo-hero-names" aria-hidden="true">'+HERO_SLIDES.map(function(h,i){return '<div class="photo-hero-name'+(i===hi?' is-active':'')+'" data-slide="'+i+'">'+pname(productBy(h.id)).replace(/^(AUX|Leye) /,"")+'</div>';}).join("")+'</div>'+
    '<div class="photo-hero-pager"><span class="photo-hero-count">0'+(hi+1)+' / 03</span>'+
    '<div class="photo-hero-bars" role="group" aria-label="'+L("Featured products","注目の商品")+'">'+HERO_SLIDES.map(function(s,i){
-     return '<button type="button" class="hero-bar'+(i===hi?' active':'')+'" data-hero-index="'+i+'" aria-label="Show featured product '+(i+1)+' of 3" aria-pressed="'+(i===hi)+'"><span></span></button>';
+     return '<button type="button" class="hero-bar'+(i===hi?' active':'')+'" data-hero-index="'+i+'" aria-label="'+L("Show featured product "+(i+1)+" of 3","注目の商品 "+(i+1)+" / 3 を表示")+'" aria-pressed="'+(i===hi)+'"><span></span></button>';
    }).join("")+'</div></div></div>'+
  '</section>';
 }
@@ -210,7 +216,7 @@ function whyBand(title,text){
  return '<section class="site-section why-band-section"><div class="why-band">'+
   '<div class="why-band-bg" aria-hidden="true">'+photo("shinjo-lineup.webp","")+'</div>'+
   WHY_FLOATS.map(function(f){return '<div class="why-float '+f[1]+'" data-drift="'+f[2]+'" aria-hidden="true">'+photo(f[0],"")+'</div>';}).join("")+
-  '<div class="why-band-copy">'+eyebrow("WHY AUX")+'<h2 class="page-display">'+title+'</h2><p class="body-lg">'+text+'</p>'+
+  '<div class="why-band-copy">'+eyebrow(L("WHY AUX","AUXについて"))+'<h2 class="page-display">'+title+'</h2><p class="body-lg">'+text+'</p>'+
   '<div class="btn-row is-centred"><button type="button" class="btn-outline on-photo has-arrow" data-go="why">'+L("Why AUX","AUXについて")+'</button></div></div>'+
  '</div>';
 }
@@ -231,18 +237,18 @@ function home(){
  '<button type="button" class="btn-fill has-arrow" data-go="why">'+L("Why AUX","AUXについて")+'</button></div></section>'+
  '<section class="site-section compact mist home-products">'+sectionHead("",L("Tools worth reaching for.","代表商品を見る。"),L("A closer look at the tools and the jobs they are made for.","日常のさまざまな動作に寄り添う、代表的な4つの道具。"))+
  productStrip(featured)+'<div class="btn-row is-centred">'+boutline(L("Shop all products","商品一覧を見る"),"shop")+'</div></section>'+
- '<section class="site-section home-categories">'+sectionHead("",L("COOK. SERVE. TABLE.","COOK / SERVE / TABLE"),L("Start with what you want to do, then discover the tools.","やりたいことから道具を探せる3つの入口。"))+
+ '<section class="site-section home-categories">'+sectionHead("",L("COOK. SERVE. TABLE.","調理。取り分け。食卓。"),L("Start with what you want to do, then discover the tools.","やりたいことから道具を探せる3つの入口。"))+
  categoryCards()+'</section>'+
  '<section class="site-section mist home-third"><div class="split">'+photo("shinjo-fingertip-2.webp","","scroll-zoom")+
- '<div class="split-copy">'+eyebrow("THE THIRD UTENSIL")+
- '<h2 class="display-medium">Knife.<br>Fork.<br>Tongs.</h2>'+
+ '<div class="split-copy">'+eyebrow(L("THE THIRD UTENSIL","第3の食卓道具"))+
+ '<h2 class="display-medium">'+L("Knife.<br>Fork.<br>Tongs.","ナイフ。<br>フォーク。<br>トング。")+'</h2>'+
  '<p class="body-lg">'+L("Small tongs that belong beside the knife and fork<br>—not only in the kitchen.","調理だけでなく、<br>ナイフやフォークと並ぶ食卓の道具として。")+'</p>'+
  '<div class="btn-row">'+boutline(L("Explore the idea","この考え方を見る"),"why",'data-anchor="third"')+'</div></div></div></section>'+
- '<section class="site-section home-moments-section">'+sectionHead("MOMENTS",L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","何気ない日も、特別な日も。食卓の時間に合う道具を見つけてください。"),true)+
+ '<section class="site-section home-moments-section">'+sectionHead(L("MOMENTS","食卓のシーン"),L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","何気ない日も、特別な日も。食卓の時間に合う道具を見つけてください。"),true)+
  '<div class="home-moments"><div class="home-moment-main" tabindex="0" data-go="moments" data-anchor="everyday">'+photo(D.moments[0].photo,"MOMENTS / everyday")+
- '<div class="moment-home-copy"><h3>'+D.moments[0].title+'</h3><p>'+D.moments[0].strap+'</p></div><span class="arrow">'+arw()+'</span></div>'+
+ '<div class="moment-home-copy"><h3>'+mTitle(D.moments[0])+'</h3><p>'+mStrap(D.moments[0])+'</p></div><span class="arrow">'+arw()+'</span></div>'+
  '<div class="home-moment-list">'+D.moments.slice(1).map(function(m,i){return '<article tabindex="0" data-go="moments" data-anchor="'+m.id+'">'+photo(m.photo,"MOMENTS / "+m.title)+
- '<div><h3>'+m.title+'</h3><p>'+m.strap+'</p></div><span class="arrow">'+arw()+'</span></article>';}).join("")+'</div></div></section>'+
+ '<div><h3>'+mTitle(m)+'</h3><p>'+mStrap(m)+'</p></div><span class="arrow">'+arw()+'</span></article>';}).join("")+'</div></div></section>'+
  '<section class="b2b-banner home-business"><div>'+
  '<h2 class="display-medium">'+L("Tools designed for attentive service.","お客様を迎える場所にも。")+'</h2>'+
  '<p class="body-md">'+L("Discover how AUX tools fit restaurants, hotels, cafés, events and retail.","レストラン、ホテル、カフェ、イベント、小売まで。業務の現場でも、AUXの使い心地を。")+'</p>'+
@@ -254,13 +260,13 @@ function home(){
 function shop(){
  var list=filterList(D.products,"use");
  return '<section class="site-section compact shop-intro"><h1 class="page-display">'+L("All Products","すべての商品")+'</h1>'+
- '<p class="body-lg">'+L("Browse all AUX kitchen tools, or start from COOK, SERVE or TABLE.","AUXのキッチンツールを一覧で。COOK / SERVE / TABLEから探すこともできます。")+'</p></section>'+
+ '<p class="body-lg">'+L("Browse all AUX kitchen tools, or start from COOK, SERVE or TABLE.","AUXのキッチンツールを一覧で。調理・取り分け・食卓から探すこともできます。")+'</p></section>'+
  '<section class="site-section compact shop-categories">'+categoryCards()+'</section>'+
  '<section class="site-section compact" id="anchor-products">'+listingToolbar(D.products,"use")+productGrid(list)+'</section>'+
  '<section class="site-section"><div class="split">'+photo("shinjo-garnish-1.webp","")+
- '<div class="split-copy">'+eyebrow("MOMENTS")+'<h2 class="display-medium">'+L("Find the right tool for the moment.","食卓の時間から、道具を選ぶ。")+'</h2>'+
+ '<div class="split-copy">'+eyebrow(L("MOMENTS","食卓のシーン"))+'<h2 class="display-medium">'+L("Find the right tool for the moment.","食卓の時間から、道具を選ぶ。")+'</h2>'+
  '<p class="body-md">'+L("Everyday meals, shared time, hosting and special occasions. See which tools suit each moment.","何気ない食事、大切な人との時間、おもてなし、特別な日。それぞれの時間に合う道具を紹介しています。")+'</p>'+
- '<div class="btn-row">'+boutline(L("Explore MOMENTS","MOMENTSを見る"),"moments")+'</div></div></div></section>';
+ '<div class="btn-row">'+boutline(L("Explore MOMENTS","食卓のシーンを見る"),"moments")+'</div></div></div></section>';
 }
 function collection(id){
  var c=D.collections[id],matches=D.products.filter(function(p){return p.uses.indexOf(id)>-1;});
@@ -280,7 +286,7 @@ function collection(id){
  ["katou-garnish-use2.webp","At the tea table","お茶の時間にも","From lifting a tea bag to other small jobs at the table.","ティーバッグを引き上げるような、食卓の小さな動きにも。"]]
  }[id];
  return '<div class="collection-banner"><div class="detail-copy">'+
- '<h1 class="page-display">'+id.toUpperCase()+'</h1><p class="body-lg">'+L(c.lead[0],c.lead[1])+'</p>'+
+ '<h1 class="page-display">'+useLabel(id)+'</h1><p class="body-lg">'+L(c.lead[0],c.lead[1])+'</p>'+
  '<p class="body-md">'+L(c.body[0],c.body[1])+'</p></div>'+photo(c.photo,id.toUpperCase()+" collection hero")+'</div>'+
  '<section class="site-section">'+sectionHead("",L("Different tools for different movements.","動作に応える、それぞれの形。"))+
  '<div class="collection-value-grid">'+values.map(function(v,i){return '<article>'+photo(v[0],"Physical use / working example")+
@@ -289,7 +295,7 @@ function collection(id){
  '<div class="featured-pair">'+featuredIds.map(function(x){var p=productBy(x);return card(p,p.thumbScene,p.photos.single);}).join("")+'</div></section>'+
  '<section class="site-section compact" id="anchor-products">'+listingToolbar(matches,"family")+productGrid(filterList(matches,"family"))+'</section>'+
  (id==="table"?'<section class="site-section mist"><div class="split">'+photo("shinjo-fingertip-2.webp","Fingertip at table / THE THIRD UTENSIL")+
- '<div>'+eyebrow("KNIFE. FORK. TONGS.")+'<h2 class="display-medium">'+L("A new place at the table.","食卓に、新しい道具を。")+'</h2><p class="body-md">'+L("Fingertip Tongs feel at home beside the knife and fork.","ナイフやフォークの隣に、ゆびさきトングという新しい選択肢を。")+'</p>'+
+ '<div>'+eyebrow(L("KNIFE. FORK. TONGS.","ナイフ。フォーク。トング。"))+'<h2 class="display-medium">'+L("A new place at the table.","食卓に、新しい道具を。")+'</h2><p class="body-md">'+L("Fingertip Tongs feel at home beside the knife and fork.","ナイフやフォークの隣に、ゆびさきトングという新しい選択肢を。")+'</p>'+
  boutline(L("View Fingertip Tongs","ゆびさきトングを見る"),"pdp",'data-set-product="fingertip"')+'</div></div></section>':"")+
  whyBand(L("Precision made visible.","使いやすさの理由を、形から。"),L("Every shape begins with a purpose and is refined through precise metalworking.","道具の形と使い心地を支える、日本の金属加工技術。"))+
  note("V1 Collection hierarchy restored: hero → use-value trio → featured products → complete listing → About AUX. COOK/SERVE/TABLE can overlap.","V1のCollection構成：Hero→3つの使用価値→代表商品→一覧→About AUX。COOK/SERVE/TABLEは重複掲載可。")+'</section>';
@@ -297,7 +303,7 @@ function collection(id){
 function family(kind){
  var isT=kind==="tongs";var list=D.products.filter(function(p){return p.family===kind;});
  return '<div class="collection-banner"><div class="detail-copy">'+
- '<h1 class="page-display">'+(isT?"Leye TONGS":"Leye Tools")+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","「つかむ」動作の違いに合わせた11種類のトング。"):L("A small whisk and a grating spoon, for dressings, sauces and finishing touches.","ドレッシングやソース、料理の仕上げに使う、小さな泡立て器とおろしスプーン。"))+'</p></div>'+
+ '<h1 class="page-display">'+(isT?L("Leye TONGS","Leye トング"):L("Leye Tools","Leye キッチンツール"))+'</h1><p class="body-lg">'+(isT?L("Eleven shapes considered for different gripping movements.","「つかむ」動作の違いに合わせた11種類のトング。"):L("A small whisk and a grating spoon, for dressings, sauces and finishing touches.","ドレッシングやソース、料理の仕上げに使う、小さな泡立て器とおろしスプーン。"))+'</p></div>'+
  photo(isT?"shinjo-lineup.webp":"katou-tools-board.webp","Family image / provisional")+'</div>'+
  '<section class="site-section compact">'+
  listingToolbar(list,"use")+productGrid(filterList(list,"use"))+'</section>';
@@ -322,9 +328,9 @@ function moments(){
  return '<div class="brand-page">'+
  editorialOpening("shinjo-fry-2.webp",L("For the moments<br>around the table.","食卓を囲む、<br>4つの時間。"),
   L("Everyday meals, time with others, hosting at home and special celebrations. Find the right tool for each moment—not only for each task.","何気ない食事から特別な日まで。使う動作だけでなく、食卓で過ごす時間から道具を選べます。"),
-  '<div class="moment-jumps has-photos">'+D.moments.map(function(m,i){return '<button type="button" data-anchor="'+m.id+'"><span class="jump-bg" aria-hidden="true"><span style="background-image:url('+img(m.photo)+')"></span></span><span class="jump-title">'+m.title+'</span><span class="jump-foot"><span class="jump-num">0'+(i+1)+'/</span>'+arw("arw-down")+'</span></button>';}).join("")+'</div>')+
+  '<div class="moment-jumps has-photos">'+D.moments.map(function(m,i){return '<button type="button" data-anchor="'+m.id+'"><span class="jump-bg" aria-hidden="true"><span style="background-image:url('+img(m.photo)+')"></span></span><span class="jump-title">'+mTitle(m)+'</span><span class="jump-foot"><span class="jump-num">0'+(i+1)+'/</span>'+arw("arw-down")+'</span></button>';}).join("")+'</div>')+
  D.moments.map(function(m,i){
-  return chapter({id:m.id,num:"0"+(i+1)+"/",layout:i%2?"offset":"wide",reverse:i===3,photo:m.photo,title:m.title,lead:m.strap,body:L(m.body[0],m.body[1]),
+  return chapter({id:m.id,num:"0"+(i+1)+"/",layout:i%2?"offset":"wide",reverse:i===3,photo:m.photo,title:mTitle(m),lead:mStrap(m),body:L(m.body[0],m.body[1]),
    extra:'<div class="moment-products'+(i===1?' align-left':i===3?' align-right':'')+'"><div class="moment-products-heading">'+eyebrow(L("Tools for this moment","この時間に合う道具"))+
     '</div>'+
     '<div class="moment-related-grid">'+m.products.map(function(id){return card(productBy(id));}).join("")+'</div></div>'});
@@ -343,9 +349,9 @@ function bizGallery(id){
  var shots=BIZ_PHOTOS[id]||[];
  if(shots.length<2)return photo(shots[0],"");
  return '<div class="biz-gallery" data-biz="'+id+'"><div class="biz-frame">'+photo(shots[0],"")+
-  '<button class="kinto-arrow prev" type="button" data-biz-step="-1" aria-label="Previous image">'+arw()+'</button>'+
-  '<button class="kinto-arrow next" type="button" data-biz-step="1" aria-label="Next image">'+arw()+'</button></div>'+
-  '<div class="kinto-dots" role="group" aria-label="Photos">'+shots.map(function(f,i){return '<button type="button" class="'+(i===0?'active':'')+'" data-biz-index="'+i+'" aria-label="Image '+(i+1)+'" aria-pressed="'+(i===0)+'"><span></span></button>';}).join("")+'</div></div>';
+  '<button class="kinto-arrow prev" type="button" data-biz-step="-1" aria-label="'+L("Previous image","前の画像")+'">'+arw()+'</button>'+
+  '<button class="kinto-arrow next" type="button" data-biz-step="1" aria-label="'+L("Next image","次の画像")+'">'+arw()+'</button></div>'+
+  '<div class="kinto-dots" role="group" aria-label="'+L("Photos","写真")+'">'+shots.map(function(f,i){return '<button type="button" class="'+(i===0?'active':'')+'" data-biz-index="'+i+'" aria-label="'+L("Image ","画像 ")+(i+1)+'" aria-pressed="'+(i===0)+'"><span></span></button>';}).join("")+'</div></div>';
 }
 function pdpShow(i){
  var g=document.querySelector(".kinto-gallery");if(!g)return;
@@ -383,10 +389,10 @@ function business(){
  photo("istock-2195526262.webp","")+'</div>'+
  '<section class="site-section compact">'+sectionHead("",L("Tools for kitchens, hospitality and retail.","厨房、ホスピタリティ、小売の現場に。"),
  L("Explore kitchen tools and tableware for hospitality, events and retail.","レストラン、ホテル、カフェ、イベント、小売など幅広い現場に。"))+
- '<div class="moment-jumps has-photos cols-5">'+D.businesses.map(function(b){return '<button type="button" data-anchor="'+b.id+'"><span class="jump-bg" aria-hidden="true"><span style="background-image:url('+img(b.photo)+')"></span></span><span class="jump-title">'+b.title+'</span><span class="jump-foot">'+arw("arw-down")+'</span></button>';}).join("")+'</div></section>'+
+ '<div class="moment-jumps has-photos cols-5">'+D.businesses.map(function(b){return '<button type="button" data-anchor="'+b.id+'"><span class="jump-bg" aria-hidden="true"><span style="background-image:url('+img(b.photo)+')"></span></span><span class="jump-title">'+L(b.title,b.jp)+'</span><span class="jump-foot">'+arw("arw-down")+'</span></button>';}).join("")+'</div></section>'+
  D.businesses.map(function(b,i){return '<section class="site-section '+(i%2?"mist":"")+'" id="anchor-'+b.id+'"><div class="business-detail '+(i%2?"reverse":"")+'">'+bizGallery(b.id)+
- '<div><h2 class="display-medium">'+b.title+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
- '<div class="business-related">'+eyebrow(L("Suggested tools","おすすめの道具"))+'<ul>'+b.products.map(function(id){var p=productBy(id);return '<li><button type="button" data-product="'+id+'">'+photo(p.image,"")+'<span>'+p.name+'</span>'+arw()+'</button></li>';}).join("")+'</ul></div>'+
+ '<div><h2 class="display-medium">'+L(b.title,b.jp)+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
+ '<div class="business-related">'+eyebrow(L("Suggested tools","おすすめの道具"))+'<ul>'+b.products.map(function(id){var p=productBy(id);return '<li><button type="button" data-product="'+id+'">'+photo(p.image,"")+'<span>'+pname(p)+'</span>'+arw()+'</button></li>';}).join("")+'</ul></div>'+
  '<div class="btn-row">'+boutline(L("Business & wholesale inquiries","法人・卸取引について問い合わせる"),"contact")+'</div></div></div></section>';}).join("")+
  whyBand(L("Precision for every service.","業務の現場にも、確かな精度を。"),L("Explore the design and metalworking behind every AUX tool.","AUXの道具を支える設計と金属加工について。"))+'</section>';
 }
@@ -394,15 +400,15 @@ function pdpGallery(p){
  var ph=p.photos,shots=ph.scenes.concat([ph.single,ph.form],ph.uses);
  state.galleryIndex=Math.max(0,Math.min(shots.length-1,state.galleryIndex||0));
  var idx=state.galleryIndex;
- return '<div class="kinto-gallery" aria-label="Product photos">'+
- '<div class="kinto-thumbs" role="group" aria-label="Choose product photo">'+shots.map(function(file,i){
- return '<button type="button" class="kinto-thumb'+(idx===i?' active':'')+'" data-gallery-index="'+i+'" aria-label="View image '+(i+1)+'" aria-pressed="'+(idx===i)+'"><img src="'+img(file)+'" loading="lazy" alt=""></button>';
+ return '<div class="kinto-gallery" aria-label="'+L("Product photos","商品写真")+'">'+
+ '<div class="kinto-thumbs" role="group" aria-label="'+L("Choose product photo","商品写真を選ぶ")+'">'+shots.map(function(file,i){
+ return '<button type="button" class="kinto-thumb'+(idx===i?' active':'')+'" data-gallery-index="'+i+'" aria-label="'+L("View image ","画像を表示 ")+(i+1)+'" aria-pressed="'+(idx===i)+'"><img src="'+img(file)+'" loading="lazy" alt=""></button>';
  }).join("")+'</div>'+
- '<div class="kinto-stage"><div class="kinto-main"><img src="'+img(shots[idx])+'" alt="'+p.name+'" loading="eager">'+
- '<button class="kinto-arrow prev" type="button" data-gallery-step="-1" aria-label="Previous image">'+arw()+'</button>'+
- '<button class="kinto-arrow next" type="button" data-gallery-step="1" aria-label="Next image">'+arw()+'</button></div>'+
- '<div class="kinto-dots" role="group" aria-label="Photo slides">'+shots.map(function(file,i){
- return '<button type="button" class="'+(i===idx?'active':'')+'" data-gallery-index="'+i+'" aria-label="Image '+(i+1)+'" aria-pressed="'+(idx===i)+'"><span></span></button>';
+ '<div class="kinto-stage"><div class="kinto-main"><img src="'+img(shots[idx])+'" alt="'+pname(p)+'" loading="eager">'+
+ '<button class="kinto-arrow prev" type="button" data-gallery-step="-1" aria-label="'+L("Previous image","前の画像")+'">'+arw()+'</button>'+
+ '<button class="kinto-arrow next" type="button" data-gallery-step="1" aria-label="'+L("Next image","次の画像")+'">'+arw()+'</button></div>'+
+ '<div class="kinto-dots" role="group" aria-label="'+L("Photo slides","写真のスライド")+'">'+shots.map(function(file,i){
+ return '<button type="button" class="'+(i===idx?'active':'')+'" data-gallery-index="'+i+'" aria-label="'+L("Image ","画像 ")+(i+1)+'" aria-pressed="'+(idx===i)+'"><span></span></button>';
  }).join("")+'</div></div></div>';
 }
 /* Product page specs: cm and g from the AUX product data; inches and ounces added for the English view. */
@@ -432,8 +438,8 @@ function pdp(){
  close=close.slice(0,4);
  var P=D.pdp[p.id];
  return '<div class="pdp-layout">'+pdpGallery(p)+
- '<div class="pdp-buy">'+eyebrow('<span class="brand-word">Leye</span> / '+(p.family==="tongs"?"TONGS":"TOOLS"))+
- '<h1>'+p.name+'</h1>'+
+ '<div class="pdp-buy">'+eyebrow('<span class="brand-word">Leye</span> / '+(p.family==="tongs"?L("TONGS","トング"):L("TOOLS","キッチンツール")))+
+ '<h1>'+pname(p)+'</h1>'+
  '<p class="body-md">'+L(P.lead[0],P.lead[1])+'</p>'+(P.proof?'<p class="pdp-proof">'+L(P.proof[0],P.proof[1])+'</p>':'')+
   '<div class="pdp-price">$20.00</div>'+
  '<div class="qty-row"><span>'+L("QUANTITY","数量")+'</span><div class="qty-control"><button type="button" data-qty="-" aria-label="'+L("Decrease quantity","数量を減らす")+'">−</button><span id="qty-number">'+state.qty+'</span><button type="button" data-qty="+" aria-label="'+L("Increase quantity","数量を増やす")+'">+</button></div></div>'+
@@ -467,7 +473,7 @@ function pdp(){
  var here=x.id===p.id;
  return '<article class="'+(here?'current':'')+'" data-product="'+x.id+'" role="link" tabindex="0"'+(here?' aria-current="page"':'')+'>'+
  sizeStage(x,here)+
- '<div class="compare-copy"><h3>'+x.name+'</h3>'+
+ '<div class="compare-copy"><h3>'+pname(x)+'</h3>'+
  '<dl class="compare-facts"><dt>'+L("Best for","適した用途")+'</dt><dd>'+L(m.best,m.jpBest)+'</dd>'+
  '<dt>'+L("Length","全長")+'</dt><dd>'+pdpLen(D.pdp[x.id].specs.length)+'</dd>'+
  '<dt>'+L("Moment","食事のシーン")+'</dt><dd>'+L(m.moment,m.jpMoment)+'</dd></dl>'+
@@ -507,13 +513,13 @@ function why(){
  '<div class="form-collage">'+factors.map(function(f){return '<figure>'+photo(f[0],"")+
  '<figcaption><h3>'+L(f[1],f[2])+'</h3><p>'+L(f[3],f[4])+'</p></figcaption></figure>';}).join("")+'</div></section>'+
  '<section class="site-section" id="anchor-engineering"><div class="spec-layout">'+photo("shinjo-finetip-2.webp","")+
- '<div class="spec-copy">'+eyebrow("DESIGN & ENGINEERING")+'<h2 class="display-medium">'+L("Shape, feel and proportion.","先端、角度、握り心地。")+'</h2>'+
+ '<div class="spec-copy">'+eyebrow(L("DESIGN & ENGINEERING","設計と技術"))+'<h2 class="display-medium">'+L("Shape, feel and proportion.","先端、角度、握り心地。")+'</h2>'+
  '<p class="body-md">'+L("The tip, the angle, the length and the grip. Each shape has a reason you can feel in use.","先端、角度、長さ、握り心地。一つひとつの形に理由があります。")+'</p>'+
  '<ul class="spec-list">'+uses.map(function(u){return '<li>'+photo(u[0],"")+'<div><h3>'+L(u[1],u[2])+'</h3><p>'+L(u[3],u[4])+'</p></div></li>';}).join("")+'</ul></div></div></section>'+
- chapter({id:"third",layout:"wide",photo:"shinjo-fingertip-2.webp",label:"THE THIRD UTENSIL",title:"Knife. Fork. Tongs.",
+ chapter({id:"third",layout:"wide",photo:"shinjo-fingertip-2.webp",label:L("THE THIRD UTENSIL","第3の食卓道具"),title:L("Knife. Fork. Tongs.","ナイフ。フォーク。トング。"),
   body:L("Fingertip Tongs belong at the table, alongside the knife and fork—not only in the kitchen. Pick a small bite, share a dish, and let the tool rest quietly on the table.","ゆびさきトングをキッチンだけでなく、ナイフやフォークと並ぶ食卓の道具に。小さな一口をつまむ、料理を取り分ける、食卓にさりげなく置く。"),
   cta:'<button type="button" class="btn-fill has-arrow" data-go="pdp" data-set-product="fingertip">'+L("Discover Fingertip Tongs","ゆびさきトングを見る")+'</button>'})+
- chapter({id:"tsubame",layout:"offset",reverse:true,photo:"katou-craft-lineup.webp",label:"TSUBAME-SANJO",title:L("The expertise behind the form.","形を支える、金属加工の技術。"),
+ chapter({id:"tsubame",layout:"offset",reverse:true,photo:"katou-craft-lineup.webp",label:L("TSUBAME-SANJO","燕三条"),title:L("The expertise behind the form.","形を支える、金属加工の技術。"),
   body:L("Each shape reflects careful cutting, forming and finishing.","形の背景には、切る・曲げる・仕上げるまでの丁寧な金属加工があります。")})+
  '<section class="site-section compact">'+sectionHead("",L("Find the right tool.","商品から確かめる。"),
  L("Explore the tools behind the story.","ストーリーから、商品選びへ。"))+
@@ -528,13 +534,13 @@ function faq(){
   ["Can I order for a restaurant or retail business?","レストランや小売店向けの注文はできますか？","For professional orders, retail and distribution inquiries, please get in touch with our team.","業務用のご注文や小売・卸取引については、お問い合わせフォームよりご相談ください。"],
   ["How can I contact AUX?","AUXへの問い合わせ方法は？","Send us a message through the contact form. For order inquiries, please include your order number.","お問い合わせフォームからご連絡ください。ご注文については注文番号をお知らせください。"]
  ];
- return '<section class="site-section"><div class="support-wrap">'+eyebrow("SUPPORT")+
- '<h1 class="page-display">FAQ</h1><p class="body-lg">'+L("Answers to questions about AUX products, orders and care.","商品・配送・お手入れについて、よくあるご質問。")+'</p>'+
+ return '<section class="site-section"><div class="support-wrap">'+eyebrow(L("SUPPORT","サポート"))+
+ '<h1 class="page-display">'+L("FAQ","よくある質問")+'</h1><p class="body-lg">'+L("Answers to questions about AUX products, orders and care.","商品・配送・お手入れについて、よくあるご質問。")+'</p>'+
  '<div class="faq-list">'+rows.map(function(x){return '<details><summary>'+L(x[0],x[1])+'</summary><p>'+L(x[2],x[3])+'</p></details>';}).join("")+'</div>'+
  '<div class="btn-row">'+boutline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
 }
 function policy(kind){
- var ship=kind==="shipping",priv=kind==="privacy",title=ship?"Shipping & Delivery":priv?"Privacy Policy":"Returns & Refunds";
+ var ship=kind==="shipping",priv=kind==="privacy",title=ship?L("Shipping & Delivery","配送について"):priv?L("Privacy Policy","プライバシーポリシー"):L("Returns & Refunds","返品・返金について");
  var rows=priv?[
   ["Information we collect","取得する情報","Details you provide when you place an order, create an account or contact us, such as your name, email address, shipping address and order history.","ご注文、アカウント作成、お問い合わせの際にご提供いただくお名前、メールアドレス、お届け先、注文履歴などの情報。"],
   ["How we use it","利用目的","To process and deliver orders, respond to inquiries and, with your consent, send news about AUX.","ご注文の処理・配送、お問い合わせへの対応、同意いただいた場合のAUXからのお知らせのため。"],
@@ -552,14 +558,14 @@ function policy(kind){
   ["Returning a product","商品の返送","Our support team will explain the next steps after reviewing your request.","お問い合わせ内容を確認のうえ、返送の手順をご案内します。"],
   ["Refund inquiries","返金について","For questions about a refund, please contact customer support with your order number.","返金についてのご質問は、注文番号を添えてお問い合わせください。"]
  ];
- return '<section class="site-section"><div class="support-wrap">'+eyebrow("SUPPORT")+
+ return '<section class="site-section"><div class="support-wrap">'+eyebrow(L("SUPPORT","サポート"))+
  '<h1 class="page-display">'+title+'</h1>'+
  '<p class="body-lg">'+(ship?L("Everything you need to know about receiving your AUX order.","AUXの商品をお届けするための配送について。"):priv?L("How AUX collects, uses and protects your information.","AUXにおける個人情報の取り扱いについて。"):L("We are here to help with returns and order concerns.","返品・注文内容についてのご相談はこちら。"))+'</p>'+
  '<dl class="policy-table">'+rows.map(function(r){return '<div class="policy-row"><dt>'+L(r[0],r[1])+'</dt><dd>'+L(r[2],r[3])+'</dd></div>';}).join("")+'</dl>'+
  '<div class="btn-row">'+boutline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
 }
 function contact(){
- return '<section class="site-section"><div class="support-wrap">'+eyebrow("CONTACT")+'<h1 class="page-display">'+L("How can we help?","お問い合わせ")+'</h1><p class="body-lg">'+L("Get in touch about products, orders or business purchasing using the form below.","商品・ご注文・法人取引などのお問い合わせを受け付けています。")+'</p>'+
+ return '<section class="site-section"><div class="support-wrap">'+eyebrow(L("CONTACT","お問い合わせ"))+'<h1 class="page-display">'+L("How can we help?","どのようなご用件ですか？")+'</h1><p class="body-lg">'+L("Get in touch about products, orders or business purchasing using the form below.","商品・ご注文・法人取引などのお問い合わせを受け付けています。")+'</p>'+
  '<form class="contact-fields" id="demo-contact"><div class="field"><label>'+L("Name","お名前")+'</label><input type="text" required placeholder=""></div>'+
  '<div class="field"><label>'+L("Email address","メールアドレス")+'</label><input type="email" required></div>'+
  '<div class="field wide"><label>'+L("Inquiry type","お問い合わせ種別")+'</label><select><option>'+L("Product / order","商品・注文")+'</option><option>'+L("Business / wholesale","法人・卸取引")+'</option><option>'+L("Other","その他")+'</option></select></div>'+
