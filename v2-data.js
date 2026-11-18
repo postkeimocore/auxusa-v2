@@ -142,7 +142,7 @@ window.AUX_DATA.pdp = {
  },
  finetip:{
   lead:["Fine tips for sliced steak and roast beef, from the board to each plate.","スライスしたステーキやローストビーフを、まな板から取り皿まで運べる細い先端。"],
-  primary:["shinjo-finetip-1.webp","Serve sliced meat at the table.","切り分けた肉を、食卓で取り分ける。","The fine tips pick up one slice of steak or roast beef at a time and hold it securely.","細い先端で、ステーキやローストビーフを一切れずつしっかりつかめます。"],
+  primary:["shinjo-finetip-1.webp","Serve sliced meat at the table.","切り分けた肉を、|食卓で|取り分ける。","The fine tips pick up one slice of steak or roast beef at a time and hold it securely.","細い先端で、ステーキやローストビーフを一切れずつしっかりつかめます。"],
   uses:[["katou-finetip-use1.webp","From the board","まな板から","Pick up a slice of steak straight from the cutting board.","まな板の上で切ったステーキも、そのままつかめます。"],
         ["shinjo-finetip-2.webp","Plating","盛り付けに","Place shrimp and other small pieces exactly where you want them on the plate.","えびなどの小さな具材も、皿の上の狙った位置に盛り付けられます。"],
         ["katou-finetip-use2.webp","Resting between dishes","食器が並ぶ食卓で","Set the tongs down and the raised tips stay clear of the plate.","お皿に置いても先端が浮いて、食器に当たりません。"]],
@@ -181,7 +181,7 @@ window.AUX_DATA.pdp = {
  },
  bread:{
   lead:["Grips bread by the edge, helping keep the toppings in place.","パンの端をつかみ、のせた具材を崩さず取り分けやすい。"],
-  primary:["shinjo-bread-2.webp","Lift toast without touching the toppings.","具材に触れずに、トーストを持ち上げる。","The shaped tips grip the edge of the bread, helping keep the toppings in place.","パンの端をつかめる形状なので、トーストやオープンサンドの具材を崩しにくい。"],
+  primary:["shinjo-bread-2.webp","Lift toast without touching the toppings.","具材に触れずに、|トーストを|持ち上げる。","The shaped tips grip the edge of the bread, helping keep the toppings in place.","パンの端をつかめる形状なので、トーストやオープンサンドの具材を崩しにくい。"],
   uses:[["katou-bread-use2.webp","Open sandwiches","具をのせたパンに","Pick up an open sandwich by the crust, without touching the topping.","具材に触れずに、パンの端をつかめます。"],
         ["katou-bread-use1.webp","Croissants","クロワッサンに","The shaped tips gently grip different breads, including croissants.","クロワッサンなど、いろいろなパンの形にフィットします。"],
         ["shinjo-bread-1.webp","From the board","ボードから","Serve open sandwiches from a board onto plates.","ボードに並べたパンも、取り皿へ取り分けやすい。"]],
@@ -194,7 +194,7 @@ window.AUX_DATA.pdp = {
  },
  basting:{
   lead:["Grip large cuts, then spoon sauce over them with the same tool.","大きな食材をつかみ、そのままソースもすくえる。"],
-  primary:["shinjo-basting-1.webp","Grip it, then spoon the sauce.","つかんで、そのままソースをかける。","One side is deep enough to hold about a tablespoon, so you can spoon sauce over food in the pan without switching tools.","片側が深くなっていて約大さじ1すくえるので、道具を持ち替えずにフライパンの中でソースをかけられます。"],
+  primary:["shinjo-basting-1.webp","Grip it, then spoon the sauce.","つかんで、|そのまま|ソースをかける。","One side is deep enough to hold about a tablespoon, so you can spoon sauce over food in the pan without switching tools.","片側が深くなっていて約大さじ1すくえるので、道具を持ち替えずにフライパンの中でソースをかけられます。"],
   uses:[["shinjo-basting-2.webp","Large, heavy pieces","大きく重いものも","Holds a thick cut of meat securely.","厚切りのお肉も、ガッシリつかめます。"],
         ["katou-basting-use1.webp","In the pan","フライパンの中で","The extended, angled handle makes it easier to reach into the pan.","長めのハンドルと角度のついた形状で、フライパンの中へ手を伸ばしやすくしています。"],
         ["katou-basting-contact.webp","Wraps around the food","包みこむようにつかむ","The head closes around the food and holds it from both sides.","食材を包み込むようにつかみます。"]],
