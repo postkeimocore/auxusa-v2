@@ -34,6 +34,7 @@ function plain(s){return String(s).replace(/\|/g,"");}
 function phrase(s){s=String(s);return s.indexOf("|")<0?s:'<span class="jp-phrase">'+s.replace(/\|/g,"<wbr>")+'</span>';}
 function pname(p,text){return L(p.name,"Leye "+(text?plain(p.jp):phrase(p.jp)));}
 var USE_JA={cook:"調理",serve:"取り分け",table:"食卓"};
+function price(p){return p.price||D.price;}
 function useLabel(id){return L(id.toUpperCase(),USE_JA[id]);}
 function mTitle(m){return L(m.title,phrase(m.jp));}
 function mStrap(m){return L(m.strap,m.jpStrap);}
@@ -58,6 +59,10 @@ function categoryCards(){
 function filterList(list,kind){
  var f=state.filter||"all";
  var out=f==="all"?list.slice():list.filter(function(p){return kind==="use"?p.uses.indexOf(f)>-1:p.family===f;});
+ /* Popular: AUX_DATA.popular (page views in production). Price: one price today, so equal prices keep the featured order (stable sort). */
+ if(state.sort==="popular")out.sort(function(a,b){return D.popular.indexOf(a.id)-D.popular.indexOf(b.id);});
+ if(state.sort==="price-asc")out.sort(function(a,b){return price(a)-price(b);});
+ if(state.sort==="price-desc")out.sort(function(a,b){return price(b)-price(a);});
  if(state.sort==="az")out.sort(function(a,b){return pname(a,1).localeCompare(pname(b,1),state.lang);});
  if(state.sort==="za")out.sort(function(a,b){return pname(b,1).localeCompare(pname(a,1),state.lang);});
  return out;
@@ -67,7 +72,7 @@ function listingToolbar(list,kind){
  var opts=kind==="use"?[["cook",useLabel("cook")],["serve",useLabel("serve")],["table",useLabel("table")]]:[["tongs",'<span class="brand-word">Leye</span> '+L("TONGS","トング")],["tools",'<span class="brand-word">Leye</span> '+L("TOOLS","キッチンツール")]];
  opts=opts.filter(function(o){return list.some(function(p){return kind==="use"?p.uses.indexOf(o[0])>-1:p.family===o[0];});});
  var chips=[["all",L("All","すべて")]].concat(opts);
- var sorts=[["featured",L("Featured","おすすめ順")],["az",L("Name A–Z","名前順")],["za",L("Name Z–A","名前の逆順")]];
+ var sorts=[["featured",L("Featured","おすすめ順")],["popular",L("Most popular","人気順")],["price-asc",L("Price: low to high","価格の安い順")],["price-desc",L("Price: high to low","価格の高い順")],["az",L("Name A–Z","名前順")],["za",L("Name Z–A","名前の逆順")]];
  return '<div class="listing-toolbar"><div class="toolbar-group" role="group" aria-label="'+L("Filter","絞り込み")+'"><span class="toolbar-label">'+L("Filter","絞り込み")+'</span>'+
   chips.map(function(c){return '<button type="button" class="filter-chip'+(f===c[0]?' active':'')+'" data-list-filter="'+c[0]+'" aria-pressed="'+(f===c[0])+'">'+c[1]+'</button>';}).join("")+'</div>'+
   '<label class="toolbar-group sort-control"><span class="toolbar-label">'+L("Sort","並び替え")+'</span><select id="list-sort" data-list-sort>'+
@@ -134,7 +139,7 @@ function brandPage(){
  }).join("")+'</div></section>';
 }
 function appHeader(){
- var shopPages=["shop","tongs","tools"],supportPages=["faq","shipping","returns","privacy","contact"];
+ var shopPages=["shop","tongs","tools","pdp"],supportPages=["faq","shipping","returns","privacy","contact"];
  var current=shopPages.indexOf(state.page)>-1?"shop":supportPages.indexOf(state.page)>-1?"support":state.page;
  function item(id,label){return '<button type="button" data-go="'+id+'"'+(current===id?' class="active"':'')+'>'+label+'</button>';}
  function drop(id,label,go,links){
@@ -356,10 +361,10 @@ var BIZ_PHOTOS={
 function bizGallery(id){
  var shots=BIZ_PHOTOS[id]||[];
  if(shots.length<2)return photo(shots[0],"");
- return '<div class="biz-gallery" data-biz="'+id+'"><div class="biz-frame">'+photo(shots[0],"")+
-  '<button class="kinto-arrow prev" type="button" data-biz-step="-1" aria-label="'+L("Previous image","前の画像")+'">'+arw()+'</button>'+
-  '<button class="kinto-arrow next" type="button" data-biz-step="1" aria-label="'+L("Next image","次の画像")+'">'+arw()+'</button></div>'+
-  '<div class="kinto-dots" role="group" aria-label="'+L("Photos","写真")+'">'+shots.map(function(f,i){return '<button type="button" class="'+(i===0?'active':'')+'" data-biz-index="'+i+'" aria-label="'+L("Image ","画像 ")+(i+1)+'" aria-pressed="'+(i===0)+'"><span></span></button>';}).join("")+'</div></div>';
+ return '<div class="biz-gallery" data-biz="'+id+'"><div class="biz-frame">'+photo(shots[0],"")+'</div>'+
+  '<div class="kinto-nav"><button class="kinto-arrow prev" type="button" data-biz-step="-1" aria-label="'+L("Previous image","前の画像")+'">'+arw()+'</button>'+
+  '<div class="kinto-dots" role="group" aria-label="'+L("Photos","写真")+'">'+shots.map(function(f,i){return '<button type="button" class="'+(i===0?'active':'')+'" data-biz-index="'+i+'" aria-label="'+L("Image ","画像 ")+(i+1)+'" aria-pressed="'+(i===0)+'"><span></span></button>';}).join("")+'</div>'+
+  '<button class="kinto-arrow next" type="button" data-biz-step="1" aria-label="'+L("Next image","次の画像")+'">'+arw()+'</button></div></div>';
 }
 function pdpShow(i){
  var g=document.querySelector(".kinto-gallery");if(!g)return;
@@ -412,12 +417,12 @@ function pdpGallery(p){
  '<div class="kinto-thumbs" role="group" aria-label="'+L("Choose product photo","商品写真を選ぶ")+'">'+shots.map(function(file,i){
  return '<button type="button" class="kinto-thumb'+(idx===i?' active':'')+'" data-gallery-index="'+i+'" aria-label="'+L("View image ","画像を表示 ")+(i+1)+'" aria-pressed="'+(idx===i)+'"><img src="'+img(file)+'" loading="lazy" alt=""></button>';
  }).join("")+'</div>'+
- '<div class="kinto-stage"><div class="kinto-main"><img src="'+img(shots[idx])+'" alt="'+pname(p,1)+'" loading="eager">'+
- '<button class="kinto-arrow prev" type="button" data-gallery-step="-1" aria-label="'+L("Previous image","前の画像")+'">'+arw()+'</button>'+
- '<button class="kinto-arrow next" type="button" data-gallery-step="1" aria-label="'+L("Next image","次の画像")+'">'+arw()+'</button></div>'+
+ '<div class="kinto-stage"><div class="kinto-main"><img src="'+img(shots[idx])+'" alt="'+pname(p,1)+'" loading="eager"></div>'+
+ '<div class="kinto-nav"><button class="kinto-arrow prev" type="button" data-gallery-step="-1" aria-label="'+L("Previous image","前の画像")+'">'+arw()+'</button>'+
  '<div class="kinto-dots" role="group" aria-label="'+L("Photo slides","写真のスライド")+'">'+shots.map(function(file,i){
  return '<button type="button" class="'+(i===idx?'active':'')+'" data-gallery-index="'+i+'" aria-label="'+L("Image ","画像 ")+(i+1)+'" aria-pressed="'+(idx===i)+'"><span></span></button>';
- }).join("")+'</div></div></div>';
+ }).join("")+'</div>'+
+ '<button class="kinto-arrow next" type="button" data-gallery-step="1" aria-label="'+L("Next image","次の画像")+'">'+arw()+'</button></div></div></div>';
 }
 /* Product page specs: cm and g from the AUX product data; inches and ounces added for the English view. */
 function pdpLen(cm){return cm+"\u00a0cm"+(state.lang==="ja"?"":" ("+(cm/2.54).toFixed(1)+"\u00a0in)");}
@@ -454,9 +459,9 @@ function pdp(){
  '<button class="btn-fill" type="button" data-demo="cart">'+L("ADD TO CART","カートに入れる")+'</button>'+
  
  '<div class="purchase-assurance">'+
- '<button type="button" data-go="shipping"><b>'+L("SHIPPING","配送")+'</b>'+arw()+'</button>'+
- '<button type="button" data-go="returns"><b>'+L("RETURNS","返品")+'</b>'+arw()+'</button>'+
- '<button type="button" data-go="faq"><b>'+L("DUTIES & TAXES","関税・税金")+'</b>'+arw()+'</button></div>'+
+ '<button type="button" data-go="shipping"><b>'+L("SHIPPING","配送")+'</b>'+arw("arw-short")+'</button>'+
+ '<button type="button" data-go="returns"><b>'+L("RETURNS","返品")+'</b>'+arw("arw-short")+'</button>'+
+ '<button type="button" data-go="faq"><b>'+L("DUTIES & TAXES","関税・税金")+'</b>'+arw("arw-short")+'</button></div>'+
   '<div class="accordion"><details open><summary>'+L("Specifications","仕様")+'</summary>'+pdpSpecs(P.specs)+'</details>'+
  '<details open><summary>'+L("Care and use","お手入れ・使用上の注意")+'</summary><p>'+P.care.map(function(c){return L(c[0],c[1]);}).join(state.lang==="ja"?"":" ")+'</p></details></div>'+
  '<div class="btn-row">'+boutline(L("Buying for a business?","法人・業務用はこちら"),"business")+'</div></div></div>'+

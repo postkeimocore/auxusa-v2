@@ -334,3 +334,14 @@ One shared component (`whyBand()`) at the foot of HOME, COOK / SERVE / TABLE and
 - **WHY AUX band on tablets and phones** keeps its four photos: two above and two below the copy (copy padding 224 / 208px on tablets, 184 / 176px on phones), no drift.
 - **Phone / tablet menu (≤880px)** is a drawer from the left under the header, leaving a 64px strip on the right with the page under a 32% ink scrim (tap to close). SHOP / BRAND / SUPPORT open as accordions with the caret; top-level rows 56px with a rule, sub rows 48px indented 16px; FOR BUSINESS 32px below the list, language row 24px below that. Choosing any item closes the menu; the page behind does not scroll while it is open; the menu icon turns into a close icon.
 - **Reveal is a little quicker:** fade 960ms, rise 1280ms (was 1200 / 1600). A box that draws its own frame (the quantity stepper) is revealed as one piece, so the frame no longer shows before everything else.
+
+## Design fixes, second round (2026-11-18, user review)
+
+- **Japanese wrap span inherits everything** (`#site-app .jp-phrase{all:unset}` + keep-all): generic `span` rules (e.g. `.moment-jumps button span` 12px muted) had turned Japanese MOMENTS / FOR BUSINESS titles grey and small. Checked: every text element now has the same colour, opacity and size in English and Japanese (all pages, 1440 and 390).
+- **Dropdown hover intent:** the bar opens at once and stays 300ms after the pointer leaves (visibility / opacity transition), so moving down to it — even across another menu item — no longer closes it. Item hit areas are 16px taller (bar padding 8px, items 16 / 32px padding; one-row bar still 64px).
+- **Current-page line** under the menu item is a 2px stroke (was a 4px bar), also on hover. Product pages mark **SHOP** as current.
+- **PDP shipping / returns / duties links** use a 16px arrow (`.arw-short`) to suit the 12px labels.
+- **Sort** (listing toolbar): Featured, Most popular, Price low → high, Price high → low, Name A–Z, Name Z–A. "Most popular" is page views in production; until those exist it follows AUX's 3-year unit sales (`AUX_DATA.popular`; Scoop Tongs is not in that sheet and comes last). One price today, so the price orders keep the featured order.
+- **Phone hero rail** is 40px (was 56px), so the photo is wider.
+- **Photo carousels** (PDP gallery, FOR BUSINESS sectors): prev / next arrows sit in the bar row under the photo at the same 16px left / right inset, not over the photo.
+- **Jump boxes with photos** (MOMENTS, FOR BUSINESS): no frame lines (they appeared before the photos faded in); boxes are separated by an 8px gap, rows share one height, and on narrow screens the fifth FOR BUSINESS box spans both columns at the same height.
