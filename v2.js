@@ -265,7 +265,7 @@ function home(){
  '<section class="b2b-banner home-business"><div>'+
  '<h2 class="display-medium">'+L("Tools designed for attentive service.","お客様を迎える場所にも。")+'</h2>'+
  '<p class="body-md">'+L("Discover how AUX tools fit restaurants, hotels, cafés, events and retail.","レストランやホテル、カフェなどでの業務用利用に加え、小売・卸取引についてもご相談いただけます。")+'</p>'+
- '<div class="btn-row"><button type="button" class="btn-fill has-arrow" data-go="business">'+L("For Business","法人・事業者向け")+'</button></div></div>'+
+ '<div class="btn-row cta-centre"><button type="button" class="btn-fill has-arrow" data-go="business">'+L("For Business","法人・事業者向け")+'</button></div></div>'+
  photo("istock-1054862736.webp","Hospitality / editorial stock selection")+'</section>'+
  whyBand(L("Precision in every detail.",phrase("使いやすさを|支える|細部の工夫")),L("Considered proportions, precise tips and careful manufacturing help each tool move naturally with the hand.","先端の形や握り心地、仕上げまで。使いやすさを考えて細部を設計しています。"))+
  note("V1 priority restored: featured-product hero → AUX difference → featured products → category discovery → use-scene discovery → About AUX. New direction adds Third Utensil and Business within this sequence.","V1の基本順序：代表商品のHero→AUXの特徴→代表商品→カテゴリ→MOMENTS→About AUX。今回の方針でTABLEコンテンツ・法人導線を追加。")+'</section></div>';
@@ -398,7 +398,7 @@ function business(){
  return '<div class="detail-hero"><div class="detail-copy">'+
  '<h1 class="page-display">'+L("For spaces where<br>people gather.",phrase("飲食店や|宿泊施設にも<br>Leyeの|トングを。"))+'</h1>'+
  '<p class="body-lg">'+L("From professional kitchens to the table, AUX tools support the details of serving and sharing food.","厨房での調理からテーブルサービスまで、さまざまな業務で使える商品を揃えています。")+'</p>'+
- '<div class="btn-row">'+boutline(L("Business inquiries","法人・業務用のお問い合わせ"),"contact")+'</div></div>'+
+ '<div class="btn-row cta-centre">'+boutline(L("Business inquiries","法人・業務用のお問い合わせ"),"contact")+'</div></div>'+
  photo("istock-2195526262.webp","")+'</div>'+
  '<section class="site-section compact">'+sectionHead("",L("Tools for kitchens, hospitality and retail.",phrase("飲食店・|宿泊施設・|小売店向け")),
  L("Explore kitchen tools and tableware for hospitality, events and retail.","レストランやホテル、カフェ、イベント、小売店などでの用途をご紹介します。"))+
@@ -406,7 +406,7 @@ function business(){
  D.businesses.map(function(b,i){return '<section class="site-section '+(i%2?"mist":"")+'" id="anchor-'+b.id+'"><div class="business-detail '+(i%2?"reverse":"")+'">'+bizGallery(b.id)+
  '<div><h2 class="display-medium">'+L(b.title,phrase(b.jp))+'</h2><p class="body-lg">'+L(b.body[0],b.body[1])+'</p>'+
  '<div class="business-related">'+eyebrow(L("Suggested tools","おすすめの道具"))+'<ul>'+b.products.map(function(id){var p=productBy(id);return '<li><button type="button" data-product="'+id+'">'+photo(p.image,"")+'<span>'+pname(p)+'</span>'+arw()+'</button></li>';}).join("")+'</ul></div>'+
- '<div class="btn-row">'+boutline(L("Business & wholesale inquiries","法人・卸取引について問い合わせる"),"contact")+'</div></div></div></section>';}).join("")+
+ '<div class="btn-row cta-centre">'+boutline(L("Business & wholesale inquiries",phrase("法人・卸取引について|問い合わせる")),"contact")+'</div></div></div></section>';}).join("")+
  whyBand(L("Precision for every service.",phrase("業務でも|使いやすい|道具づくり")),L("Explore the design and metalworking behind every AUX tool.","AUXの商品づくりに生かしている設計や金属加工をご紹介します。"))+'</section>';
 }
 function pdpGallery(p){
@@ -464,7 +464,7 @@ function pdp(){
  '<button type="button" data-go="faq"><b>'+L("DUTIES & TAXES","関税・税金")+'</b>'+arw("arw-short")+'</button></div>'+
   '<div class="accordion"><details open><summary>'+L("Specifications","仕様")+'</summary>'+pdpSpecs(P.specs)+'</details>'+
  '<details open><summary>'+L("Care and use","お手入れ・使用上の注意")+'</summary><p>'+P.care.map(function(c){return L(c[0],c[1]);}).join(state.lang==="ja"?"":" ")+'</p></details></div>'+
- '<div class="btn-row">'+boutline(L("Buying for a business?","法人・業務用はこちら"),"business")+'</div></div></div>'+
+ '<div class="btn-row cta-centre">'+boutline(L("Buying for a business?","法人・業務用はこちら"),"business")+'</div></div></div>'+
  '<section class="site-section">'+sectionHead("",L("Made for the movement.","この商品の使い方"),
   L("AUX is shaped to suit the food, the hand and the movement.",p.family==="tools"?"食材や手の動きに合わせて考えた形状。":"食材や動作に合わせて、つかみやすさを考えた形状。"))+
  '<div class="pdp-primary-use"><div class="pdp-primary-photo">'+photo(P.primary[0],"")+'</div>'+
@@ -550,7 +550,7 @@ function faq(){
  return '<section class="site-section"><div class="support-wrap">'+eyebrow(L("SUPPORT","サポート"))+
  '<h1 class="page-display">'+L("FAQ","よくある質問")+'</h1><p class="body-lg">'+L("Answers to questions about AUX products, orders and care.","商品や配送、お手入れに関するよくあるご質問をまとめています。")+'</p>'+
  '<div class="faq-list">'+rows.map(function(x){return '<details><summary>'+L(x[0],x[1])+'</summary><p>'+L(x[2],x[3])+'</p></details>';}).join("")+'</div>'+
- '<div class="btn-row">'+boutline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
+ '<div class="btn-row cta-centre">'+boutline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
 }
 function policy(kind){
  var ship=kind==="shipping",priv=kind==="privacy",title=ship?L("Shipping & Delivery",phrase("配送|について")):priv?L("Privacy Policy",phrase("プライバシー|ポリシー")):L("Returns & Refunds",phrase("返品・|返金|について"));
@@ -575,7 +575,7 @@ function policy(kind){
  '<h1 class="page-display">'+title+'</h1>'+
  '<p class="body-lg">'+(ship?L("Everything you need to know about receiving your AUX order.","AUXの商品をお届けするための配送について。"):priv?L("How AUX collects, uses and protects your information.","AUXにおける個人情報の取り扱いについて。"):L("We are here to help with returns and order concerns.","返品・注文内容についてのご相談はこちら。"))+'</p>'+
  '<dl class="policy-table">'+rows.map(function(r){return '<div class="policy-row"><dt>'+L(r[0],r[1])+'</dt><dd>'+L(r[2],r[3])+'</dd></div>';}).join("")+'</dl>'+
- '<div class="btn-row">'+boutline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
+ '<div class="btn-row cta-centre">'+boutline(L("Contact us","お問い合わせ"),"contact")+'</div></div></section>';
 }
 function contact(){
  return '<section class="site-section"><div class="support-wrap">'+eyebrow("CONTACT")+'<h1 class="page-display">'+L("How can we help?","お問い合わせ")+'</h1><p class="body-lg">'+L("Get in touch about products, orders or business purchasing using the form below.","商品やご注文、法人取引については以下のフォームからお問い合わせください。")+'</p>'+
