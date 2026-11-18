@@ -728,6 +728,13 @@ function scatterParallax(){
    each section instead of scroll events, so it also works inside a frame that does not scroll
    itself (XProof). */
 var FLOAT_GROUPS=[[".scatter-section",".scatter-photo","speed"],[".why-band",".why-float","drift"]];
+/* The scroll strips are measured once per layout. When the page height changes after that (web fonts, late layout),
+   measure again: stale strips sat below a shorter page (blank space under the footer) and the photos never showed. */
+var floatLayoutH=0,floatLayoutT=0;
+if("ResizeObserver" in window)new ResizeObserver(function(){
+ var app=document.getElementById("site-app"),h=app?app.offsetHeight:0;if(Math.abs(h-floatLayoutH)<2)return;floatLayoutH=h;
+ clearTimeout(floatLayoutT);floatLayoutT=setTimeout(function(){if(document.querySelector(".float-probe"))bindFloat();},150);
+}).observe(document.getElementById("site-app"));
 var floatObservers=[],floatGen=0;
 function bindFloat(){
  floatObservers.forEach(function(o){o.disconnect();});floatObservers=[];floatGen++;
@@ -776,7 +783,8 @@ function floatSection(sec,items,speedKey,pageH){
  [].forEach.call(probe.children,function(st){io.observe(st);});floatObservers.push(io);
 }
 window.addEventListener("scroll",function(){if(!scatterQueued){scatterQueued=true;requestAnimationFrame(scatterParallax);}},{passive:true});
-window.addEventListener("resize",function(){syncScrollFx();scatterParallax();updateCompare();bindGallery();});
+window.addEventListener("resize",function(){syncScrollFx();scatterParallax();updateCompare();bindGallery();
+ clearTimeout(floatLayoutT);floatLayoutT=setTimeout(function(){if(document.querySelector(".float-probe"))bindFloat();},200);});  /* new width: lay the strips out again */
 function render(){
  document.documentElement.lang=state.lang;
  document.getElementById("site-app").innerHTML=appHeader()+'<div class="site-content">'+content()+'</div>'+footer();
