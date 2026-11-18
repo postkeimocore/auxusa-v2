@@ -848,8 +848,10 @@ html.site-only #site-app{width:100%;min-height:100vh}
  #site-app.mobile-open .site-menu .nav-item{display:block;height:auto}
  #site-app.mobile-open .site-menu .nav-sub{display:flex;position:static;flex-direction:column;align-items:stretch;padding:0 0 8px 16px;border:0}
  #site-app.mobile-open .site-menu .nav-sub button{height:40px;min-height:40px;padding:0;text-align:left;border:0}
- /* No room for the language switch in the phone header: it becomes the last row of the menu. */
+ /* No room for the language switch in the phone header: it becomes the last row of the menu.
+    The open menu hangs from the sticky header, so it scrolls inside itself to reach its last rows. */
  .lang-switch{display:none}
+ #site-app.mobile-open .site-menu{max-height:calc(100vh - 72px);max-height:calc(100dvh - 72px);overflow-y:auto;overscroll-behavior:contain}
  #site-app.mobile-open .site-menu .nav-lang{display:flex;gap:24px;margin-top:16px}
  #site-app.mobile-open .site-menu .nav-lang button{height:48px;min-height:48px;padding:0;border:0;letter-spacing:var(--tracking-eyebrow)}
  #site-app.mobile-open .site-menu .nav-lang button.active{text-decoration:underline;text-underline-offset:4px}
