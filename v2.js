@@ -256,7 +256,7 @@ function home(){
  '<div class="split-copy">'+eyebrow(L("THE THIRD UTENSIL","第3の食卓道具"))+
  '<h2 class="display-medium">'+L("Knife.<br>Fork.<br>Tongs.","ナイフ。<br>フォーク。<br>トング。")+'</h2>'+
  '<p class="body-lg">'+L("Small tongs that belong beside the knife and fork<br>—not only in the kitchen.","キッチンだけでなく、ナイフやフォークと一緒に食卓でも使える小さなトングです。")+'</p>'+
- '<div class="btn-row">'+boutline(L("Explore the idea","この考え方を見る"),"why",'data-anchor="third"')+'</div></div></div></section>'+
+ '<div class="btn-row">'+boutline(L("Read more","詳しく読む"),"why",'data-anchor="third"')+'</div></div></div></section>'+
  '<section class="site-section home-moments-section">'+sectionHead(L("MOMENTS","食卓のシーン"),L("From everyday meals to the moments we share.","何気ない日も、大切な日も。"),L("A different way to explore AUX: through the moments around the table.","普段の食事からおもてなしまで、食卓のシーンに合った道具をご紹介します。"),true)+
  '<div class="home-moments"><div class="home-moment-main" tabindex="0" data-go="moments" data-anchor="everyday">'+photo(D.moments[0].photo,"MOMENTS / everyday")+
  '<div class="moment-home-copy"><h3>'+mTitle(D.moments[0])+'</h3><p>'+mStrap(D.moments[0])+'</p></div><span class="arrow">'+arw()+'</span></div>'+
